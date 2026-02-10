@@ -27,6 +27,8 @@ class Phenotype(Genotype):
         self.pawtype = ""
         self.furtype = []
 
+        self.element = ""
+
         self.vitiligo_string = ""
         self.mutant_red = ""
 
@@ -57,6 +59,8 @@ class Phenotype(Genotype):
         self.bobtailnr = 0
         self.pawtype = ""
         self.furtype = []
+
+        self.element = ""
 
         self.vitiligo_string = ""
         self.mutant_red = ""
@@ -438,6 +442,49 @@ class Phenotype(Genotype):
                 self.tailtype = "double " + self.tailtype
         if(self.tailtype != ''):
             self.tailtype += "tail"
+
+    def ElementFinder(self):
+        key_map = {
+            "A" : "air",
+            "E" : "earth",
+            "F" : "fire",
+            "W" : "water"
+        }
+
+        interaction_map = {
+            "F" : "fire",
+            "W" : "water",
+            "E" : "earth",
+            "A" : "air",
+
+            "f" : "blue fire",
+            "w" : "ice",
+            "e" : "plant",
+            "a" : "lightning",
+
+            "FW" : "steam",
+            "EF" : "magma",
+            "AF" : "smoke",
+            "EW" : "mud",
+            "AW" : "snow",
+            "AE" : "sand",
+
+            "fw" : "mist",
+            "ef" : "oil",
+            "af" : "combustion",
+            "ew" : "decay",
+            "aw" : "aurora",
+            "ae" : "luminescent"
+        }
+
+        displayed_element = ""
+        for favour in self.elemental_genes["favours"]:
+            if self.elemental_genes[key_map[favour]][0] not in ["N", "n"] and self.elemental_genes[key_map[favour]][0] not in displayed_element:
+                displayed_element += self.elemental_genes[key_map[favour]][0]
+        
+        if displayed_element:
+            self.element = interaction_map[displayed_element]
+
     def PhenotypeOutput(self, pattern=None, gender=None, chimera=False):
         self.reset()
         self.FurtypeFinder()
@@ -473,6 +520,7 @@ class Phenotype(Genotype):
             self.WhiteFinder()
             self.TabbyFinder()
             
+        self.ElementFinder()
 
         eyes = ""
 
@@ -523,7 +571,10 @@ class Phenotype(Genotype):
             breed = " " + breed + " "
         
         outputs = self.length + " " + self.highwhite + self.fade + self.colour + self.mutant_red + " " + self.silvergold + self.tabtype + self.tabby + self.tortie + self.point + self.lowwhite + self.karpati + breed + sexstring + withword
-        
+
+        if self.element:
+            outputs = self.element + "-elemental " + outputs
+
         while "  " in outputs:
             outputs = outputs.replace("  ", " ")
 

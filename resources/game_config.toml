@@ -727,6 +727,10 @@ dev_tools = false
   tickmod_kittypet = ["2", "1", "1", "1", "0", "0", "0", "0", "0"]
   bengal_kittypet = ["2", "1", "1", "1", "0", "0", "0", "0", "0"]
   sokoke_kittypet = ["2", "2", "1", "1", "1", "1", "0", "0", "0"]
+
+  dominant_element = 5
+  recessive_element = 5
+  recessive_nonelement = 50
 [april_fools_genes]
   green = 10
   polycaudal = 10
