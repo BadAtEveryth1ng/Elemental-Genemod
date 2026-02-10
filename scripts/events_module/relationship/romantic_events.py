@@ -13,12 +13,11 @@ from scripts.event_class import Single_Event
 from scripts.game_structure import constants
 from scripts.game_structure import game
 from scripts.game_structure.localization import load_lang_resource
-from scripts.utility import (
+from scripts.events_module.text_adjust import process_text, event_text_adjust
+from scripts.events_module.consequences import change_relationship_values
+from scripts.events_module.event_filters import (
     get_highest_romantic_relation,
-    event_text_adjust,
     get_personality_compatibility,
-    process_text,
-    change_relationship_values,
 )
 
 
@@ -576,7 +575,7 @@ class RomanticEvents:
         if poly and not RomanticEvents.current_mates_allow_new_mate(cat_from, cat_to):
             return False
 
-        become_mate = False
+        become_mates = False
         condition = constants.CONFIG["mates"]["confession"]["accept_confession"]
         rel_to_check = highest_romantic_relation.opposite_relationship
         if not rel_to_check:
@@ -584,7 +583,7 @@ class RomanticEvents:
             rel_to_check = highest_romantic_relation.opposite_relationship
 
         if RomanticEvents.relationship_fulfill_condition(rel_to_check, condition):
-            become_mate = True
+            become_mates = True
             if (
                 cat_from.ID in cat_to.previous_mates
                 and cat_to.ID in cat_from.previous_mates
@@ -603,7 +602,7 @@ class RomanticEvents:
             and condition[RelType.ROMANCE] > 0
             and rel_to_check.romance >= condition[RelType.ROMANCE] * 1.5
         ):
-            become_mate = True
+            become_mates = True
             if (
                 cat_from.ID in cat_to.previous_mates
                 and cat_to.ID in cat_from.previous_mates
@@ -635,7 +634,7 @@ class RomanticEvents:
                 cat_to.relationships[cat_from.ID].comfort -= 10
 
         mate_string = RomanticEvents.prepare_relationship_string(
-            mate_string, cat_from, cat_to, clan=cat_from.status.group_ID
+            mate_string, cat_from, cat_to, clan=cat_from.status.fetch_clan_object(game.clan)
         )
         clan = cat_from.status.fetch_clan_object(game.clan)
         game.cur_events_list.append(
@@ -647,7 +646,7 @@ class RomanticEvents:
             )
         )
 
-        if become_mate:
+        if become_mates:
             cat_from.set_mate(cat_to)
 
         return True
@@ -682,7 +681,6 @@ class RomanticEvents:
     def check_if_new_mate(cat_from, cat_to):
         """Checks if the two cats can become mates, or not. Returns: boolean and event_string"""
         become_mates = False
-        young_age = ("newborn", "kitten", "adolescent")
         if cat_to.status.is_outsider != cat_from.status.is_outsider:
             return False, None
 

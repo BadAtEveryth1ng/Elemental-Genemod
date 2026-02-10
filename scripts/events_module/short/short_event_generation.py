@@ -5,6 +5,7 @@ import i18n
 import ujson
 
 from scripts.cat.cats import Cat
+from scripts.cat.enums import CatRank
 from scripts.cat.skills import SkillPath
 from scripts.clan_resources.freshkill import (
     FRESHKILL_EVENT_ACTIVE,
@@ -27,7 +28,11 @@ from scripts.events_module.event_filters import (
 from scripts.events_module.short.short_event import ShortEvent
 from scripts.game_structure import constants, game
 from scripts.game_structure.game.switches import switch_get_value, Switch
-from scripts.utility import get_living_clan_cat_count
+from scripts.clan_package.cotc import get_warring_clan
+from scripts.clan_package.get_clan_cats import (
+    get_living_clan_cat_count,
+    find_alive_cats_with_rank,
+)
 
 loaded_events = {}
 used_events = set()
@@ -283,7 +288,7 @@ def generate_event_objects(event_triggered, biome, frequency) -> list:
                     ),
                     m_c=event["m_c"] if "m_c" in event else {},
                     r_c=event["r_c"] if "r_c" in event else {},
-                    new_cat=event["new_cat"] if "new_cat" in event else [],
+                    new_cat=event["multiclan_cat"] if game.clan.clancount == "multiclan" and "multiclan_cat" in event else (event["new_cat"] if "new_cat" in event else []),
                     injury=event["injury"] if "injury" in event else [],
                     exclude_involved=(
                         event["exclude_involved"] if "exclude_involved" in event else []
@@ -382,7 +387,7 @@ def filter_events(
             if set(event.sub_type) != set(sub_types):
                 continue
 
-        if not event_for_location(event.location):
+        if not event_for_location(event.location, clan):
             continue
 
         if not event_for_season(event.season):
@@ -390,6 +395,16 @@ def filter_events(
 
         # check tags
         if not event_for_tags(event.tags, main_cat, random_cat):
+            continue
+
+        if not game.clan.leader and "lead_name" in event.text:
+            continue
+        if not game.clan.deputy and "dep_name" in event.text:
+            continue
+        if (
+            not find_alive_cats_with_rank(Cat, [CatRank.MEDICINE_CAT], working=True)
+            and "med_name" in event.text
+        ):
             continue
 
         # make complete leader death less likely until the leader is over 150 moons (or unless it's a murder)
@@ -531,7 +546,7 @@ def filter_events(
                     else:
                         discard = False
 
-                else:  # if supply type wasn't freshkill, then it must be a herb type
+                else:  # if supply type wasn't freshkill, then it must be an herb type
                     if not event_for_herb_supply(trigger, supply_type, clan_size):
                         discard = True
                         break

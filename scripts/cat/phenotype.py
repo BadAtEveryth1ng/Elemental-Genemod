@@ -536,8 +536,8 @@ class Phenotype(Genotype):
             all_patterns = ['redbaralt']
         elif (special == 'ghost'):
             all_patterns = ['fullbaralt']
-        elif (self.wbtype == 'chinchilla' or self.ticked[1] == "Ta" or ((not self.breakthrough or self.mack[0] == "mc") and self.ticked[0] == "Ta")):
-            if (self.ticktype == "agouti" or self.wbtype == 'chinchilla'):
+        elif self.ticked[1] == "Ta" or (not self.breakthrough and self.ticked[0] == "Ta"):
+            if (self.ticktype == "agouti"):
                 all_patterns = ['agouti']
             elif (self.ticktype == 'reduced barring'):
                 all_patterns = ['redbar']
@@ -597,6 +597,9 @@ class Phenotype(Genotype):
                 else:
                     tail = "macktail"
             all_patterns.append(tail)
+
+            if self.wbtype == "chinchilla" or self.corin[0] == "sg":
+                all_patterns.insert(0, "agouti")
 
         return all_patterns
   
@@ -801,13 +804,11 @@ class Phenotype(Genotype):
     def FindBlack(self, genes, moons, special=None):
         unders_colour = ""
         unders_opacity = 0
+        self.caramel = "caramel" if genes.dilute[0] == "d" and genes.dilutemd[0] == 'Dm' else ""
         if special=='er':
             return self.FindRed(genes, moons, special)
         else:
             if genes.eumelanin[0] == "bl":
-                if genes.dilutemd[0] == 'Dm':
-                    self.caramel = 'caramel'
-                
                 if genes.dilute[0] == "d":
                     if(genes.pinkdilute[0] == "dp"):
                         colour = "beige"
@@ -818,11 +819,7 @@ class Phenotype(Genotype):
                         colour = "buff"
                     else:
                         colour = "cinnamon"
-                        self.caramel = ""
             elif genes.eumelanin[0] == "b":
-                if genes.dilutemd[0] == 'Dm':
-                    self.caramel = 'caramel'
-                
                 if genes.dilute[0] == "d":
                     if(genes.pinkdilute[0] == "dp"):
                         colour = "lavender"
@@ -833,12 +830,8 @@ class Phenotype(Genotype):
                         colour = "champagne"
                     else:
                         colour = "chocolate"
-                        self.caramel = ""
             else:
-                if(genes.dilutemd[0] == 'Dm'):
-                    self.caramel = 'caramel'
-                
-                if(genes.dilute[0] == "d"):
+                if (genes.dilute[0] == "d"):
                     if(genes.pinkdilute[0] == "dp"):
                         colour = "platinum"
                     else:
@@ -848,7 +841,6 @@ class Phenotype(Genotype):
                         colour = "dove"
                     else:
                         colour = "black"
-                        self.caramel = ""
             
             maincolour = colour + str(self.saturation)
 
@@ -906,22 +898,19 @@ class Phenotype(Genotype):
             else:
                 maincolour = 'low'
         if(genes.dilute[0] == "d" or (genes.specialred == 'cameo' and genes.silver[0] == 'I') or self.merlepattern):
-            if(genes.pinkdilute[0] == "dp"):
+            if (genes.pinkdilute[0] == "dp") or (genes.dilute[0] == "d" and genes.specialred == 'cameo' and genes.silver[0] == 'I'):
                 if genes.dilutemd[0] == "Dm":
                     colour = "ivory-apricot"
                 else:
                     colour = "ivory"
             else:
-                if genes.dilutemd[0] == "Dm" and not(genes.specialred == 'cameo' or self.merlepattern):
+                if genes.dilutemd[0] == "Dm" and not(genes.dilute[0] == "D" and (genes.specialred == 'cameo' or self.merlepattern)):
                     colour = "apricot"
                 else:
                     colour = "cream"
         else:
             if(genes.pinkdilute[0] == "dp"):
-                if genes.dilutemd[0] == "Dm":
-                    colour = "honey-apricot"
-                else:
-                    colour = "honey"
+                colour = "honey"
             else:
                 colour = "red"
         
@@ -936,7 +925,9 @@ class Phenotype(Genotype):
         else:
             rufousing = genes.ruftype
 
-        if genes.corin[0] == "sg" or genes.wbtype == "chinchilla" or (genes.corin[0] != "N" and genes.wbtype == "shaded"):
+        if special == "nosilver":
+            banding = "medium"
+        elif genes.corin[0] == "sg" or genes.wbtype == "chinchilla" or (genes.corin[0] != "N" and genes.wbtype == "shaded"):
             banding = "chinchilla"
         elif genes.corin[0] == "sh" or genes.corin[0] == "fg" or genes.wbtype == "shaded":
             banding = "shaded"
@@ -951,19 +942,6 @@ class Phenotype(Genotype):
                     rufousing = "medium"
             elif genes.ruftype == "medium":
                 colour = "cream"
-                if rufousing != "silver":
-                    rufousing = "rufoused"
-            else:
-                colour = "red"
-                if rufousing != "silver":
-                    rufousing = "low"
-        elif colour == "honey-apricot":
-            if genes.ruftype == "low":
-                colour = "honey"
-                if rufousing != "silver":
-                    rufousing = "medium"
-            elif genes.ruftype == "medium":
-                colour = "honey"
                 if rufousing != "silver":
                     rufousing = "rufoused"
             else:

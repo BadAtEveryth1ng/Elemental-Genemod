@@ -16,9 +16,10 @@ from typing import Dict, List, Any, Optional, Union, Callable, TYPE_CHECKING
 import i18n
 import ujson  # type: ignore
 
+from scripts.special_dates import SpecialDate, is_today
 import scripts.game_structure.localization as pronouns
-from scripts.cat import save_load
-from scripts.cat.enums import CatAge, CatRank, CatSocial, CatGroup, CatStanding, CatCompatibility
+from scripts.cat import save_load, pronouns
+from scripts.cat.enums import CatGroup, CatAge, CatRank, CatStanding, CatSocial, CatCompatibility
 from scripts.cat.history import History
 from scripts.cat.names import Name
 from scripts.cat.pelts import Pelt
@@ -27,7 +28,11 @@ from scripts.cat.phenotype import Phenotype
 from scripts.cat.personality import Personality
 from scripts.cat.skills import CatSkills
 from scripts.cat.status import Status, StatusDict
-from scripts.cat.thoughts import Thoughts
+from scripts.events_module.thoughts.generate_thoughts import (
+    new_death_thought,
+    new_thought,
+    get_other_cat_for_thought,
+)
 from scripts.cat_relations.inheritance import Inheritance
 from scripts.cat_relations.relationship import Relationship
 from scripts.cat_relations.enums import RelType, RelTier, rel_type_tiers
@@ -48,15 +53,13 @@ from scripts.game_structure.game.switches import switch_get_value, Switch
 from scripts.game_structure.localization import load_lang_resource
 from scripts.game_structure.screen_settings import screen
 from scripts.housekeeping.datadir import get_save_dir
-from scripts.utility import (
-    clamp,
-    find_alive_cats_with_rank,
-    get_personality_compatibility,
+from scripts.cat.sprites.display_sprites import update_sprite, update_mask
+from scripts.events_module.text_adjust import (
     event_text_adjust,
-    update_sprite,
     leader_ceremony_text_adjust,
-    update_mask,
 )
+from scripts.events_module.event_filters import get_personality_compatibility
+from scripts.clan_package.get_clan_cats import find_alive_cats_with_rank
 
 import scripts.game_structure.screen_settings
 
@@ -242,8 +245,8 @@ class Cat:
                         threepars = self.chimerapheno.KitGenerator(Cat.all_cats[parent1], Cat.all_cats.get(parent2, extrapar), extrapar, chimera=True)
                         if threepars and isinstance(extrapar, Cat):
                             self.parent3 = extrapar.ID
-                except:
-                    traceback.print_exc()
+                except Exception as e:
+                    print(traceback.format_exception(e))
                     self.phenotype.Generator(kittypet=kittypet)
         else:
             if not chimera:
@@ -439,7 +442,7 @@ class Cat:
             biome = kwargs["biome"]
         elif game.clan is not None:
             biome = (
-                game.clan.biome
+                self.status.fetch_clan_object(game.clan).biome
                 if not game.clan.override_biome
                 else game.clan.override_biome
             )
@@ -546,7 +549,8 @@ class Cat:
         self.genderalign = ""
         if (self.gender == 'intersex' or 
            (self.gender == "molly" and 'Y' in self.phenotype.sexgene) or 
-           (self.gender == "tom" and 'Y' not in self.phenotype.sexgene)):
+           (self.gender == "tom" and 'Y' not in self.phenotype.sexgene) or
+           (len(self.phenotype.sexgene) != 2)):
             self.genderalign = 'intersex '
         if nb_chance == 1:
             self.genderalign += "sam"
@@ -904,17 +908,17 @@ class Cat:
         if self.status.is_leader:
             if clan.leader_lives > 0:
                 lives_left = clan.leader_lives
-                self.thoughts(just_died=True, lives_left=lives_left)
+                self.get_new_thought(just_died=True, lives_left=lives_left)
                 return
             elif clan.leader_lives <= 0:
                 self.dead = True
                 game.just_died.append(self.ID)
                 clan.leader_lives = 0
-                self.thoughts(just_died=True, lives_left=0)
+                self.get_new_thought(just_died=True, lives_left=0)
         else:
             self.dead = True
             game.just_died.append(self.ID)
-            self.thoughts(just_died=True)
+            self.get_new_thought(just_died=True)
 
         for app in self.apprentice.copy():
             fetched_cat = Cat.fetch_cat(app)
@@ -981,12 +985,6 @@ class Cat:
                 if tier.is_extreme_pos:
                     very_high_types.extend(rel_type)
                 elif tier.is_mid_pos:
-                    # 50/50 if this will cause major grief
-                    if randint(1, 2) == 1:
-                        very_high_types.extend(rel_type)
-                    else:
-                        high_types.extend(rel_type)
-                elif tier.is_low_pos:
                     high_types.extend(rel_type)
                 elif tier.is_extreme_neg:
                     very_low_types.extend(rel_type)
@@ -1141,7 +1139,26 @@ class Cat:
         else:
             return "general"
 
-    def become_lost(self, status = None, standing = CatStanding.LOST):
+    def leave_clan(self, new_social_status: CatSocial):
+        """Removes cat from the Clan willingly. Makes status changes and removes apprentices."""
+        if not new_social_status:
+            new_social_status = choice(
+                (CatSocial.KITTYPET, CatSocial.LONER, CatSocial.ROGUE)
+            )
+        self.status.leave_group(new_social_status=new_social_status)
+        self.get_new_thought()
+
+        for app in self.apprentice.copy():
+            app_ob = Cat.fetch_cat(app)
+            if app_ob:
+                app_ob.update_mentor()
+
+        self.update_mentor()
+
+        for x in self.apprentice:
+            Cat.fetch_cat(x).update_mentor()
+
+    def become_lost(self, status = None):
         """Makes a Clan cat a lost cat. Makes status changes and removes apprentices."""
 
         if self.status.is_leader:
@@ -1152,9 +1169,7 @@ class Cat:
             self.status.fetch_clan_object().remove_med_cat(self)
 
         self.status.become_lost(
-            new_social_status=choice([CatSocial.KITTYPET, CatSocial.LONER]) if not status else status,
-            override_standing=standing
-        )
+            new_social_status=choice([CatSocial.KITTYPET, CatSocial.LONER]) if not status else status)
 
         for app in self.apprentice.copy():
             app_ob = Cat.fetch_cat(app)
@@ -1170,7 +1185,7 @@ class Cat:
         """Makes an "outside cat" a Clan cat. Returns a list of IDs for any additional cats that
         are coming with them."""
 
-        if not self.status.is_exiled(clan) and not self.status.is_lost(clan):
+        if not self.status.is_exiled(clan) and clan not in self.status.all_groups:
             self.history.add_beginning()
 
         self.status.add_to_group(new_group_ID=clan, age=self.age)
@@ -1307,7 +1322,7 @@ class Cat:
             cat=self,
             prefix=new_prefix,
             suffix=new_suffix,
-            biome=game.clan.biome,
+            biome=self.status.fetch_clan_object(game.clan).biome,
             specsuffix_hidden=self.specsuffix_hidden,
         )
 
@@ -1334,6 +1349,8 @@ class Cat:
         return genelist
 
     def describe_eyes(self):
+        if is_today(SpecialDate.APRIL_FOOLS) and self.phenotype.april_fools.get("rainbow_eyes", ["NoDRE"])[0] != "NoDRE":
+            return "rainbow"
         if(self.phenotype.lefteye == self.phenotype.righteye):
             colour = self.phenotype.lefteye.lower()
         else:
@@ -1477,6 +1494,9 @@ class Cat:
         load_leader_ceremonies()
         self.history.prev_names.append(str(self.name))
 
+        total_lives = max(1, choice(constants.CONFIG["clan_creation"]["leader_lives_nr"]))
+        self.status.fetch_clan_object().leader_lives = total_lives
+
         # determine which dict we're pulling from
         if self.status.fetch_clan_object(game.clan).instructor.status.group == CatGroup.DARK_FOREST:
             starclan = False
@@ -1529,7 +1549,7 @@ class Cat:
 
         for rel in relationships:
             kitty = self.fetch_cat(rel.cat_to)
-            if kitty and kitty.dead and kitty.status.rank != CatRank.NEWBORN:
+            if kitty and kitty.dead and not kitty.faded and kitty.status.rank != CatRank.NEWBORN:
                 # check where they reside
                 if starclan:
                     if kitty.status.group != CatGroup.STARCLAN:
@@ -1556,9 +1576,7 @@ class Cat:
         # if we have relations, then make sure we only take the top 8
         if dead_relations:
             for i, rel in enumerate(dead_relations):
-                if rel.cat_to.faded:
-                    continue
-                if i == 8:
+                if i == total_lives-1:
                     break
                 if rel.cat_to.status.is_leader:
                     life_giving_leader = rel.cat_to
@@ -1575,8 +1593,8 @@ class Cat:
         ]
 
         # check amount of life givers, if we need more, then grab from the other dead cats
-        if len(life_givers) < 8:
-            amount = 8 - len(life_givers)
+        if len(life_givers) < total_lives-1:
+            amount = total_lives-1 - len(life_givers)
 
             possible_dead_cats = [
                 i
@@ -1613,11 +1631,11 @@ class Cat:
             life_givers.append(life_giving_leader)
 
         # check amount again, if more are needed then we'll add the ghost-y cats at the end
-        if len(life_givers) < 9:
+        if len(life_givers) < total_lives:
             unknown_blessing = True
         else:
             unknown_blessing = False
-        extra_lives = str(9 - len(life_givers))
+        extra_lives = str(total_lives - len(life_givers))
         possible_lives = ceremony_dict["lives"]
         lives = []
         used_lives = []
@@ -1683,7 +1701,7 @@ class Cat:
 
             i = 0
             chosen_life = {}
-            while i < 10:
+            while i <= total_lives:
                 attempted = []
                 if life_list:
                     chosen_life = choice(life_list)
@@ -1798,13 +1816,11 @@ class Cat:
         old_age = self.age
 
         if self.dead and not self.faded:
-            if self.moons == 1 and self.status.rank == CatRank.NEWBORN:
-                self.status._change_rank(CatRank.KITTEN)
-            self.thoughts()
+            self.get_new_thought()
             return
 
         self.moons += 1
-        if self.moons == 1 and self.status.rank == CatRank.NEWBORN:
+        if self.moons > 0 and self.status.rank == CatRank.NEWBORN:
             self.status._change_rank(CatRank.KITTEN)
         self.in_camp = 1
 
@@ -1815,7 +1831,7 @@ class Cat:
             self.personality.set_kit(self.age.is_baby())
             if self.personality.trait != personality:
                 self.history.prev_pers.append(personality)
-            self.thoughts(other_clan_cats=other_clan_cats)
+            self.get_new_thought(other_clan_cats=other_clan_cats)
             return
 
         if old_age != self.age:
@@ -1831,7 +1847,7 @@ class Cat:
         if self.status.rank.is_any_apprentice_rank():
             self.update_mentor()
 
-    def thoughts(
+    def get_new_thought(
         self, just_died=False, lives_left: int = 0, other_clan_cats: list = None
     ):
         """
@@ -1839,74 +1855,24 @@ class Cat:
         :param just_died: Set True if the cat is generating a death thought
         :param lives_left: If a leader is generating a death thought, include their lives left here
         """
-        if self.status.is_other_clancat:
-            if not other_clan_cats:
-                all_cats = []
-            else:
-                all_cats = other_clan_cats.copy()
-                all_cats.remove(self)
+        if self.status.is_other_clancat and not self.dead:
+            cat_list = other_clan_cats.copy() if other_clan_cats else []
         else:
-            all_cats = self.all_cats_list.copy()
-            all_cats.remove(self)
+            cat_list = self.all_cats_list.copy()
 
-        game_mode = switch_get_value(Switch.game_mode)
-        biome = switch_get_value(Switch.biome)
-        camp = switch_get_value(Switch.camp_bg)
+        clan = self.status.fetch_clan_object(game.clan)
+
+        other_cat = get_other_cat_for_thought(
+            cat_list=cat_list,
+            main_cat=self,
+        )
+
+        biome = self.status.fetch_clan_object(game.clan).biome if game.clan else switch_get_value(Switch.biome)
+        camp = self.status.fetch_clan_object(game.clan).camp_bg if game.clan else switch_get_value(Switch.camp_bg)
         try:
             season = game.clan.current_season
         except Exception:
             season = None
-
-        # get other cat
-        i = 0
-        other_cat = None
-        if all_cats:
-            other_cat = choice(all_cats)
-            # for cats inside the clan
-            if self.status.is_clancat:
-                # we want to limit how often dead cats are thought about
-                thinking_of_dead_cat = getrandbits(4) == 1
-                while all_cats and (
-                    (other_cat.dead and not thinking_of_dead_cat)
-                    or other_cat.ID not in self.relationships
-                    or other_cat.status.group_ID != self.status.group_ID
-                ):
-                    all_cats.remove(other_cat)
-
-                    if not all_cats or i > 100:
-                        other_cat = None
-                        break
-
-                    other_cat = choice(all_cats)
-
-                    i += 1
-
-            # for dead cats, they can think about whoever they want
-            elif self.status.group.is_afterlife():
-                other_cat = choice(all_cats)
-
-            # for cats currently outside
-            # it appears as for now, kittypets and loners can only think about outsider cats
-            elif self.status.is_outsider:
-                while all_cats and (other_cat not in self.relationships):
-                    all_cats.remove(other_cat)
-                    if not all_cats:
-                        other_cat = None
-                        break
-
-                    other_cat = choice(all_cats)
-
-                    i += 1
-                    if i > 100:
-                        other_cat = None
-                        break
-
-        if self.status.is_clancat:
-            clan = self.status.fetch_clan_object()
-        elif other_cat and other_cat.status.is_clancat:
-            clan = other_cat.status.fetch_clan_object()
-        else:
-            clan = game.clan
 
         # get chosen thought
         if just_died:
@@ -1915,13 +1881,11 @@ class Cat:
                 if self.status.group.is_afterlife()
                 else clan.instructor.status.group
             )
-            chosen_thought = Thoughts.new_death_thought(
-                self, other_cat, game_mode, biome, season, camp, afterlife, lives_left
+            chosen_thought = new_death_thought(
+                self, other_cat, biome, season, camp, afterlife, lives_left
             )
         else:
-            chosen_thought = Thoughts.get_chosen_thought(
-                self, other_cat, game_mode, biome, season, camp, game_setting_get("ageup dead")
-            )
+            chosen_thought = new_thought(self, other_cat, biome, season, camp, game_setting_get("ageup dead"))
 
         chosen_thought = event_text_adjust(
             self.__class__,
@@ -2246,7 +2210,14 @@ class Cat:
             }
             self.pelt.rebuild_sprite = True
 
-    def get_injured(self, name, event_triggered=False, lethal=True, severity="default"):
+    def get_injured(
+        self,
+        name,
+        event_triggered=False,
+        lethal=True,
+        potential_scars=None,
+        severity="default",
+    ):
         """Add an injury to this cat.
 
         :param name: The injury to add
@@ -2255,6 +2226,8 @@ class Cat:
         :type event_triggered: bool, optional
         :param lethal: _description_, defaults to True
         :type lethal: bool, optional
+        :param potential_scars: List of possible scars to get upon healing, defaults to None
+        :type potential_scars: array, optional
         :param severity: _description_, defaults to 'default'
         :type severity: str, optional
         """
@@ -2304,7 +2277,8 @@ class Cat:
             also_got=injury["also_got"],
             cause_permanent=injury["cause_permanent"],
             event_triggered=event_triggered,
-            clan=self.status.group_ID
+            clan=self.status.group_ID,
+            potential_scars=potential_scars,
         )
 
         if new_injury.name not in self.injuries:
@@ -2318,6 +2292,7 @@ class Cat:
                 "complication": None,
                 "cause_permanent": new_injury.cause_permanent,
                 "event_triggered": new_injury.new,
+                "potential_scars": new_injury.potential_scars,
             }
             
             self.pelt.rebuild_sprite = True
@@ -3120,6 +3095,10 @@ class Cat:
         if os.path.exists(relation_directory):
             if not os.path.exists(relation_cat_directory):
                 self.init_all_relationships()
+                for cat in Cat.all_cats.values():
+                    if cat == self:
+                        continue
+                    cat.create_one_relationship(self)
                 return
             try:
                 with open(relation_cat_directory, "r", encoding="utf-8") as read_file:
@@ -3467,6 +3446,10 @@ class Cat:
         elif sort_type == "clan":
             given_list.sort(key=lambda x: (int(x.status.get_last_living_group())*-1 if x.status.get_last_living_group() else 0, 
                                             Cat.rank_order(x), Cat.get_adjusted_age(x)), reverse=True)
+        elif sort_type == "name":
+            given_list.sort(key=lambda x: x.name.prefix.lower())
+        elif sort_type == "reverse_name":
+            given_list.sort(key=lambda x: x.name.prefix.lower(), reverse=True)
 
         return
 
@@ -3499,6 +3482,10 @@ class Cat:
                 bisect.insort(Cat.all_cats_list, c, key=lambda x: -1 * int(x.ID))
             elif sort_type == "death":
                 bisect.insort(Cat.all_cats_list, c, key=lambda x: -1 * int(x.dead_for))
+            elif sort_type == "name":
+                bisect.insort(Cat.all_cats_list, c, key=lambda x: x.name.prefix)
+            elif sort_type == "reverse_name":
+                bisect.insort(Cat.all_cats_list, c, key=lambda x: -1 * x.name.prefix)
         except (TypeError, NameError):
             # If you are using python 3.8, key is not a supported parameter into insort. Therefore, we'll need to
             # do the slower option of adding the cat, then resorting
@@ -3870,7 +3857,7 @@ def create_option_preview_cat(scar: str = None, acc: str = None):
     new_cat = Cat(
         loading_cat=True,
         pelt=Pelt(
-            phenotype=pheno.toJSON(),
+            phenotype=pheno,
             reverse=False,
             tint="gray",
             scars=[scar] if scar else [],

@@ -10,10 +10,8 @@ from scripts.cat.enums import CatRank, CatGroup
 from scripts.cat_relations.enums import RelType
 from scripts.event_class import Single_Event
 from scripts.game_structure import game
-from scripts.utility import (
-    change_relationship_values,
-    event_text_adjust,
-)
+from scripts.events_module.text_adjust import event_text_adjust
+from scripts.events_module.consequences import change_relationship_values
 from scripts.game_structure.localization import load_lang_resource
 
 
@@ -114,7 +112,7 @@ class Welcoming_Events:
             new_cat.relationships[clan_cat.ID].link_relationship()
 
         if clan_cat.ID in new_cat.relationships:
-            clan_cat.relationships[new_cat.ID].log.append(
+            new_cat.relationships[clan_cat.ID].log.append(
                 interaction_str
                 + i18n.t(
                     "relationships.age_postscript",

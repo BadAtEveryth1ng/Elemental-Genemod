@@ -42,6 +42,7 @@ freshkill_event_list = []
 last_screen_forupdate = GameScreen.START
 last_screen_forProfile = GameScreen.LIST
 last_list_forProfile = None
+selected_clan = None
 
 choose_cats = {}
 
@@ -99,8 +100,6 @@ starclan: Optional["Afterlife"] = None
 dark_forest: Optional["Afterlife"] = None
 
 cat_class = None
-prey_config = constants.CONFIG["clan_resources"]["freshkill"]
-
 rpc = None
 
 is_close_menu_open = False
@@ -309,6 +308,17 @@ def get_free_group_ID(group_type: CatGroup) -> str:
     new_ID = str(int(list(used_group_IDs.keys())[-1]) + 1)
     used_group_IDs.update({new_ID: group_type})
     return new_ID
+
+
+def reset_used_group_IDs():
+    for ID, group_type in used_group_IDs.copy().items():
+        if group_type not in (
+            CatGroup.PLAYER_CLAN,
+            CatGroup.STARCLAN,
+            CatGroup.DARK_FOREST,
+            CatGroup.UNKNOWN_RESIDENCE,
+        ):
+            used_group_IDs.pop(ID)
 
 
 pygame.display.set_caption("Clan Generator")

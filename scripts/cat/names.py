@@ -8,7 +8,7 @@ import random
 import ujson
 
 from scripts.game_structure import constants
-from scripts.cat.enums import CatRank, CatGroup
+from scripts.cat.enums import CatRank, CatGroup, CatAge
 from scripts.housekeeping.datadir import get_save_dir
 from .alt_namer import Namer
 from scripts.game_structure import game
@@ -271,6 +271,9 @@ class Name:
 
     # Generate possible prefix
     def give_prefix(self, cat, biome, no_suffix=False):
+        if get_clan_setting("modded names") and get_clan_setting('outsider names') and random.random() < 0.5:
+            self.prefix = random.choice(self.names_dict["normal_prefixes"]) if random.random() < 0.5 else random.choice(self.names_dict["loner_names"])
+            return
         if not self.phenotype:
             self.prefix = random.choice(self.names_dict["normal_prefixes"])
             return
@@ -508,6 +511,23 @@ class Name:
         # then suffixes based on ages (fixes #2004, just trust me)
 
         # Handles suffix assignment with outside cats
+        if (
+            self.cat.status.is_lost()
+            and not self.cat.status.is_former_clancat
+            and self.suffix
+        ):
+            # these are cats who were born to a parent who'd been lost frm their clan, and who's parent decided to keep with traditional naming
+            age_to_rank = {
+                CatAge.NEWBORN: CatRank.NEWBORN,
+                CatAge.KITTEN: CatRank.KITTEN,
+                CatAge.ADOLESCENT: CatRank.APPRENTICE,
+            }
+            if self.cat.age in age_to_rank:
+                rank = age_to_rank[self.cat.age]
+                return self.prefix + self.names_dict["special_suffixes"][rank]
+            else:
+                return self.prefix + self.suffix
+
         if self.cat.status.is_former_clancat:
             old_rank = self.cat.status.find_prior_clan_rank()
 

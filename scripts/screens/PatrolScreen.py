@@ -15,13 +15,9 @@ from scripts.game_structure.ui_elements import (
     UISurfaceImageButton,
     UIDropDownContainer,
 )
-from scripts.utility import (
-    get_text_box_theme,
-    ui_scale,
-    shorten_text_to_fit,
-    ui_scale_dimensions,
-    ui_scale_offset,
-)
+from ..ui.theme import get_text_box_theme
+from ..events_module.text_adjust import shorten_text_to_fit
+from ..ui.scale import ui_scale, ui_scale_dimensions
 from .Screens import Screens
 from .enums import GameScreen
 from ..clan_package.settings import get_clan_setting
@@ -326,11 +322,12 @@ class PatrolScreen(Screens):
 
     def screen_switches(self):
         super().screen_switches()
-        self.set_disabled_menu_buttons(["patrol_screen"])
-        self.update_heading_text(f"{game.clan.displayname}Clan")
+        self.set_disabled_menu_buttons(["patrols"])
+        game.selected_clan = game.clan
 
         if not self.current_clan or self.current_clan.group_ID == game.clan.group_ID:
             self.current_clan = game.clan
+        self.update_heading_text(f"{self.current_clan.displayname}Clan")
         if game.clan.clancount == 'multiclan':
             self.event_screen_container = pygame_gui.core.UIContainer(
                 ui_scale(pygame.Rect((0, 100), (800, 300))),
@@ -1518,10 +1515,6 @@ class PatrolScreen(Screens):
         self.loading_screen_on_use(
             self.proceed_patrol_thread, self.open_patrol_complete_screen
         )
-
-    @staticmethod
-    def chunks(L, n):
-        return [L[x : x + n] for x in range(0, len(L), n)]
 
     @staticmethod
     def get_list_text(patrol_list):

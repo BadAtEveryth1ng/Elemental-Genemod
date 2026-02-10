@@ -1126,6 +1126,8 @@ class Breed_generator:
 
         if genoclass.breeds.get('Savannah', False):
             genoclass.blacknose = random() < 0.25
+            genoclass.breakthrough = True
+            genoclass.ticked[0] = "Ta" if random() < 0.065 else "ta"
             genoclass.height_value = randint(genoclass.height_indexes[4]+1, genoclass.height_indexes[9])
 
         return genoclass
@@ -4686,6 +4688,8 @@ def find_my_breed(phenotype):
             for part in hybrid_info[breed]:
                 if edited_sorted_breeds.get(part):
                     del edited_sorted_breeds[part]
+                if part in breed_mix:
+                    breed_mix = breed_mix.replace(", " + breed, "")
 
             
 

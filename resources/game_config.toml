@@ -173,6 +173,8 @@ dev_tools = false
   # number of welcoming events to add when a new cat joins
   cat_amount_welcoming = 3
 
+  # this is the amount to divide a relative's relation toward the parent when deciding on a relative's initial relationship toward a kit
+  ext_relative_modifier = 4
   # relationship buffs represent "default" relationship values that are then lightly randomized
   # in order to create initial relationship values for cats
 
@@ -450,15 +452,15 @@ dev_tools = false
   # max 1/chance for old mediators to retire if enabled
   max_mediator_retire_chance = 25
 
-[roles.become_mediator_chances]
-  # 1/chance that a cat will switch to mediator. rolls every moon, so keep it high.
-  warrior = 5000
-  elder = 400
+  [roles.become_mediator_chances]
+    # 1/chance that a cat will switch to mediator. rolls every moon, so keep it high.
+    warrior = 5000
+    elder = 400
 
-[roles.become_healer_chances]
-  # 1/chance that a cat will switch to mediator. rolls every moon, so keep it high.
-  warrior = 5000
-  apprentice = 1000
+  [roles.become_healer_chances]
+    # 1/chance that a cat will switch to mediator. rolls every moon, so keep it high.
+    warrior = 5000
+    apprentice = 1000
 
 [lost_cat]
   # 1/chance that a lost cat will return on their own
@@ -552,6 +554,9 @@ dev_tools = false
   # base 1/chance a disliked cat will be murdered
   base_murder_kill_chance = 80
 
+  # base 1/chance a disliked cat will be murdered when not in the same Clan
+  base_crossclan_murder_kill_chance = 130
+
   # age cats will start dying of old age based on old_age_death_curve
   old_age_death_start = 150
 
@@ -601,6 +606,15 @@ dev_tools = false
   # range of outsiders to generate upon Clan creation
   starting_outsiders = [0, 0]
 
+  # range of cats to pick on quickstart (not counting the leader, deputy, and healer)
+  quickstart_cats = [4, 7]
+
+  # range of cats to pick on quickstart (not counting the leader, deputy, and healer) for neighbouring Clans in multiclan
+  neighbourclan_cats = [4, 7]
+
+  # number of lives leaders receive - will pick from the list, so something like [7, 8, 9] would have an equal random chance of 7, 8, and 9
+  leader_lives_nr = [9]
+
 [genetics_config]
   # 1/chance for newly generated kittypets and other cats to be purebred
   kittypet_breed = 75
@@ -622,17 +636,17 @@ dev_tools = false
   sectoral_heterochromia = 200
   random_heterochromia = 250
 
-  no-low_white_blue_eyes = 100
-  low_white_blue_eyes = 75
-  mid_white_blue_eyes = 50
-  high_white_blue_eyes = 25
+  no-low_white_blue_eyes = 150
+  low_white_blue_eyes = 100
+  mid_white_blue_eyes = 75
+  high_white_blue_eyes = 50
   het_dom_white_blue_eyes = 15
   homo_dom_white_blue_eyes = 5
   
-  no-low_white_one_blue_eye = 75
-  low_white_one_blue_eye = 50
-  mid_white_one_blue_eye = 25
-  high_white_one_blue_eye = 15
+  no-low_white_one_blue_eye = 125
+  low_white_one_blue_eye = 75
+  mid_white_one_blue_eye = 50
+  high_white_one_blue_eye = 25
   het_dom_white_one_blue_eye = 10
   homo_dom_white_one_blue_eye = 3
 
@@ -974,114 +988,132 @@ dev_tools = false
       leaf-bare = [5, 2, 1]
 
   [clan_resources.freshkill]
+    # if false, a cat's nutritional status will have no effect
     activate_death = true
-    activate_events = true
-    start_amount = 60
-    auto_warrior_prey = [ 2, 4 ]
-    auto_apprentice_prey = [ 1, 3 ]
-    condition_increase = 1
-    base_event_trigger_factor = 4
-    additional_prey = 1
-    nutrition_malnourished_percentage = 45
-    nutrition_starving_percentage = 20
-    feeding_order = [
-      "newborn",
-      "kitten",
-      "queen/pregnant",
-      "elder",
-      "healer",
-      "healer apprentice",
-      "apprentice",
-      "mediator apprentice",
-      "warrior",
-      "mediator",
-      "deputy",
-      "leader"
-    ]
 
-    [clan_resources.freshkill.events_weights]
-      death = 1
-      injury = 5
-      reduce = 8
+    # if false, freshkill pile events will not be triggered
+    activate_events = true
+    # determines when the freshkill pile amount is considered "full" or "excessive" for the purpose of events
+    # the higher this number, the more freshkill is required before the pile is "full/excessive"
+    base_event_trigger_factor = 4
+
+    # defines the amount of prey a Clan begins with
+    start_amount = 60
+
+    # the amount of prey a healthy warrior will catch automatically each timeskip
+    # amount will be chosen from the given range. default is 2-4 prey.
+    auto_warrior_prey = [2,4]
+    # the same, but for healthy apprentices
+    auto_apprentice_prey = [1,3]
+
+    # the baseline of prey amount caught on patrol will be a warrior's prey_requirement plus this value
+    additional_prey = 1
+
+    # the percentage of nutrition at which a cat is considered malnourished
+    nutrition_malnourished_percentage = 45
+    # the percentage of nutrition at which a cat is considered starving
+    nutrition_starving_percentage = 20
+
+    # the amount that a cat's prey requirement increases if the cat is sick/injured/pregnant
+    condition_increase = 1
+
+    # the rank order in which cats will be fed
+    feeding_order = [
+            "newborn",
+            "kitten",
+            "queen/pregnant",
+            "elder",
+            "healer",
+            "healer apprentice",
+            "apprentice",
+            "mediator apprentice",
+            "warrior",
+            "mediator",
+            "deputy",
+            "leader"
+        ]
 
     [clan_resources.freshkill.text_nutrition]
-      lower_range = [ 0, 21, 41, 61, 81, 91 ]
-      text = [
-        "starving",
-        "very hungry",
-        "hungry",
-        "satiated",
-        "full",
-        "stuffed"
-      ]
+        # nutrition % ranges and their corresponding text displays
+        # for example: 0-21% nutrition is considered starving
+        lower_range = [0, 21, 41, 61, 81, 91]
+        text = ["starving", "very hungry", "hungry", "satiated", "full", "stuffed"]
 
+    # the prey each rank will consume on a timeskip
+    # kittens and newborns with birthing parent will not consume prey (as they will drink milk)
     [clan_resources.freshkill.prey_requirement]
-      leader = 3
-      deputy = 3
-      healer = 2
-      "healer apprentice" = 1.5
-      "mediator apprentice" = 1.5
-      mediator = 2
-      warrior = 3
-      apprentice = 1.5
-      elder = 1.5
-      "queen/pregnant" = 4
-      kitten = 0.5
-      newborn = 0.2
+        leader = 3
+        deputy = 3
+        healer = 2
+        "healer apprentice" = 1.5
+        "mediator apprentice" = 1.5
+        mediator = 2
+        warrior = 3
+        apprentice = 1.5
+        elder = 1.5
+        "queen/pregnant" = 4
+        kitten = 0.5
+        newborn = 0.25
 
-    [clan_resources.freshkill.hunter_bonus]
-      1 = 1
-      2 = 2
-      3 = 3
-
+    # the bonus prey a hunter skill cat will catch according to exp rank
     [clan_resources.freshkill.hunter_exp_bonus]
-      untrained = 0.1
-      trainee = 1
-      prepared = 2
-      competent = 3
-      proficient = 4
-      skilled = 5
-      expert = 6
-      master = 7
+        untrained = 0.1
+        trainee = 1
+        prepared = 2
+        competent = 3
+        proficient = 4
+        skilled = 5
+        expert = 6
+        master = 7
 
+    # hunter_exp_bonus number will be multiplied by the number matching their skill tier.
+    # for example, an expert tier 2 hunter will catch an extra 6 * 2 (12 total) prey
+    [clan_resources.freshkill.hunter_bonus]
+        # tier = multiplier
+        1 = 1
+        2 = 2
+        3 = 3
+
+    # used to dictate how often certain sizes of prey are found in each biome/season
+    [clan_resources.freshkill.patrol_balance]
+        # season = [very_small, small, medium, large, huge]
+        # numbers indicate the weight of each prey size, larger numbers make the prey size more likely to occur
+        [clan_resources.freshkill.patrol_balance.Forest]
+            Newleaf = [2,5,5,2,1]
+            Greenleaf = [1,3,6,4,2]
+            Leaf-fall = [2,4,5,3,1]
+            Leaf-bare = [3,6,4,2,0]
+        [clan_resources.freshkill.patrol_balance.Mountainous]
+            Newleaf = [2,5,5,2,1]
+            Greenleaf = [1,3,6,4,2]
+            Leaf-fall = [2,6,4,2,1]
+            Leaf-bare = [3,6,4,2,0]
+        [clan_resources.freshkill.patrol_balance.Plains]
+            Newleaf = [2,5,5,2,1]
+            Greenleaf = [1,3,6,4,2]
+            Leaf-fall = [2,4,5,3,1]
+            Leaf-bare = [3,6,4,2,0]
+        [clan_resources.freshkill.patrol_balance.Beach]
+            Newleaf = [2,5,5,2,1]
+            Greenleaf = [2,5,5,2,1]
+            Leaf-fall = [2,5,5,2,1]
+            Leaf-bare = [2,6,4,2,1]
+        [clan_resources.freshkill.patrol_balance.Wetlands]
+            Newleaf = [2,5,5,2,1]
+            Greenleaf = [2,5,5,2,1]
+            Leaf-fall = [2,5,5,2,1]
+            Leaf-bare = [2,6,4,2,1]
+        [clan_resources.freshkill.patrol_balance.Desert]
+            Newleaf = [2,6,4,2,1]
+            Greenleaf = [3,6,4,2,0]
+            Leaf-fall = [2,5,5,2,1]
+            Leaf-bare = [1,3,6,4,2]
+
+    # used in conjunction with patrol_balance to modify the chosen prey size by the patrol frequency
+    # the less frequent the patrol, the larger the prey it can find
     [clan_resources.freshkill.patrol_weight_adaption]
-      1_prey_class_increase = 4
-      2_prey_class_increase = 3
-      3_prey_class_increase = 2
-      4_prey_class_increase = 1
-
-    [clan_resources.freshkill.patrol_balance.Forest]
-      Newleaf = [ 2, 5, 5, 2, 1 ]
-      Greenleaf = [ 1, 3, 6, 4, 2 ]
-      Leaf-fall = [ 2, 4, 5, 3, 1 ]
-      Leaf-bare = [ 3, 6, 4, 2, 0 ]
-
-    [clan_resources.freshkill.patrol_balance.Mountainous]
-      Newleaf = [ 2, 5, 5, 2, 1 ]
-      Greenleaf = [ 1, 3, 6, 4, 2 ]
-      Leaf-fall = [ 2, 6, 4, 2, 1 ]
-      Leaf-bare = [ 3, 6, 4, 2, 0 ]
-
-    [clan_resources.freshkill.patrol_balance.Plains]
-      Newleaf = [ 2, 5, 5, 2, 1 ]
-      Greenleaf = [ 1, 3, 6, 4, 2 ]
-      Leaf-fall = [ 2, 4, 5, 3, 1 ]
-      Leaf-bare = [ 3, 6, 4, 2, 0 ]
-
-    [clan_resources.freshkill.patrol_balance.Beach]
-      Newleaf = [ 2, 5, 5, 2, 1 ]
-      Greenleaf = [ 2, 5, 5, 2, 1 ]
-      Leaf-fall = [ 2, 5, 5, 2, 1 ]
-      Leaf-bare = [ 2, 6, 4, 2, 1 ]
-
-    [clan_resources.freshkill.patrol_balance.Wetlands]
-      Newleaf = [ 2, 5, 5, 2, 1 ]
-      Greenleaf = [ 2, 5, 5, 2, 1 ]
-      Leaf-fall = [ 2, 5, 5, 2, 1 ]
-      Leaf-bare = [ 2, 6, 4, 2, 1 ]
-
-    [clan_resources.freshkill.patrol_balance.Desert]
-      Newleaf = [ 2, 6, 4, 2, 1 ]
-      Greenleaf = [ 3, 6, 4, 2, 0 ]
-      Leaf-fall = [ 2, 5, 5, 2, 1 ]
-      Leaf-bare = [ 1, 3, 6, 4, 2 ]
+        # prey size increase = associated frequency
+        1_prey_class_increase = 4
+        2_prey_class_increase = 3
+        3_prey_class_increase = 2
+        4_prey_class_increase = 1
