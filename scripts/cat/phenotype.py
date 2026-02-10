@@ -477,13 +477,18 @@ class Phenotype(Genotype):
             "ae" : "luminescent"
         }
 
-        displayed_element = ""
+        displayed_element = []
         for favour in self.elemental_genes["favours"]:
             if self.elemental_genes[key_map[favour]][0] not in ["N", "n"] and self.elemental_genes[key_map[favour]][0] not in displayed_element:
-                displayed_element += self.elemental_genes[key_map[favour]][0]
+                displayed_element.append(self.elemental_genes[key_map[favour]][0])
+        
+        displayed_element.sort()
+        if len(displayed_element) > 1:
+            if displayed_element[0].islower() != displayed_element[1].islower():
+                displayed_element.pop()
         
         if displayed_element:
-            self.element = interaction_map[displayed_element]
+            self.element = interaction_map["".join(displayed_element)]
 
     def PhenotypeOutput(self, pattern=None, gender=None, chimera=False):
         self.reset()
