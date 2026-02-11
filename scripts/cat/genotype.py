@@ -149,7 +149,7 @@ class Genotype:
             "earth": ["N", "N"],
             "fire": ["N", "N"],
             "water": ["N", "N"],
-            "favours": ["", ""],
+            "favours": [],
         }
 
     def __getitem__(self, name):
@@ -383,17 +383,21 @@ class Genotype:
                 del self.april_fools["rainbow_eyes"]
 
     def GenerateElemental(self):
+        mutated_loci = []
         for i in range(0, 2):
             for key in ["air", "earth", "fire", "water"]:
                 if self.odds["recessive_nonelement"] > 0 and randint(1, self.odds["recessive_nonelement"]) == 1:
                     self.elemental_genes[key][i] = "n"
                 elif self.odds["recessive_element"] > 0 and randint(1, self.odds["recessive_element"]) == 1:
                     self.elemental_genes[key][i] = key[0]
+                    mutated_loci.append(key[0].upper())
                 elif self.odds["dominant_element"] > 0 and randint(1, self.odds["dominant_element"]) == 1:
                     self.elemental_genes[key][i] = key[0].upper()
+                    mutated_loci.append(key[0].upper())
             
-        self.elemental_genes["favours"][0] = choice(["A", "E", "F", "W"])
-        self.elemental_genes["favours"][1] = self.elemental_genes["favours"][0] if random() < 0.75 else choice(["A", "E", "F", "W"])
+        self.elemental_genes["favours"].append(choice(mutated_loci) if mutated_loci else choice(["A", "E", "F", "W"]))
+        if random() < 0.25:
+            self.elemental_genes["favours"].append(choice(["A", "E", "F", "W"]))
 
     
     def CommonGen(self, special=None):
@@ -1308,8 +1312,12 @@ class Genotype:
             if key != "favours":
                 self.elemental_genes[key] = [choice(par1.elemental_genes[key]), choice(par2.elemental_genes[key])]
             else:
-                self.elemental_genes[key][0] = choice(par1.elemental_genes[key]) if random() < 0.2 else choice(["A", "E", "F", "W"])
-                self.elemental_genes[key][1] = choice(par2.elemental_genes[key]) if random() < 0.2 else choice(["A", "E", "F", "W"])
+                if random() < 0.25:
+                    self.elemental_genes["favours"] = choice([choice(par1.elemental_genes["favours"]), choice(par2.elemental_genes["favours"])])
+                else:
+                    self.elemental_genes["favours"].append(choice(par1.elemental_genes["favours"]) if random() < 0.8 else choice(["A", "E", "F", "W"]))
+                    self.elemental_genes["favours"].append(choice(par2.elemental_genes["favours"]) if random() < 0.8 else choice(["A", "E", "F", "W"]))
+                self.elemental_genes["favours"] = list(set(self.elemental_genes[key]))
 
         if self.odds['random_mutation'] > 0 and randint(1, self.odds['random_mutation']) == 1:
             self.Mutate()
@@ -1736,12 +1744,13 @@ class Genotype:
         for key in self.elemental_genes.keys():
             self.elemental_genes[key].sort()
 
-            if self.elemental_genes[key][1] == "N":
-                self.elemental_genes[key][1] = self.elemental_genes[key][0]
-                self.elemental_genes[key][0] = "N"
-            elif self.elemental_genes[key][0] == "n":
-                self.elemental_genes[key][0] = self.elemental_genes[key][1]
-                self.elemental_genes[key][1] = "n"
+            if key != "favours":
+                if self.elemental_genes[key][1] == "N":
+                    self.elemental_genes[key][1] = self.elemental_genes[key][0]
+                    self.elemental_genes[key][0] = "N"
+                elif self.elemental_genes[key][0] == "n":
+                    self.elemental_genes[key][0] = self.elemental_genes[key][1]
+                    self.elemental_genes[key][1] = "n"
 
     def EyeColourFinder(self):
         eyecolours = {

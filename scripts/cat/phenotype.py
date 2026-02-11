@@ -462,11 +462,11 @@ class Phenotype(Genotype):
             "e" : "plant",
             "a" : "lightning",
 
-            "FW" : "steam",
-            "EF" : "magma",
+            "FW" : "magma",
+            "EF" : "metal",
             "AF" : "smoke",
             "EW" : "mud",
-            "AW" : "snow",
+            "AW" : "shadow",
             "AE" : "sand",
 
             "fw" : "mist",

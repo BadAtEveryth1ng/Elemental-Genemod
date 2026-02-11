@@ -257,6 +257,10 @@ class Sprites:
             for x in ["lineart", "lineart_df", "lineart_sc"]:
                 self.spritesheet(f"sprites/{x}_aprilfools.png", x+"_aprilfools")
 
+        for x in os.listdir("sprites/elemental"):
+            self.spritesheet("sprites/elemental/"+x, 'elemental/'+x.replace('.png', ""))
+
+
         for x in os.listdir("sprites/genemod/borders"):
             self.spritesheet("sprites/genemod/borders/"+x, 'genemod/'+x.replace('.png', ""))
         for x in os.listdir("sprites/genemod/Base Colours"):
@@ -280,6 +284,10 @@ class Sprites:
         for x in os.listdir("sprites/genemod/break white"):
             self.spritesheet("sprites/genemod/break white/"+x, 'Break/'+x.replace('.png', ""))
             self.make_group('Break/'+x.replace('.png', ""), (0, 0), 'break/'+x.replace('.png', ""))
+
+        # elementals
+        for i, x in enumerate(["fire", "water", "earth", "air"]):
+            self.make_group('elemental/element_dominant', (i, 0), f'elemental/{x}')
 
         # ...idk what to call these
         self.make_group('genemod/fourears', (0, 0), 'fourears')

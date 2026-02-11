@@ -12,11 +12,11 @@ class Element(Enum):
     plant = "plant"
     lightning = "lightning"
 
-    steam = "steam"
     magma = "magma"
+    metal = "metal"
     smoke = "smoke"
     mud = "mud"
-    snow = "snow"
+    shadow = "shadow"
     sand = "sand"
 
     mist = "mist"
@@ -36,11 +36,11 @@ class Element(Enum):
     not_plant = "-plant"
     not_lightning = "-lightning"
 
-    not_steam = "-steam"
     not_magma = "-magma"
+    not_metal = "-metal"
     not_smoke = "-smoke"
     not_mud = "-mud"
-    not_snow = "-snow"
+    not_shadow = "-shadow"
     not_sand = "-sand"
 
     not_mist = "-mist"
