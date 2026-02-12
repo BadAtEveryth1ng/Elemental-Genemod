@@ -398,6 +398,8 @@ class Genotype:
         self.elemental_genes["favours"].append(choice(mutated_loci) if mutated_loci else choice(["A", "E", "F", "W"]))
         if random() < 0.25:
             self.elemental_genes["favours"].append(choice(["A", "E", "F", "W"]))
+            self.elemental_genes["favours"] = list(
+                set(self.elemental_genes["favours"]))
 
     
     def CommonGen(self, special=None):
