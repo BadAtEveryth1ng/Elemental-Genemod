@@ -728,9 +728,16 @@ dev_tools = false
   bengal_kittypet = ["2", "1", "1", "1", "0", "0", "0", "0", "0"]
   sokoke_kittypet = ["2", "2", "1", "1", "1", "1", "0", "0", "0"]
 
-  dominant_element = 5
-  recessive_element = 5
+  dominant_fire = 5
+  dominant_water = 5
+  dominant_earth = 5
+  dominant_air = 5
+  recessive_fire = 5
+  recessive_water = 5
+  recessive_earth = 5
+  recessive_air = 5
   recessive_nonelement = 50
+  double_favour_chance = 0.25 # most cats have 1 favoured element, this is a rate 0-1 that they'll try to generate with 2 favoured
 [april_fools_genes]
   green = 10
   polycaudal = 10

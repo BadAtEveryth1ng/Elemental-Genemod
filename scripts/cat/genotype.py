@@ -388,15 +388,15 @@ class Genotype:
             for key in ["air", "earth", "fire", "water"]:
                 if self.odds["recessive_nonelement"] > 0 and randint(1, self.odds["recessive_nonelement"]) == 1:
                     self.elemental_genes[key][i] = "n"
-                elif self.odds["recessive_element"] > 0 and randint(1, self.odds["recessive_element"]) == 1:
+                elif self.odds[f"recessive_{key}"] > 0 and randint(1, self.odds[f"recessive_{key}"]) == 1:
                     self.elemental_genes[key][i] = key[0]
                     mutated_loci.append(key[0].upper())
-                elif self.odds["dominant_element"] > 0 and randint(1, self.odds["dominant_element"]) == 1:
+                elif self.odds[f"dominant_{key}"] > 0 and randint(1, self.odds[f"dominant_{key}"]) == 1:
                     self.elemental_genes[key][i] = key[0].upper()
                     mutated_loci.append(key[0].upper())
             
         self.elemental_genes["favours"].append(choice(mutated_loci) if mutated_loci else choice(["A", "E", "F", "W"]))
-        if random() < 0.25:
+        if random() < self.odds["double_favour_chance"]:
             self.elemental_genes["favours"].append(choice(["A", "E", "F", "W"]))
             self.elemental_genes["favours"] = list(
                 set(self.elemental_genes["favours"]))
@@ -1314,11 +1314,11 @@ class Genotype:
             if key != "favours":
                 self.elemental_genes[key] = [choice(par1.elemental_genes[key]), choice(par2.elemental_genes[key])]
             else:
-                if random() < 0.25:
-                    self.elemental_genes["favours"] = choice([choice(par1.elemental_genes["favours"]), choice(par2.elemental_genes["favours"])])
-                else:
+                if random() < self.odds["double_favour_chance"]:
                     self.elemental_genes["favours"].append(choice(par1.elemental_genes["favours"]) if random() < 0.8 else choice(["A", "E", "F", "W"]))
                     self.elemental_genes["favours"].append(choice(par2.elemental_genes["favours"]) if random() < 0.8 else choice(["A", "E", "F", "W"]))
+                else:
+                    self.elemental_genes["favours"] = choice([choice(par1.elemental_genes["favours"]), choice(par2.elemental_genes["favours"])])
                 self.elemental_genes["favours"] = list(set(self.elemental_genes[key]))
 
         if self.odds['random_mutation'] > 0 and randint(1, self.odds['random_mutation']) == 1:
@@ -2072,7 +2072,7 @@ class Genotype:
             self.Body_Genes = [self.curl, self.fold, self.fourear, self.manx, self.kab, self.toybob, self.jbob, self.kub, self.ring, self.munch, self.poly, self.pax3]
             april_fools_output = [self.april_fools.values()]
         self.Polygenes = ["Wideband:", self.wideband, self.wbtype, "Rufousing:", self.rufousing, self.ruftype, "Underbelly rufousing:", self.unders_ruf, self.unders_ruftype, "Saturation:", self.saturation, "Bengal:", self.bengal, self.bengtype, "Sokoke:", self.sokoke, self.soktype, "Spotted:", self.spotted, self.spottype, "Ticked:", self.tickgenes, self.ticktype, "White Grade:", self.whitegrade, "Refraction:", self.refraction, "Pigmentation:", self.pigmentation]
-        self.ElementalOutput = [self.elemental_genes["air"], self.elemental_genes["earth"], self.elemental_genes["fire"], self.elemental_genes["water"], "Favours:", self.elemental_genes["favours"]]
+        self.ElementalOutput = [self.elemental_genes["air"], self.elemental_genes["earth"], self.elemental_genes["fire"], self.elemental_genes["water"]]
 
         if is_today(SpecialDate.APRIL_FOOLS):
             return self.Cat_Genes, "Other Fur Genes: ", self.Fur_Genes, "Other Colour Genes: ", self.Other_Colour, "Body Mutations: ", self.Body_Genes, "Elemental:", self.ElementalOutput, "Polygenes: ", self.Polygenes, "April Fools:", april_fools_output
