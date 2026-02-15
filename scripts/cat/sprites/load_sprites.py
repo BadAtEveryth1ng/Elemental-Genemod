@@ -290,6 +290,8 @@ class Sprites:
             self.make_group('elemental/element_dominant', (i, 0), f'elemental/{x}')
         for i, x in enumerate(["blue fire", "ice", "plant", "lightning"]):
             self.make_group('elemental/element_recessive', (i, 0), f'elemental/{x}')
+        for i, x in enumerate(["magma", "metal", "smoke", "mud"]):
+            self.make_group('elemental/element_hybrid1', (i, 0), f'elemental/{x}')
 
         # ...idk what to call these
         self.make_group('genemod/fourears', (0, 0), 'fourears')
