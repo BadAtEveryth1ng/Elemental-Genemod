@@ -142,6 +142,8 @@ class Cat:
         extrapar=None,
         kittypet=False,
         adoptive_parents=None,
+        surrogate_parents=None,
+        affair_parents=None,
         suffix=None,
         specsuffix_hidden=False,
         ID=None,
@@ -221,6 +223,8 @@ class Cat:
         self.passes = passes
 
         self.adoptive_parents = adoptive_parents.copy() if adoptive_parents else []
+        self.surrogate_parents = surrogate_parents.copy() if surrogate_parents else []
+        self.affair_parents = affair_parents.copy() if affair_parents else []
         gene_config = constants.CONFIG['genetics_config']
         gene_config.update(constants.CONFIG['april_fools_genes'])
         self.phenotype = Phenotype(gene_config, game_setting_get("ban problem genes"))
@@ -507,6 +511,8 @@ class Cat:
         self.parent2 = None
         self.parent3 = None
         self.adoptive_parents = []
+        self.surrogate_parents = []
+        self.affair_parents = []
         self.mate = []
         self.status = Status(**status) if status else Status()
         self._pronouns = {}  # Needs to be set as a dict
@@ -1178,11 +1184,13 @@ class Cat:
 
         return ids
 
-    def rank_change(self, new_rank: CatRank, resort=False):
+    def rank_change(self, new_rank: CatRank, resort=False, new_thought=True):
         """Changes the status of a cat. Additional functions are needed if you want to make a cat a leader or deputy.
         :param new_rank: CatRank that the cat is becoming
         :param resort: If sorting type is 'rank', and resort is True, it will resort the cat list. This should
-                only be true for non-timeskip status changes."""
+                only be true for non-timeskip status changes.
+        :param new_thought: If true, cat will receive a special rank change thought. Default is True
+        """
 
         clan = self.status.fetch_clan_object(game.clan)
         old_rank = self.status.rank
@@ -1237,6 +1245,17 @@ class Cat:
             if clan.deputy and clan.deputy.ID == self.ID:
                 clan.deputy = None
                 clan.deputy_predecessors += 1
+
+        # update thought
+        if new_thought and new_rank not in (
+            CatRank.NEWBORN,
+            CatRank.KITTEN,
+        ):  # newborn and kitten aren't really "ranks" to be promoted to
+            self.get_new_thought(CatThought.ON_RANK_CHANGE)
+        # however we don't want kittens to somehow have a newborn thought, so we'll have them reset to a normal kitten thought
+        # just in case
+        if new_thought and new_rank == CatRank.KITTEN:
+            self.get_new_thought()
 
         # update class dictionary
         self.all_cats[self.ID] = self
@@ -1822,6 +1841,8 @@ class Cat:
         """
         Generates a thought for the cat, which displays on their profile.
         :param thought_type: Indicate what type of thought should be generated
+        :param other_clan_cats: If cat is in a different clan, pass the list of their clanmates
+        :param other_cat: If a specific other cat should be included, include their object here.
         """
         # default thought type
         if not thought_type:
@@ -3368,6 +3389,12 @@ class Cat:
         cat_ob.adoptive_parents = (
             cat_info["adoptive_parents"] if "adoptive_parents" in cat_info else []
         )
+        cat_ob.surrogate_parents = (
+            cat_info["surrogate_parents"] if "surrogate_parents" in cat_info else []
+        )
+        cat_ob.affair_parents = (
+            cat_info["affair_parents"] if "affair_parents" in cat_info else []
+        )
         cat_ob.faded = True
 
         if cat_info.get("df"):
@@ -3629,6 +3656,8 @@ class Cat:
                 "parent2": self.parent2,
                 "parent3": self.parent3 if self.parent3 else None,
                 "adoptive_parents": self.adoptive_parents,
+                "surrogate_parents": self.surrogate_parents,
+                "affair_parents": self.affair_parents,
                 "faded_offspring": self.faded_offspring,
             }
         else:
@@ -3657,6 +3686,8 @@ class Cat:
                 "parent2": self.parent2,
                 "parent3": self.parent3 if self.parent3 else None,
                 "adoptive_parents": self.adoptive_parents,
+                "surrogate_parents": self.surrogate_parents,
+                "affair_parents": self.affair_parents,
                 "mentor": self.mentor or None,
                 "former_mentor": (
                     list(self.former_mentor) if self.former_mentor else []
@@ -3757,8 +3788,10 @@ class Cat:
 
 
 # Creates a random cat
-def create_cat(rank, moons=None, biome=None, kittypet=False):
+def create_cat(rank, moons=None, biome=None, kittypet=False, clan=None):
     status_dict = {"rank": rank}
+    if clan:
+        status_dict["group_ID"] = clan
 
     new_cat = Cat(status_dict=status_dict, biome=biome, kittypet=kittypet)
 

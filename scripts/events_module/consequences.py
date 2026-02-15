@@ -452,7 +452,9 @@ def create_new_cat_block(
                     rank = chosen_cat.status.get_rank_from_age(chosen_cat.age)
                 chosen_cat.add_to_clan(clan.group_ID)
                 if chosen_cat.status.rank != rank:
-                    chosen_cat.rank_change(new_rank=CatRank(rank), resort=True)
+                    chosen_cat.rank_change(
+                        new_rank=CatRank(rank), resort=True, new_thought=False
+                    )
             elif outside:
                 # updates so that the clan is marked as knowing of this cat
                 current_standing = chosen_cat.status.get_standing_with_group(
@@ -1067,7 +1069,7 @@ def create_new_cat(
                 new_cat.status = Status(**{"group_ID": new_cat.status.group_ID,
                                            "rank": CatRank.NEWBORN, "age": CatAge.NEWBORN})
                 new_cat.dead = True
-                new_cat.get_new_thought(just_died=True)
+                new_cat.get_new_thought(CatThought.ON_DEATH)
                 new_cat.history.add_death(
                     str(new_cat.name) + " was stillborn.")
         # this simulates a "history" as whomever they used to be
