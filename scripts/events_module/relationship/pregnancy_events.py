@@ -39,7 +39,7 @@ from scripts.clan_package.get_clan_cats import find_alive_cats_with_rank, get_li
 
 
 def cat_is_amab(cat):
-    return ('Y' in cat.phenotype.sexgene and cat.phenotype.sex != "molly") or cat.phenotype.sex == "tom"
+    return (('Y' in cat.phenotype.sexgene and cat.phenotype.sex != "molly") or cat.phenotype.sex == "tom")
 
 class Pregnancy_Events:
     """All events which are related to pregnancy such as kitting and defining who are the parents."""
@@ -713,7 +713,7 @@ class Pregnancy_Events:
                 kit.phenotype.fevercoat = True
                 if kit.chimerapheno:
                     kit.chimerapheno.fevercoat = True
-            if affair_partners:
+            if affair_partners and pregnant_cat.mate:
                 for x in affair_partners:
                     kit.affair_parents.append(x.ID)
             if surrogate:
@@ -1296,14 +1296,14 @@ class Pregnancy_Events:
         unknowns = []
         for outcat in Cat.all_cats:
             outcat = Cat.all_cats.get(outcat)
-            if not outcat.dead and not outcat.status.is_lost(clan.group_ID) and not (outcat.status.is_exiled(clan.group_ID) or random() < 0.25):
+            if not outcat.dead and not outcat.status.is_lost(clan.group_ID) and (not outcat.status.is_exiled(clan.group_ID) or random() < 0.25):
                 unknowns.append(outcat)
 
         possible_affair_partners = [i for i in unknowns if
                                 i.is_potential_mate(cat, for_love_interest=True, outsider=True)
                                 and Pregnancy_Events.check_if_can_have_kits(i, True, True)
                                 and 'sterile' not in i.permanent_condition
-                                and (get_clan_setting('same sex birth') or xor(cat_is_amab(i), cat_is_amab(cat)))
+                                and (get_clan_setting('same sex birth') or cat_is_amab(i) != cat_is_amab(cat))
                                     and len(i.mate) == 0 and not i.birth_cooldown
                                     and i.ID not in game.clan.pregnancy_data
                                     and i.status.group_ID != cat.status.group_ID]
@@ -1363,7 +1363,7 @@ class Pregnancy_Events:
                                                         gender=('fem' if cat_is_amab(cat) else 'masc') if not get_clan_setting('same sex birth') else None,
                                                         outside=True,
                                                         is_parent=True)[0]
-                    outside_parent.get_new_thought(CatThought.OUTSIDE_DAM if background_category == "2" else CatThought.OUTSIDE_SIRE)
+                    outside_parent.get_new_thought(CatThought.OUTSIDE_DAM if background_category == "2" else CatThought.OUTSIDE_SIRE, other_cat=cat)
                     outside_parent.birth_cooldown = constants.CONFIG["pregnancy"]["birth_cooldown"]
                     if random() < 0.1:
                         outside_parent.set_mate(cat)
@@ -1647,7 +1647,7 @@ class Pregnancy_Events:
             # adoptive parents are set at the end, when everything else is decided
 
             # remove scars
-            kit.pelt.scars.clear()
+            kit.pelt.scars = tuple()
 
             # try to give them a permanent condition. 1/90 chance
             # don't delete the game.clan condition, this is needed for a test
@@ -1658,9 +1658,9 @@ class Pregnancy_Events:
                 kit.congenital_condition(kit)
                 for condition in kit.permanent_condition:
                     if kit.permanent_condition[condition] == "born without a leg":
-                        kit.pelt.scars.append("NOPAW")
+                        kit.pelt.scars = (*cat.pelt.scars, "NOPAW")
                     elif kit.permanent_condition[condition] == "born without a tail" and kit.phenotype.bobtailnr != 1:
-                        kit.pelt.scars.append("NOTAIL")
+                        kit.pelt.scars = (*cat.pelt.scars, "NOTAIL")
                 Condition_Events.handle_already_disabled(kit, clan)
 
             # create and update relationships
@@ -1711,7 +1711,7 @@ class Pregnancy_Events:
                         kit.relationships[the_cat.ID] = Relationship(kit, the_cat)
 
             #### REMOVE ACCESSORY ######
-            kit.pelt.accessory = []
+            kit.pelt.accessory = tuple()
             game.clan.add_cat(kit)
 
             #### GIVE HISTORY ######

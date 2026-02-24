@@ -37,6 +37,7 @@ from scripts.events_module.outsider_events import OutsiderEvents
 from scripts.events_module.patrol.patrol import Patrol
 from scripts.events_module.relationship.pregnancy_events import Pregnancy_Events
 from scripts.events_module.relationship.relation_events import Relation_Events
+from scripts.events_module.relationship.crossclan_event_generation import handle_crossclan_relationships
 from scripts.events_module.short.condition_events import Condition_Events
 from scripts.events_module.short.short_event_generation import create_short_event
 from scripts.game_structure import constants
@@ -316,7 +317,7 @@ def one_moon():
     # handle the herb supply for the moon
     game.clan.herb_supply.handle_moon(
         clan_size=get_living_clan_cat_count(Cat),
-        clan_cats=Cat.all_cats_list,
+        clan_cats=[c for c in Cat.all_cats_list if c.status.alive_in_player_clan],
         med_cats=find_alive_cats_with_rank(
             Cat,
             ranks=[CatRank.MEDICINE_CAT, CatRank.MEDICINE_APPRENTICE],
@@ -363,6 +364,9 @@ def one_moon():
         check_and_promote_deputy(clan)
         if not clancount:
             break
+
+    # if clancount:
+    #     handle_crossclan_relationships()
 
     # Resort
     if switch_get_value(Switch.sort_type) != "id":
@@ -738,9 +742,7 @@ def handle_focus():
     """
     # if no focus is selected, skip all other
     focus_text = i18n.t("defaults.focus_text")
-    if get_clan_setting("business as usual") or get_clan_setting(
-        "rest and recover"
-    ):
+    if get_clan_setting("business_as_usual") or get_clan_setting("rest_and_recover"):
         return
     elif get_clan_setting("hunting"):
         # handle warrior
@@ -789,8 +791,8 @@ def handle_focus():
         focus_text = i18n.t("hardcoded.focus_prey", count=total_amount)
         game.freshkill_event_list.append(focus_text)
 
-    elif get_clan_setting("herb gathering"):
-        # get healers
+    elif get_clan_setting("herb_gathering"):
+        # get medicine cats
         healthy_meds = find_alive_cats_with_rank(
             Cat,
             ranks=[CatRank.MEDICINE_CAT, CatRank.MEDICINE_APPRENTICE],
@@ -807,31 +809,31 @@ def handle_focus():
             healthy_meds, healthy_warriors
         )
 
-    elif get_clan_setting("threaten outsiders"):
+    elif get_clan_setting("threaten_outsiders"):
         amount = constants.CONFIG["focus"]["outsiders"]["reputation"]
         change_clan_reputation(-amount, game.clan)
         focus_text = None
 
-    elif get_clan_setting("seek outsiders"):
+    elif get_clan_setting("seek_outsiders"):
         amount = constants.CONFIG["focus"]["outsiders"]["reputation"]
         change_clan_reputation(amount, game.clan)
         focus_text = None
 
-    elif get_clan_setting("sabotage other clans") or get_clan_setting(
-        "aid other clans"
+    elif get_clan_setting("sabotage_other_clans") or get_clan_setting(
+        "aid_other_clans"
     ):
-        amount = constants.CONFIG["focus"]["other clans"]["relation"]
-        if get_clan_setting("sabotage other clans"):
+        amount = constants.CONFIG["focus"]["other_clans"]["relation"]
+        if get_clan_setting("sabotage_other_clans"):
             amount = amount * -1
         for name in game.clan.clans_in_focus:
             clan = [clan for clan in game.clan.all_other_clans if clan.displayname == name][0]
             change_clan_relations(game.clan, clan, amount)
         focus_text = None
 
-    elif get_clan_setting("hoarding") or get_clan_setting("raid other clans"):
+    elif get_clan_setting("hoarding") or get_clan_setting("raid_other_clans"):
         info_dict = constants.CONFIG["focus"]["hoarding"]
-        if get_clan_setting("raid other clans"):
-            info_dict = constants.CONFIG["focus"]["raid other clans"]
+        if get_clan_setting("raid_other_clans"):
+            info_dict = constants.CONFIG["focus"]["raid_other_clans"]
 
         involved_cats = {"injured": [], "sick": []}
         # handle prey
@@ -863,19 +865,19 @@ def handle_focus():
 
         # handle injuries / illness
         relevant_cats = healthy_warriors + healthy_meds
-        if get_clan_setting("raid other clans"):
+        if get_clan_setting("raid_other_clans"):
             chance = info_dict[f"injury_chance_warrior"]
             # increase the chance of injuries depending on how many clans are raided
             increase = info_dict["chance_increase_per_clan"]
             chance -= increase * len(game.clan.clans_in_focus)
         for cat in relevant_cats:
             # if the raid setting or 50/50 for hoarding to get to the injury part
-            if get_clan_setting("raid other clans") or random.getrandbits(1):
+            if get_clan_setting("raid_other_clans") or random.getrandbits(1):
                 status_use = cat.status.rank
                 if status_use in (CatRank.DEPUTY, CatRank.LEADER):
                     status_use = CatRank.WARRIOR
                 chance = info_dict[f"injury_chance_{status_use}"]
-                if get_clan_setting("raid other clans"):
+                if get_clan_setting("raid_other_clans"):
                     # increase the chance of injuries depending on how many clans are raided
                     increase = info_dict["chance_increase_per_clan"]
                     chance -= increase * len(game.clan.clans_in_focus)
@@ -902,15 +904,15 @@ def handle_focus():
                         involved_cats["sick"].append(cat.ID)
 
         # if it is raiding, lower the relation to other clans
-        if get_clan_setting("raid other clans"):
+        if get_clan_setting("raid_other_clans"):
             for name in game.clan.clans_in_focus:
                 clan = [clan for clan in game.clan.all_other_clans if clan.displayname == name][0]
-                amount = -constants.CONFIG["focus"]["raid other clans"]["relation"]
+                amount = -constants.CONFIG["focus"]["raid_other_clans"]["relation"]
                 change_clan_relations(game.clan, clan, amount)
 
         # finish
         text_snippet = "hardcoded.focus_injury_hoarding"
-        if get_clan_setting("raid other clans"):
+        if get_clan_setting("raid_other_clans"):
             text_snippet = "hardcoded.focus_injury_raiding"
         for condition_type, value in involved_cats.items():
             if len(value) > 0:
@@ -1540,17 +1542,19 @@ def perform_ceremonies(cat, clan):
             clan.medicine_cat = cat
 
         special_can_retire = False
+        if cat.status.rank == CatRank.LEADER:
+            special_can_retire = get_clan_setting("leader_retirement") and random.random() < (1/constants.CONFIG["roles"]["max_leader_retire_chance"])
         if cat.status.rank == CatRank.MEDICINE_CAT:
-            med_can_retire = get_clan_setting("healer_retirement") and medicine_cats_can_cover_clan(
+            special_can_retire = get_clan_setting("healer_retirement") and medicine_cats_can_cover_clan(
                 Cat.all_cats.values(), get_amount_cat_for_one_medic(), clan=clan.group_ID, exclude=cat
             ) and random.random() < (1/constants.CONFIG["roles"]["max_healer_retire_chance"])
         if cat.status.rank == CatRank.MEDIATOR:
-            med_can_retire = get_clan_setting("mediator_retirement") and random.random() < (1/constants.CONFIG["roles"]["max_mediator_retire_chance"])
-
+            special_can_retire = get_clan_setting("mediator_retirement") and random.random() < (1/constants.CONFIG["roles"]["max_mediator_retire_chance"])
+        
         # retiring to elder den
         if (
             not cat.no_retire
-            and (cat.status.rank in (CatRank.WARRIOR, CatRank.DEPUTY) or cat.status.rank in (CatRank.MEDICINE_CAT, CatRank.MEDIATOR) and special_can_retire)
+            and (cat.status.rank in (CatRank.WARRIOR, CatRank.DEPUTY) or cat.status.rank in (CatRank.MEDICINE_CAT, CatRank.MEDIATOR, CatRank.LEADER) and special_can_retire)
             and len(cat.apprentice) < 1
             and cat.moons > 114
         ):
@@ -1560,6 +1564,8 @@ def perform_ceremonies(cat, clan):
             ):
                 if cat.status.rank == CatRank.DEPUTY:
                     clan.deputy = None
+                if cat.status.rank == CatRank.LEADER:
+                    clan.leader = None
                 if cat.status.rank == CatRank.MEDICINE_CAT:
                     clan.remove_med_cat(cat)
                 ceremony(cat, CatRank.ELDER)
@@ -1757,6 +1763,7 @@ def ceremony(cat, promoted_to, preparedness="prepared"):
     """
     # ceremony = []
     clan = cat.status.fetch_clan_object(game.clan)
+    was_leader = cat.status.rank == CatRank.LEADER
 
     _ment = (
         Cat.fetch_cat(cat.mentor) if cat.mentor else None
@@ -1802,7 +1809,7 @@ def ceremony(cat, promoted_to, preparedness="prepared"):
 
     try:
         # Get all the ceremonies for the role ----------------------------------------
-        possible_ceremonies.update(ceremony_id_by_tag[promoted_to])
+        possible_ceremonies.update(ceremony_id_by_tag["leader_retire"] if was_leader else ceremony_id_by_tag[promoted_to])
 
         # Get ones for prepared status ----------------------------------------------
         if promoted_to in (CatRank.WARRIOR, CatRank.MEDICINE_CAT, CatRank.MEDIATOR):
@@ -2445,6 +2452,10 @@ def handle_murder(cat, clan):
         if (i.has_mid_negative or i.has_mid_negative)
         and Cat.fetch_cat(i.cat_to).status.group.is_any_clan_group()
     ]
+    # sort by total relationship, this way we know who has the worst relationship
+    targets.sort(key=lambda x: x.total_relationship_value)
+    if len(targets) > 5:
+        targets = targets[:5]
 
     # if we have some, then we need to decide if this cat will kill
     if targets:
@@ -2460,9 +2471,8 @@ def handle_murder(cat, clan):
             [l for l in chosen_target.get_reltype_tiers() if l.is_extreme_neg]
         )
         mid_neg = len([t for t in chosen_target.get_reltype_tiers() if t.is_mid_neg])
-        neg = len([t for t in chosen_target.get_reltype_tiers() if t.is_low_neg])
 
-        relation_modifier = (extreme_neg * 8) + (mid_neg * 6) + (neg * 4)
+        relation_modifier = (extreme_neg * 8) + (mid_neg * 6)
 
         kill_chance -= relation_modifier
 
@@ -2479,11 +2489,13 @@ def handle_murder(cat, clan):
             kill_chance -= 5
 
         # little easter egg just for fun
-        if (
-            cat.personality.trait == "ambitious"
-            and Cat.fetch_cat(chosen_target.cat_to).status.is_leader
+        if cat.personality.trait in ("ambitious", "arrogant", "rebellious") and (
+            Cat.fetch_cat(chosen_target.cat_to).status.is_leader
+            or Cat.fetch_cat(chosen_target.cat_to).status.rank == CatRank.DEPUTY
         ):
             kill_chance -= 10
+            if cat.status.rank == CatRank.DEPUTY:
+                kill_chance -= 15
 
         kill_chance -= cat.personality.aggression
         kill_chance -= 16 - cat.personality.stability
@@ -2505,7 +2517,7 @@ def handle_murder(cat, clan):
                 second_clan=chosen_cat.status.fetch_clan_object(game.clan) if chosen_cat.status.group_ID != cat.status.group_ID else None
             )
 
-        elif kill_chance <= 20:
+        elif kill_chance <= 15:
             create_short_event(
                 event_type="misc",
                 main_cat=cat,
@@ -2698,7 +2710,7 @@ def check_and_promote_leader(clan):
 
     if leader_invalid:
         perform_ceremonies(
-            clan.leader, clan
+            None, clan
         )  # This is where the deputy will be make leader
 
         if clan.leader:

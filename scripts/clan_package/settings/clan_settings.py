@@ -31,10 +31,15 @@ def load_clan_settings():
                 _load_settings[_old_save_conversion[key]] = value
                 _load_settings.pop(key)
 
+        # convert old clan focus saved settings into plain bools
+        for key in clan_settings:
+            if isinstance(_load_settings.get(key), list):
+                _load_settings[key] = _load_copy.get(key.replace("_", " "))[2]
+
         # loading settings from converted dict
         for key, value in _load_settings.items():
             if key in clan_settings:
-                clan_settings[key] = value
+                clan_settings[key] = value[2] if isinstance(value, list) else value
 
     # if settings files does not exist, default has been loaded by __init__
 
@@ -77,7 +82,7 @@ def reset_loaded_clan_settings():
             if game_setting_get(setting_name) is not None:
                 clan_settings[setting_name] = game_setting_get(setting_name)
             else:
-                clan_settings[setting_name] = value
+                clan_settings[setting_name] = value[2] if isinstance(value, list) else value
 
     for setting, values in _clan_settings["other"].items():
         clan_settings[setting] = values[0]
