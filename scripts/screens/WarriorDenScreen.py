@@ -50,9 +50,9 @@ class WarriorDenScreen(Screens):
         self.active_code = None
         self.original_focus_code = None
         self.other_clan_settings = [
-            "sabotage other clans",
-            "aid other clans",
-            "raid other clans",
+            "sabotage_other_clans",
+            "aid_other_clans",
+            "raid_other_clans",
         ]
 
         self.has_mediators = True
@@ -382,4 +382,6 @@ class WarriorDenScreen(Screens):
         """
         if len(game.clan.clans_in_focus) > 0:
             game.clan.last_focus_change = game.clan.age
+            switch_clan_setting(self.original_focus_code)
+            switch_clan_setting(self.active_code)
             self.original_focus_code = self.active_code
