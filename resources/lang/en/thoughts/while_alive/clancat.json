@@ -6989,5 +6989,35 @@
         "relationship_constraint": [
             "fancies"
         ]
+    },
+
+    {
+        "id": "not_fire_to_fire_gen",
+        "thoughts": [
+            "Wishes r_c didn't make the dens so warm"
+        ],
+        "main_element_constraint": [
+            "-fire",
+            "-blue fire",
+            "-magma"
+        ],
+        "random_element_constraint": [
+            "fire",
+            "blue fire",
+            "magma"
+        ]
+    },
+
+    {
+        "id": "not_ice_to_ice_gen",
+        "thoughts": [
+            "Wishes r_c didn't make the dens so cold"
+        ],
+        "main_element_constraint": [
+            "-ice"
+        ],
+        "random_element_constraint": [
+            "ice"
+        ]
     }
 ]
