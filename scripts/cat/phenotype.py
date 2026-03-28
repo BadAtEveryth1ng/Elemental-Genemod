@@ -2,6 +2,7 @@ from .genotype import Genotype
 from random import choice, randint, random
 from scripts.cat.breed_functions import find_my_breed
 from scripts.special_dates import SpecialDate, is_today
+import i18n
 
 class Phenotype(Genotype):
 
@@ -135,19 +136,21 @@ class Phenotype(Genotype):
             if(self.dilute[0] == "d"):
                 if(self.eumelanin[0] == "B"):
                     if(self.pinkdilute[0] == "dp"):
-                        colour += "platinum"
+                        colour = "platinum"
                     else:
                         colour = "blue"
                 elif(self.eumelanin[0] == "b"):
                     if(self.pinkdilute[0] == "dp"):
-                        colour += "lavender"
+                        colour = "lavender"
                     else:
                         colour = "lilac"
                 else:
                     if(self.pinkdilute[0] == "dp"):
-                        colour += "beige"
+                        colour = "beige"
                     else:
                         colour = "fawn"
+                if is_today(SpecialDate.APRIL_FOOLS) and "Pb" in self.april_fools.get("peacock_blue", []):
+                    colour = "peacock " + colour
 
                 if(self.dilutemd[0] == "Dm"):
                     colour += " caramel"
@@ -169,8 +172,6 @@ class Phenotype(Genotype):
 
         if 'O' in self.sexgene and 'o' in self.sexgene:
             tortie = "tortie "
-
-        
 
         self.colour = colour
         if(tortie != "" and self.brindledbi):
@@ -517,7 +518,7 @@ class Phenotype(Genotype):
             
         if is_today(SpecialDate.APRIL_FOOLS):
             if "Dg" in self.april_fools.get("danish_green", []):
-                self.colour = "Danish green"
+                self.colour = "Danish green" + self.colour
         self.SolidWhite(pattern=pattern)
 
         if(self.tortiepattern == ["CRYPTIC"] and self.tortie != "brindled bicolour "):
@@ -527,6 +528,12 @@ class Phenotype(Genotype):
             
         self.ElementFinder()
 
+        if is_today(SpecialDate.APRIL_FOOLS) and "Bs" in self.april_fools.get("black_spotting", []):
+                self.colour = self.colour.replace("white", "black")
+                self.highwhite = self.highwhite.replace("white", "black")
+                self.lowwhite = self.lowwhite.replace("white", "black")
+                self.specwhite = self.specwhite.replace("white", "black")
+            
         eyes = ""
 
         furtype = ""
@@ -560,7 +567,7 @@ class Phenotype(Genotype):
         withword = " with " + withword + eyes.lower()
 
         if gender:
-            sexstring = gender
+            sexstring = i18n.t("general." + gender)
         elif 'tom' in self.sex and 'Y' in self.sexgene:
             sexstring = "male"
         elif 'molly' in self.sex and 'Y' not in self.sexgene:
@@ -753,6 +760,7 @@ class Phenotype(Genotype):
         self.mainunders = []
         self.spritecolour = ""
         self.caramel = ""
+        self.peacock = False
         self.patchmain = ""
         self.patchunders = []
         self.patchcolour = ""
@@ -902,7 +910,10 @@ class Phenotype(Genotype):
                         colour = "dove"
                     else:
                         colour = "black"
-            
+
+            if is_today(SpecialDate.APRIL_FOOLS) and "Pb" in self.april_fools.get("peacock_blue", []) and genes.dilute[0] == "d":
+                self.peacock = True
+
             maincolour = colour + str(self.saturation)
             
             if (self.ext[0] == 'ea' and ((moons > 11 and self.agouti[0] != 'a') or (moons > 35))):

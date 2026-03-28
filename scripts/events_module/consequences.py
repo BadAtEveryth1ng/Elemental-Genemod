@@ -769,6 +769,9 @@ def find_clan_cats(Cat, Relationship, event, in_event_cats: dict, i: int, attrib
         if status == "any_apprentice":
             all_clan_cats = [
                 cat for cat in all_clan_cats if cat.status.rank.is_any_apprentice_rank()]
+        ELif status == "any_fighter":
+            all_clan_cats = [
+                cat for cat in all_clan_cats if cat.status.rank in [CatRank.LEADER, CatRank.DEPUTY, CatRank.WARRIOR, CatRank.APPRENTICE]]
         elif status == "any_healer":
             all_clan_cats = [
                 cat for cat in all_clan_cats if cat.status.rank.is_any_medicine_rank()]
@@ -801,9 +804,11 @@ def find_clan_cats(Cat, Relationship, event, in_event_cats: dict, i: int, attrib
                 cat for cat in all_clan_cats if cat.age.value == age]
             if all_clan_cats_age:
                 all_clan_cats = all_clan_cats_age
+        else:
+            all_clan_cats = [i for i in all_clan_cats if i.age != CatAge.NEWBORN]
         if not all_clan_cats:
             all_clan_cats = [i for i in Cat.all_cats.values(
-            ) if i.status.group_ID == other_clan.group_ID]
+            ) if i.status.group_ID == other_clan.group_ID and i.age != CatAge.NEWBORN]
 
         all_clan_cats_healthy = [i for i in all_clan_cats if not i.not_working()]
         picked_cats = [choice(all_clan_cats_healthy if all_clan_cats_healthy else all_clan_cats)]
@@ -1054,9 +1059,9 @@ def create_new_cat(
             adoptive_parents=adoptive_parents if adoptive_parents else [],
         )
 
-        if new_cat.phenotype.manx[1] == "Ab" or new_cat.phenotype.sexgene[0] == "Y" or new_cat.phenotype.manx[1] == "M" or new_cat.phenotype.munch[1] == "Mk" or ('NoDBE' not in new_cat.phenotype.pax3 and 'DBEalt' not in new_cat.phenotype.pax3):
+        if new_cat.phenotype.manx[1] in ["Ab", "M"] or new_cat.phenotype.sexgene[0] == "Y" or new_cat.phenotype.munch[1] == "Mk" or ('NoDBE' not in new_cat.phenotype.pax3 and 'DBEalt' not in new_cat.phenotype.pax3):
             if len(created_cats) == 0:
-                while new_cat.phenotype.manx[1] == "Ab" or new_cat.phenotype.sexgene[0] == "Y" or new_cat.phenotype.manx[1] == "M" or new_cat.phenotype.munch[1] == "Mk" or ('NoDBE' not in new_cat.phenotype.pax3 and 'DBEalt' not in new_cat.phenotype.pax3):
+                while new_cat.phenotype.manx[1] in ["Ab", "M"] or new_cat.phenotype.sexgene[0] == "Y" or new_cat.phenotype.munch[1] == "Mk" or ('NoDBE' not in new_cat.phenotype.pax3 and 'DBEalt' not in new_cat.phenotype.pax3):
                     del Cat.all_cats[new_cat.ID]
                     new_cat = Cat(
                         moons=moons,
@@ -1380,7 +1385,8 @@ def gather_cat_objects(
             continue
 
         else:
-            print(f"WARNING: Unsupported abbreviation {abbr}")
+            print(f"WARNING: No cats found for {abbr_list}")
+            return list(found_cat_list)
 
     return list(out_set)
 
@@ -1503,7 +1509,8 @@ def unpack_rel_block(
                     cats_from_ob,
                     cats_to_ob,
                     **value_changes,
-                    log=to_log if to_log else (from_log.replace("to_cat", "[placeholder]").replace("from_cat", "to_cat").replace("[placeholder]", "from_cat") if from_log else None),
+                    log=to_log if to_log else from_log,
+                    flip_log=True,
                 )
             )
 
@@ -1519,6 +1526,7 @@ def change_relationship_values(
     comfort: int = 0,
     trust: int = 0,
     log: str = None,
+    flip_log: bool = False,
 ) -> dict:
     """
     changes relationship values according to the parameters.
@@ -1533,6 +1541,7 @@ def change_relationship_values(
     :param int comfort: amount to change comfort, default 0
     :param int trust: amount to change trust, default 0
     :param str log: the string to append to the relationship log of cats involved
+    :param bool flip_log: If True, this will "flip" the cats used for to_cat and from_cat abbreviation replacements. This should really only be used for mutual relationship changes from events.
     """
 
     # This is just for test prints - DON'T DELETE - you can use this to test if relationships are changing
@@ -1583,32 +1592,34 @@ def change_relationship_values(
                 log = i18n.t("relationships.relationship_log")
             if log and isinstance(log, str):
                 replace_dict = {}
+                from_cat = single_cat_to if flip_log else single_cat_from
+                to_cat = single_cat_from if flip_log else single_cat_to
                 if "from_cat" in log:
                     replace_dict["from_cat"] = (
-                        str(single_cat_from.name),
-                        choice(single_cat_from.pronouns),
+                        str(from_cat.name),
+                        choice(from_cat.pronouns),
                     )
                 if "to_cat" in log:
                     replace_dict["to_cat"] = (
-                        str(single_cat_to.name),
-                        choice(single_cat_to.pronouns),
+                        str(to_cat.name),
+                        choice(to_cat.pronouns),
                     )
                 if replace_dict:
                     processed_log = process_text(log, replace_dict)
                 else:
                     processed_log = log
 
-                if single_cat_from in created_rel_logs:
-                    created_rel_logs[single_cat_from] = "<br><br>".join(
-                        [created_rel_logs[single_cat_from], processed_log]
+                if from_cat in created_rel_logs:
+                    created_rel_logs[from_cat] = "<br><br>".join(
+                        [created_rel_logs[from_cat], processed_log]
                     )
                 else:
-                    created_rel_logs.update({single_cat_from: processed_log})
+                    created_rel_logs.update({from_cat: processed_log})
 
                 log_text = processed_log + i18n.t(
                     "relationships.age_postscript",
-                    name=str(single_cat_to.name),
-                    count=single_cat_to.moons,
+                    name=str(from_cat.name),
+                    count=from_cat.moons,
                 )
                 if log_text not in rel.log:
                     rel.log.append(log_text)

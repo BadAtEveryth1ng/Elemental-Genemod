@@ -66,6 +66,10 @@ class Condition_Events:
         "resources/dicts/conditions/illnesses_seasons.json", "r", encoding="utf-8"
     ) as read_file:
         ILLNESSES_SEASON_LIST = ujson.loads(read_file.read())
+    with open(
+        "resources/dicts/conditions/special_condition_seasons.json", "r", encoding="utf-8"
+    ) as read_file:
+        SPECIAL_SEASON_LIST = ujson.loads(read_file.read())
 
     # ---------------------------------------------------------------------------- #
     #                                   STRINGS                                    #
@@ -263,9 +267,10 @@ class Condition_Events:
             return triggered
 
         event_string = None
+        cat_dict = {"m_c": cat}
 
         if cat.is_ill():
-            event_string = Condition_Events.handle_already_ill(cat, clan)
+            event_string, cat_dict = Condition_Events.handle_already_ill(cat, clan)
         else:
             # ---------------------------------------------------------------------------- #
             #                              make cats sick                                  #
@@ -276,6 +281,18 @@ class Condition_Events:
                     clan.group_ID, "condition_related", f"{game.clan.game_mode}_illness_chance"
                 )
             )
+            modifier = 1
+
+            relevant_conditions = []
+
+            season_dict = Condition_Events.SPECIAL_SEASON_LIST[season]
+            for key in season_dict:
+                if key in list(cat.permanent_condition.keys()) or key == "fully hairless" and cat.pelt.length == "hairless" and (cat.phenotype.sedesp[0] == "hr" or cat.phenotype.ruhr[1] == "Hrbd" or cat.moons > 11):
+                    modifier = game.get_config_value(
+                        clan.group_ID, "condition_related", f"{game.clan.game_mode}_perm_condition_modifier"
+                    )
+                    relevant_conditions.append(key)
+
             if (
                 not cat.dead
                 and not cat.is_ill()
@@ -329,6 +346,56 @@ class Condition_Events:
                     main_cat=cat,
                     clan=clan
                 )
+            elif (
+                not cat.dead
+                and not cat.is_ill()
+                and modifier > 1
+                and (random_number/modifier) <= 10
+            ):
+                season_dict = Condition_Events.SPECIAL_SEASON_LIST[season]
+                possible_illnesses = []
+                random.shuffle(relevant_conditions)
+                chosen_key = None
+                for key in relevant_conditions:
+                    if key in relevant_conditions:
+                        chosen_key = key
+                        possible_illnesses += season_dict[key]
+                        break
+                chosen_illness = possible_illnesses[int(random.random() * len(possible_illnesses))]
+                random.shuffle(relevant_conditions)
+                if chosen_key in Condition_Events.PERM_CONDITION_RISK_STRINGS and chosen_illness in Condition_Events.PERM_CONDITION_RISK_STRINGS[chosen_key]:
+                    event_string = random.choice(
+                        Condition_Events.PERM_CONDITION_RISK_STRINGS[chosen_key][chosen_illness])
+                if not event_string:
+                    print(f"{chosen_illness} not in {chosen_key} risk dict")
+                    # try to translate the illness
+                    if chosen_illness in Condition_Events.INJURIES:
+                        chosen_illness = i18n.t(f"conditions.injuries.{chosen_illness}")
+                    else:
+                        chosen_illness = i18n.t(f"conditions.illnesses.{chosen_illness}")
+
+                    event_string = i18n.t(
+                        "defaults.illness_get_event",
+                        illness=chosen_illness,
+                    )
+                    # just in case we couldn't translate it
+                    event_string.replace("conditions.illnesses.", "")
+
+                if chosen_illness in cat.injuries:
+                    event_string = None
+                else:
+                    # make em sick
+                    if chosen_illness in Condition_Events.INJURIES:
+                        cat.get_injured(chosen_illness)
+                    else:
+                        cat.get_ill(chosen_illness)
+
+                    event_string = event_text_adjust(
+                        Cat,
+                        text=event_string,
+                        main_cat=cat,
+                        clan=clan
+                    )
 
         # if an event happened, then add event to cur_event_list and save death if it happened.
         if event_string:
@@ -336,8 +403,7 @@ class Condition_Events:
             if cat.dead:
                 types.append("birth_death")
             game.cur_events_list.append(
-                Single_Event(event_string, types, cat.ID, cat_dict={
-                             "m_c": cat}, clan=clan.group_ID)
+                Single_Event(event_string, types, cat_dict=cat_dict, clan=clan.group_ID)
             )
 
         # just double-checking that trigger is only returned True if the cat is dead
@@ -560,6 +626,7 @@ class Condition_Events:
             "stomachache": "diarrhea",
             "grief stricken": "lasting grief",
         }
+        cat_dict = {"m_c": cat}
         Condition_Events.rebuild_strings()
         # ---------------------------------------------------------------------------- #
         #                         handle currently sick cats                           #
@@ -648,14 +715,21 @@ class Condition_Events:
                 continue
 
             Condition_Events.give_risks(
-                cat, event_list, illness, illness_progression, illnesses, cat.illnesses, clan=clan
+                cat,
+                event_list,
+                cat_dict,
+                illness,
+                illness_progression,
+                illnesses,
+                cat.illnesses, 
+                clan=clan,
             )
 
         # joining event list into one event string
         event_string = None
         if len(event_list) > 0:
             event_string = " ".join(event_list)
-        return event_string
+        return event_string, cat_dict
 
     @staticmethod
     def get_valid_string_from_list(event_list: list[str], cat: Cat, clan=game.clan) -> str:
@@ -690,6 +764,8 @@ class Condition_Events:
         event_list = []
 
         injury_progression = {"poisoned": "redcough", "shock": "lingering shock"}
+
+        cat_dict = {"m_c": cat}
 
         # need to hold this number so that we can check if the leader has died
         starting_life_count = clan.leader_lives
@@ -831,6 +907,7 @@ class Condition_Events:
                     # Choose med cat, if you can
                     if med_list:
                         med_cat = random.choice(med_list)
+                        cat_dict["r_c"] = med_cat
                     else:
                         med_cat = None
 
@@ -851,7 +928,14 @@ class Condition_Events:
                 continue
 
             Condition_Events.give_risks(
-                cat, event_list, injury, injury_progression, injuries, cat.injuries, clan=clan
+                cat,
+                event_list,
+                cat_dict,
+                injury,
+                injury_progression,
+                injuries,
+                cat.injuries, 
+                clan=clan,
             )
 
         if len(event_list) > 0:
@@ -863,7 +947,9 @@ class Condition_Events:
             types = ["health"]
             if cat.dead:
                 types.append("birth_death")
-            game.cur_events_list.append(Single_Event(event_string, types, cat.ID, clan=clan.group_ID))
+            game.cur_events_list.append(
+                Single_Event(event_string, types, cat_dict=cat_dict, clan=clan.group_ID)
+            )
 
         return triggered
 
@@ -1003,6 +1089,7 @@ class Condition_Events:
             Condition_Events.give_risks(
                 cat,
                 event_list,
+                cat_dict,
                 condition,
                 condition_progression,
                 conditions,
@@ -1015,7 +1102,7 @@ class Condition_Events:
         if len(event_list) > 0:
             event_string = " ".join(event_list)
             game.cur_events_list.append(
-                Single_Event(event_string, event_types, [cat.ID], cat_dict=cat_dict, clan=clan.group_ID)
+                Single_Event(event_string, event_types, cat_dict=cat_dict, clan=clan.group_ID)
             )
         return
 
@@ -1101,7 +1188,9 @@ class Condition_Events:
                     )
 
     @staticmethod
-    def give_risks(cat, event_list, condition, progression, conditions, dictionary, clan=game.clan):
+    def give_risks(
+        cat, event_list, cat_dict, condition, progression, conditions, dictionary, clan=game.clan
+    ):
         Condition_Events.rebuild_strings()
 
         event_triggered = False
@@ -1203,6 +1292,8 @@ class Condition_Events:
                         med_cat = random.choice(med_list)
                         if med_cat == cat:
                             random_index = 1
+                        elif random_index == 0:
+                            cat_dict["r_c"] = med_cat
                     event = possible_string_list[random_index]
                 except KeyError:
                     logging.warning(

@@ -5,11 +5,12 @@ TODO: Docs
 
 
 """
-
+import logging
 import random
 
 # pylint: enable=line-too-long
 import traceback
+from math import floor
 
 import i18n
 
@@ -24,6 +25,7 @@ from scripts.cat.enums import (
 )
 from scripts.cat.names import Name
 from scripts.cat.save_load import save_cats, add_cat_to_fade_id
+from scripts.cat.skills import SkillPath
 from scripts.clan_package.settings import get_clan_setting, set_clan_setting
 from scripts.clan_resources.freshkill import FRESHKILL_EVENT_ACTIVE
 from scripts.conditions import (
@@ -31,6 +33,7 @@ from scripts.conditions import (
     get_amount_cat_for_one_medic,
 )
 from scripts.event_class import Single_Event
+from scripts.events_module.event_filters import event_for_other_clan
 
 from scripts.events_module.generate_events import GenerateEvents, generate_events
 from scripts.events_module.outsider_events import OutsiderEvents
@@ -67,6 +70,9 @@ from scripts.clan_package.get_clan_cats import (
     get_living_clan_cat_count,
 )
 
+logger = logging.getLogger(__name__)
+
+
 all_events = {}
 new_cat_invited = False
 ceremony_accessory = False
@@ -100,7 +106,14 @@ def one_moon():
         switch_set_value(Switch.no_able_left, False)
 
     # age up the clan, set current season
+    old_season = game.clan.current_season
     game.clan.age += 1
+    if game.clan.current_season != old_season:
+        # update audio to use new season ambiance
+        try:
+            game.audio.check(should_fade_out=True)
+        except AttributeError:
+            pass
     update_afterlife_temper()
     Pregnancy_Events.handle_pregnancy_age(game.clan)
 
@@ -1380,48 +1393,58 @@ def check_war():
         started_war = False
         main_clan = game.clan if clan == game.clan.group_ID else [c for c in game.clan.all_other_clans if c.group_ID == clan][0]
         enemy_clan = None
+        victor = None
         for enemy in game.clan.war[clan]:
             war_events: list = []
             enemy_clan = [c for c in game.clan.all_other_clans if c.group_ID == enemy][0]
+            enemy_can_fight = game.clan.clancount == "singleclan" or event_for_other_clan(Cat, ["any_warrior_mult"], enemy)
             if game.clan.war[clan][enemy]["at_war"]:
-                threshold = 10
-                if enemy_clan.temperament == "bloodthirsty":
-                    threshold = 12
-                if enemy_clan.temperament in ["mellow", "amiable", "gracious"]:
-                    threshold = 7
-
-                threshold -= int(game.clan.war[clan][enemy]["duration"])
-                rel_value = game.clan.get_relations(main_clan, enemy_clan)
-                if rel_value < 0:
-                    rel_value = 0
-
-                # check if war should conclude, if not, continue
-                if rel_value >= threshold and game.clan.war[clan][enemy]["duration"] > 1:
+                if not event_for_other_clan(Cat, ["any_warrior_mult"], clan) or not enemy_can_fight:
                     game.clan.war[clan][enemy]["at_war"] = False
                     game.clan.war[clan][enemy]["duration"] = 0
-                    rel_value += 2
-                    war_events = WAR_TXT["conclusion_events"]
-                else:  # try to influence the relation with warring clan
-                    game.clan.war[clan][enemy]["duration"] += 1
-                    choice = random.choice(
-                        ["rel_up", "neutral", "rel_down", "rel_down", "rel_down"])
-                    current_rels = switch_get_value(Switch.war_rel_change_type)
-                    if not current_rels.get(clan):
-                        current_rels[clan] = {}
-                    current_rels[clan][enemy] = choice
-                    switch_set_value(Switch.war_rel_change_type, current_rels)
-                    war_events = WAR_TXT["progress_events"][choice]
+                    war_events = WAR_TXT["loss_events"]
+                    victor = clan if not enemy_can_fight else enemy
+                else:
+                    threshold = 10
+                    if enemy_clan.temperament == "bloodthirsty":
+                        threshold = 12
+                    if enemy_clan.temperament in ["mellow", "amiable", "gracious"]:
+                        threshold = 7
+
+                    threshold -= int(game.clan.war[clan][enemy]["duration"])
+                    rel_value = game.clan.get_relations(main_clan, enemy_clan)
                     if rel_value < 0:
                         rel_value = 0
-                    if choice == "rel_up":
-                        rel_value += 2
-                    elif choice == "rel_down" and rel_value > 1:
-                        rel_value -= 1
 
-                game.clan.set_relations(main_clan, enemy_clan, rel_value)
+                    # check if war should conclude, if not, continue
+                    if rel_value >= threshold and game.clan.war[clan][enemy]["duration"] > 1:
+                        game.clan.war[clan][enemy]["at_war"] = False
+                        game.clan.war[clan][enemy]["duration"] = 0
+                        rel_value += 2
+                        war_events = WAR_TXT["conclusion_events"]
+                    else:  # try to influence the relation with warring clan
+                        game.clan.war[clan][enemy]["duration"] += 1
+                        choice = random.choice(
+                            ["rel_up", "neutral", "rel_down", "rel_down", "rel_down"])
+                        current_rels = switch_get_value(Switch.war_rel_change_type)
+                        if not current_rels.get(clan):
+                            current_rels[clan] = {}
+                        current_rels[clan][enemy] = choice
+                        switch_set_value(Switch.war_rel_change_type, current_rels)
+                        war_events = WAR_TXT["progress_events"][choice]
+                        if rel_value < 0:
+                            rel_value = 0
+                        if choice == "rel_up":
+                            rel_value += 2
+                        elif choice == "rel_down" and rel_value > 1:
+                            rel_value -= 1
+
+                    game.clan.set_relations(main_clan, enemy_clan, rel_value)
 
             else:  # try to start a war if no war in progress
                 if started_war:
+                    continue
+                if not event_for_other_clan(Cat, ["any_warrior_mult"], clan) or not enemy_can_fight:
                     continue
                 active_wars = max(len(game.clan.get_wars(clan)), len(game.clan.get_wars(enemy)))
                 if active_wars and random.random() > 0.125:
@@ -1467,9 +1490,14 @@ def check_war():
 
             # grab our war "notice" for this moon
             event = random.choice(war_events)
-            event = ongoing_event_text_adjust(
-                Cat, event, other_clan_name=f"{enemy_clan.displayname}Clan", clan=main_clan
-            )
+            if not victor or victor == clan:
+                event = ongoing_event_text_adjust(
+                    Cat, event, other_clan_name=f"{enemy_clan.displayname}Clan", clan=main_clan
+                )
+            else:
+                event = ongoing_event_text_adjust(
+                    Cat, event, other_clan_name=f"{main_clan.displayname}Clan", clan=enemy_clan
+                )
             game.cur_events_list.append(Single_Event(event, "other_clans", clan=clan))
             if game.clan.clancount == "multiclan":
                 game.cur_events_list.append(Single_Event(event, "other_clans", clan=enemy))
@@ -1577,75 +1605,7 @@ def perform_ceremonies(cat, clan):
         # apprentice a kitten to either med or warrior
         if cat.moons == cat_class.age_moons[CatAge.ADOLESCENT][0]:
             if cat.status.rank == CatRank.KITTEN:
-                med_cat_list = [
-                    i
-                    for i in Cat.all_cats_list
-                    if i.status.rank.is_any_medicine_rank()
-                    and i.status.group_ID == clan.group_ID
-                ]
-
-                # check if the healer is an elder
-                has_elder_med = [
-                    c
-                    for c in med_cat_list
-                    if c.age == "senior" and c.status.rank == CatRank.MEDICINE_CAT
-                ]
-
-                very_old_med = [
-                    c
-                    for c in med_cat_list
-                    if c.moons >= 150 and c.status.rank == CatRank.MEDICINE_CAT
-                ]
-
-                # check if the Clan has sufficient med cats
-                has_med = medicine_cats_can_cover_clan(
-                    Cat.all_cats.values(),
-                    amount_per_med=get_amount_cat_for_one_medic(),
-                    clan=clan.group_ID
-                )
-
-                # check if a med cat app already exists
-                has_med_app = any(
-                    cat.status.rank == CatRank.MEDICINE_APPRENTICE
-                    for cat in med_cat_list
-                )
-
-                # assign chance to become med app depending on current med cat and traits
-                chance = constants.CONFIG["roles"]["base_medicine_app_chance"]
-                if very_old_med == med_cat_list:
-                    # These chances apply if all the current medicine cats are very old.
-                    if has_med:
-                        chance = int(chance / 3)
-                    else:
-                        chance = int(chance / 14)
-                elif has_elder_med == med_cat_list:
-                    # These chances apply if all the current medicine cats are elders.
-                    if has_med:
-                        chance = int(chance / 2.22)
-                    else:
-                        chance = int(chance / 13.67)
-                # These chances will only be reached if the
-                # Clan has at least one non-elder healer.
-                elif not has_med:
-                    chance = int(chance / 7.125)
-                elif has_med:
-                    chance = int(chance * 2.22)
-
-                if cat.personality.trait in [
-                    "careful",
-                    "compassionate",
-                    "loving",
-                    "wise",
-                    "faithful",
-                ]:
-                    chance = int(chance / 1.3)
-                if cat.is_disabled():
-                    chance = int(chance / 2)
-
-                if chance == 0:
-                    chance = 1
-
-                if not has_med_app and not int(random.random() * chance):
+                if _is_suitable_medcat_app(cat, clan):
                     ceremony(cat, CatRank.MEDICINE_APPRENTICE)
                     ceremony_accessory = True
                     gain_accessories(cat, clan)
@@ -1739,6 +1699,178 @@ def perform_ceremonies(cat, clan):
                     ceremony(cat, CatRank.MEDIATOR, preparedness)
                     ceremony_accessory = True
                     gain_accessories(cat, clan)
+
+def _is_suitable_medcat_app(cat, clan) -> bool:
+    """
+    Determines whether this cat will become a medicine cat
+    :param cat: A kitten preparing for apprenticeship ceremony
+    :return: True if the kitten should be a medcat, False otherwise
+    """
+    # assign chance to become med app depending on current med cat and traits
+    chance = constants.CONFIG["roles"]["base_medicine_app_chance"]  # 41
+    logger.info("Medcat app %s starting chance: %d", str(cat.name), chance)
+
+    med_cat_list = [
+        i
+        for i in Cat.all_cats_list
+        if i.status.rank.is_any_medicine_rank() and i.status.group_ID == clan.group_ID
+    ]
+
+    num_medcats = len(med_cat_list)
+
+    # get number of medcat apps
+    num_med_apps = len(
+        [cat.status.rank == CatRank.MEDICINE_APPRENTICE for cat in med_cat_list]
+    )
+    logger.debug("Current number of medcats: %d", num_medcats - num_med_apps)
+    logger.debug("Current number of medcat apps: %d", num_med_apps)
+
+    # check if the Clan has sufficient med cats
+    enough_working_meds = medicine_cats_can_cover_clan(
+        Cat.all_cats.values(),
+        amount_per_med=get_amount_cat_for_one_medic(), 
+        clan=clan.group_ID
+    )
+
+    if (
+        floor(num_med_apps / max(1, (len(med_cat_list) - num_med_apps)))
+        > constants.CONFIG["roles"]["medicine cat apprentice"]["max_medcats_to_apps"]
+    ):
+        if enough_working_meds:
+            # early return if the ratio of apps would be too high
+            logger.info("Too many apprentices for medcat population. Aborting.")
+            return False
+        logger.debug(
+            "Too many apprentices for medcat population, but not enough medicine cats for Clan! Continuing."
+        )
+
+    # check if the medicine cats are old
+    senior_meds = [
+        c
+        for c in med_cat_list
+        if c.age == "senior" and c.status.rank == CatRank.MEDICINE_CAT
+    ]
+
+    ancient_meds = [
+        c
+        for c in senior_meds
+        if c.moons
+        >= constants.CONFIG["roles"]["medicine cat apprentice"][
+            "threshold_moons_ancient"
+        ]
+    ]
+
+    senior_med_ratio = (len(senior_meds) / num_medcats) if num_medcats != 0 else 0
+
+    ancient_med_ratio = (len(ancient_meds) / num_medcats) if num_medcats != 0 else 0
+
+    if (
+        ancient_med_ratio
+        > constants.CONFIG["roles"]["medicine cat apprentice"][
+            "threshold_percentage_ancient"
+        ]
+        / 100
+    ):
+        # These chances apply if enough medicine cats are very old.
+        if enough_working_meds:
+            chance = chance / 3
+        else:
+            logger.info("Not enough healthy medicine cats")
+            chance = chance / 14
+
+        logger.info("Ancient medicine cats, chance updated to %d", round(chance))
+    elif (
+        senior_med_ratio
+        > constants.CONFIG["roles"]["medicine cat apprentice"][
+            "threshold_percentage_seniors"
+        ]
+        / 100
+    ):
+        # These chances apply if enough medicine cats are elders.
+        if enough_working_meds:
+            chance = chance / 2.22
+        else:
+            logger.info("Not enough healthy medicine cats")
+            chance = chance / 14
+
+        logger.info("Senior medicine cats, chance updated to %d", round(chance))
+    else:
+        # These chances will only be reached if the
+        # Clan has at least one non-elder medicine cat.
+        if not enough_working_meds:
+            chance = chance / 7.125
+            logger.info(
+                "Not enough healthy medicine cats, chance updated to %d", chance
+            )
+        else:
+            chance = chance * 2.22
+            logger.info(
+                "Enough healthy young medicine cats, chance updated to %d", chance
+            )
+
+    if cat.personality.trait in [
+        "careful",
+        "compassionate",
+        "loving",
+        "wise",
+        "faithful",
+    ]:
+        chance = chance / 1.3
+        logger.info("Suitable trait, chance updated to %d", round(chance))
+
+    elif cat.personality.trait in [
+        "adventurous",
+        "arrogant",
+        "bold",
+        "bloodthirsty",
+        "cold",
+        "fierce",
+        "rebellious",
+        "troublesome",
+        "sneaky",
+        "vengeful",
+    ]:
+        chance = chance * 2
+        logger.info("Unsuitable trait, chance updated to %d", round(chance))
+
+    beneficial_skills = [
+        SkillPath.OMEN,
+        SkillPath.PROPHET,
+        SkillPath.HEALER,
+        SkillPath.STAR,
+        SkillPath.DREAM,
+        SkillPath.CLAIRVOYANT,
+        SkillPath.GHOST,
+        SkillPath.CAMP,
+    ]
+
+    if cat.skills.primary.path in beneficial_skills:
+        chance = chance / 2
+        logger.info("beneficial primary skill, chance updated to %d", round(chance))
+
+    if cat.skills.secondary and cat.skills.secondary.path in beneficial_skills:
+        chance = chance / 4
+        logger.info("beneficial secondary skill, chance updated to %d", round(chance))
+
+    if cat.is_disabled():
+        chance = chance / 2
+
+    if num_med_apps == 0:
+        # if there are no apprentices at all, make it slightly easier to get one
+        logger.info("No apprentices at all")
+        chance = chance / 1.8
+        logger.info("No medcat apprentices at all, chance updated to %d", chance)
+    if num_med_apps > 1:
+        # if there's already at least one medcat app, make it harder to get another
+        chance = chance * (1 + (0.2 * (num_med_apps - 1)))
+        logger.info("%d medcat apps, chance updated to %d", num_med_apps, chance)
+
+    chance = max(1, int(chance))
+
+    success = not int(random.random() * chance)
+    logger.info("%s final chance: %d | SUCCESS: %s", cat.name, chance, success)
+    return success
+
 
 def load_ceremonies():
     """
@@ -2076,7 +2208,6 @@ def gain_accessories(cat, clan):
         "daring",
         "playful",
         "attention-seeker",
-        "bouncy",
         "sweet",
         "troublesome",
         "impulsive",
@@ -2434,7 +2565,7 @@ def handle_murder(cat, clan):
         return
 
     # will this cat actually murder? this takes into account stability and lawfulness
-    murder_capable = 7
+    murder_capable = 8
     if cat.personality.stability < 6:
         murder_capable -= 3
     if cat.personality.lawfulness < 6:
@@ -2453,7 +2584,7 @@ def handle_murder(cat, clan):
     targets = [
         i
         for i in relationships
-        if (i.has_mid_negative or i.has_mid_negative)
+        if (i.has_mid_negative or i.has_extreme_negative)
         and Cat.fetch_cat(i.cat_to).status.group.is_any_clan_group()
     ]
     # sort by total relationship, this way we know who has the worst relationship
@@ -2683,12 +2814,12 @@ def handle_outbreaks(cat, clan):
 def coming_out(cat, clan):
     """turnin' the kitties trans..."""
 
-    if cat.age.is_baby() or cat.gender != cat.genderalign:
+    if cat.moons < 3 or cat.gender != cat.genderalign:
         return
 
     transing_chance = constants.CONFIG["transition_related"]
     chance = transing_chance["base_trans_chance"]
-    if cat.age in [CatAge.ADOLESCENT]:
+    if cat.age in [CatAge.ADOLESCENT, CatAge.KITTEN]:
         chance += transing_chance["adolescent_modifier"]
     elif cat.age in [CatAge.ADULT, CatAge.SENIOR_ADULT, CatAge.SENIOR]:
         chance += transing_chance["older_modifier"]

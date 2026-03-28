@@ -27,9 +27,7 @@ max_name_length = 10
 
 mediated = []  # Keep track of which couples have been mediated this moon.
 just_died = []  # keeps track of which cats died this moon via die()
-dead_cats_to_grieve = (
-    []
-)  # keeps track of the cats who died and need a clan grieving message
+dead_cats_to_grieve = [] # keeps track of the cats who died and need a clan grieving message
 cur_events_list = []
 ceremony_events_list = []
 birth_death_events_list = []
@@ -177,7 +175,8 @@ def save_events():
     """
     events_list = []
     for event in cur_events_list:
-        events_list.append(event.to_dict())
+        if e := event.to_dict():
+            events_list.append(e)
     safe_save(f"{get_save_dir()}/{clan.name}/events.json", events_list)
 
 

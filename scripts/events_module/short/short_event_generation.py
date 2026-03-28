@@ -1,5 +1,5 @@
 import random
-from typing import Optional
+from typing import Optional, Tuple
 
 import i18n
 import ujson
@@ -156,7 +156,7 @@ def create_short_event(
             used_frequencies.add(frequency)
             frequency = find_new_frequency(used_frequencies)
 
-            # if we've ended up with 4 frequency twice then we're out of events and it's time to reset
+            # if we've ended up with 4 frequency twice then we're out of events so it's time to reset
             if 4 in used_frequencies and frequency == 4:
                 used_events.clear()
                 used_frequencies.clear()
@@ -195,15 +195,25 @@ def find_needed_events(frequency, event_type=None) -> list:
     """
     event_list = []
 
-    # skip the rest of the loading if there is an unrecognised biome
+    # skip the rest of the loading if there is an unrecognized biome
     temp_biome = (
         game.clan.biome if not game.clan.override_biome else game.clan.override_biome
     )
     if temp_biome not in constants.BIOME_TYPES:
         print(
             f"WARNING: unrecognised biome {game.clan.biome} in generate_events. Have you added it to BIOME_TYPES "
-            f"in clan.py?"
+            f"in scripts.game_structure.constants?"
         )
+        raise Exception(f"Unrecognized biome {game.clan.biome}.")
+
+    if (
+        debug_id := constants.CONFIG["event_generation"]["debug_ensure_event_id"]
+    ) and "debug" in debug_id:
+        try:
+            event_list.extend(generate_event_objects(event_type, "_debug", 0))
+            frequency = 0
+        except FileNotFoundError:
+            pass
 
     biome = temp_biome.lower()
 
@@ -248,8 +258,10 @@ def generate_event_objects(event_triggered, biome, frequency) -> list:
     :param biome: The biome to pull events for
     :param frequency: The frequency to pull events for
     """
+    debug_freq = constants.CONFIG["event_generation"]["debug_override_frequency"]
+
     file_path = f"{event_triggered}/{biome}.json"
-    load_name = f"{file_path}_{frequency}"
+    load_name = f"{file_path}_{debug_freq if debug_freq else frequency}"
 
     try:
         if file_path in loaded_events:
@@ -276,6 +288,17 @@ def generate_event_objects(event_triggered, biome, frequency) -> list:
                 if frequency != event_frequency:
                     continue
 
+                # this is a catch for empty dict r_c
+                if "r_c" in event:
+                    # check if it's an empty dict.
+                    # we assume if the param is present but empty, then we just want any available cat
+                    if not event["r_c"]:
+                        r_c = {"age": ["any"]}
+                    else:
+                        r_c = event["r_c"]
+                else:
+                    r_c = {}
+
                 event = ShortEvent(
                     event_id=event["event_id"] if "event_id" in event else "",
                     location=event["location"] if "location" in event else ["any"],
@@ -287,7 +310,7 @@ def generate_event_objects(event_triggered, biome, frequency) -> list:
                         event["new_accessory"] if "new_accessory" in event else []
                     ),
                     m_c=event["m_c"] if "m_c" in event else {},
-                    r_c=event["r_c"] if "r_c" in event else {},
+                    r_c=r_c,
                     new_cat=event["multiclan_cat"] if game.clan.clancount == "multiclan" and "multiclan_cat" in event else (event["new_cat"] if "new_cat" in event else []),
                     injury=event["injury"] if "injury" in event else [],
                     exclude_involved=(
@@ -327,7 +350,7 @@ def filter_events(
     excluded_events: list = None,
     ignore_subtyping: bool = False,
     reduction_avoidance_chance: int = 1,
-) -> (Optional[ShortEvent], Optional[Cat]):
+) -> Tuple[Optional[ShortEvent], Optional[Cat]]:
     """
     Filters possible events to find an event that fits the given requirements
     :param possible_events: list of possible events
@@ -344,25 +367,6 @@ def filter_events(
     incorrect_format = []
 
     for event in possible_events:
-        if event.history:
-            if not isinstance(event.history, list) or "cats" not in event.history[0]:
-                if (
-                    f"{event.event_id} history formatted incorrectly"
-                    not in incorrect_format
-                ):
-                    incorrect_format.append(
-                        f"{event.event_id} history formatted incorrectly"
-                    )
-        if event.injury:
-            if not isinstance(event.injury, list) or "cats" not in event.injury[0]:
-                if (
-                    f"{event.event_id} injury formatted incorrectly"
-                    not in incorrect_format
-                ):
-                    incorrect_format.append(
-                        f"{event.event_id} injury formatted incorrectly"
-                    )
-
         # check if event is in allowed or excluded
         if allowed_events and event.event_id not in allowed_events:
             continue

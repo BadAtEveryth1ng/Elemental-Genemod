@@ -245,10 +245,10 @@ dev_tools = false
   primary_chance_unmated = 130
   modded_primary_chance_unmated = 100
 
-  # 1/chance that a mated cat to has an affair
+  # 1/chance that a mated cat has an affair
   random_affair_chance = 50
 
-  # special 1/chance for an unmated cat to have an affair
+  # 1/chance for an unmated cat to have an affair (coparenting)
   # for this check, only other unmated cats can be the affair partner
   unmated_random_affair_chance = 10
 
@@ -363,10 +363,10 @@ dev_tools = false
   # small = 0-2, three = 3, mid = 4-5, big = 6-8, large = 9+
   [pregnancy.stillborn_chances]
     small = 0.01
-    three = 0.05
-    mid = 0.1
-    big = 0.15
-    large = 0.2
+    three = 0.025
+    mid = 0.05
+    big = 0.1
+    large = 0.15
 
 [cat_generation]
   # base 1/chance that a cat will generate with a permanent condition. gets modified further in code
@@ -435,7 +435,7 @@ dev_tools = false
   #   i.e. 1/(chance + adolescent_modifier + older_modifier)
   # so SUBTRACTING will INCREASE the chance a cat transitions
 
-  # modifies transition chance based on if cat is an adolescent
+  # modifies transition chance based on if cat is a kitten or adolescent
   adolescent_modifier = -128
 
   # modifies transition chance based on if cat is an adult or older
@@ -479,6 +479,19 @@ dev_tools = false
     # 1/chance that a cat will switch to mediator. rolls every moon, so keep it high.
     warrior = 5000
     apprentice = 1000
+    
+  [roles."medicine cat apprentice"]
+    # maximum number of medicine cat apprentices to full medicine cats (e.g. 4 adult medcats can have 2 apps total)
+    max_medcats_to_apps = 2
+
+    # minimum percentage of medcat population that are seniors for buff to app chance
+    threshold_percentage_seniors = 30
+
+    # how many moons is considered "very old"
+    threshold_moons_ancient = 150
+
+    # minimum percentage of medcat population that are ancient for buff to app chance
+    threshold_percentage_ancient = 30
 
 [lost_cat]
   # 1/chance that a lost cat will return on their own
@@ -545,6 +558,9 @@ dev_tools = false
 
   # forces specified event to occur regardless of if requirements are met
   debug_override_requirements = false
+  
+  # forces the given frequency, frequency can be a number from 1-4
+  debug_override_frequency = 0
 
   # modifies the likelihood of moonskip events that effect relationships between Clans. 
   # 0 is default, -1 would try to ensure only negative events happen, 1 would try to ensure only positive events happen, 
@@ -602,6 +618,12 @@ dev_tools = false
   expanded_illness_chance = 250
   "cruel season_illness_chance" = 200
   classic_illness_chance = 500
+
+  # if a cat has a permanent condition with defined seasonal risks, the above illness chance is divided by the modifier to determine if they get a seasonal risk
+  # eg. default expanded_illness chance is 250 and default condition_modifier is 5, so 1/5 chance of permanent condition risk appearing 
+  classic_perm_condition_modifier = 5
+  expanded_perm_condition_modifier = 5
+  "cruel season_perm_condition_modifier" = 10
 
   # 5/chance (for most personalities) or 15/chance (for some personalities) an injury will occur 
   classic_injury_chance = 450
@@ -675,11 +697,12 @@ dev_tools = false
 
   # All genes are 1/x chances. They can be set to 0 to prevent it from appearing at all
   longhair = 2
+  longtype = ['long', 'long', 'long', 'medium'] #whether a longhair appears as longhair or as a mediumhair
   cinnamon = 35
   chocolate = 20
   red = 4
   dilute = 2
-  "dominant white" = 20
+  "dominant white" = 40
   "white spotting" = 3
   "birman gloving" = 15
   "thai white" = 400
@@ -761,10 +784,14 @@ dev_tools = false
   recessive_air = 5
   recessive_nonelement = 50
   double_favour_chance = 0.25 # most cats have 1 favoured element, this is a rate 0-1 that they'll try to generate with 2 favoured
+
 [april_fools_genes]
-  green = 10
-  polycaudal = 10
+  green = 20
+  polycaudal = 15
   rainbow_eyes = 10
+  black_spotting = 15 # both this and peacock blue courtesy of mars from Create a Clan
+  peacock_blue = 10
+
 [tnr_mode]
   # chance for kittypets and other outsiders to generate as already spayed/neutered
   kittypet_neuter = 0.8
