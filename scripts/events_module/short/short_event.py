@@ -846,10 +846,14 @@ class ShortEvent:
                         self.handle_injury_history(self.random_cat, "r_c", injury)
 
                 # NEW CATS
-                elif "n_c" in abbr:
+                elif abbr == "n_c":
                     for i, new_cat_objects in enumerate(self.new_cats):
-                        if self.give_injury_to_cat(new_cat_objects[i], possible_injuries, potential_scars):
-                            self.handle_injury_history(new_cat_objects[i], abbr, injury)
+                        if self.give_injury_to_cat(new_cat_objects[0], possible_injuries, potential_scars):
+                            self.handle_injury_history(new_cat_objects[0], abbr, injury)
+                # NEW CATS
+                elif "n_c" in abbr:
+                    if self.give_injury_to_cat(self.new_cats[int(abbr.split(":")[-1])][0], possible_injuries, potential_scars):
+                        self.handle_injury_history(self.new_cats[int(abbr.split(":")[-1])][0], abbr, injury)
 
     def give_injury_to_cat(self, cat, possible_injuries, potential_scars):
         old_injuries = list(cat.injuries.keys())
@@ -874,7 +878,7 @@ class ShortEvent:
             give_injury = choice(possible_injuries)
 
         if give_injury in INJURIES:
-            cat.get_injured(give_injury, potential_scars=scars)
+            cat.get_injured(give_injury, potential_scars=potential_scars)
         elif give_injury in ILLNESSES:
             cat.get_ill(give_injury)
         elif give_injury in PERMANENT:

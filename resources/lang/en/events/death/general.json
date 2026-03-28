@@ -4540,7 +4540,7 @@
             "leaf-fall"
         ],
         "tags": [],
-        "frequency": 4,
+        "frequency": 1,
         "event_text": "Lightning struck in camp, killing m_c.",
         "m_c": {
             "age": [
@@ -7944,5 +7944,190 @@
                     }
                 }
             }]
+    },
+    {
+        "event_id": "gen_death_murder_water1",
+        "location": [
+            "forest",
+            "mountainous",
+            "plains",
+            "beach",
+            "wetlands"
+        ],
+        "season": [
+            "greenleaf",
+            "newleaf"
+        ],
+        "tags": [ ],
+        "frequency": 2,
+        "event_text": "m_c was swept away by a flood.",
+        "m_c": {
+            "age": [
+                "-kitten"
+            ],
+            "dies": true
+        },
+        "r_c": {
+            "age": [
+                "-kitten"
+            ],
+            "element": [
+                "water"
+            ]
+        },
+        "exclude_involved": [
+            "r_c"
+        ],
+        "history": [
+            {
+                "cats": [
+                    "m_c"
+                ],
+                "death": "m_c was swept away by a flood caused by r_c."
+            }
+        ],
+        "future_event": [
+            {
+                "event_type": "misc",
+                "pool": {
+                    "sub_type": [
+                        "hidden_murder_reveal"
+                    ]
+                },
+                "moon_delay": [
+                    1,
+                    24
+                ],
+                "involved_cats": {
+                    "m_c": "r_c",
+                    "mur_c": "m_c",
+                    "r_c": {
+                        "age": [
+                            "-kitten"
+                        ]
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "event_id": "gen_death_murder_decay1",
+        "location": [
+            "any"
+        ],
+        "season": [
+            "any"
+        ],
+        "tags": [ ],
+        "frequency": 2,
+        "event_text": "m_c ate tainted fresh-kill and died.",
+        "m_c": {
+            "dies": true
+        },
+        "r_c": {
+            "age": [
+                "-kitten"
+            ],
+            "element": [
+                "decay"
+            ]
+        },
+        "exclude_involved": [
+            "r_c"
+        ],
+        "history": [
+            {
+                "cats": [
+                    "m_c"
+                ],
+                "death": "m_c died after eating fresh-kill tainted by r_c."
+            }
+        ],
+        "future_event": [
+            {
+                "event_type": "misc",
+                "pool": {
+                    "sub_type": [
+                        "hidden_murder_reveal"
+                    ]
+                },
+                "moon_delay": [
+                    1,
+                    24
+                ],
+                "involved_cats": {
+                    "m_c": "r_c",
+                    "mur_c": "m_c",
+                    "r_c": {
+                        "age": [
+                            "-kitten"
+                        ]
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "event_id": "gen_death_murder_fire1",
+        "location": [
+            "any"
+        ],
+        "season": [
+            "any"
+        ],
+        "sub_type": [
+            "murder"
+        ],
+        "tags": [ ],
+        "frequency": 2,
+        "event_text": "m_c died in a sudden fire.",
+        "m_c": {
+            "status": [
+                "-leader"
+            ],
+            "dies": true
+        },
+        "r_c": {
+            "age": [
+                "-kitten"
+            ],
+            "element": [
+                "fire", "blue fire", "lightning"
+            ]
+        },
+        "exclude_involved": [
+            "r_c"
+        ],
+        "history": [
+            {
+                "cats": [
+                    "m_c"
+                ],
+                "death": "m_c was secretly murdered by r_c."
+            }
+        ],
+        "future_event": [
+            {
+                "event_type": "misc",
+                "pool": {
+                    "sub_type": [
+                        "murder_reveal"
+                    ]
+                },
+                "moon_delay": [
+                    1,
+                    24
+                ],
+                "involved_cats": {
+                    "m_c": "r_c",
+                    "mur_c": "m_c",
+                    "r_c": {
+                        "age": [
+                            "-kitten"
+                        ]
+                    }
+                }
+            }
+        ]
     }
 ]
