@@ -48,7 +48,7 @@
                 },
                 "moon_delay": [
                     1,
-                    24
+                    12
                 ],
                 "involved_cats": {
                     "m_c": "r_c",
@@ -111,7 +111,7 @@
                 },
                 "moon_delay": [
                     1,
-                    24
+                    12
                 ],
                 "involved_cats": {
                     "m_c": "r_c",
@@ -177,7 +177,7 @@
                 },
                 "moon_delay": [
                     1,
-                    24
+                    12
                 ],
                 "involved_cats": {
                     "m_c": "r_c",
@@ -244,7 +244,7 @@
                 },
                 "moon_delay": [
                     1,
-                    24
+                    12
                 ],
                 "involved_cats": {
                     "m_c": "r_c",
@@ -308,7 +308,7 @@
                 },
                 "moon_delay": [
                     1,
-                    24
+                    12
                 ],
                 "involved_cats": {
                     "m_c": "r_c",
@@ -375,7 +375,7 @@
                 },
                 "moon_delay": [
                     1,
-                    24
+                    12
                 ],
                 "involved_cats": {
                     "m_c": "r_c",
@@ -442,7 +442,7 @@
                 },
                 "moon_delay": [
                     1,
-                    24
+                    12
                 ],
                 "involved_cats": {
                     "m_c": "r_c",
@@ -511,7 +511,7 @@
                 },
                 "moon_delay": [
                     1,
-                    24
+                    12
                 ],
                 "involved_cats": {
                     "m_c": "r_c",
@@ -578,7 +578,7 @@
                 },
                 "moon_delay": [
                     1,
-                    24
+                    12
                 ],
                 "involved_cats": {
                     "m_c": "r_c",
@@ -716,7 +716,7 @@
                 ],
                 "amount": 40,
                 "log": {
-                    "cats_from": "to_cat saved from_cat from a snake but was bitten in the process."
+                    "cats_from": "cat_to saved cat_from from a snake but was bitten in the process."
                 }
             }
         ]
@@ -876,7 +876,7 @@
                 ],
                 "amount": 40,
                 "log": {
-                    "cats_from": "to_cat died protecting from_cat from enemy warriors in the nursery."
+                    "cats_from": "cat_to died protecting cat_from from enemy warriors in the nursery."
                 }
             }
         ],
@@ -949,7 +949,7 @@
                 ],
                 "amount": 40,
                 "log": {
-                    "cats_from": "to_cat saved from_cat from a fire but was burned alive in the process."
+                    "cats_from": "cat_to saved cat_from from a fire but was burned alive in the process."
                 }
             }
         ]
@@ -1357,7 +1357,7 @@
                 ],
                 "amount": 40,
                 "log": {
-                    "cats_from": "to_cat sacrificed {PRONOUN/to_cat/poss} life for from_cat in a battle against o_c_n."
+                    "cats_from": "cat_to sacrificed {PRONOUN/cat_to/poss} life for cat_from in a battle against o_c_n."
                 }
             }
         ],
@@ -1419,7 +1419,7 @@
                 ],
                 "amount": 40,
                 "log": {
-                    "cats_from": "to_cat sacrificed {PRONOUN/to_cat/poss} life for from_cat in a battle against o_c_n."
+                    "cats_from": "cat_to sacrificed {PRONOUN/cat_to/poss} life for cat_from in a battle against o_c_n."
                 }
             }
         ],
@@ -1480,7 +1480,7 @@
                 ],
                 "amount": 40,
                 "log": {
-                    "cats_from": "to_cat sacrificed {PRONOUN/to_cat/poss} life for from_cat in a battle against o_c_n."
+                    "cats_from": "cat_to sacrificed {PRONOUN/cat_to/poss} life for cat_from in a battle against o_c_n."
                 }
             }
         ],
@@ -1542,7 +1542,7 @@
                 ],
                 "amount": 40,
                 "log": {
-                    "cats_from": "to_cat sacrificed {PRONOUN/to_cat/poss} life for from_cat in a o_c_n ambush."
+                    "cats_from": "cat_to sacrificed {PRONOUN/cat_to/poss} life for cat_from in a o_c_n ambush."
                 }
             }
         ],
@@ -1897,7 +1897,7 @@
                 "amount": 10,
                 "mutual": false,
                 "log": {
-                    "cats_from": "from_cat was touched by how deeply r_c and m_c loved each other."
+                    "cats_from": "cat_from was touched by how deeply r_c and m_c loved each other."
                 }
             }
         ]
@@ -1992,7 +1992,7 @@
                 },
                 "moon_delay": [
                     1,
-                    24
+                    12
                 ],
                 "involved_cats": {
                     "m_c": "r_c",
@@ -2067,7 +2067,7 @@
                 },
                 "moon_delay": [
                     1,
-                    24
+                    12
                 ],
                 "involved_cats": {
                     "m_c": "r_c",
@@ -2131,7 +2131,7 @@
                 },
                 "moon_delay": [
                     1,
-                    24
+                    12
                 ],
                 "involved_cats": {
                     "m_c": "r_c",
@@ -2202,7 +2202,7 @@
                 },
                 "moon_delay": [
                     1,
-                    24
+                    12
                 ],
                 "involved_cats": {
                     "m_c": "r_c",
@@ -2623,7 +2623,7 @@
                 "amount": -30,
                 "mutual": false,
                 "log": {
-                    "cats_from": "from_cat was accidentally killed by to_cat in battle."
+                    "cats_from": "cat_from was accidentally killed by cat_to in battle."
                 }
             },
             {
@@ -2639,7 +2639,7 @@
                 ],
                 "amount": -15,
                 "log": {
-                    "cats_from": "from_cat became suspicious of to_cat when {PRONOUN/to_cat/subject} claimed to have killed m_c in battle by accident."
+                    "cats_from": "cat_from became suspicious of cat_to when {PRONOUN/cat_to/subject} claimed to have killed m_c in battle by accident."
                 }
             }
         ],
@@ -2712,7 +2712,7 @@
                 "amount": 15,
                 "mutual": false,
                 "log": {
-                    "cats_from": "from_cat heard that to_cat died trying to save o_c_n's medicine cat."
+                    "cats_from": "cat_from heard that cat_to died trying to save o_c_n's medicine cat."
                 }
             }
         ]
@@ -3183,7 +3183,7 @@
                 },
                 "moon_delay": [
                     1,
-                    24
+                    12
                 ],
                 "involved_cats": {
                     "m_c": "r_c",
@@ -3288,7 +3288,7 @@
                 ],
                 "amount": -10,
                 "log": {
-                    "cats_from": "from_cat failed to save to_cat from a hawk."
+                    "cats_from": "cat_from failed to save cat_to from a hawk."
                 }
             }
         ],
@@ -3369,7 +3369,7 @@
                 ],
                 "amount": 30,
                 "log": {
-                    "cats_from": "to_cat died defending from_cat from a hawk."
+                    "cats_from": "cat_to died defending cat_from from a hawk."
                 }
             }
         ]
@@ -3613,7 +3613,7 @@
                 },
                 "moon_delay": [
                     1,
-                    24
+                    12
                 ],
                 "involved_cats": {
                     "m_c": "r_c",
@@ -3880,7 +3880,7 @@
                 },
                 "moon_delay": [
                     1,
-                    24
+                    12
                 ],
                 "involved_cats": {
                     "m_c": "r_c",
@@ -3940,7 +3940,7 @@
                 },
                 "moon_delay": [
                     1,
-                    24
+                    12
                 ],
                 "involved_cats": {
                     "m_c": "r_c",
@@ -4008,7 +4008,7 @@
                 },
                 "moon_delay": [
                     1,
-                    24
+                    12
                 ],
                 "involved_cats": {
                     "m_c": "r_c",
@@ -4186,7 +4186,7 @@
                 "amount": 30,
                 "mutual": false,
                 "log": {
-                    "cats_from": "to_cat was killed by o_c_n while trying to drag from_cat out of battle, and from_cat will always remember {PRONOUN/to_cat/poss} sacrifice."
+                    "cats_from": "cat_to was killed by o_c_n while trying to drag cat_from out of battle, and cat_from will always remember {PRONOUN/cat_to/poss} sacrifice."
                 }
             }
         ],
@@ -4246,7 +4246,7 @@
                 "amount": 20,
                 "mutual": false,
                 "log": {
-                    "cats_from": "from_cat will always remember that to_cat gave {PRONOUN/to_cat/poss} life to care for {PRONOUN/to_cat/poss} Clanmates during a greencough outbreak."
+                    "cats_from": "cat_from will always remember that cat_to gave {PRONOUN/cat_to/poss} life to care for {PRONOUN/cat_to/poss} Clanmates during a greencough outbreak."
                 }
             }
         ]
@@ -4321,7 +4321,7 @@
                 },
                 "moon_delay": [
                     1,
-                    24
+                    12
                 ],
                 "involved_cats": {
                     "m_c": "r_c",
@@ -4564,7 +4564,7 @@
                 "amount": -15,
                 "mutual": false,
                 "log": {
-                    "cats_from": "from_cat suspects that to_cat was struck down by a higher power."
+                    "cats_from": "cat_from suspects that cat_to was struck down by a higher power."
                 }
             }
         ]
@@ -4864,7 +4864,7 @@
                 ],
                 "amount": 30,
                 "log": {
-                    "cats_from": "to_cat died defending from_cat from a dog, and from_cat will always remember {PRONOUN/to_cat/poss} sacrifice."
+                    "cats_from": "cat_to died defending cat_from from a dog, and cat_from will always remember {PRONOUN/cat_to/poss} sacrifice."
                 }
             }
         ]
@@ -4933,7 +4933,7 @@
                 ],
                 "amount": 30,
                 "log": {
-                    "cats_from": "to_cat died defending from_cat from a badger, and from_cat will always remember {PRONOUN/to_cat/poss} sacrifice."
+                    "cats_from": "cat_to died defending cat_from from a badger, and cat_from will always remember {PRONOUN/cat_to/poss} sacrifice."
                 }
             }
         ]
@@ -5003,7 +5003,7 @@
                 ],
                 "amount": 30,
                 "log": {
-                    "cats_from": "to_cat died defending from_cat from a fox, and from_cat will always remember {PRONOUN/to_cat/poss} sacrifice."
+                    "cats_from": "cat_to died defending cat_from from a fox, and cat_from will always remember {PRONOUN/cat_to/poss} sacrifice."
                 }
             }
         ]
@@ -5067,7 +5067,7 @@
                 ],
                 "amount": 30,
                 "log": {
-                    "cats_from": "to_cat died saving from_cat from drowning, and from_cat will always remember {PRONOUN/to_cat/poss} sacrifice."
+                    "cats_from": "cat_to died saving cat_from from drowning, and cat_from will always remember {PRONOUN/cat_to/poss} sacrifice."
                 }
             }
         ]
@@ -5131,7 +5131,7 @@
                 ],
                 "amount": 30,
                 "log": {
-                    "cats_from": "to_cat died saving from_cat from a monster, and from_cat will always remember {PRONOUN/to_cat/poss} sacrifice."
+                    "cats_from": "cat_to died saving cat_from from a monster, and cat_from will always remember {PRONOUN/cat_to/poss} sacrifice."
                 }
             }
         ]
@@ -5197,7 +5197,7 @@
                 ],
                 "amount": 30,
                 "log": {
-                    "cats_from": "to_cat died saving from_cat from a snake, and from_cat will always remember {PRONOUN/to_cat/poss} sacrifice."
+                    "cats_from": "cat_to died saving cat_from from a snake, and cat_from will always remember {PRONOUN/cat_to/poss} sacrifice."
                 }
             }
         ]
@@ -5263,7 +5263,7 @@
                 "amount": 20,
                 "mutual": false,
                 "log": {
-                    "cats_from": "from_cat will always remember that to_cat gave {PRONOUN/to_cat/poss} life to save kits from o_c_n warriors."
+                    "cats_from": "cat_from will always remember that cat_to gave {PRONOUN/cat_to/poss} life to save kits from o_c_n warriors."
                 }
             }
         ]
@@ -5335,7 +5335,7 @@
                 ],
                 "amount": 30,
                 "log": {
-                    "cats_from": "to_cat died defending from_cat from o_c_n warriors, and from_cat will always remember {PRONOUN/to_cat/poss} sacrifice."
+                    "cats_from": "cat_to died defending cat_from from o_c_n warriors, and cat_from will always remember {PRONOUN/cat_to/poss} sacrifice."
                 }
             }
         ],
@@ -5627,7 +5627,7 @@
                 ],
                 "amount": 30,
                 "log": {
-                    "cats_from": "from_cat will always remember how to_cat gave every last life to save {PRONOUN/to_cat/poss} Clanmates from a fire."
+                    "cats_from": "cat_from will always remember how cat_to gave every last life to save {PRONOUN/cat_to/poss} Clanmates from a fire."
                 }
             }
         ]
@@ -6073,7 +6073,7 @@
                 },
                 "moon_delay": [
                     1,
-                    24
+                    12
                 ],
                 "involved_cats": {
                     "m_c": "r_c",
@@ -6147,7 +6147,7 @@
                 },
                 "moon_delay": [
                     1,
-                    24
+                    12
                 ],
                 "involved_cats": {
                     "m_c": "r_c",
@@ -6235,7 +6235,7 @@
                 ],
                 "amount": -70,
                 "log": {
-                    "cats_from": "to_cat attempted to take all of from_cat's lives and take {PRONOUN/from_cat/poss} place as leader."
+                    "cats_from": "cat_to attempted to take all of cat_from's lives and take {PRONOUN/cat_from/poss} place as leader."
                 }
             }
         ],
@@ -6249,7 +6249,7 @@
                 },
                 "moon_delay": [
                     1,
-                    24
+                    12
                 ],
                 "involved_cats": {
                     "m_c": "r_c",
@@ -6316,7 +6316,7 @@
                 },
                 "moon_delay": [
                     1,
-                    24
+                    12
                 ],
                 "involved_cats": {
                     "m_c": "r_c",
@@ -6412,7 +6412,7 @@
                 },
                 "moon_delay": [
                     1,
-                    24
+                    12
                 ],
                 "involved_cats": {
                     "m_c": "r_c",
@@ -6528,7 +6528,7 @@
                 "amount": 30,
                 "mutual": false,
                 "log": {
-                    "cats_from": "to_cat gave one of {PRONOUN/to_cat/poss} lives to defend from_cat from enemy warriors in the nursery."
+                    "cats_from": "cat_to gave one of {PRONOUN/cat_to/poss} lives to defend cat_from from enemy warriors in the nursery."
                 }
             }
         ]
@@ -6747,7 +6747,7 @@
                 },
                 "moon_delay": [
                     1,
-                    24
+                    12
                 ],
                 "involved_cats": {
                     "m_c": "r_c",
@@ -7346,7 +7346,7 @@
                 ],
                 "amount": -15,
                 "log": {
-                    "cats_from": "from_cat became suspicious of to_cat when {PRONOUN/to_cat/subject} claimed to have killed m_c in battle by accident."
+                    "cats_from": "cat_from became suspicious of cat_to when {PRONOUN/cat_to/subject} claimed to have killed m_c in battle by accident."
                 }
             }
         ],
@@ -7369,7 +7369,7 @@
                 },
                 "moon_delay": [
                     1,
-                    24
+                    12
                 ],
                 "involved_cats": {
                     "m_c": "r_c",
@@ -7446,7 +7446,7 @@
                 "amount": -30,
                 "mutual": false,
                 "log": {
-                    "cats_from": "to_cat stood by and watched as o_c_n's deputy killed from_cat."
+                    "cats_from": "cat_to stood by and watched as o_c_n's deputy killed cat_from."
                 }
             }
         ],
@@ -7460,7 +7460,7 @@
                 },
                 "moon_delay": [
                     1,
-                    24
+                    12
                 ],
                 "involved_cats": {
                     "m_c": "r_c",
@@ -7532,7 +7532,7 @@
                 },
                 "moon_delay": [
                     1,
-                    24
+                    12
                 ],
                 "involved_cats": {
                     "m_c": "r_c",
@@ -7599,7 +7599,7 @@
                 },
                 "moon_delay": [
                     1,
-                    24
+                    12
                 ],
                 "involved_cats": {
                     "m_c": "r_c",
@@ -7673,7 +7673,7 @@
                 },
                 "moon_delay": [
                     1,
-                    24
+                    12
                 ],
                 "involved_cats": {
                     "m_c": "r_c",
@@ -7694,7 +7694,7 @@
                 "amount": -30,
                 "mutual": false,
                 "log": {
-                    "cats_from": "to_cat attempted to take all of from_cat's lives, but from_cat had forewarning."
+                    "cats_from": "cat_to attempted to take all of cat_from's lives, but cat_from had forewarning."
                 }
             }
         ]
@@ -7736,7 +7736,7 @@
             "values": ["trust"],
             "amount": 10,
             "log": {
-                "cats_from": "from_cat hired to_cat to kill m_c."
+                "cats_from": "cat_from hired cat_to to kill m_c."
             }
         }
     ],
@@ -7750,7 +7750,7 @@
                 },
                 "moon_delay": [
                     1,
-                    24
+                    12
                 ],
                 "involved_cats": {
                     "m_c": "r_c",
@@ -7796,7 +7796,7 @@
             "values": ["trust"],
             "amount": 10,
             "log": {
-                "cats_from": "from_cat hired to_cat to kill m_c."
+                "cats_from": "cat_from hired cat_to to kill m_c."
             }
         }
     ],
@@ -7854,7 +7854,7 @@
             "values": ["trust"],
             "amount": 10,
             "log": {
-                "cats_from": "from_cat hired to_cat to kill m_c."
+                "cats_from": "cat_from hired cat_to to kill m_c."
             }
         }
     ],
@@ -7868,7 +7868,7 @@
                 },
                 "moon_delay": [
                     1,
-                    24
+                    12
                 ],
                 "involved_cats": {
                     "m_c": "r_c",
@@ -7918,7 +7918,7 @@
             "values": ["trust"],
             "amount": 10,
             "log": {
-                "cats_from": "from_cat promised to_cat a place in the Clan in exchange for killing m_c."
+                "cats_from": "cat_from promised cat_to a place in the Clan in exchange for killing m_c."
             }
         }
     ],
@@ -7932,7 +7932,7 @@
                 },
                 "moon_delay": [
                     1,
-                    24
+                    12
                 ],
                 "involved_cats": {
                     "m_c": "r_c",
@@ -7996,7 +7996,7 @@
                 },
                 "moon_delay": [
                     1,
-                    24
+                    12
                 ],
                 "involved_cats": {
                     "m_c": "r_c",
@@ -8053,7 +8053,7 @@
                 },
                 "moon_delay": [
                     1,
-                    24
+                    12
                 ],
                 "involved_cats": {
                     "m_c": "r_c",
@@ -8116,7 +8116,7 @@
                 },
                 "moon_delay": [
                     1,
-                    24
+                    12
                 ],
                 "involved_cats": {
                     "m_c": "r_c",

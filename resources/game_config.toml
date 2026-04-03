@@ -80,6 +80,9 @@ dev_tools = false
 
   # base 1/chance for mates to break up. Affected by relationship values and personality compatibility. 0 disables breakups entirely
   base_breakup_chance = 30
+  
+  # chance to move on from a dead or absent mate, fraction represents a percentage. default is 30% chance.
+  chance_to_move_on = 0.3
 
   # NOTE FOR RELATIONSHIP CONSTRAINTS
   #  0: no condition
@@ -786,7 +789,7 @@ dev_tools = false
   double_favour_chance = 0.25 # most cats have 1 favoured element, this is a rate 0-1 that they'll try to generate with 2 favoured
 
 [april_fools_genes]
-  green = 20
+  green = 25
   polycaudal = 15
   rainbow_eyes = 10
   black_spotting = 15 # both this and peacock blue courtesy of mars from Create a Clan
