@@ -138,6 +138,148 @@
                     }
                 ],
                 "frequency": 4
+            },
+            {
+                "text": "The rain never comes, but s_c certainly takes the opportunity to scare everyone with {PRONOUN/s_c/poss} lightning powers.",
+                "exp": 5,
+                "stat_element": [
+                    "lightning"
+                ],
+                "stat_trait": [
+                    "troublesome",
+                    "childish",
+                    "playful",
+                    "shameless"
+                ],
+                "relationships": [
+                    {
+                        "cats_to": [
+                            "s_c"
+                        ],
+                        "cats_from": [
+                            "patrol"
+                        ],
+                        "mutual": false,
+                        "values": [
+                            "trust", "comfort"
+                        ],
+                        "amount": -5,
+                        "log": {
+                            "cats_from": "cat_to scared cat_from by pretending a storm was breaking out."
+                        }
+                    }
+                ],
+                "frequency": 4
+            },
+            {
+                "text": "There is a downpour, and a sudden flood threatens to sweep away the cats. s_c thinks fast and raises the groud underpaw to keep everyone out of harm's way.",
+                "exp": 20,
+                "stat_element": [
+                    "earth"
+                ],
+                "relationships": [
+                    {
+                        "cats_to": [
+                            "s_c"
+                        ],
+                        "cats_from": [
+                            "patrol"
+                        ],
+                        "mutual": false,
+                        "values": [
+                            "respect", "trust"
+                        ],
+                        "amount": 5,
+                        "log": {
+                            "cats_from": "cat_to saved cat_from from a flood on patrol."
+                        }
+                    },
+                    {
+                        "cats_to": [
+                            "s_c"
+                        ],
+                        "cats_from": [
+                            "some_clan"
+                        ],
+                        "mutual": false,
+                        "values": [
+                            "respect"
+                        ],
+                        "amount": 5,
+                        "log": {
+                            "cats_from": "cat_from heard cat_to saved {PRONOUN/cat_to/poss} patrol from a flood."
+                        }
+                    }
+                ],
+                "frequency": 3
+            },
+            {
+                "text": "There is a downpour, and a sudden flood threatens to sweep away the cats. s_c thinks fast and manages to redirect enough of the water to keep everyone safe.",
+                "exp": 20,
+                "stat_element": [
+                    "water", "mud"
+                ],
+                "relationships": [
+                    {
+                        "cats_to": [
+                            "s_c"
+                        ],
+                        "cats_from": [
+                            "patrol"
+                        ],
+                        "mutual": false,
+                        "values": [
+                            "respect", "trust"
+                        ],
+                        "amount": 5,
+                        "log": {
+                            "cats_from": "cat_to saved cat_from from a flood on patrol."
+                        }
+                    },
+                    {
+                        "cats_to": [
+                            "s_c"
+                        ],
+                        "cats_from": [
+                            "some_clan"
+                        ],
+                        "mutual": false,
+                        "values": [
+                            "respect"
+                        ],
+                        "amount": 5,
+                        "log": {
+                            "cats_from": "cat_from heard cat_to saved {PRONOUN/cat_to/poss} patrol from a flood."
+                        }
+                    }
+                ],
+                "frequency": 3
+            },
+            {
+                "text": "Rain breaks out, but s_c helps keep everyone dry by covering them with dense shrubbery while they wait.",
+                "exp": 20,
+                "stat_element": [
+                    "plant"
+                ],
+                "relationships": [
+                    {
+                        "cats_to": [
+                            "s_c"
+                        ],
+                        "cats_from": [
+                            "patrol"
+                        ],
+                        "mutual": false,
+                        "values": [
+                            "comfort"
+                        ],
+                        "amount": 5,
+                        "log": {
+                            "cats_from": "cat_to help cat_from stay dry during a downpour."
+                        }
+                    }
+                ],
+                "frequency": 4
             }
         ],
         "fail_outcomes": [
@@ -202,6 +344,30 @@
                     "careful",
                     "insecure",
                     "nervous"
+                ],
+                "frequency": 4
+            },
+            {
+                "text": "There is a downpour, and a sudden flood threatens to sweep away s_c. {PRONOUN/s_c/subject/CAP} thinks fast and raises the groud underpaw to keep {PRONOUN/s_c/self} out of harm's way.",
+                "exp": 20,
+                "stat_element": [
+                    "earth"
+                ],
+                "frequency": 3
+            },
+            {
+                "text": "There is a downpour, and a sudden flood threatens to sweep away s_c. {PRONOUN/s_c/subject/CAP} thinks fast and manages to redirect enough of the water to keep {PRONOUN/s_c/self} safe.",
+                "exp": 20,
+                "stat_element": [
+                    "water", "mud"
+                ],
+                "frequency": 3
+            },
+            {
+                "text": "Rain breaks out, but s_c helps keep {PRONOUN/s_c/self} dry by covering {PRONOUN/s_c/self} with dense shrubbery while {PRONOUN/s_c/subject} wait.",
+                "exp": 20,
+                "stat_element": [
+                    "plant"
                 ],
                 "frequency": 4
             }

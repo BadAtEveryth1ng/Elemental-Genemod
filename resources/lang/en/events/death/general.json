@@ -3429,6 +3429,7 @@
             "age": [
                 "-kitten"
             ],
+            "element": ["-water"],
             "dies": true
         },
         "history": [
@@ -4589,6 +4590,7 @@
             "age": [
                 "-kitten"
             ],
+            "element": [ "-water" ],
             "dies": true
         },
         "history": [
@@ -7965,6 +7967,7 @@
             "age": [
                 "-kitten"
             ],
+            "element": [ "-water" ],
             "dies": true
         },
         "r_c": {

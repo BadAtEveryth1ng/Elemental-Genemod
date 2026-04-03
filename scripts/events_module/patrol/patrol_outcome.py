@@ -48,6 +48,7 @@ class PatrolOutcome:
         Personality.trait_ranges["kit_traits"].keys()
     )
     NUM_OF_SKILLS = len(SkillPath)
+    NUM_OF_ELEMENTS = 20
 
     def __init__(
         self,
@@ -58,6 +59,7 @@ class PatrolOutcome:
         exp: int = 0,
         stat_trait: List[str] = None,
         stat_skill: List[str] = None,
+        stat_element: List[str] = None,
         can_have_stat: List[str] = None,
         dead_cats: List[str] = None,
         lost_cats: List[str] = None,
@@ -109,6 +111,14 @@ class PatrolOutcome:
             else:
                 # inclusionary values get inverse weighting
                 self.weight += int((self.NUM_OF_SKILLS - len(self.stat_skill)))
+        self.stat_element = stat_element if stat_element else []
+        if self.stat_element:
+            # exclusionary values!
+            if "-" in self.stat_element[0]:
+                self.weight += len(self.stat_element)
+            else:
+                # inclusionary values get inverse weighting
+                self.weight += int((self.NUM_OF_SKILLS - len(self.stat_element)))
 
         self.can_have_stat = can_have_stat if can_have_stat else []
 
@@ -147,7 +157,7 @@ class PatrolOutcome:
         # Determine which outcomes are possible
         allowed_outcomes = []
         for outcome in possible_outcomes:
-            if outcome.stat_skill or outcome.stat_trait:
+            if outcome.stat_skill or outcome.stat_trait or outcome.stat_element:
                 outcome._get_stat_cat(patrol)
                 if not isinstance(outcome.stat_cat, Cat):
                     continue
@@ -208,6 +218,7 @@ class PatrolOutcome:
                     exp=_d.get("exp"),
                     stat_skill=_d.get("stat_skill"),
                     stat_trait=_d.get("stat_trait"),
+                    stat_element=_d.get("stat_element"),
                     can_have_stat=_d.get("can_have_stat"),
                     dead_cats=_d.get("dead_cats"),
                     lost_cats=_d.get("lost_cats"),
@@ -441,6 +452,7 @@ class PatrolOutcome:
                 {
                     "skill": self.stat_skill,
                     "trait": self.stat_trait,
+                    "element": self.stat_element
                 },
                 kitty,
             ):
