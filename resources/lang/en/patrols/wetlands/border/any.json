@@ -515,7 +515,7 @@
                 "frequency": 4
             },
             {
-                "text": "There is a downpour, and a sudden flood threatens to sweep away the cats. s_c thinks fast and raises the groud underpaw to keep everyone out of harm's way.",
+                "text": "There is a downpour, and a sudden flood threatens to sweep away the cats. s_c thinks fast and raises the ground underpaw to keep everyone out of harm's way.",
                 "exp": 20,
                 "stat_element": [
                     "earth"
@@ -554,7 +554,49 @@
                         }
                     }
                 ],
-                "frequency": 3
+                "frequency": 2
+            },
+            {
+                "text": "There is a downpour, and a sudden flood threatens to sweep away the cats. s_c thinks fast and manages to create a solid enough barrier to block the water from reaching the patrol.",
+                "exp": 20,
+                "stat_element": [
+                    "metal", "earth", "ice"
+                ],
+                "relationships": [
+                    {
+                        "cats_to": [
+                            "s_c"
+                        ],
+                        "cats_from": [
+                            "patrol"
+                        ],
+                        "mutual": false,
+                        "values": [
+                            "respect", "trust"
+                        ],
+                        "amount": 5,
+                        "log": {
+                            "cats_from": "cat_to saved cat_from from a flood on patrol."
+                        }
+                    },
+                    {
+                        "cats_to": [
+                            "s_c"
+                        ],
+                        "cats_from": [
+                            "some_clan"
+                        ],
+                        "mutual": false,
+                        "values": [
+                            "respect"
+                        ],
+                        "amount": 5,
+                        "log": {
+                            "cats_from": "cat_from heard cat_to saved {PRONOUN/cat_to/poss} patrol from a flood."
+                        }
+                    }
+                ],
+                "frequency": 2
             },
             {
                 "text": "There is a downpour, and a sudden flood threatens to sweep away the cats. s_c thinks fast and manages to redirect enough of the water to keep everyone safe.",
@@ -596,7 +638,7 @@
                         }
                     }
                 ],
-                "frequency": 3
+                "frequency": 2
             },
             {
                 "text": "Rain breaks out, but s_c helps keep everyone dry by covering them with dense shrubbery while they wait.",
@@ -673,6 +715,62 @@
                     }
                 ],
                 "frequency": 4
+            },
+            {
+                "text": "There is a downpour, and a sudden flood threatens to sweep away the cats. s_c thinks fast and raises the ground underpaw, but it's not enough.",
+                "exp": 0,
+                "stat_element": [
+                    "earth"
+                ],
+                "dead_cats": [
+                    "patrol"
+                ],
+                "history_text": {
+                    "death": "This cat was drowned by floodwaters."
+                },
+                "frequency": 2
+            },
+            {
+                "text": "There is a downpour, and a sudden flood threatens to sweep away the cats. s_c thinks fast and tries to create a solid barrier to protect the patrol, but is overwhelmed.",
+                "exp": 0,
+                "stat_element": [
+                    "metal", "earth", "ice"
+                ],
+                "dead_cats": [
+                    "patrol"
+                ],
+                "history_text": {
+                    "death": "This cat was drowned by floodwaters."
+                },
+                "frequency": 2
+            },
+            {
+                "text": "There is a downpour, and a sudden flood threatens to sweep away the cats. s_c thinks fast and tries to create a barrier of brambles, but the water breaks through.",
+                "exp": 0,
+                "stat_element": [
+                    "plant"
+                ],
+                "dead_cats": [
+                    "patrol"
+                ],
+                "history_text": {
+                    "death": "This cat was drowned by floodwaters."
+                },
+                "frequency": 2
+            },
+            {
+                "text": "There is a downpour, and a sudden flood threatens to sweep away the cats. s_c thinks fast and tries to redirect the water, but is overwhelmed and makes it out alone.",
+                "exp": 0,
+                "stat_element": [
+                    "water", "mud"
+                ],
+                "dead_cats": [
+                    "patrol", "-s_c"
+                ],
+                "history_text": {
+                    "death": "This cat was drowned by floodwaters."
+                },
+                "frequency": 2
             }
         ]
     },
@@ -726,26 +824,48 @@
                 "frequency": 4
             },
             {
-                "text": "There is a downpour, and a sudden flood threatens to sweep away s_c. {PRONOUN/s_c/subject/CAP} thinks fast and raises the groud underpaw to keep {PRONOUN/s_c/self} out of harm's way.",
+                "text": "There is a downpour, and a sudden flood threatens to sweep away s_c. {PRONOUN/s_c/subject/CAP} {VERB/s_c/think/thinks} fast and raises the ground underpaw to keep {PRONOUN/s_c/self} out of harm's way.",
                 "exp": 20,
                 "stat_element": [
                     "earth"
                 ],
-                "frequency": 3
+                "frequency": 2
             },
             {
-                "text": "There is a downpour, and a sudden flood threatens to sweep away s_c. {PRONOUN/s_c/subject/CAP} thinks fast and manages to redirect enough of the water to keep {PRONOUN/s_c/self} safe.",
+                "text": "There is a downpour, and a sudden flood threatens to sweep away s_c. {PRONOUN/s_c/subject/CAP} {VERB/s_c/think/thinks} fast and manages to create a solid enough barrier to block the water from reaching {PRONOUN/s_c/object}.",
+                "exp": 20,
+                "stat_element": [
+                    "metal", "earth", "ice"
+                ],
+                "frequency": 2
+            },
+            {
+                "text": "There is a downpour, and a sudden flood threatens to sweep away s_c. {PRONOUN/s_c/subject/CAP} {VERB/s_c/think/thinks} fast and manages to redirect enough of the water to keep {PRONOUN/s_c/self} safe.",
                 "exp": 20,
                 "stat_element": [
                     "water", "mud"
                 ],
-                "frequency": 3
+                "frequency": 2
             },
             {
                 "text": "Rain breaks out, but s_c helps keep {PRONOUN/s_c/self} dry by covering {PRONOUN/s_c/self} with dense shrubbery while {PRONOUN/s_c/subject} wait.",
                 "exp": 20,
                 "stat_element": [
                     "plant"
+                ],
+                "frequency": 2
+            },
+            {
+                "text": "There is a downpour, and a sudden flood threatens to sweep away s_c. {PRONOUN/s_c/subject/CAP} manage to form a bubble to breathe in until the water deposits {PRONOUN/s_c/object} battered, but alive.",
+                "exp": 5,
+                "stat_element": [
+                    "water", "air"
+                ],
+                "injury": [
+                    {
+                        "cats": [ "s_c" ],
+                        "injuries": [ "bruises" ]
+                    }
                 ],
                 "frequency": 4
             }
@@ -759,6 +879,52 @@
                 ],
                 "history_text": {
                     "death": "m_c was drowned by floodwaters."
+                },
+                "frequency": 4
+            },
+            {
+                "text": "There is a downpour, and a sudden flood threatens to sweep away s_c. {PRONOUN/s_c/subject/CAP} {VERB/s_c/think/thinks} fast and raises the ground underpaw, but it's not enough.",
+                "exp": 0,
+                "stat_element": [
+                    "earth"
+                ],
+                "dead_cats": [
+                    "patrol"
+                ],
+                "history_text": {
+                    "death": "m_c was drowned by floodwaters."
+                },
+                "frequency": 2
+            },
+            {
+                "text": "There is a downpour, and a sudden flood threatens to sweep away s_c. {PRONOUN/s_c/subject/CAP} {VERB/s_c/think/thinks} fast and creates a solid barrier to block the water, but is overwhelmed.",
+                "exp": 0,
+                "stat_element": [
+                    "metal", "earth", "ice"
+                ],
+                "dead_cats": [
+                    "patrol"
+                ],
+                "history_text": {
+                    "death": "m_c was drowned by floodwaters."
+                },
+                "frequency": 2
+            },
+            {
+                "text": "There is a downpour, and a sudden flood threatens to sweep away s_c. {PRONOUN/s_c/subject/CAP} manage to form a bubble to breathe in until the water deposits {PRONOUN/s_c/object} battered, but alive.",
+                "exp": 0,
+                "stat_element": [
+                    "water", "air"
+                ],
+                "injury": [
+                    {
+                        "cats": [ "s_c" ],
+                        "injuries": [ "blunt_force_injury" ]
+                    }
+                ],
+                "history_text": {
+                    "scar": "m_c was injured in a flood.",
+                    "death": "m_c died from injuries sustained in a flood."
                 },
                 "frequency": 4
             }
