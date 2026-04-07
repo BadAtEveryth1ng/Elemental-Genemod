@@ -781,10 +781,10 @@ dev_tools = false
   dominant_water = 5
   dominant_earth = 5
   dominant_air = 5
-  recessive_fire = 5
-  recessive_water = 5
-  recessive_earth = 5
-  recessive_air = 5
+  recessive_fire = 15
+  recessive_water = 15
+  recessive_earth = 15
+  recessive_air = 15
   recessive_nonelement = 50
   double_favour_chance = 0.25 # most cats have 1 favoured element, this is a rate 0-1 that they'll try to generate with 2 favoured
 
