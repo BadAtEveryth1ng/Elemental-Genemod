@@ -265,35 +265,6 @@
                 "frequency": 1
             },
             {
-                "text": "The patrol walks right into an ambush. s_c signals for any nearby Clanmates to shut their eyes before flashing as bright as possible to disorient the rogues and allow the patrol a quick escape.",
-                "exp": 20,
-                "stat_element": [ "luminescent", "fire", "blue fire" ],
-                "new_cat": [
-                    [ "rogue", "meeting", "exists" ],
-                    [ "rogue", "meeting", "exists" ],
-                    [ "rogue", "meeting", "exists" ]
-                ],
-                "relationships": [
-                    {
-                        "cats_from": [
-                            "n_c:0",
-                            "n_c:1",
-                            "n_c:2"
-                        ],
-                        "cats_to": [
-                            "patrol"
-                        ],
-                        "mutual": true,
-                        "values": [ "like" ],
-                        "amount": -50,
-                        "log": {
-                            "cats_from": "cat_from and the other rogues ambushed cat_to's patrol in an abandoned Twoleg nest and cat_to's patrol got away."
-                        }
-                    }
-                ],
-                "frequency": 2
-            },
-            {
                 "text": "The patrol walks right into an ambush. s_c calls for everyone to retreat as {PRONOUN/s_c/subject} fill the room with a cloud so thick the disoriented rogues can't catch up.",
                 "exp": 20,
                 "stat_element": [ "smoke", "mist" ],
@@ -354,7 +325,7 @@
             {
                 "text": "The patrol walks right into an ambush. The twoleg den offers plenty of, albeit rusty, metal for s_c to use to block and subdue the rogues.",
                 "exp": 30,
-                "stat_element": [ "metal" ],
+                "stat_element": [ "metal", "magnetic" ],
                 "new_cat": [
                     [ "rogue", "meeting", "exists" ],
                     [ "rogue", "meeting", "exists" ],
@@ -466,18 +437,6 @@
                     "death": "m_c was ambushed and killed by rogues."
                 },
                 "frequency": 3
-            },
-            {
-                "text": "The patrol walks right into an ambush. s_c flashes as bright as possible to blind the rogues, but it's too little too late.",
-                "exp": 0,
-                "stat_element": [ "luminescent", "fire", "blue fire" ],
-                "dead_cats": [
-                    "patrol"
-                ],
-                "history_text": {
-                    "death": "m_c was ambushed and killed by rogues."
-                },
-                "frequency": 2
             },
             {
                 "text": "The patrol walks right into an ambush. s_c calls for everyone to retreat as {PRONOUN/s_c/subject} fill the room with a cloud so thick the disoriented rogues can't catch up, not realising they're already surrounded.",
@@ -758,7 +717,7 @@
             {
                 "text": "s_c walks right into an ambush. {PRONOUN/s_c/subject/CAP} {VERB/s_c/flash/flashes} as bright as possible to disorient the rogues and allow a quick escape.",
                 "exp": 20,
-                "stat_element": [ "luminescent", "fire", "blue fire" ],
+                "stat_element": [ "luminescent", "fire" ],
                 "new_cat": [
                     [ "rogue", "meeting", "exists" ],
                     [ "rogue", "meeting", "exists" ],
@@ -845,7 +804,7 @@
             {
                 "text": "s_c walks right into an ambush. The twoleg den offers plenty of, albeit rusty, metal for s_c to use to block and subdue the rogues.",
                 "exp": 30,
-                "stat_element": [ "metal" ],
+                "stat_element": [ "metal", "magnetic" ],
                 "new_cat": [
                     [ "rogue", "meeting", "exists" ],
                     [ "rogue", "meeting", "exists" ],
@@ -920,7 +879,7 @@
                 ],
                 "relationships": [
                     {
-                        "cats_from": ["clan"],
+                        "cats_from": ["some_clan"],
                         "cats_to": ["n_c:0", "n_c:1", "n_c:2"],
                         "mutual": false,
                         "values": ["like", "comfort"],
@@ -949,7 +908,7 @@
                 ],
                 "relationships": [
                     {
-                        "cats_from": [ "clan" ],
+                        "cats_from": [ "some_clan" ],
                         "cats_to": [ "n_c:0", "n_c:1", "n_c:2" ],
                         "mutual": false,
                         "values": [ "like", "comfort" ],
@@ -982,7 +941,7 @@
                 ],
                 "relationships": [
                     {
-                        "cats_from": [ "clan" ],
+                        "cats_from": [ "some_clan" ],
                         "cats_to": [ "n_c:0", "n_c:1", "n_c:2" ],
                         "mutual": false,
                         "values": [ "like", "comfort" ],
@@ -1015,7 +974,7 @@
                 ],
                 "relationships": [
                     {
-                        "cats_from": [ "clan" ],
+                        "cats_from": [ "some_clan" ],
                         "cats_to": [ "n_c:0", "n_c:1", "n_c:2" ],
                         "mutual": false,
                         "values": [ "like", "comfort" ],
@@ -1029,7 +988,7 @@
             {
                 "text": "s_c walks right into an ambush. {PRONOUN/s_c/subject/CAP} {VERB/s_c/flash/flashes} as bright as possible to blind the rogues, but it's too little too late.",
                 "exp": 0,
-                "stat_element": [ "luminescent", "fire", "blue fire" ],
+                "stat_element": [ "luminescent", "fire" ],
                 "dead_cats": [
                     "patrol"
                 ],
@@ -1044,7 +1003,7 @@
                 ],
                 "relationships": [
                     {
-                        "cats_from": [ "clan" ],
+                        "cats_from": [ "some_clan" ],
                         "cats_to": [ "n_c:0", "n_c:1", "n_c:2" ],
                         "mutual": false,
                         "values": [ "like", "comfort" ],
@@ -1073,7 +1032,7 @@
                 ],
                 "relationships": [
                     {
-                        "cats_from": [ "clan" ],
+                        "cats_from": [ "some_clan" ],
                         "cats_to": [ "n_c:0", "n_c:1", "n_c:2" ],
                         "mutual": false,
                         "values": [ "like", "comfort" ],
@@ -1102,7 +1061,7 @@
                 ],
                 "relationships": [
                     {
-                        "cats_from": [ "clan" ],
+                        "cats_from": [ "some_clan" ],
                         "cats_to": [ "n_c:0", "n_c:1", "n_c:2" ],
                         "mutual": false,
                         "values": [ "like", "comfort" ],
@@ -1131,7 +1090,7 @@
                 ],
                 "relationships": [
                     {
-                        "cats_from": [ "clan" ],
+                        "cats_from": [ "some_clan" ],
                         "cats_to": [ "n_c:0", "n_c:1", "n_c:2" ],
                         "mutual": false,
                         "values": [ "like", "comfort" ],

@@ -181,7 +181,7 @@
         "oil",
         "combustion",
         "decay",
-        "aurora",
+        "magnetic",
         "luminescent",
         "-fire",
         "-water",
@@ -201,7 +201,7 @@
         "-oil",
         "-combustion",
         "-decay",
-        "-aurora",
+        "-magnetic",
         "-luminescent"
       ],
       "title": "Element",

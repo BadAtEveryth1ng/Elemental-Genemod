@@ -23,7 +23,7 @@ class Element(Enum):
     oil = "oil"
     combustion = "combustion"
     decay = "decay"
-    aurora = "aurora"
+    magnetic = "magnetic"
     luminescent = "luminescent"
 
     not_fire = "-fire"
@@ -47,5 +47,5 @@ class Element(Enum):
     not_oil = "-oil"
     not_combustion = "-combustion"
     not_decay = "-decay"
-    not_aurora = "-aurora"
+    not_magnetic = "-magnetic"
     not_luminescent = "-luminescent"
