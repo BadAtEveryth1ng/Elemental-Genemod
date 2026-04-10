@@ -688,6 +688,15 @@ class PatrolOutcome:
                     )
                     continue
 
+                if cat.phenotype.element:
+                    possible_injuries = list(set(possible_injuries) - set(ELEMENT_BLOCK.get(cat.phenotype.element, [])))
+
+                    if not possible_injuries:
+                        print(
+                            "WARNING: All possible conditions are already on this cat! (element filter)"
+                        )
+                        return False
+
                 give_injury = choice(possible_injuries)
                 # If the cat already has this injury, reroll it to get something new
                 while (

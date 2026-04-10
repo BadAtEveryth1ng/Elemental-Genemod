@@ -1,0 +1,25 @@
+{
+    "fire": ["burn", "severe burn"],
+    "water": ["water in their lungs"],
+    "earth": [],
+    "air": [],
+
+    "blue fire": ["burn", "severe burn"],
+    "ice": ["frostbite"],
+    "plant": [],
+    "lightning": [],
+
+    "magma": [ ],
+    "metal": [ ],
+    "smoke": [ ],
+    "mud": [ ],
+    "shadow": [ ],
+    "sand": [ ],
+
+    "mist": [ ],
+    "oil": [ ],
+    "combustion": [ ],
+    "decay": [ ],
+    "magnetic": [ ],
+    "luminescent": [ ]
+}

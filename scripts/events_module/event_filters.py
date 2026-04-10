@@ -3,7 +3,7 @@ from itertools import combinations
 from random import choice, randint
 from typing import List, Optional
 
-from scripts.cat.constants import BACKSTORIES
+from scripts.cat.constants import BACKSTORIES, ELEMENT_BLOCK
 from scripts.cat.personality import Personality
 from scripts.cat_relations.enums import RelType, rel_type_tiers, RelTier
 from scripts.cat.enums import CatRank, CatGroup, CatAge, CatCompatibility
@@ -421,6 +421,9 @@ def event_for_cat(
         if "torn ear" in injuries and "NOEAR" in cat.pelt.scars:
             return False
 
+        if not set(injuries) - set(ELEMENT_BLOCK.get(cat.phenotype.element, [])):
+            return False
+
     # checking relationships
     if cat_info.get("relationship_status", []):
         for status in cat_info.get("relationship_status", []):
@@ -700,6 +703,9 @@ def cat_for_event(
             ):
                 allowed_cats.remove(cat)
             if "torn ear" in injuries and "NOEAR" in cat.pelt.scars:
+                allowed_cats.remove(cat)
+            
+            if not set(injuries) - set(ELEMENT_BLOCK.get(cat.phenotype.element, [])):
                 allowed_cats.remove(cat)
 
         # if the list is emptied, return
