@@ -28,7 +28,7 @@ from scripts.events_module.event_filters import filter_relationship_type, event_
 from scripts.clan_package.cotc import change_clan_reputation, change_clan_relations
 from scripts.game_structure import game
 from scripts.cat.skills import SkillPath
-from scripts.cat.cats import Cat, ILLNESSES, INJURIES, PERMANENT
+from scripts.cat.cats import Cat, ILLNESSES, INJURIES, PERMANENT, ELEMENT_BLOCK
 from scripts.cat.enums import CatRank, CatSocial, CatAge
 from scripts.cat.pelts import Pelt
 from scripts.cat_relations.relationship import Relationship
@@ -688,8 +688,8 @@ class PatrolOutcome:
                     )
                     continue
 
-                if cat.phenotype.element:
-                    possible_injuries = list(set(possible_injuries) - set(ELEMENT_BLOCK.get(cat.phenotype.element, [])))
+                if _cat.phenotype.element:
+                    possible_injuries = list(set(possible_injuries) - set(ELEMENT_BLOCK.get(_cat.phenotype.element, [])))
 
                     if not possible_injuries:
                         print(

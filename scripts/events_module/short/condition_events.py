@@ -1226,6 +1226,9 @@ class Condition_Events:
             ):
                 continue
 
+            if risk["name"] in ELEMENT_BLOCK.get(cat.phenotype.element, []):
+                continue
+
             # adjust chance of risk gain if Clan has enough meds
             chance = risk["chance"]
             if medicine_cats_can_cover_clan(
