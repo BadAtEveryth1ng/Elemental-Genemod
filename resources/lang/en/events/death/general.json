@@ -8395,6 +8395,9 @@
             "greenleaf",
             "newleaf"
         ],
+        "sub_type": [
+            "murder"
+        ],
         "tags": [ ],
         "frequency": 2,
         "event_text": "m_c was swept away by a flood.",
@@ -8455,6 +8458,9 @@
         ],
         "season": [
             "any"
+        ],
+        "sub_type": [
+            "murder"
         ],
         "tags": [ ],
         "frequency": 2,
