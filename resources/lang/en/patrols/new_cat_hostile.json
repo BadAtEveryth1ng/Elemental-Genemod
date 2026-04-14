@@ -2156,6 +2156,455 @@
                     "death": "m_c died of injuries inflicted by a dog."
                 },
                 "frequency": 4
+            },
+            {
+                "text": "s_c leaps into the fray, letting off sparks that leave the dog yelping and turning tail. The loner gingerly thanks {PRONOUN/s_c/object}, asking to join the Clan.",
+                "exp": 10,
+                "stat_element": [
+                    "fire", "blue fire", "lightning", "combustion"
+                ],
+                "new_cat": [
+                    [
+                        "loner"
+                    ]
+                ],
+                "relationships": [
+                    {
+                        "cats_from": [
+                            "n_c:0"
+                        ],
+                        "cats_to": [
+                            "patrol", "-s_c"
+                        ],
+                        "values": [
+                            "like",
+                            "trust",
+                            "comfort"
+                        ],
+                        "amount": 5,
+                        "log": {
+                            "cats_from": "cat_to was part of the patrol that saved n_c:0 from a dog."
+                        }
+                    },
+                    {
+                        "cats_from": [
+                            "n_c:0"
+                        ],
+                        "cats_to": [
+                            "s_c"
+                        ],
+                        "values": [
+                            "like",
+                            "trust",
+                            "comfort"
+                        ],
+                        "amount": 15,
+                        "log": {
+                            "cats_from": "cat_to saved n_c:0 from a dog."
+                        }
+                    }
+                ],
+                "outsider_rep": 1,
+                "injury": [
+                    {
+                        "cats": [
+                            "n_c:0"
+                        ],
+                        "injuries": [
+                            "blunt_force_injury"
+                        ],
+                        "no_results": true
+                    }
+                ],
+                "history_text": {
+                    "scar": "m_c was scarred after being attacked by a dog.",
+                    "death": "m_c died of injuries inflicted by a dog."
+                },
+                "frequency": 4
+            },
+            {
+                "text": "A splash of water from s_c does little to deter the dog, but it's too preoccupied chasing bubbles to mind the escaping cat. The rest of the patrol bring the loner to safety, where they ask to stay.",
+                "exp": 10,
+                "stat_element": [
+                    "water"
+                ],
+                "new_cat": [
+                    [
+                        "loner"
+                    ]
+                ],
+                "relationships": [
+                    {
+                        "cats_from": [
+                            "n_c:0"
+                        ],
+                        "cats_to": [
+                            "patrol"
+                        ],
+                        "values": [
+                            "like",
+                            "trust",
+                            "comfort"
+                        ],
+                        "amount": 10,
+                        "log": {
+                            "cats_from": "cat_to was part of the patrol that saved n_c:0 from a dog."
+                        }
+                    }
+                ],
+                "outsider_rep": 1,
+                "injury": [
+                    {
+                        "cats": [
+                            "n_c:0"
+                        ],
+                        "injuries": [
+                            "blunt_force_injury"
+                        ],
+                        "no_results": true
+                    }
+                ],
+                "history_text": {
+                    "scar": "m_c was scarred after being attacked by a dog.",
+                    "death": "m_c died of injuries inflicted by a dog."
+                },
+                "frequency": 3
+            },
+            {
+                "text": "When s_c shifts the earth underpaw, the dog turns and, head tilting, inspects the moving stones and soil. While it digs and searches for supposed burrowing prey, the patrol get the loner to safety where they ask to join the Clan.",
+                "exp": 10,
+                "stat_element": [
+                    "earth"
+                ],
+                "new_cat": [
+                    [
+                        "loner"
+                    ]
+                ],
+                "relationships": [
+                    {
+                        "cats_from": [
+                            "n_c:0"
+                        ],
+                        "cats_to": [
+                            "patrol"
+                        ],
+                        "values": [
+                            "like",
+                            "trust",
+                            "comfort"
+                        ],
+                        "amount": 10,
+                        "log": {
+                            "cats_from": "cat_to was part of the patrol that saved n_c:0 from a dog."
+                        }
+                    }
+                ],
+                "outsider_rep": 1,
+                "injury": [
+                    {
+                        "cats": [
+                            "n_c:0"
+                        ],
+                        "injuries": [
+                            "blunt_force_injury"
+                        ],
+                        "no_results": true
+                    }
+                ],
+                "history_text": {
+                    "scar": "m_c was scarred after being attacked by a dog.",
+                    "death": "m_c died of injuries inflicted by a dog."
+                },
+                "frequency": 3
+            },
+            {
+                "text": "s_c balls up leaves and twigs and sends it flying. It draws the dog's attention away long enough for the patrol to get the loner to safety where they ask to join them.",
+                "exp": 10,
+                "stat_element": [
+                    "air", "plant"
+                ],
+                "new_cat": [
+                    [
+                        "loner"
+                    ]
+                ],
+                "relationships": [
+                    {
+                        "cats_from": [
+                            "n_c:0"
+                        ],
+                        "cats_to": [
+                            "patrol"
+                        ],
+                        "values": [
+                            "like",
+                            "trust",
+                            "comfort"
+                        ],
+                        "amount": 10,
+                        "log": {
+                            "cats_from": "cat_to was part of the patrol that saved n_c:0 from a dog."
+                        }
+                    }
+                ],
+                "outsider_rep": 1,
+                "injury": [
+                    {
+                        "cats": [
+                            "n_c:0"
+                        ],
+                        "injuries": [
+                            "blunt_force_injury"
+                        ],
+                        "no_results": true
+                    }
+                ],
+                "history_text": {
+                    "scar": "m_c was scarred after being attacked by a dog.",
+                    "death": "m_c died of injuries inflicted by a dog."
+                },
+                "frequency": 3
+            },
+            {
+                "text": "s_c gets close enough for smoke to reach the dog, which thinks better of running towards its source. The rest of patrol takes the opportunity to catch up with the loner to assure them, and convince them to stay.",
+                "exp": 10,
+                "stat_element": [
+                    "smoke"
+                ],
+                "new_cat": [
+                    [
+                        "loner"
+                    ]
+                ],
+                "relationships": [
+                    {
+                        "cats_from": [
+                            "n_c:0"
+                        ],
+                        "cats_to": [
+                            "patrol"
+                        ],
+                        "values": [
+                            "like",
+                            "trust",
+                            "comfort"
+                        ],
+                        "amount": 10,
+                        "log": {
+                            "cats_from": "cat_to was part of the patrol that saved n_c:0 from a dog."
+                        }
+                    }
+                ],
+                "outsider_rep": 1,
+                "injury": [
+                    {
+                        "cats": [
+                            "n_c:0"
+                        ],
+                        "injuries": [
+                            "blunt_force_injury"
+                        ],
+                        "no_results": true
+                    }
+                ],
+                "history_text": {
+                    "scar": "m_c was scarred after being attacked by a dog.",
+                    "death": "m_c died of injuries inflicted by a dog."
+                },
+                "frequency": 4
+            },
+            {
+                "text": "s_c slings mud bombs the dog's way, gaining its attention and leading it away. The rest of the patrol bring the loner to safety, where they ask to stay.",
+                "exp": 10,
+                "stat_element": [
+                    "mud"
+                ],
+                "new_cat": [
+                    [
+                        "loner"
+                    ]
+                ],
+                "relationships": [
+                    {
+                        "cats_from": [
+                            "n_c:0"
+                        ],
+                        "cats_to": [
+                            "patrol"
+                        ],
+                        "values": [
+                            "like",
+                            "trust",
+                            "comfort"
+                        ],
+                        "amount": 10,
+                        "log": {
+                            "cats_from": "cat_to was part of the patrol that saved n_c:0 from a dog."
+                        }
+                    }
+                ],
+                "outsider_rep": 1,
+                "injury": [
+                    {
+                        "cats": [
+                            "n_c:0"
+                        ],
+                        "injuries": [
+                            "blunt_force_injury"
+                        ],
+                        "no_results": true
+                    }
+                ],
+                "history_text": {
+                    "scar": "m_c was scarred after being attacked by a dog.",
+                    "death": "m_c died of injuries inflicted by a dog."
+                },
+                "frequency": 4
+            },
+            {
+                "text": "s_c seizes an opportunity to distract the dog by puppeteering cat-shaped shadows for it to chase after instead. The rest of the patrol bring the loner to safety, where they ask to stay.",
+                "exp": 10,
+                "stat_element": [
+                    "shadow"
+                ],
+                "new_cat": [
+                    [
+                        "loner"
+                    ]
+                ],
+                "relationships": [
+                    {
+                        "cats_from": [
+                            "n_c:0"
+                        ],
+                        "cats_to": [
+                            "patrol"
+                        ],
+                        "values": [
+                            "like",
+                            "trust",
+                            "comfort"
+                        ],
+                        "amount": 10,
+                        "log": {
+                            "cats_from": "cat_to was part of the patrol that saved n_c:0 from a dog."
+                        }
+                    }
+                ],
+                "outsider_rep": 1,
+                "injury": [
+                    {
+                        "cats": [
+                            "n_c:0"
+                        ],
+                        "injuries": [
+                            "blunt_force_injury"
+                        ],
+                        "no_results": true
+                    }
+                ],
+                "history_text": {
+                    "scar": "m_c was scarred after being attacked by a dog.",
+                    "death": "m_c died of injuries inflicted by a dog."
+                },
+                "frequency": 3
+            },
+            {
+                "text": "s_c slings sand the dog's way, managing to hit its face. While the dog rushes away whimpering, the patrol catch up with the loner, who asks to stay.",
+                "exp": 10,
+                "stat_element": [
+                    "sand"
+                ],
+                "new_cat": [
+                    [
+                        "loner"
+                    ]
+                ],
+                "relationships": [
+                    {
+                        "cats_from": [
+                            "n_c:0"
+                        ],
+                        "cats_to": [
+                            "patrol"
+                        ],
+                        "values": [
+                            "like",
+                            "trust",
+                            "comfort"
+                        ],
+                        "amount": 10,
+                        "log": {
+                            "cats_from": "cat_to was part of the patrol that saved n_c:0 from a dog."
+                        }
+                    }
+                ],
+                "outsider_rep": 1,
+                "injury": [
+                    {
+                        "cats": [
+                            "n_c:0"
+                        ],
+                        "injuries": [
+                            "blunt_force_injury"
+                        ],
+                        "no_results": true
+                    }
+                ],
+                "history_text": {
+                    "scar": "m_c was scarred after being attacked by a dog.",
+                    "death": "m_c died of injuries inflicted by a dog."
+                },
+                "frequency": 2
+            },
+            {
+                "text": "s_c slings globs of oil the dog's way, soaking its fur with sticky tar. While the dog rushes away in confusion, the patrol catch up with the loner, who asks to stay.",
+                "exp": 10,
+                "stat_element": [
+                    "oil"
+                ],
+                "new_cat": [
+                    [
+                        "loner"
+                    ]
+                ],
+                "relationships": [
+                    {
+                        "cats_from": [
+                            "n_c:0"
+                        ],
+                        "cats_to": [
+                            "patrol"
+                        ],
+                        "values": [
+                            "like",
+                            "trust",
+                            "comfort"
+                        ],
+                        "amount": 10,
+                        "log": {
+                            "cats_from": "cat_to was part of the patrol that saved n_c:0 from a dog."
+                        }
+                    }
+                ],
+                "outsider_rep": 1,
+                "injury": [
+                    {
+                        "cats": [
+                            "n_c:0"
+                        ],
+                        "injuries": [
+                            "blunt_force_injury"
+                        ],
+                        "no_results": true
+                    }
+                ],
+                "history_text": {
+                    "scar": "m_c was scarred after being attacked by a dog.",
+                    "death": "m_c died of injuries inflicted by a dog."
+                },
+                "frequency": 3
             }
         ],
         "fail_outcomes": [
@@ -2170,6 +2619,131 @@
                     ]
                 ],
                 "frequency": 4
+            },
+            {
+                "text": "The patrol jumps into action and chases the dog off without much difficulty. A group of cats is much different than a single one. However, the distressed loner seems to think that they're a threat and takes a swipe at r_c before running off.",
+                "exp": 0,
+                "injury": [
+                    {
+                        "cats": [
+                            "r_c"
+                        ],
+                        "injuries": [
+                            "claw-wound"
+                        ]
+                    }
+                ],
+                "history_text": {
+                    "scar": "m_c was scarred when a loner attacked {PRONOUN/m_c/object}.",
+                    "death": "m_c died of injuries inflicted by a loner."
+                },
+                "outsider_rep": -1,
+                "new_cat": [
+                    [
+                        "meeting",
+                        "loner"
+                    ]
+                ],
+                "frequency": 3
+            },
+            {
+                "text": "s_c leaps into the fray, letting off sparks that leave the dog yelping and turning tail. The loner doesn't so much as glance back either.",
+                "exp": 0,
+                "stat_element": [
+                    "fire", "blue fire", "lightning", "combustion"
+                ],
+                "new_cat": [
+                    [ "meeting", "loner" ]
+                ],
+                "frequency": 4
+            },
+            {
+                "text": "A splash of water from s_c does little to deter the dog, but it's too preoccupied chasing bubbles to mind the escaping cat. The loner is long gone, though.",
+                "exp": 0,
+                "stat_element": [
+                    "water"
+                ],
+                "new_cat": [
+                    [ "meeting", "loner" ]
+                ],
+                "frequency": 3
+            },
+            {
+                "text": "When s_c shifts the earth underpaw, the dog turns and, head tilting, inspects the moving stones and soil. It digs and searches for supposed burrowing prey while the cats disperse.",
+                "exp": 0,
+                "stat_element": [
+                    "earth"
+                ],
+                "new_cat": [
+                    [ "meeting", "loner" ]
+                ],
+                "frequency": 3
+            },
+            {
+                "text": "s_c balls up leaves and twigs and sends it flying. It draws the dog's attention away long enough for the patrol to catch it off guard and run it off, but the loner is long gone.",
+                "exp": 0,
+                "stat_element": [
+                    "air", "plant"
+                ],
+                "new_cat": [
+                    [ "meeting", "loner" ]
+                ],
+                "frequency": 3
+            },
+            {
+                "text": "s_c gets close enough for smoke to reach the dog, which thinks better of running towards its source. As does the loner.",
+                "exp": 0,
+                "stat_element": [
+                    "smoke"
+                ],
+                "new_cat": [
+                    [ "meeting", "loner" ]
+                ],
+                "frequency": 4
+            },
+            {
+                "text": "s_c slings mud bombs the dog's way, gaining its attention and leading it away. The loner doesn't stop to offer more than a thanks to the patrol before leaving.",
+                "exp": 0,
+                "stat_element": [
+                    "mud"
+                ],
+                "new_cat": [
+                    [ "meeting", "loner" ]
+                ],
+                "frequency": 4
+            },
+            {
+                "text": "s_c seizes an opportunity to distract the dog by puppeteering cat-shaped shadows for it to chase after instead. It draws the dog's attention away long enough for the patrol to catch it off guard and run it off, but the loner is long gone.",
+                "exp": 0,
+                "stat_element": [
+                    "shadow"
+                ],
+                "new_cat": [
+                    [ "meeting", "loner" ]
+                ],
+                "frequency": 3
+            },
+            {
+                "text": "s_c slings sand the dog's way, but it barely takes any notice. The patrol leaps into action, chasing it off as a team instead, but the loner is long gone by then",
+                "exp": 0,
+                "stat_element": [
+                    "sand"
+                ],
+                "new_cat": [
+                    [ "meeting", "loner" ]
+                ],
+                "frequency": 4
+            },
+            {
+                "text": "s_c slings globs of oil the dog's way, soaking its fur with sticky tar. While the dog rushes away in confusion, the loner doesn't seem keen on sticking around near s_c either.",
+                "exp": 0,
+                "stat_element": [
+                    "oil"
+                ],
+                "new_cat": [
+                    [ "meeting", "loner" ]
+                ],
+                "frequency": 3
             }
         ],
         "antag_fail_outcomes": [
