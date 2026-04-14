@@ -1543,7 +1543,7 @@ def generate_sprite(
                                 (0, 0),
                             )
         
-        if cat.phenotype.element and "elemental/" + cat.phenotype.element + cat_sprite in sprites.sprites:
+        if cat.phenotype.element:
             new_sprite.blit(sprites.sprites["elemental/" + cat.phenotype.element + cat_sprite], (0, 0))
 
         # Apply fading fog
