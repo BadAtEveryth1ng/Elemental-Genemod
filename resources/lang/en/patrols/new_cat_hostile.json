@@ -3510,7 +3510,7 @@
                 "outsider_rep": -2
             },
             {
-                "text": "s_c finds a kittypet hiding in the bush. Using metal to block the outsider's escape path, {PRONOUN/s_c/subject} make extra sure the kittypet won't be returning.",
+                "text": "s_c finds a kittypet hiding in the bush. Using metal to block the outsider's escape path, {PRONOUN/s_c/subject} {VERB/s_c/make/makes} extra sure the kittypet won't be returning.",
                 "exp": 10,
                 "stat_element": [ "metal" ],
                 "frequency": 4,
