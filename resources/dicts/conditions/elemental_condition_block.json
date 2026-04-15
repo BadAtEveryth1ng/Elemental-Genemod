@@ -19,7 +19,7 @@
     "mist": [ ],
     "oil": [ ],
     "combustion": [ ],
-    "decay": [ ],
+    "decay": ["a festering wound"],
     "magnetic": [ ],
     "luminescent": [ ]
 }
