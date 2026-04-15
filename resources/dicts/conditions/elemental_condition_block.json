@@ -1,15 +1,15 @@
 {
-    "fire": ["burn", "severe burn"],
+    "fire": ["burn", "severe burn", "sunburn", "body sunburn", "heat stroke", "heat exhaustion"],
     "water": ["water in their lungs", "dehydrated"],
     "earth": [],
-    "air": [],
+    "air": ["breathless fit"],
 
-    "blue fire": ["burn", "severe burn"],
+    "blue fire": ["burn", "severe burn", "sunburn", "body sunburn", "heat stroke", "heat exhaustion"],
     "ice": ["frostbite", "shivering"],
     "plant": [],
     "lightning": [],
 
-    "magma": [ ],
+    "magma": ["burn", "severe burn", "sunburn", "body sunburn", "heat stroke", "heat exhaustion"],
     "metal": [ ],
     "smoke": [ ],
     "mud": [ ],
@@ -17,9 +17,9 @@
     "sand": [ ],
 
     "mist": [ ],
-    "oil": [ ],
+    "oil": ["cyst"],
     "combustion": [ ],
-    "decay": ["a festering wound"],
+    "decay": ["an infected wound", "a festering wound", "carrionplace disease"],
     "magnetic": [ ],
     "luminescent": [ ]
 }

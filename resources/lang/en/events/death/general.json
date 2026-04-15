@@ -1004,6 +1004,7 @@
             "status": [
                 "any"
             ],
+            "element": ["-decay"],
             "dies": true
         },
         "history": [
