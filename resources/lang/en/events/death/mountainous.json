@@ -10,6 +10,7 @@
         "frequency": 1,
         "event_text": "m_c was buried alive when an avalanche hit the camp.",
         "m_c": {
+            "element": ["-earth"],
             "dies": true
         },
         "history": [
@@ -54,6 +55,7 @@
             "status": [
                 "any"
             ],
+            "element": ["-earth"],
             "dies": true
         },
         "history": [

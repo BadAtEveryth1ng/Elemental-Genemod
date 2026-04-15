@@ -47,7 +47,7 @@
                 "healer apprentice"
             ]
         },
-        "r_c": {},
+        "r_c": {"element": ["-plant"]},
         "history": [
             {
                 "cats": [

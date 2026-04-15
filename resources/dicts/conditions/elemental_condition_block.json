@@ -1,11 +1,11 @@
 {
     "fire": ["burn", "severe burn"],
-    "water": ["water in their lungs"],
+    "water": ["water in their lungs", "dehydrated"],
     "earth": [],
     "air": [],
 
     "blue fire": ["burn", "severe burn"],
-    "ice": ["frostbite"],
+    "ice": ["frostbite", "shivering"],
     "plant": [],
     "lightning": [],
 

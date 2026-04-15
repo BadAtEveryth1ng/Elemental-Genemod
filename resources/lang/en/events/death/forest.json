@@ -19,6 +19,7 @@
                 "deputy",
                 "leader"
             ],
+            "element": ["-plant"],
             "dies": true
         },
         "history": [
@@ -81,6 +82,7 @@
                 "cats": [
                     "m_c"
                 ],
+                "element": ["-plant"],
                 "death": "m_c was crushed by a falling tree."
             }
         ]
