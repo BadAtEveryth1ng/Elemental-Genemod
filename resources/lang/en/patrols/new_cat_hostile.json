@@ -3640,6 +3640,358 @@
                 ],
                 "outsider_rep": 1,
                 "frequency": 4
+            },
+            {
+                "text": "When a kitten comes rushing towards them, s_c takes the opportunity to entertain {PRONOUN/n_c:1/object} with tiny flames dancing in the air. Amazed, the kitten declares that {PRONOUN/n_c:1/subject} {VERB/n_c:1/want/wants} to follow them and won't take no for an answer.",
+                "exp": 30,
+                "stat_element": ["fire", "blue fire"],
+                "new_cat": [
+                    [ "kittypet", "female", "dead", "age:has_kits" ],
+                    [ "litter", "parent:0", "status:kitten", "backstory:abandoned1,abandoned4" ]
+                ],
+                "relationships": [
+                    {
+                        "cats_from": [ "n_c:1" ],
+                        "cats_to": [ "s_c" ],
+                        "values": [ "like", "trust", "comfort", "respect" ],
+                        "amount": 15,
+                        "log": {
+                            "cats_from": "cat_to impressed cat_from so much {PRONOUN/cat_from/subject} wanted to join c_n."
+                        }
+                    }
+                ],
+                "outsider_rep": 1,
+                "frequency": 4
+            },
+            {
+                "text": "When a kitten comes rushing towards them, s_c takes the opportunity to entertain {PRONOUN/n_c:1/object} with little water bubbles for to chase. Amazed, the kitten declares that {PRONOUN/n_c:1/subject} {VERB/n_c:1/want/wants} to follow them and won't take no for an answer.",
+                "exp": 30,
+                "stat_element": [ "water" ],
+                "new_cat": [
+                    [ "kittypet", "female", "dead", "age:has_kits" ],
+                    [ "litter", "parent:0", "status:kitten", "backstory:abandoned1,abandoned4" ]
+                ],
+                "relationships": [
+                    {
+                        "cats_from": [ "n_c:1" ],
+                        "cats_to": [ "s_c" ],
+                        "values": [ "like", "trust", "comfort", "respect" ],
+                        "amount": 15,
+                        "log": {
+                            "cats_from": "cat_to impressed cat_from so much {PRONOUN/cat_from/subject} wanted to join c_n."
+                        }
+                    }
+                ],
+                "outsider_rep": 1,
+                "frequency": 4
+            },
+            {
+                "text": "When a kitten comes rushing towards them, s_c takes the opportunity to entertain {PRONOUN/n_c:1/object} - lifting {PRONOUN/n_c:1/object} into the air with {PRONOUN/s_c/poss} powers. Amazed, the kitten declares that {PRONOUN/n_c:1/subject} {VERB/n_c:1/want/wants} to follow them and won't take no for an answer.",
+                "exp": 30,
+                "stat_element": [ "earth", "air" ],
+                "new_cat": [
+                    [ "kittypet", "female", "dead", "age:has_kits" ],
+                    [ "litter", "parent:0", "status:kitten", "backstory:abandoned1,abandoned4" ]
+                ],
+                "relationships": [
+                    {
+                        "cats_from": [ "n_c:1" ],
+                        "cats_to": [ "s_c" ],
+                        "values": [ "like", "trust", "comfort", "respect" ],
+                        "amount": 15,
+                        "log": {
+                            "cats_from": "cat_to impressed cat_from so much {PRONOUN/cat_from/subject} wanted to join c_n."
+                        }
+                    }
+                ],
+                "outsider_rep": 1,
+                "frequency": 4
+            },
+            {
+                "text": "When a kitten comes rushing towards them, s_c takes the opportunity to entertain {PRONOUN/n_c:1/object} - with a bit of effort, {PRONOUN/s_c/subject} {VERB/s_c/are/is} able to make snowballs to play with. Amazed, the kitten declares that {PRONOUN/n_c:1/subject} {VERB/n_c:1/want/wants} to follow them and won't take no for an answer.",
+                "exp": 30,
+                "stat_element": [ "ice" ],
+                "new_cat": [
+                    [ "kittypet", "female", "dead", "age:has_kits" ],
+                    [ "litter", "parent:0", "status:kitten", "backstory:abandoned1,abandoned4" ]
+                ],
+                "relationships": [
+                    {
+                        "cats_from": [ "n_c:1" ],
+                        "cats_to": [ "s_c" ],
+                        "values": [ "like", "trust", "comfort", "respect" ],
+                        "amount": 15,
+                        "log": {
+                            "cats_from": "cat_to impressed cat_from so much {PRONOUN/cat_from/subject} wanted to join c_n."
+                        }
+                    }
+                ],
+                "outsider_rep": 1,
+                "frequency": 4
+            },
+            {
+                "text": "When a kitten comes rushing towards them, s_c takes the opportunity to entertain {PRONOUN/n_c:1/object} - sprouting multi-coloured flowers across the grass. Amazed, the kitten declares that {PRONOUN/n_c:1/subject} {VERB/n_c:1/want/wants} to follow them and won't take no for an answer.",
+                "exp": 30,
+                "stat_element": [ "plant" ],
+                "new_cat": [
+                    [ "kittypet", "female", "dead", "age:has_kits" ],
+                    [ "litter", "parent:0", "status:kitten", "backstory:abandoned1,abandoned4" ]
+                ],
+                "relationships": [
+                    {
+                        "cats_from": [ "n_c:1" ],
+                        "cats_to": [ "s_c" ],
+                        "values": [ "like", "trust", "comfort", "respect" ],
+                        "amount": 15,
+                        "log": {
+                            "cats_from": "cat_to impressed cat_from so much {PRONOUN/cat_from/subject} wanted to join c_n."
+                        }
+                    }
+                ],
+                "outsider_rep": 1,
+                "frequency": 4
+            },
+            {
+                "text": "When a kitten comes rushing towards them, s_c takes the opportunity to entertain {PRONOUN/n_c:1/object} - showing off sparks dancing across {PRONOUN/s_c/poss} pelt and playfully shocking the kitten with static. Amazed, the kitten declares that {PRONOUN/n_c:1/subject} {VERB/n_c:1/want/wants} to follow them and won't take no for an answer.",
+                "exp": 30,
+                "stat_element": [ "lightning" ],
+                "new_cat": [
+                    [ "kittypet", "female", "dead", "age:has_kits" ],
+                    [ "litter", "parent:0", "status:kitten", "backstory:abandoned1,abandoned4" ]
+                ],
+                "relationships": [
+                    {
+                        "cats_from": [ "n_c:1" ],
+                        "cats_to": [ "s_c" ],
+                        "values": [ "like", "trust", "comfort", "respect" ],
+                        "amount": 15,
+                        "log": {
+                            "cats_from": "cat_to impressed cat_from so much {PRONOUN/cat_from/subject} wanted to join c_n."
+                        }
+                    }
+                ],
+                "outsider_rep": 1,
+                "frequency": 4
+            },
+            {
+                "text": "When a kitten comes rushing towards them, s_c takes the opportunity to entertain {PRONOUN/n_c:1/object} - using a piece of metal to reflect little sunspots for {PRONOUN/n_c:1/object} to chase. Amazed, the kitten declares that {PRONOUN/n_c:1/subject} {VERB/n_c:1/want/wants} to follow them and won't take no for an answer.",
+                "exp": 30,
+                "stat_element": [ "metal" ],
+                "new_cat": [
+                    [ "kittypet", "female", "dead", "age:has_kits" ],
+                    [ "litter", "parent:0", "status:kitten", "backstory:abandoned1,abandoned4" ]
+                ],
+                "relationships": [
+                    {
+                        "cats_from": [ "n_c:1" ],
+                        "cats_to": [ "s_c" ],
+                        "values": [ "like", "trust", "comfort", "respect" ],
+                        "amount": 15,
+                        "log": {
+                            "cats_from": "cat_to impressed cat_from so much {PRONOUN/cat_from/subject} wanted to join c_n."
+                        }
+                    }
+                ],
+                "outsider_rep": 1,
+                "frequency": 4
+            },
+            {
+                "text": "When a kitten comes rushing towards them, s_c takes the opportunity to entertain {PRONOUN/n_c:1/object} with a brief mud fight. Amazed, the kitten declares that {PRONOUN/n_c:1/subject} {VERB/n_c:1/want/wants} to follow them and won't take no for an answer.",
+                "exp": 30,
+                "stat_element": [ "mud" ],
+                "new_cat": [
+                    [ "kittypet", "female", "dead", "age:has_kits" ],
+                    [ "litter", "parent:0", "status:kitten", "backstory:abandoned1,abandoned4" ]
+                ],
+                "relationships": [
+                    {
+                        "cats_from": [ "n_c:1" ],
+                        "cats_to": [ "s_c" ],
+                        "values": [ "like", "trust", "comfort", "respect" ],
+                        "amount": 15,
+                        "log": {
+                            "cats_from": "cat_to impressed cat_from so much {PRONOUN/cat_from/subject} wanted to join c_n."
+                        }
+                    }
+                ],
+                "outsider_rep": 1,
+                "frequency": 4
+            },
+            {
+                "text": "When a kitten comes rushing towards them, s_c takes the opportunity to entertain {PRONOUN/n_c:1/object} with shadow puppets. Amazed, the kitten declares that {PRONOUN/n_c:1/subject} {VERB/n_c:1/want/wants} to follow them and won't take no for an answer.",
+                "exp": 30,
+                "stat_element": [ "shadow" ],
+                "new_cat": [
+                    [ "kittypet", "female", "dead", "age:has_kits" ],
+                    [ "litter", "parent:0", "status:kitten", "backstory:abandoned1,abandoned4" ]
+                ],
+                "relationships": [
+                    {
+                        "cats_from": [ "n_c:1" ],
+                        "cats_to": [ "s_c" ],
+                        "values": [ "like", "trust", "comfort", "respect" ],
+                        "amount": 15,
+                        "log": {
+                            "cats_from": "cat_to impressed cat_from so much {PRONOUN/cat_from/subject} wanted to join c_n."
+                        }
+                    }
+                ],
+                "outsider_rep": 1,
+                "frequency": 4
+            },
+            {
+                "text": "When a kitten comes rushing towards them, s_c takes the opportunity to entertain {PRONOUN/n_c:1/object} with a sand pile to play around in. Amazed, the kitten declares that {PRONOUN/n_c:1/subject} {VERB/n_c:1/want/wants} to follow them and won't take no for an answer.",
+                "exp": 30,
+                "stat_element": [ "sand" ],
+                "new_cat": [
+                    [ "kittypet", "female", "dead", "age:has_kits" ],
+                    [ "litter", "parent:0", "status:kitten", "backstory:abandoned1,abandoned4" ]
+                ],
+                "relationships": [
+                    {
+                        "cats_from": [ "n_c:1" ],
+                        "cats_to": [ "s_c" ],
+                        "values": [ "like", "trust", "comfort", "respect" ],
+                        "amount": 15,
+                        "log": {
+                            "cats_from": "cat_to impressed cat_from so much {PRONOUN/cat_from/subject} wanted to join c_n."
+                        }
+                    }
+                ],
+                "outsider_rep": 1,
+                "frequency": 4
+            },
+            {
+                "text": "When a kitten comes rushing towards them, s_c takes the opportunity to entertain {PRONOUN/n_c:1/object} - letting {PRONOUN/n_c:1/object} disappear into the mist and try to sneak up on {PRONOUN/s_c/object}. Amazed, the kitten declares that {PRONOUN/n_c:1/subject} {VERB/n_c:1/want/wants} to follow them and won't take no for an answer.",
+                "exp": 30,
+                "stat_element": [ "mist" ],
+                "new_cat": [
+                    [ "kittypet", "female", "dead", "age:has_kits" ],
+                    [ "litter", "parent:0", "status:kitten", "backstory:abandoned1,abandoned4" ]
+                ],
+                "relationships": [
+                    {
+                        "cats_from": [ "n_c:1" ],
+                        "cats_to": [ "s_c" ],
+                        "values": [ "like", "trust", "comfort", "respect" ],
+                        "amount": 15,
+                        "log": {
+                            "cats_from": "cat_to impressed cat_from so much {PRONOUN/cat_from/subject} wanted to join c_n."
+                        }
+                    }
+                ],
+                "outsider_rep": 1,
+                "frequency": 4
+            },
+            {
+                "text": "When a kitten comes rushing towards them, s_c takes the opportunity to entertain {PRONOUN/n_c:1/object} - showing off the rainbow colours {PRONOUN/s_c/poss} oil turns into in the sun. Amazed, the kitten declares that {PRONOUN/n_c:1/subject} {VERB/n_c:1/want/wants} to follow them and won't take no for an answer.",
+                "exp": 30,
+                "stat_element": [ "oil" ],
+                "new_cat": [
+                    [ "kittypet", "female", "dead", "age:has_kits" ],
+                    [ "litter", "parent:0", "status:kitten", "backstory:abandoned1,abandoned4" ]
+                ],
+                "relationships": [
+                    {
+                        "cats_from": [ "n_c:1" ],
+                        "cats_to": [ "s_c" ],
+                        "values": [ "like", "trust", "comfort", "respect" ],
+                        "amount": 15,
+                        "log": {
+                            "cats_from": "cat_to impressed cat_from so much {PRONOUN/cat_from/subject} wanted to join c_n."
+                        }
+                    }
+                ],
+                "outsider_rep": 1,
+                "frequency": 4
+            },
+            {
+                "text": "When a kitten comes rushing towards them, s_c takes the opportunity to entertain {PRONOUN/n_c:1/object} with crackling little sparks. Amazed, the kitten declares that {PRONOUN/n_c:1/subject} {VERB/n_c:1/want/wants} to follow them and won't take no for an answer.",
+                "exp": 30,
+                "stat_element": [ "combustion" ],
+                "new_cat": [
+                    [ "kittypet", "female", "dead", "age:has_kits" ],
+                    [ "litter", "parent:0", "status:kitten", "backstory:abandoned1,abandoned4" ]
+                ],
+                "relationships": [
+                    {
+                        "cats_from": [ "n_c:1" ],
+                        "cats_to": [ "s_c" ],
+                        "values": [ "like", "trust", "comfort", "respect" ],
+                        "amount": 15,
+                        "log": {
+                            "cats_from": "cat_to impressed cat_from so much {PRONOUN/cat_from/subject} wanted to join c_n."
+                        }
+                    }
+                ],
+                "outsider_rep": 1,
+                "frequency": 4
+            },
+            {
+                "text": "When a kitten comes rushing towards them, s_c takes the opportunity to entertain {PRONOUN/n_c:1/object} - sprouting up variously shaped mushrooms in the grass. Amazed, the kitten declares that {PRONOUN/n_c:1/subject} {VERB/n_c:1/want/wants} to follow them and won't take no for an answer.",
+                "exp": 30,
+                "stat_element": [ "decay" ],
+                "new_cat": [
+                    [ "kittypet", "female", "dead", "age:has_kits" ],
+                    [ "litter", "parent:0", "status:kitten", "backstory:abandoned1,abandoned4" ]
+                ],
+                "relationships": [
+                    {
+                        "cats_from": [ "n_c:1" ],
+                        "cats_to": [ "s_c" ],
+                        "values": [ "like", "trust", "comfort", "respect" ],
+                        "amount": 15,
+                        "log": {
+                            "cats_from": "cat_to impressed cat_from so much {PRONOUN/cat_from/subject} wanted to join c_n."
+                        }
+                    }
+                ],
+                "outsider_rep": 1,
+                "frequency": 4
+            },
+            {
+                "text": "When a kitten comes rushing towards them, s_c takes the opportunity to entertain {PRONOUN/n_c:1/object} - kicking off and staying floating in place above {PRONOUN/n_c:1/poss} head. Amazed, the kitten declares that {PRONOUN/n_c:1/subject} {VERB/n_c:1/want/wants} to follow them and won't take no for an answer.",
+                "exp": 30,
+                "stat_element": [ "magnetic" ],
+                "new_cat": [
+                    [ "kittypet", "female", "dead", "age:has_kits" ],
+                    [ "litter", "parent:0", "status:kitten", "backstory:abandoned1,abandoned4" ]
+                ],
+                "relationships": [
+                    {
+                        "cats_from": [ "n_c:1" ],
+                        "cats_to": [ "s_c" ],
+                        "values": [ "like", "trust", "comfort", "respect" ],
+                        "amount": 15,
+                        "log": {
+                            "cats_from": "cat_to impressed cat_from so much {PRONOUN/cat_from/subject} wanted to join c_n."
+                        }
+                    }
+                ],
+                "outsider_rep": 1,
+                "frequency": 4
+            },
+            {
+                "text": "When a kitten comes rushing towards them, s_c takes the opportunity to entertain {PRONOUN/n_c:1/object} - glowing gently in different colours. Amazed, the kitten declares that {PRONOUN/n_c:1/subject} {VERB/n_c:1/want/wants} to follow them and won't take no for an answer.",
+                "exp": 30,
+                "stat_element": [ "luminescent" ],
+                "new_cat": [
+                    [ "kittypet", "female", "dead", "age:has_kits" ],
+                    [ "litter", "parent:0", "status:kitten", "backstory:abandoned1,abandoned4" ]
+                ],
+                "relationships": [
+                    {
+                        "cats_from": [ "n_c:1" ],
+                        "cats_to": [ "s_c" ],
+                        "values": [ "like", "trust", "comfort", "respect" ],
+                        "amount": 15,
+                        "log": {
+                            "cats_from": "cat_to impressed cat_from so much {PRONOUN/cat_from/subject} wanted to join c_n."
+                        }
+                    }
+                ],
+                "outsider_rep": 1,
+                "frequency": 4
             }
         ],
         "fail_outcomes": [
@@ -4428,10 +4780,9 @@
             {
                 "text": "It's probably dangerous. But curiosity leads app1 on, where {PRONOUN/app1/subject} carefully {VERB/app1/peek/peeks} over a ridge as the source of the cries. A pampered helpless kittypet runs back and forth over the Thunderpath, pleading fearfully for Twolegs, again and again and again. It isn't until their voice has gone hoarse and scratchy that app1 leaps out to surprise them — those Twolegs aren't coming back, and the kittypet can either follow app1, or freeze.",
                 "exp": 20,
+                "stat_element": ["-fire", "-blue fire", "-magma"],
                 "new_cat": [
-                    [
-                        "kittypet"
-                    ]
+                    [ "kittypet" ]
                 ],
                 "relationships": [
                     {
@@ -4468,6 +4819,35 @@
                     "scar": "m_c was scarred by frostbite after being abandoned in leaf-bare by {PRONOUN/m_c/poss} Twolegs.",
                     "death": "m_c died of frostbite after being abandoned in leaf-bare by {PRONOUN/m_c/poss} Twolegs."
                 },
+                "frequency": 4
+            },
+            {
+                "text": "It's probably dangerous. But curiosity leads app1 on, where {PRONOUN/app1/subject} carefully {VERB/app1/peek/peeks} over a ridge as the source of the cries. A pampered helpless kittypet runs back and forth over the Thunderpath, pleading fearfully for Twolegs, again and again and again. It isn't until their voice has gone hoarse and scratchy that app1 leaps out to surprise them — those Twolegs aren't coming back, but app1 can keep {PRONOUN/n_c:0/object} warm on the way to camp... or {PRONOUN/n_c:0/object} can freeze to death.",
+                "exp": 20,
+                "stat_element": ["fire", "blue fire", "magma"],
+                "new_cat": [
+                    [ "kittypet" ]
+                ],
+                "relationships": [
+                    {
+                        "cats_from": [
+                            "n_c:0"
+                        ],
+                        "cats_to": [
+                            "patrol"
+                        ],
+                        "values": [
+                            "like",
+                            "trust",
+                            "comfort"
+                        ],
+                        "amount": 15,
+                        "log": {
+                            "cats_from": "cat_to invited cat_from to c_n when {PRONOUN/cat_from/subject} {VERB/cat_from/were/was} found crying in the mountainside in the cold alone."
+                        }
+                    }
+                ],
+                "outsider_rep": 1,
                 "frequency": 4
             },
             {
@@ -4518,6 +4898,7 @@
             {
                 "text": "app1 follows the sad cries to find a kittypet, lost and alone and cold. {PRONOUN/app1/subject/CAP} {VERB/app1/watch/watches} from under a rock overhang, but no, actually the kittypet is <i>that stupid</i> and it really seems likely {PRONOUN/n_c:0/subject}'ll freeze to death if app1 doesn't do something. app1 decides bring them back to camp so it'll be lead_name's problem to deal with, not app1's.",
                 "exp": 20,
+                "stat_element": [ "-fire", "-blue fire", "-magma" ],
                 "stat_trait": [
                     "adventurous",
                     "playful",
@@ -4565,6 +4946,42 @@
                     "scar": "m_c was scarred by frostbite after being abandoned in leaf-bare by {PRONOUN/m_c/poss} Twolegs.",
                     "death": "m_c died of frostbite after being abandoned in leaf-bare by {PRONOUN/m_c/poss} Twolegs."
                 },
+                "frequency": 4
+            },
+            {
+                "text": "app1 follows the sad cries to find a kittypet, lost and alone and cold. {PRONOUN/app1/subject/CAP} {VERB/app1/watch/watches} from under a rock overhang, but no, actually the kittypet is <i>that stupid</i> and it really seems likely {PRONOUN/n_c:0/subject}'ll freeze to death if app1 doesn't do something. app1 decides to keep {PRONOUN/n_c:0/object} warm and bring {PRONOUN/n_c:0/object} back to camp so it'll be lead_name's problem to deal with, not app1's.",
+                "exp": 20,
+                "stat_element": [ "fire", "blue fire", "magma" ],
+                "stat_trait": [
+                    "adventurous",
+                    "playful",
+                    "strange",
+                    "childish",
+                    "shameless"
+                ],
+                "new_cat": [
+                    [ "kittypet"]
+                ],
+                "relationships": [
+                    {
+                        "cats_from": [
+                            "n_c:0"
+                        ],
+                        "cats_to": [
+                            "patrol"
+                        ],
+                        "values": [
+                            "like",
+                            "trust",
+                            "comfort"
+                        ],
+                        "amount": 15,
+                        "log": {
+                            "cats_from": "cat_to invited cat_from to c_n when {PRONOUN/cat_from/subject} {VERB/cat_from/were/was} found crying in the mountainside in the cold alone."
+                        }
+                    }
+                ],
+                "outsider_rep": 1,
                 "frequency": 4
             }
         ],

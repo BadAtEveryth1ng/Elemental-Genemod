@@ -1664,6 +1664,13 @@ class Genotype:
         for gene in self.april_fools.keys():
             self.april_fools[gene].sort()
 
+        for key in self.elemental_genes.keys():
+            if key != "favours":
+                self.elemental_genes[key].sort()
+                if self.elemental_genes[key][1] == "N":
+                    self.elemental_genes[key][1] = self.elemental_genes[key][0]
+                    self.elemental_genes[key][0] = "N"
+
         if self.eumelanin[0] == "bl":
             self.eumelanin[0] = self.eumelanin[1]
             self.eumelanin[1] = "bl"
