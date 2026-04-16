@@ -17,7 +17,7 @@
     "sand": [ ],
 
     "mist": [ ],
-    "oil": ["cyst"],
+    "oil": ["cyst", "itchy skin"],
     "combustion": [ ],
     "decay": ["an infected wound", "a festering wound", "carrionplace disease"],
     "magnetic": [ ],
