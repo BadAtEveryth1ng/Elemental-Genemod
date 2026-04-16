@@ -69,7 +69,7 @@
       "age": [
         "-kitten"
       ],
-      "element": ["-water"],
+      "element": ["-water", "-decay"],
       "dies": true
     },
     "history": [

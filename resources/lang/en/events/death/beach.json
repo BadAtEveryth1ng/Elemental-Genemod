@@ -21,7 +21,7 @@
                 "senior adult",
                 "senior"
             ],
-            "element": ["-water", "-air"],
+            "element": ["-water"],
             "dies": true
         },
         "history": [
@@ -89,7 +89,7 @@
                 "loving",
                 "responsible"
             ],
-            "element": ["-water", "-air"],
+            "element": ["-water"],
             "dies": true
         },
         "r_c": {
@@ -194,7 +194,7 @@
                 "mediator apprentice",
                 "healer",
                 "healer apprentice"],
-            "element": ["-water", "-air"],
+            "element": ["-water"],
             "dies": true
         },
         "history": [
@@ -235,7 +235,7 @@
             "status": [
                 "apprentice"
             ],
-            "element": [ "-water"],
+            "element": ["-water", "-fire", "-blue fire", "-magma"],
             "dies": true
         },
         "history": [
@@ -266,7 +266,7 @@
                 "apprentice"
             ],
             "relationship_status": [],
-            "element": [ "-water"],
+            "element": ["-water", "-fire", "-blue fire", "-magma"],
             "dies": true
         },
         "r_c": {
@@ -306,7 +306,7 @@
             "status": [
                 "apprentice"
             ],
-            "element": [ "-water"],
+            "element": ["-water", "-fire", "-blue fire", "-magma"],
             "dies": true
         },
         "history": [
@@ -337,7 +337,7 @@
                 "apprentice"
             ],
             "relationship_status": [],
-            "element": [ "-water"],
+            "element": ["-water", "-fire", "-blue fire", "-magma"],
             "dies": true
         },
         "r_c": {
@@ -601,7 +601,7 @@
             "status": [
                 "leader"
             ],
-            "element": ["-water", "-air"],
+            "element": ["-water"],
             "dies": true
         },
         "r_c": {

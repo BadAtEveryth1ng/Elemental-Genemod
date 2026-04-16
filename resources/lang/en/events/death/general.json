@@ -924,7 +924,7 @@
                 "loving",
                 "responsible"
             ],
-            "element": [ "-fire" ],
+            "element": ["-fire", "-blue fire", "-magma"],
             "dies": true
         },
         "r_c": {
@@ -1078,7 +1078,7 @@
             "status": [
                 "any"
             ],
-            "element": ["-water", "-air"],
+            "element": ["-water"],
             "dies": true
         },
         "r_c": {
@@ -1627,7 +1627,7 @@
             "skill": [
                 "-SWIMMER,2"
             ],
-            "element": ["-water", "-air" ],
+            "element": ["-water"],
             "dies": true
         },
         "history": [
@@ -2400,7 +2400,7 @@
             "status": [
                 "any"
             ],
-            "element": [ "-water"],
+            "element": ["-water", "-fire", "-blue fire", "-magma"],
             "dies": true
         },
         "history": [
@@ -2428,7 +2428,7 @@
         "frequency": 3,
         "event_text": "m_c froze to death during a harsh snowstorm.",
         "m_c": {
-            "element": [ "-ice", "-fire", "-blue fire"],
+            "element": ["-ice"],
             "dies": true
         },
         "history": [
@@ -2454,7 +2454,7 @@
         "frequency": 4,
         "event_text": "m_c was found dead and cold in the snow.",
         "m_c": {
-            "element": [ "-ice", "-fire", "-blue fire"],
+            "element": ["-ice"],
             "dies": true
         },
         "history": [
@@ -3453,7 +3453,7 @@
             "age": [
                 "-kitten"
             ],
-            "element": ["-water", "-air"],
+            "element": ["-water"],
             "dies": true
         },
         "history": [
@@ -3581,7 +3581,7 @@
             "skill": [
                 "-SWIMMER,2"
             ],
-            "element": ["-water", "-air"],
+            "element": ["-water"],
             "dies": true
         },
         "history": [
@@ -3621,7 +3621,7 @@
             "skill": [
                 "-SWIMMER,2"
             ],
-            "element": ["-water", "-air"],
+            "element": ["-water"],
             "dies": true
         },
         "history": [
@@ -4009,7 +4009,7 @@
                 "attention-seeker",
                 "impulsive"
             ],
-            "element": ["-water", "-air"],
+            "element": ["-water"],
             "dies": true
         },
         "r_c": {
@@ -4620,7 +4620,7 @@
             "age": [
                 "-kitten"
             ],
-            "element": ["-water", "-air"],
+            "element": ["-water"],
             "dies": true
         },
         "history": [
@@ -5068,7 +5068,7 @@
                 "loving",
                 "responsible"
             ],
-            "element": ["-water", "-air"],
+            "element": ["-water"],
             "dies": true
         },
         "r_c": {
@@ -5639,7 +5639,7 @@
                 "loving",
                 "responsible"
             ],
-            "element": ["-water", "-fire", "-blue fire"],
+            "element": ["-fire", "-blue fire", "-magma"],
             "dies": true
         },
         "history": [
@@ -6406,7 +6406,7 @@
                 "thoughtful",
                 "vengeful"
             ],
-            "element": ["-water", "-air"],
+            "element": ["-water"],
             "dies": true
         },
         "r_c": {
@@ -6819,7 +6819,7 @@
                 "attention-seeker",
                 "troublesome"
             ],
-            "element": ["-ice", "-fire"],
+            "element": ["-ice"],
             "dies": true
         },
         "history": [
@@ -7000,7 +7000,7 @@
         "tags": [ ],
         "frequency": 2,
         "event_text": "multi_cat drown after the camp becomes flooded.",
-        "m_c": {"element": ["-water", "-air"]},
+        "m_c": {"element": ["-water"]},
         "history": [
             {
                 "cats": [
@@ -7027,7 +7027,7 @@
         "tags": [ ],
         "frequency": 2,
         "event_text": "multi_cat are killed after a fire rages through the camp.",
-        "m_c": {"element": ["-water", "-fire"]},
+        "m_c": {"element": ["-fire", "-blue fire", "-magma"]},
         "history": [
             {
                 "cats": [
@@ -7113,7 +7113,7 @@
         "tags": [ ],
         "frequency": 2,
         "event_text": "multi_cat freeze during a snowstorm.",
-        "m_c": {"element": ["-fire", "-blue fire", "-ice"]},
+        "m_c": {"element": ["-ice"]},
         "history": [
             {
                 "cats": [
@@ -7582,7 +7582,7 @@
                 "deputy",
                 "leader"
             ],
-            "element": ["-water", "-air"],
+            "element": ["-water"],
             "dies": true
         },
         "history": [
@@ -8479,7 +8479,7 @@
             "age": [
                 "-kitten"
             ],
-            "element": ["-water", "-air"],
+            "element": ["-water"],
             "dies": true
         },
         "r_c": {
@@ -8604,7 +8604,7 @@
             "status": [
                 "-leader"
             ],
-            "element": ["-fire", "-blue fire", "-water"],
+            "element": ["-fire", "-blue fire"],
             "dies": true
         },
         "r_c": {
@@ -8720,7 +8720,7 @@
             "status": [
                 "-elder"
             ],
-            "element": ["-water", "-air"],
+            "element": ["-water"],
             "dies": true
         },
         "r_c": {
