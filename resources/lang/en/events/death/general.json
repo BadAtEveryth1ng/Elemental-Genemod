@@ -7606,7 +7606,7 @@
             "status": [
                 "-kitten"
             ],
-            "element": ["-air", "-mud"],
+            "element": ["-mud"],
             "dies": true
         },
         "history": [
@@ -8604,7 +8604,7 @@
             "status": [
                 "-leader"
             ],
-            "element": ["-fire", "-blue fire"],
+            "element": ["-fire", "-blue fire", "-magma"],
             "dies": true
         },
         "r_c": {
@@ -8623,7 +8623,7 @@
                 "cats": [
                     "m_c"
                 ],
-                "death": "m_c was secretly murdered by r_c."
+                "death": "m_c was secretly murdered by a fire set by r_c."
             }
         ],
         "future_event": [
@@ -8814,6 +8814,453 @@
                     "r_c"
                 ],
                 "death": "m_c disappeared alongside a Clanmate, never to be seen again."
+            }
+        ]
+    },
+    {
+        "event_id": "gen_death_murder_earth1",
+        "location": [
+            "any"
+        ],
+        "season": [
+            "any"
+        ],
+        "sub_type": [
+            "murder"
+        ],
+        "tags": [ ],
+        "frequency": 2,
+        "event_text": "m_c died when the ground suddenly collapsed under {PRONOUN/m_c/poss} feet.",
+        "m_c": {
+            "status": [
+                "-leader"
+            ],
+            "element": ["-earth"],
+            "dies": true
+        },
+        "r_c": {
+            "age": [
+                "-kitten"
+            ],
+            "element": [
+                "earth"
+            ]
+        },
+        "exclude_involved": [
+            "r_c"
+        ],
+        "history": [
+            {
+                "cats": [
+                    "m_c"
+                ],
+                "death": "m_c was secretly buried by r_c."
+            }
+        ],
+        "future_event": [
+            {
+                "event_type": "misc",
+                "pool": {
+                    "sub_type": [
+                        "murder_reveal"
+                    ]
+                },
+                "moon_delay": [
+                    1,
+                    12
+                ],
+                "involved_cats": {
+                    "m_c": "r_c",
+                    "mur_c": "m_c",
+                    "r_c": {
+                        "age": [
+                            "-kitten"
+                        ]
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "event_id": "gen_death_murder_air1",
+        "location": [
+            "any"
+        ],
+        "season": [
+            "any"
+        ],
+        "sub_type": [
+            "murder"
+        ],
+        "tags": [ ],
+        "frequency": 2,
+        "event_text": "m_c died after {PRONOUN/m_c/subject} suddenly became breathless.",
+        "m_c": {
+            "status": [
+                "-leader"
+            ],
+            "element": ["-air"],
+            "dies": true
+        },
+        "r_c": {
+            "age": [
+                "-kitten"
+            ],
+            "element": [
+                "air"
+            ]
+        },
+        "exclude_involved": [
+            "r_c"
+        ],
+        "history": [
+            {
+                "cats": [
+                    "m_c"
+                ],
+                "death": "m_c was secretly murdered by r_c."
+            }
+        ],
+        "future_event": [
+            {
+                "event_type": "misc",
+                "pool": {
+                    "sub_type": [
+                        "murder_reveal"
+                    ]
+                },
+                "moon_delay": [
+                    1,
+                    12
+                ],
+                "involved_cats": {
+                    "m_c": "r_c",
+                    "mur_c": "m_c",
+                    "r_c": {
+                        "age": [
+                            "-kitten"
+                        ]
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "event_id": "gen_death_murder_lightning1",
+        "location": [
+            "any"
+        ],
+        "season": [
+            "any"
+        ],
+        "sub_type": [
+            "murder"
+        ],
+        "tags": [ ],
+        "frequency": 2,
+        "event_text": "Lightning struck in camp, killing m_c.",
+        "m_c": {
+            "status": [
+                "-leader"
+            ],
+            "element": ["-lightning"],
+            "dies": true
+        },
+        "r_c": {
+            "age": [
+                "-kitten"
+            ],
+            "element": [
+                "lightning"
+            ]
+        },
+        "exclude_involved": [
+            "r_c"
+        ],
+        "history": [
+            {
+                "cats": [
+                    "m_c"
+                ],
+                "death": "m_c was secretly electrocuted by r_c."
+            }
+        ],
+        "future_event": [
+            {
+                "event_type": "misc",
+                "pool": {
+                    "sub_type": [
+                        "murder_reveal"
+                    ]
+                },
+                "moon_delay": [
+                    1,
+                    12
+                ],
+                "involved_cats": {
+                    "m_c": "r_c",
+                    "mur_c": "m_c",
+                    "r_c": {
+                        "age": [
+                            "-kitten"
+                        ]
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "event_id": "gen_death_murder_magma1",
+        "location": [
+            "any"
+        ],
+        "season": [
+            "any"
+        ],
+        "sub_type": [
+            "murder"
+        ],
+        "tags": [ ],
+        "frequency": 2,
+        "event_text": "m_c mysteriously disappeared around the time a lava flow mysteriously appeared.",
+        "m_c": {
+            "status": [
+                "-leader"
+            ],
+            "element": ["-magma"],
+            "dies": true
+        },
+        "r_c": {
+            "age": [
+                "-kitten"
+            ],
+            "element": [
+                "magma"
+            ]
+        },
+        "exclude_involved": [
+            "r_c"
+        ],
+        "history": [
+            {
+                "cats": [
+                    "m_c"
+                ],
+                "death": "m_c was secretly enveloped in magma by r_c."
+            }
+        ],
+        "future_event": [
+            {
+                "event_type": "misc",
+                "pool": {
+                    "sub_type": [
+                        "murder_reveal"
+                    ]
+                },
+                "moon_delay": [
+                    1,
+                    12
+                ],
+                "involved_cats": {
+                    "m_c": "r_c",
+                    "mur_c": "m_c",
+                    "r_c": {
+                        "age": [
+                            "-kitten"
+                        ]
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "event_id": "gen_death_murder_smoke1",
+        "location": [
+            "any"
+        ],
+        "season": [
+            "any"
+        ],
+        "sub_type": [
+            "murder"
+        ],
+        "tags": [ ],
+        "frequency": 2,
+        "event_text": "m_c died after smoke appeared outside of camp despite there being no fire.",
+        "m_c": {
+            "status": [
+                "-leader"
+            ],
+            "element": ["-smoke"],
+            "dies": true
+        },
+        "r_c": {
+            "age": [
+                "-kitten"
+            ],
+            "element": [
+                "smoke"
+            ]
+        },
+        "exclude_involved": [
+            "r_c"
+        ],
+        "history": [
+            {
+                "cats": [
+                    "m_c"
+                ],
+                "death": "m_c was secretly murdered by r_c."
+            }
+        ],
+        "future_event": [
+            {
+                "event_type": "misc",
+                "pool": {
+                    "sub_type": [
+                        "murder_reveal"
+                    ]
+                },
+                "moon_delay": [
+                    1,
+                    12
+                ],
+                "involved_cats": {
+                    "m_c": "r_c",
+                    "mur_c": "m_c",
+                    "r_c": {
+                        "age": [
+                            "-kitten"
+                        ]
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "event_id": "gen_death_murder_shadow1",
+        "location": [
+            "any"
+        ],
+        "season": [
+            "any"
+        ],
+        "sub_type": [
+            "murder"
+        ],
+        "tags": [ ],
+        "frequency": 2,
+        "event_text": "m_c didn't see the cat that killed {PRONOUN/m_c/object}",
+        "m_c": {
+            "status": [
+                "-leader"
+            ],
+            "dies": true
+        },
+        "r_c": {
+            "age": [
+                "-kitten"
+            ],
+            "element": [
+                "shadow"
+            ]
+        },
+        "exclude_involved": [
+            "r_c"
+        ],
+        "history": [
+            {
+                "cats": [
+                    "m_c"
+                ],
+                "death": "m_c was secretly murdered by r_c."
+            }
+        ],
+        "future_event": [
+            {
+                "event_type": "misc",
+                "pool": {
+                    "sub_type": [
+                        "murder_reveal"
+                    ]
+                },
+                "moon_delay": [
+                    1,
+                    12
+                ],
+                "involved_cats": {
+                    "m_c": "r_c",
+                    "mur_c": "m_c",
+                    "r_c": {
+                        "age": [
+                            "-kitten"
+                        ]
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "event_id": "gen_death_murder_combustion1",
+        "location": [
+            "any"
+        ],
+        "season": [
+            "any"
+        ],
+        "sub_type": [
+            "murder"
+        ],
+        "tags": [ ],
+        "frequency": 2,
+        "event_text": "m_c died in a mysterious explosion.",
+        "m_c": {
+            "status": [
+                "-leader"
+            ],
+            "element": ["-explosion"],
+            "dies": true
+        },
+        "r_c": {
+            "age": [
+                "-kitten"
+            ],
+            "element": [
+                "explosion"
+            ]
+        },
+        "exclude_involved": [
+            "r_c"
+        ],
+        "history": [
+            {
+                "cats": [
+                    "m_c"
+                ],
+                "death": "m_c was secretly murdered in an explosion created by r_c."
+            }
+        ],
+        "future_event": [
+            {
+                "event_type": "misc",
+                "pool": {
+                    "sub_type": [
+                        "murder_reveal"
+                    ]
+                },
+                "moon_delay": [
+                    1,
+                    12
+                ],
+                "involved_cats": {
+                    "m_c": "r_c",
+                    "mur_c": "m_c",
+                    "r_c": {
+                        "age": [
+                            "-kitten"
+                        ]
+                    }
+                }
             }
         ]
     },
