@@ -1303,6 +1303,7 @@ def one_moon_cat(cat, clan):
 
     cat.relationship_interaction()
     handle_colour_changes(cat, clan)
+    handle_element(cat,clan)
 
     # relationships have to be handled separately, because of the ceremony name change
     if cat.status.group.is_any_clan_group():
@@ -1360,6 +1361,61 @@ def handle_colour_changes(cat, clan):
         event_text = "m_c has gotten used to the odd comment of 'is your fur more "+ red_colour + " today?', having heard it practically since kithood. But by now, nobody can deny it, there's barely a trace of any other coat colour left."
     if cat.phenotype.ext[0] == 'er' and cat.moons == 24:
         event_text = "m_c has gotten used to the odd comment of 'is your fur more "+ red_colour + " today?', having heard it practically since kithood. But by now, nobody can deny it, there's barely a trace of any other coat colour left."
+
+    if event_text:
+        event_text = event_text_adjust(Cat, event_text, main_cat=cat)
+        types = ["misc"]
+        game.cur_events_list.append(Single_Event(event_text, types, involved_cats, clan=clan.group_ID))
+
+def handle_element(cat,clan):
+    involved_cats = [cat.ID]
+    event_text = ""
+
+    if not cat.phenotype.element:
+        return
+    if cat.moons != 1:
+        return
+    
+    if cat.phenotype.element == "fire":
+        event_text = "m_c always seemed warmer than the average kit, and after almost lighting the nursery on fire, has been placed in a special fireproof nursury."
+    if cat.phenotype.element == "water":
+        event_text = "m_c is always soaking wet, and loves to splash others with water."
+    if cat.phenotype.element == "earth":
+        event_text = "m_c is always covered in dirt, and has been kicking up dirt around the nursery."
+    if cat.phenotype.element == "air":
+        event_text = "m_c's hair is always windblown, and the nursery has had strange gusts as of late."
+    if cat.phenotype.element == "blue fire":
+        event_text = "m_c always seemed warmer than the average kit, and after self-igniting in a strange, blue fire, has been placed in a special fireproof nursury."
+    if cat.phenotype.element == "ice":
+        event_text = "m_c always seemed colder than the average kit, and now is covered in a thin coat of ice."
+    if cat.phenotype.element == "plant":
+        event_text = "The nursery has been full of weeds lately, weeds that m_c is also covered in."
+    if cat.phenotype.element == "lightning":
+        event_text = "m_c's hair always stands on end, and m_c enjoys shocking others."
+    if cat.phenotype.element == "magma":
+        event_text = "After spewing magma all over the nursery, m_c has been placed in a special fireproof nursery."
+    if cat.phenotype.element == "metal":
+        event_text = "m_c is covered in pieces of metal, and has already made some metal toys littering the nursery floor."
+    if cat.phenotype.element == "smoke":
+        event_text = "After filling the nursery with smoke, m_c has to stay in a special open-air nursery."
+    if cat.phenotype.element == "mud":
+        event_text = "m_c's always covered in mud, and turned the nursery into a mudpit."
+    if cat.phenotype.element == "shadow":
+        event_text = "m_c seems to be cloaked in shadows, and enjoys chasing them."
+    if cat.phenotype.element == "sand":
+        event_text = "m_c is always covered in sand, and has turned the nursery into a sandbox."
+    if cat.phenotype.element == "mist":
+        event_text = "The nursery has been filled with fog as of late, and it seems the thickest around m_c."
+    if cat.phenotype.element == "oil":
+        event_text = "m_c is covered in a black liquid that shines in the light."
+    if cat.phenotype.element == "combustion":
+        event_text = "A small explosion rocked the nursery. Thankfully everyone was uninjured, and m_c was told off for making explosions in a confined space."
+    if cat.phenotype.element == "decay":
+        event_text = "m_c smells of rot, but otherwise seems healthy enough."
+    if cat.phenotype.element == "magnetic":
+        event_text = "The air seems to glow around m_c, and m_c has been floating in the air."
+    if cat.phenotype.element == "luminescent":
+        event_text = "m_c glows in the dark, and chases their own light in the nursery"
 
     if event_text:
         event_text = event_text_adjust(Cat, event_text, main_cat=cat)
