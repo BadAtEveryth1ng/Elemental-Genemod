@@ -21,10 +21,12 @@
         "m_c always seemed warmer than the average kit, and, after self-igniting in a strange blue fire, has been placed in a special fireproof nursery."
     ],
     "ice": [
-        "m_c always seemed colder than the average kit, now to the point of growing frost."
+        "m_c always seemed colder than the average kit, now to the point of growing frost.",
+        "m_c has been turning puddles around camp into ice to play on."
     ],
     "plant": [
-        "The nursery has been especially green lately, no matter the weather, especially the sprouts on m_c."
+        "The nursery has been especially green lately, no matter the weather, especially the sprouts on m_c.",
+        "m_c was caught growing dandelions to play with."
     ],
     "lightning": [
         "m_c's made a frequent habit of shocking others with static lately.",
@@ -57,7 +59,8 @@
     ],
 
     "mist": [
-        "The nursery has been filled with faint mist as of late, and it seems the thickest around m_c."
+        "The nursery has been filled with faint mist as of late, and it seems the thickest around m_c.",
+        "m_c is surrounded by mist as {PRONOUN/m_c/subject} toddle through camp."
     ],
     "oil": [
         "m_c is covered in a black liquid that shines in the light."
