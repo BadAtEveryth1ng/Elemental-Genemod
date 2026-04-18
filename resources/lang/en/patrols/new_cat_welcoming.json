@@ -6337,6 +6337,399 @@
                     "death": "m_c died of injuries inflicted by a Twoleg attempting to drown {PRONOUN/m_c/object}."
                 },
                 "frequency": 4
+            },
+            {
+                "text": "s_c takes the lead as the patrol rushes to the rescue - setting the smooth pelt of the Twoleg's legs alight. It rushes into the water to put it out, leaving the dazed kittens forgotten for the patrol to lead away.",
+                "exp": 10,
+                "stat_element": [ "fire", "blue fire" ],
+                "can_have_stat": [ "adult" ],
+                "new_cat": [
+                    [ "kittypet", "can_birth", "age:has_kits" ],
+                    [ "litter", "status:kitten", "backstory:abandoned4", "kittypet", "parent:0" ]
+                ],
+                "relationships": [
+                    {
+                        "cats_from": [ "n_c:1" ],
+                        "cats_to": [ "patrol" ],
+                        "values": [ "like", "trust", "comfort" ],
+                        "amount": 10,
+                        "log": {
+                            "cats_from": "cat_to was part of the patrol that rescued cat_from from a cruel Twoleg and brought {PRONOUN/cat_from/object} to c_n."
+                        }
+                    }
+                ],
+                "outsider_rep": 1,
+                "injury": [
+                    {
+                        "cats": [
+                            "n_c:1"
+                        ],
+                        "injuries": [
+                            "blunt_force_injury"
+                        ],
+                        "no_results": true
+                    }
+                ],
+                "history_text": {
+                    "scar": "m_c was scarred after a Twoleg attempted to drown {PRONOUN/m_c/object}.",
+                    "death": "m_c died of injuries inflicted by a Twoleg attempting to drown {PRONOUN/m_c/object}."
+                },
+                "frequency": 1
+            },
+            {
+                "text": "s_c takes the lead as the patrol rushes to the rescue - setting the smooth pelt of the Twoleg's legs alight. It rushes into the water to put it out, leaving the dazed cat forgotten for the patrol to lead away.",
+                "exp": 10,
+                "stat_element": [ "fire", "blue fire" ],
+                "can_have_stat": [ "adult" ],
+                "new_cat": [
+                    [
+                        "status:elder",
+                        "age:senior",
+                        "kittypet"
+                    ]
+                ],
+                "relationships": [
+                    {
+                        "cats_from": [ "n_c:0" ],
+                        "cats_to": [ "patrol" ],
+                        "values": [ "like", "trust", "comfort" ],
+                        "amount": 10,
+                        "log": {
+                            "cats_from": "cat_to was part of the patrol that rescued cat_from from a cruel Twoleg and brought {PRONOUN/cat_from/object} to c_n."
+                        }
+                    }
+                ],
+                "outsider_rep": 1,
+                "injury": [
+                    {
+                        "cats": [
+                            "n_c:0"
+                        ],
+                        "injuries": [
+                            "blunt_force_injury"
+                        ],
+                        "no_results": true
+                    }
+                ],
+                "history_text": {
+                    "scar": "m_c was scarred after a Twoleg attempted to drown {PRONOUN/m_c/object}.",
+                    "death": "m_c died of injuries inflicted by a Twoleg attempting to drown {PRONOUN/m_c/object}."
+                },
+                "frequency": 4
+            },
+            {
+                "text": "s_c waits for the Twoleg to drop the bag into the water, forming a wave underneath to carry the cat to the shore where the patrol awaits to help the kittens get free and offer them safety in c_n.",
+                "exp": 10,
+                "stat_element": [ "water" ],
+                "can_have_stat": [ "adult" ],
+                "new_cat": [
+                    [ "kittypet", "can_birth", "age:has_kits" ],
+                    [ "litter", "status:kitten", "backstory:abandoned4", "kittypet", "parent:0" ]
+                ],
+                "relationships": [
+                    {
+                        "cats_from": [ "n_c:1" ],
+                        "cats_to": [ "patrol" ],
+                        "values": [ "like", "trust", "comfort" ],
+                        "amount": 10,
+                        "log": {
+                            "cats_from": "cat_to was part of the patrol that rescued cat_from from a cruel Twoleg and brought {PRONOUN/cat_from/object} to c_n."
+                        }
+                    }
+                ],
+                "outsider_rep": 1,
+                "injury": [
+                    {
+                        "cats": [
+                            "n_c:1"
+                        ],
+                        "injuries": [
+                            "blunt_force_injury"
+                        ],
+                        "no_results": true
+                    }
+                ],
+                "history_text": {
+                    "scar": "m_c was scarred after a Twoleg attempted to drown {PRONOUN/m_c/object}.",
+                    "death": "m_c died of injuries inflicted by a Twoleg attempting to drown {PRONOUN/m_c/object}."
+                },
+                "frequency": 1
+            },
+            {
+                "text": "s_c waits for the Twoleg to drop the bag into the water, forming a wave underneath to carry the cat to the shore where the patrol awaits to help the cat get free and offer {PRONOUN/n_c:0/object} safety in c_n.",
+                "exp": 10,
+                "stat_element": [ "water" ],
+                "can_have_stat": [ "adult" ],
+                "new_cat": [
+                    [
+                        "status:elder",
+                        "age:senior",
+                        "kittypet"
+                    ]
+                ],
+                "relationships": [
+                    {
+                        "cats_from": [ "n_c:0" ],
+                        "cats_to": [ "patrol" ],
+                        "values": [ "like", "trust", "comfort" ],
+                        "amount": 10,
+                        "log": {
+                            "cats_from": "cat_to was part of the patrol that rescued cat_from from a cruel Twoleg and brought {PRONOUN/cat_from/object} to c_n."
+                        }
+                    }
+                ],
+                "outsider_rep": 1,
+                "injury": [
+                    {
+                        "cats": [
+                            "n_c:0"
+                        ],
+                        "injuries": [
+                            "blunt_force_injury"
+                        ],
+                        "no_results": true
+                    }
+                ],
+                "history_text": {
+                    "scar": "m_c was scarred after a Twoleg attempted to drown {PRONOUN/m_c/object}.",
+                    "death": "m_c died of injuries inflicted by a Twoleg attempting to drown {PRONOUN/m_c/object}."
+                },
+                "frequency": 4
+            },
+            {
+                "text": "s_c shifts the ground sharply under the Twoleg's paws, knocking it off balance. The rest of the patrol descend upon it, driving it back from the bag. Once it's gone, they reassure the kittens that they'll be safe with c_n.",
+                "exp": 10,
+                "stat_element": [ "earth", "sand" ],
+                "can_have_stat": [ "adult" ],
+                "new_cat": [
+                    [ "kittypet", "can_birth", "age:has_kits" ],
+                    [ "litter", "status:kitten", "backstory:abandoned4", "kittypet", "parent:0" ]
+                ],
+                "relationships": [
+                    {
+                        "cats_from": [ "n_c:1" ],
+                        "cats_to": [ "patrol" ],
+                        "values": [ "like", "trust", "comfort" ],
+                        "amount": 10,
+                        "log": {
+                            "cats_from": "cat_to was part of the patrol that rescued cat_from from a cruel Twoleg and brought {PRONOUN/cat_from/object} to c_n."
+                        }
+                    }
+                ],
+                "outsider_rep": 1,
+                "injury": [
+                    {
+                        "cats": [
+                            "n_c:1"
+                        ],
+                        "injuries": [
+                            "blunt_force_injury"
+                        ],
+                        "no_results": true
+                    }
+                ],
+                "history_text": {
+                    "scar": "m_c was scarred after a Twoleg attempted to drown {PRONOUN/m_c/object}.",
+                    "death": "m_c died of injuries inflicted by a Twoleg attempting to drown {PRONOUN/m_c/object}."
+                },
+                "frequency": 1
+            },
+            {
+                "text": "s_c shifts the ground sharply under the Twoleg's paws, knocking it off balance. The rest of the patrol descend upon it, driving it back from the bag. Once it's gone, they reassure the elder that {PRONOUN/n_c:0/subject}'ll be safe with c_n.",
+                "exp": 10,
+                "stat_element": [ "earth", "sand" ],
+                "can_have_stat": [ "adult" ],
+                "new_cat": [
+                    [
+                        "status:elder",
+                        "age:senior",
+                        "kittypet"
+                    ]
+                ],
+                "relationships": [
+                    {
+                        "cats_from": [ "n_c:0" ],
+                        "cats_to": [ "patrol" ],
+                        "values": [ "like", "trust", "comfort" ],
+                        "amount": 10,
+                        "log": {
+                            "cats_from": "cat_to was part of the patrol that rescued cat_from from a cruel Twoleg and brought {PRONOUN/cat_from/object} to c_n."
+                        }
+                    }
+                ],
+                "outsider_rep": 1,
+                "injury": [
+                    {
+                        "cats": [
+                            "n_c:0"
+                        ],
+                        "injuries": [
+                            "blunt_force_injury"
+                        ],
+                        "no_results": true
+                    }
+                ],
+                "history_text": {
+                    "scar": "m_c was scarred after a Twoleg attempted to drown {PRONOUN/m_c/object}.",
+                    "death": "m_c died of injuries inflicted by a Twoleg attempting to drown {PRONOUN/m_c/object}."
+                },
+                "frequency": 4
+            },
+            {
+                "text": "s_c sprouts brambles to wrap around one of the Twoleg's legs, distracting it before the rest of the patrol rushes in to rescue the dropped kittens.",
+                "exp": 10,
+                "stat_element": [ "plant" ],
+                "can_have_stat": [ "adult" ],
+                "new_cat": [
+                    [ "kittypet", "can_birth", "age:has_kits" ],
+                    [ "litter", "status:kitten", "backstory:abandoned4", "kittypet", "parent:0" ]
+                ],
+                "relationships": [
+                    {
+                        "cats_from": [ "n_c:1" ],
+                        "cats_to": [ "patrol" ],
+                        "values": [ "like", "trust", "comfort" ],
+                        "amount": 10,
+                        "log": {
+                            "cats_from": "cat_to was part of the patrol that rescued cat_from from a cruel Twoleg and brought {PRONOUN/cat_from/object} to c_n."
+                        }
+                    }
+                ],
+                "outsider_rep": 1,
+                "injury": [
+                    {
+                        "cats": [
+                            "n_c:1"
+                        ],
+                        "injuries": [
+                            "blunt_force_injury"
+                        ],
+                        "no_results": true
+                    }
+                ],
+                "history_text": {
+                    "scar": "m_c was scarred after a Twoleg attempted to drown {PRONOUN/m_c/object}.",
+                    "death": "m_c died of injuries inflicted by a Twoleg attempting to drown {PRONOUN/m_c/object}."
+                },
+                "frequency": 1
+            },
+            {
+                "text": "s_c sprouts brambles to wrap around one of the Twoleg's legs, distracting it before the rest of the patrol rushes in to rescue the dropped elderly cat.",
+                "exp": 10,
+                "stat_element": [ "plant" ],
+                "can_have_stat": [ "adult" ],
+                "new_cat": [
+                    [
+                        "status:elder",
+                        "age:senior",
+                        "kittypet"
+                    ]
+                ],
+                "relationships": [
+                    {
+                        "cats_from": [ "n_c:0" ],
+                        "cats_to": [ "patrol" ],
+                        "values": [ "like", "trust", "comfort" ],
+                        "amount": 10,
+                        "log": {
+                            "cats_from": "cat_to was part of the patrol that rescued cat_from from a cruel Twoleg and brought {PRONOUN/cat_from/object} to c_n."
+                        }
+                    }
+                ],
+                "outsider_rep": 1,
+                "injury": [
+                    {
+                        "cats": [
+                            "n_c:0"
+                        ],
+                        "injuries": [
+                            "blunt_force_injury"
+                        ],
+                        "no_results": true
+                    }
+                ],
+                "history_text": {
+                    "scar": "m_c was scarred after a Twoleg attempted to drown {PRONOUN/m_c/object}.",
+                    "death": "m_c died of injuries inflicted by a Twoleg attempting to drown {PRONOUN/m_c/object}."
+                },
+                "frequency": 4
+            },
+            {
+                "text": "s_c sneaks closer, pulling a jingly piece of metal from the Twoleg's pouch from a distance. It's enough to distract it, the Twoleg rushing to grab it while the rest of the patrol lead the dropped kittens away with a promise of safety in c_n.",
+                "exp": 10,
+                "stat_element": [ "metal", "magnetic" ],
+                "new_cat": [
+                    [ "kittypet", "can_birth", "age:has_kits" ],
+                    [ "litter", "status:kitten", "backstory:abandoned4", "kittypet", "parent:0" ]
+                ],
+                "relationships": [
+                    {
+                        "cats_from": [ "n_c:1" ],
+                        "cats_to": [ "patrol" ],
+                        "values": [ "like", "trust", "comfort" ],
+                        "amount": 10,
+                        "log": {
+                            "cats_from": "cat_to was part of the patrol that rescued cat_from from a cruel Twoleg and brought {PRONOUN/cat_from/object} to c_n."
+                        }
+                    }
+                ],
+                "outsider_rep": 1,
+                "injury": [
+                    {
+                        "cats": [
+                            "n_c:1"
+                        ],
+                        "injuries": [
+                            "blunt_force_injury"
+                        ],
+                        "no_results": true
+                    }
+                ],
+                "history_text": {
+                    "scar": "m_c was scarred after a Twoleg attempted to drown {PRONOUN/m_c/object}.",
+                    "death": "m_c died of injuries inflicted by a Twoleg attempting to drown {PRONOUN/m_c/object}."
+                },
+                "frequency": 1
+            },
+            {
+                "text": "s_c sneaks closer, pulling a jingly piece of metal from the Twoleg's pouch from a distance. It's enough to distract it, the Twoleg rushing to grab it while the rest of the patrol lead the dropped elder away with a promise of safety in c_n.",
+                "exp": 10,
+                "stat_element": [ "metal", "magnetic" ],
+                "new_cat": [
+                    [
+                        "status:elder",
+                        "age:senior",
+                        "kittypet"
+                    ]
+                ],
+                "relationships": [
+                    {
+                        "cats_from": [ "n_c:0" ],
+                        "cats_to": [ "patrol" ],
+                        "values": [ "like", "trust", "comfort" ],
+                        "amount": 10,
+                        "log": {
+                            "cats_from": "cat_to was part of the patrol that rescued cat_from from a cruel Twoleg and brought {PRONOUN/cat_from/object} to c_n."
+                        }
+                    }
+                ],
+                "outsider_rep": 1,
+                "injury": [
+                    {
+                        "cats": [
+                            "n_c:0"
+                        ],
+                        "injuries": [
+                            "blunt_force_injury"
+                        ],
+                        "no_results": true
+                    }
+                ],
+                "history_text": {
+                    "scar": "m_c was scarred after a Twoleg attempted to drown {PRONOUN/m_c/object}.",
+                    "death": "m_c died of injuries inflicted by a Twoleg attempting to drown {PRONOUN/m_c/object}."
+                },
+                "frequency": 4
             }
         ],
         "fail_outcomes": [
@@ -6384,6 +6777,48 @@
                     "scar": "m_c was scarred after a Twoleg threw {PRONOUN/m_c/object} to the earth.",
                     "death": "m_c died of injuries inflicted by a Twoleg."
                 },
+                "outsider_rep": -1,
+                "frequency": 4
+            },
+            {
+                "text": "s_c takes the lead as the patrol rushes to the rescue - aiming to set the smooth pelt of the Twoleg's legs alight. {PRONOUN/s_c/subject/CAP} {VERB/s_c/are/is}n't quick enough to avoid the sudden kick and find {PRONOUN/s_c/self} dazed in the water.",
+                "exp": 0,
+                "stat_element": [ "fire", "blue fire" ],
+                "injury": [
+                    {
+                        "cats": [
+                            "r_c"
+                        ],
+                        "injuries": [
+                            "blunt_force_injury", "water in their lungs"
+                        ]
+                    }
+                ],
+                "history_text": {
+                    "scar": "m_c was scarred after a Twoleg kicked {PRONOUN/m_c/object} into the lake.",
+                    "death": "m_c died of injuries inflicted by a Twoleg."
+                },
+                "outsider_rep": -1,
+                "frequency": 4
+            },
+            {
+                "text": "s_c shifts the ground sharply under the Twoleg's paws, but it just barely keeps balance, and tosses the bag into the lake in the process.",
+                "exp": 0,
+                "stat_element": [ "earth", "sand" ],
+                "outsider_rep": -1,
+                "frequency": 4
+            },
+            {
+                "text": "s_c sprouts brambles to wrap around one of the Twoleg's legs, but it's able to pry itself free.",
+                "exp": 0,
+                "stat_element": [ "plant" ],
+                "outsider_rep": -1,
+                "frequency": 4
+            },
+            {
+                "text": "s_c sneaks closer, pulling a jingly piece of metal from the Twoleg's pouch from a distance. It notices too fast, using a paw to clutch the object and continue its grizzly work unphased.",
+                "exp": 0,
+                "stat_element": [ "metal", "magnetic" ],
                 "outsider_rep": -1,
                 "frequency": 4
             }

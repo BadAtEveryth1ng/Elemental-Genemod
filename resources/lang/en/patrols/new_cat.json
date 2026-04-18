@@ -10407,6 +10407,48 @@
                 },
                 "outsider_rep": -1,
                 "frequency": 4
+            },
+            {
+                "text": "s_c takes the lead as the patrol rushes to the rescue - aiming to set the smooth pelt of the Twoleg's legs alight. {PRONOUN/s_c/subject/CAP} {VERB/s_c/are/is}n't quick enough to avoid the sudden kick and find {PRONOUN/s_c/self} dazed in the water.",
+                "exp": 0,
+                "stat_element": [ "fire", "blue fire" ],
+                "injury": [
+                    {
+                        "cats": [
+                            "r_c"
+                        ],
+                        "injuries": [
+                            "blunt_force_injury", "water in their lungs"
+                        ]
+                    }
+                ],
+                "history_text": {
+                    "scar": "m_c was scarred after a Twoleg kicked {PRONOUN/m_c/object} into the lake.",
+                    "death": "m_c died of injuries inflicted by a Twoleg."
+                },
+                "outsider_rep": -1,
+                "frequency": 4
+            },
+            {
+                "text": "s_c shifts the ground sharply under the Twoleg's paws, but it just barely keeps balance, and tosses the bag into the lake in the process.",
+                "exp": 0,
+                "stat_element": [ "earth", "sand" ],
+                "outsider_rep": -1,
+                "frequency": 4
+            },
+            {
+                "text": "s_c sprouts brambles to wrap around one of the Twoleg's legs, but it's able to pry itself free.",
+                "exp": 0,
+                "stat_element": [ "plant" ],
+                "outsider_rep": -1,
+                "frequency": 4
+            },
+            {
+                "text": "s_c sneaks closer, pulling a jingly piece of metal from the Twoleg's pouch from a distance. It notices too fast, using a paw to clutch the object and continue its grizzly work unphased.",
+                "exp": 0,
+                "stat_element": [ "metal", "magnetic" ],
+                "outsider_rep": -1,
+                "frequency": 4
             }
         ],
         "antag_fail_outcomes": [

@@ -7050,7 +7050,8 @@
         "id": "plant_camp_gen",
         "thoughts": [
             "Grows extra brambles to reinforce the camp walls",
-            "Grows extra brambles to reinforce the nursery"
+            "Grows extra brambles to reinforce the nursery",
+            "Is adding some flowers to decorate camp"
         ],
         "main_element_constraint": [
             "plant"

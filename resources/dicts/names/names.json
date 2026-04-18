@@ -54,6 +54,32 @@
     "Calico": ["dapple", "patch", "patch"]
   },
 
+  "element_suffixes": {
+    "fire": ["blaze", "blister", "fire", "flame"],
+    "water": ["bubble", "flood", "wash", "water", "wave"],
+    "earth": ["earth", "soil", "stone"],
+    "air": ["breeze", "gale", "gust", "wind"],
+
+    "blue fire": ["blaze", "blister", "fire", "flame"],
+    "ice": ["frost", "freeze", "ice", "icicle"],
+    "plant": ["bloom", "bush", "leaf", "pollen"],
+    "lightning": ["bolt", "crackle", "flash"],
+
+    "magma": ["burn", "blister"],
+    "metal": ["shine"],
+    "smoke": ["smog", "smoke"],
+    "mud": ["mud", "puddle"],
+    "shadow": ["shade", "shadow"],
+    "sand": ["dune", "sand"],
+
+    "mist": ["cloud", "fog", "mist"],
+    "oil": ["shine", "shimmer"],
+    "combustion": ["boom", "crash", "rumble"],
+    "decay": ["fly", "hive"],
+    "magnetic": ["float"],
+    "luminescent": ["bright", "light", "shine"]
+  },
+
   "normal_prefixes": [
     "Adder", "Alder", "Ant", "Antler", "Aphid", "Apple", "Apricot", "Arch", "Aspen", "Aster", 
     "Badger", "Barley", "Basil", "Bass", "Bay", "Beam", "Bear", "Beaver", "Bee", "Beech", "Beetle", "Berry", "Big", "Billow", "Birch", 
