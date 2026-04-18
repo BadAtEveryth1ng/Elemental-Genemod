@@ -497,7 +497,7 @@ class Name:
             if tries > 20:
                 break
             named_after_pelt = not random.getrandbits(2)
-            named_after_element = not random.getrandbits(2)
+            named_after_element = not random.getrandbits(2) and self.phenotype
             named_after_biome = not random.getrandbits(3)  # 1/8
             # Pelt name only gets used if there's an associated suffix.
             if named_after_pelt and len(pelt) > 0:
