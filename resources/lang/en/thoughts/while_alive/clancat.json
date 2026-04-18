@@ -7044,5 +7044,19 @@
         "random_element_constraint": [
             "ice"
         ]
+    },
+
+    {
+        "id": "plant_camp_gen",
+        "thoughts": [
+            "Grows extra brambles to reinforce the camp walls",
+            "Grows extra brambles to reinforce the nursery"
+        ],
+        "main_element_constraint": [
+            "plant"
+        ],
+        "main_skill_constraint": [
+            "CAMP,1"
+        ]
     }
 ]

@@ -1048,44 +1048,6 @@
         ]
     },
     {
-        "id": "fire_kit",
-        "thoughts": [
-            "Is being told off for playing with sparks"
-        ],
-        "main_age_constraint": [
-            "kitten"
-        ],
-        "main_element_constraint": [
-            "fire",
-            "blue fire",
-            "magma"
-        ]
-    },
-    {
-        "id": "fire_kit_to_non_fire_kit",
-        "thoughts": [
-            "Accidentally burned r_c while playing",
-            "Accidentally singed r_c's whiskers while playing"
-        ],
-        "main_age_constraint": [
-            "kitten"
-        ],
-        "random_age_constraint": [
-            "kitten"
-        ],
-        "main_element_constraint": [
-            "fire",
-            "blue fire",
-            "magma"
-        ],
-        "random_element_constraint": [
-            "-fire",
-            "-blue fire",
-            "-magma",
-            "-combustion"
-        ]
-    },
-    {
         "id": "fire_gen",
         "thoughts": [
             "Accidentally sets something on fire",
@@ -1095,32 +1057,6 @@
             "fire",
             "blue fire",
             "magma"
-        ]
-    },
-
-    {
-        "id": "water_kit",
-        "thoughts": [
-            "Complains how soggy nest {PRONOUN/m_c/poss} nest got"
-        ],
-        "main_age_constraint": [
-            "kitten"
-        ],
-        "main_element_constraint": [
-            "water"
-        ]
-    },
-    
-    {
-        "id": "combustion_kit",
-        "thoughts": [
-            "Is being told off for playing with sparks"
-        ],
-        "main_age_constraint": [
-            "kitten"
-        ],
-        "main_element_constraint": [
-            "combustion"
         ]
     },
 
@@ -1210,6 +1146,92 @@
             "smoke",
             "mist",
             "decay"
+        ]
+    },
+    {
+        "id": "fire_kit",
+        "thoughts": [
+            "Is being told off for playing with sparks",
+            "Is being told off for almost lighting something on fire"
+        ],
+        "main_age_constraint": [
+            "kitten"
+        ],
+        "main_element_constraint": [
+            "fire",
+            "blue fire",
+            "magma"
+        ]
+    },
+    {
+        "id": "fire_kit_to_non_fire_kit",
+        "thoughts": [
+            "Accidentally burned r_c while playing",
+            "Accidentally singed r_c's whiskers while playing"
+        ],
+        "main_age_constraint": [
+            "kitten"
+        ],
+        "random_age_constraint": [
+            "kitten"
+        ],
+        "main_element_constraint": [
+            "fire",
+            "blue fire",
+            "magma"
+        ],
+        "random_element_constraint": [
+            "-fire",
+            "-blue fire",
+            "-magma",
+            "-combustion"
+        ]
+    },
+
+    {
+        "id": "water_kit",
+        "thoughts": [
+            "Complains how soggy nest {PRONOUN/m_c/poss} nest got"
+        ],
+        "main_age_constraint": [
+            "kitten"
+        ],
+        "main_element_constraint": [
+            "water"
+        ]
+    },
+
+    {
+        "id": "combustion_kit",
+        "thoughts": [
+            "Is being told off for playing with sparks",
+            "Is being told off for waking cats up with loud booms",
+            "Is being told off for scaring other cats with sudden booms"
+        ],
+        "main_age_constraint": [
+            "kitten"
+        ],
+        "main_element_constraint": [
+            "combustion"
+        ]
+    },
+
+    {
+        "id": "plant_kit",
+        "thoughts": [
+            "Is trying to create a new kind of flower",
+            "Is playing with thorns",
+            "Sprouted the prettiest flower ever today",
+            "Wonders if {PRONOUN/m_c/subject}'ll ever be able to grow a whole tree",
+            "Got covered with dandelion fluff after growing too many",
+            "Is covered in pollen",
+            "Pretends to be a bee after getting covered in pollen"
+        ],
+        "main_age_constraint": [
+            "kitten"
+        ],
+        "main_element_constraint": [
+            "plant"
         ]
     }
     
