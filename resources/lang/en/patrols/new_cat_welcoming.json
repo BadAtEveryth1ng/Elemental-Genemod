@@ -141,14 +141,14 @@
                 "new_cat": [
                     [
                         "meeting",
-                        "loner",
-                        "age:adolescent"
+                        "loner"
                     ]
                 ],
                 "injury": [
                     {
-                        "cats": [ "n_c:0" ],
-                        "injuries": [ "severe burn" ]
+                        "cats": ["n_c:0"],
+                        "injuries": ["severe burn"],
+                        "no_results": true
                     }
                 ],
                 "relationships": [
@@ -177,14 +177,14 @@
                 "new_cat": [
                     [
                         "meeting",
-                        "loner",
-                        "age:adolescent"
+                        "loner"
                     ]
                 ],
                 "injury": [
                     {
                         "cats": [ "n_c:0" ],
-                        "injuries": [ "battle_injury" ]
+                        "injuries": [ "battle_injury" ],
+                        "no_results": true
                     }
                 ],
                 "relationships": [
@@ -213,14 +213,14 @@
                 "new_cat": [
                     [
                         "meeting",
-                        "loner",
-                        "age:adolescent"
+                        "loner"
                     ]
                 ],
                 "injury": [
                     {
                         "cats": [ "n_c:0" ],
-                        "injuries": [ "blunt_force_injury" ]
+                        "injuries": [ "blunt_force_injury" ],
+                        "no_results": true
                     }
                 ],
                 "relationships": [
@@ -249,14 +249,14 @@
                 "new_cat": [
                     [
                         "meeting",
-                        "loner",
-                        "age:adolescent"
+                        "loner"
                     ]
                 ],
                 "injury": [
                     {
                         "cats": [ "n_c:0" ],
-                        "injuries": [ "battle_injury" ]
+                        "injuries": [ "battle_injury" ],
+                        "no_results": true
                     }
                 ],
                 "relationships": [
@@ -285,14 +285,14 @@
                 "new_cat": [
                     [
                         "meeting",
-                        "loner",
-                        "age:adolescent"
+                        "loner"
                     ]
                 ],
                 "injury": [
                     {
-                        "cats": [ "n_c:0" ],
-                        "injuries": [ "battle_injury" ]
+                        "cats": ["n_c:0"],
+                        "injuries": ["battle_injury"],
+                        "no_results": true
                     }
                 ],
                 "relationships": [
@@ -321,14 +321,14 @@
                 "new_cat": [
                     [
                         "meeting",
-                        "loner",
-                        "age:adolescent"
+                        "loner"
                     ]
                 ],
                 "injury": [
                     {
                         "cats": [ "n_c:0" ],
-                        "injuries": [ "battle_injury" ]
+                        "injuries": [ "battle_injury" ],
+                        "no_results": true
                     }
                 ],
                 "relationships": [
@@ -357,14 +357,14 @@
                 "new_cat": [
                     [
                         "meeting",
-                        "loner",
-                        "age:adolescent"
+                        "loner"
                     ]
                 ],
                 "injury": [
                     {
                         "cats": [ "n_c:0" ],
-                        "injuries": [ "battle_injury" ]
+                        "injuries": [ "battle_injury" ],
+                        "no_results": true
                     }
                 ],
                 "relationships": [
@@ -393,14 +393,14 @@
                 "new_cat": [
                     [
                         "meeting",
-                        "loner",
-                        "age:adolescent"
+                        "loner"
                     ]
                 ],
                 "injury": [
                     {
                         "cats": [ "n_c:0" ],
-                        "injuries": [ "battle_injury" ]
+                        "injuries": [ "battle_injury" ],
+                        "no_results": true
                     }
                 ],
                 "relationships": [
@@ -429,8 +429,7 @@
                 "new_cat": [
                     [
                         "meeting",
-                        "loner",
-                        "age:adolescent"
+                        "loner"
                     ]
                 ],
                 "relationships": [
@@ -459,8 +458,7 @@
                 "new_cat": [
                     [
                         "meeting",
-                        "loner",
-                        "age:adolescent"
+                        "loner"
                     ]
                 ],
                 "relationships": [
@@ -1744,14 +1742,14 @@
                 "new_cat": [
                     [
                         "meeting",
-                        "loner",
-                        "age:adolescent"
+                        "loner"
                     ]
                 ],
                 "injury": [
                     {
-                        "cats": [ "n_c:0" ],
-                        "injuries": [ "severe burn" ]
+                        "cats": ["n_c:0"],
+                        "injuries": ["severe burn"],
+                        "no_results": true
                     }
                 ],
                 "relationships": [
@@ -1780,14 +1778,14 @@
                 "new_cat": [
                     [
                         "meeting",
-                        "loner",
-                        "age:adolescent"
+                        "loner"
                     ]
                 ],
                 "injury": [
                     {
                         "cats": [ "n_c:0" ],
-                        "injuries": [ "battle_injury" ]
+                        "injuries": [ "battle_injury" ],
+                        "no_results": true
                     }
                 ],
                 "relationships": [
@@ -1816,14 +1814,14 @@
                 "new_cat": [
                     [
                         "meeting",
-                        "loner",
-                        "age:adolescent"
+                        "loner"
                     ]
                 ],
                 "injury": [
                     {
                         "cats": [ "n_c:0" ],
-                        "injuries": [ "blunt_force_injury" ]
+                        "injuries": [ "blunt_force_injury" ],
+                        "no_results": true
                     }
                 ],
                 "relationships": [
@@ -1852,14 +1850,14 @@
                 "new_cat": [
                     [
                         "meeting",
-                        "loner",
-                        "age:adolescent"
+                        "loner"
                     ]
                 ],
                 "injury": [
                     {
                         "cats": [ "n_c:0" ],
-                        "injuries": [ "battle_injury" ]
+                        "injuries": [ "battle_injury" ],
+                        "no_results": true
                     }
                 ],
                 "relationships": [
@@ -1888,14 +1886,14 @@
                 "new_cat": [
                     [
                         "meeting",
-                        "loner",
-                        "age:adolescent"
+                        "loner"
                     ]
                 ],
                 "injury": [
                     {
-                        "cats": [ "n_c:0" ],
-                        "injuries": [ "battle_injury" ]
+                        "cats": ["n_c:0"],
+                        "injuries": ["battle_injury"],
+                        "no_results": true
                     }
                 ],
                 "relationships": [
@@ -1924,14 +1922,14 @@
                 "new_cat": [
                     [
                         "meeting",
-                        "loner",
-                        "age:adolescent"
+                        "loner"
                     ]
                 ],
                 "injury": [
                     {
                         "cats": [ "n_c:0" ],
-                        "injuries": [ "battle_injury" ]
+                        "injuries": [ "battle_injury" ],
+                        "no_results": true
                     }
                 ],
                 "relationships": [
@@ -1960,14 +1958,14 @@
                 "new_cat": [
                     [
                         "meeting",
-                        "loner",
-                        "age:adolescent"
+                        "loner"
                     ]
                 ],
                 "injury": [
                     {
                         "cats": [ "n_c:0" ],
-                        "injuries": [ "battle_injury" ]
+                        "injuries": [ "battle_injury" ],
+                        "no_results": true
                     }
                 ],
                 "relationships": [
@@ -1996,14 +1994,14 @@
                 "new_cat": [
                     [
                         "meeting",
-                        "loner",
-                        "age:adolescent"
+                        "loner"
                     ]
                 ],
                 "injury": [
                     {
                         "cats": [ "n_c:0" ],
-                        "injuries": [ "battle_injury" ]
+                        "injuries": [ "battle_injury" ],
+                        "no_results": true
                     }
                 ],
                 "relationships": [
@@ -2032,8 +2030,7 @@
                 "new_cat": [
                     [
                         "meeting",
-                        "loner",
-                        "age:adolescent"
+                        "loner"
                     ]
                 ],
                 "relationships": [
@@ -2062,8 +2059,7 @@
                 "new_cat": [
                     [
                         "meeting",
-                        "loner",
-                        "age:adolescent"
+                        "loner"
                     ]
                 ],
                 "relationships": [
@@ -2198,14 +2194,14 @@
                 "new_cat": [
                     [
                         "meeting",
-                        "kittypet",
-                        "age:adolescent"
+                        "kittypet"
                     ]
                 ],
                 "injury": [
                     {
-                        "cats": [ "n_c:0" ],
-                        "injuries": [ "severe burn" ]
+                        "cats": ["n_c:0"],
+                        "injuries": ["severe burn"],
+                        "no_results": true
                     }
                 ],
                 "relationships": [
@@ -2234,14 +2230,14 @@
                 "new_cat": [
                     [
                         "meeting",
-                        "kittypet",
-                        "age:adolescent"
+                        "kittypet"
                     ]
                 ],
                 "injury": [
                     {
                         "cats": [ "n_c:0" ],
-                        "injuries": [ "battle_injury" ]
+                        "injuries": [ "battle_injury" ],
+                        "no_results": true
                     }
                 ],
                 "relationships": [
@@ -2270,14 +2266,14 @@
                 "new_cat": [
                     [
                         "meeting",
-                        "kittypet",
-                        "age:adolescent"
+                        "kittypet"
                     ]
                 ],
                 "injury": [
                     {
                         "cats": [ "n_c:0" ],
-                        "injuries": [ "blunt_force_injury" ]
+                        "injuries": [ "blunt_force_injury" ],
+                        "no_results": true
                     }
                 ],
                 "relationships": [
@@ -2306,14 +2302,14 @@
                 "new_cat": [
                     [
                         "meeting",
-                        "kittypet",
-                        "age:adolescent"
+                        "kittypet"
                     ]
                 ],
                 "injury": [
                     {
                         "cats": [ "n_c:0" ],
-                        "injuries": [ "battle_injury" ]
+                        "injuries": [ "battle_injury" ],
+                        "no_results": true
                     }
                 ],
                 "relationships": [
@@ -2342,14 +2338,14 @@
                 "new_cat": [
                     [
                         "meeting",
-                        "kittypet",
-                        "age:adolescent"
+                        "kittypet"
                     ]
                 ],
                 "injury": [
                     {
-                        "cats": [ "n_c:0" ],
-                        "injuries": [ "battle_injury" ]
+                        "cats": ["n_c:0"],
+                        "injuries": ["battle_injury"],
+                        "no_results": true
                     }
                 ],
                 "relationships": [
@@ -2378,14 +2374,14 @@
                 "new_cat": [
                     [
                         "meeting",
-                        "kittypet",
-                        "age:adolescent"
+                        "kittypet"
                     ]
                 ],
                 "injury": [
                     {
                         "cats": [ "n_c:0" ],
-                        "injuries": [ "battle_injury" ]
+                        "injuries": [ "battle_injury" ],
+                        "no_results": true
                     }
                 ],
                 "relationships": [
@@ -2414,14 +2410,14 @@
                 "new_cat": [
                     [
                         "meeting",
-                        "kittypet",
-                        "age:adolescent"
+                        "kittypet"
                     ]
                 ],
                 "injury": [
                     {
                         "cats": [ "n_c:0" ],
-                        "injuries": [ "battle_injury" ]
+                        "injuries": [ "battle_injury" ],
+                        "no_results": true
                     }
                 ],
                 "relationships": [
@@ -2450,14 +2446,14 @@
                 "new_cat": [
                     [
                         "meeting",
-                        "kittypet",
-                        "age:adolescent"
+                        "kittypet"
                     ]
                 ],
                 "injury": [
                     {
                         "cats": [ "n_c:0" ],
-                        "injuries": [ "battle_injury" ]
+                        "injuries": [ "battle_injury" ],
+                        "no_results": true
                     }
                 ],
                 "relationships": [
@@ -2486,8 +2482,7 @@
                 "new_cat": [
                     [
                         "meeting",
-                        "kittypet",
-                        "age:adolescent"
+                        "kittypet"
                     ]
                 ],
                 "relationships": [
@@ -2516,8 +2511,7 @@
                 "new_cat": [
                     [
                         "meeting",
-                        "kittypet",
-                        "age:adolescent"
+                        "kittypet"
                     ]
                 ],
                 "relationships": [
@@ -2652,14 +2646,14 @@
                 "new_cat": [
                     [
                         "meeting",
-                        "kittypet",
-                        "age:adolescent"
+                        "kittypet"
                     ]
                 ],
                 "injury": [
                     {
-                        "cats": [ "n_c:0" ],
-                        "injuries": [ "severe burn" ]
+                        "cats": ["n_c:0"],
+                        "injuries": ["severe burn"],
+                        "no_results": true
                     }
                 ],
                 "relationships": [
@@ -2688,14 +2682,14 @@
                 "new_cat": [
                     [
                         "meeting",
-                        "kittypet",
-                        "age:adolescent"
+                        "kittypet"
                     ]
                 ],
                 "injury": [
                     {
                         "cats": [ "n_c:0" ],
-                        "injuries": [ "battle_injury" ]
+                        "injuries": [ "battle_injury" ],
+                        "no_results": true
                     }
                 ],
                 "relationships": [
@@ -2724,14 +2718,14 @@
                 "new_cat": [
                     [
                         "meeting",
-                        "kittypet",
-                        "age:adolescent"
+                        "kittypet"
                     ]
                 ],
                 "injury": [
                     {
                         "cats": [ "n_c:0" ],
-                        "injuries": [ "blunt_force_injury" ]
+                        "injuries": [ "blunt_force_injury" ],
+                        "no_results": true
                     }
                 ],
                 "relationships": [
@@ -2760,14 +2754,14 @@
                 "new_cat": [
                     [
                         "meeting",
-                        "kittypet",
-                        "age:adolescent"
+                        "kittypet"
                     ]
                 ],
                 "injury": [
                     {
                         "cats": [ "n_c:0" ],
-                        "injuries": [ "battle_injury" ]
+                        "injuries": [ "battle_injury" ],
+                        "no_results": true
                     }
                 ],
                 "relationships": [
@@ -2796,14 +2790,14 @@
                 "new_cat": [
                     [
                         "meeting",
-                        "kittypet",
-                        "age:adolescent"
+                        "kittypet"
                     ]
                 ],
                 "injury": [
                     {
-                        "cats": [ "n_c:0" ],
-                        "injuries": [ "battle_injury" ]
+                        "cats": ["n_c:0"],
+                        "injuries": ["battle_injury"],
+                        "no_results": true
                     }
                 ],
                 "relationships": [
@@ -2832,14 +2826,14 @@
                 "new_cat": [
                     [
                         "meeting",
-                        "kittypet",
-                        "age:adolescent"
+                        "kittypet"
                     ]
                 ],
                 "injury": [
                     {
                         "cats": [ "n_c:0" ],
-                        "injuries": [ "battle_injury" ]
+                        "injuries": [ "battle_injury" ],
+                        "no_results": true
                     }
                 ],
                 "relationships": [
@@ -2868,14 +2862,14 @@
                 "new_cat": [
                     [
                         "meeting",
-                        "kittypet",
-                        "age:adolescent"
+                        "kittypet"
                     ]
                 ],
                 "injury": [
                     {
                         "cats": [ "n_c:0" ],
-                        "injuries": [ "battle_injury" ]
+                        "injuries": [ "battle_injury" ],
+                        "no_results": true
                     }
                 ],
                 "relationships": [
@@ -2904,14 +2898,14 @@
                 "new_cat": [
                     [
                         "meeting",
-                        "kittypet",
-                        "age:adolescent"
+                        "kittypet"
                     ]
                 ],
                 "injury": [
                     {
                         "cats": [ "n_c:0" ],
-                        "injuries": [ "battle_injury" ]
+                        "injuries": [ "battle_injury" ],
+                        "no_results": true
                     }
                 ],
                 "relationships": [
@@ -2940,8 +2934,7 @@
                 "new_cat": [
                     [
                         "meeting",
-                        "kittypet",
-                        "age:adolescent"
+                        "kittypet"
                     ]
                 ],
                 "relationships": [
@@ -2970,8 +2963,7 @@
                 "new_cat": [
                     [
                         "meeting",
-                        "kittypet",
-                        "age:adolescent"
+                        "kittypet"
                     ]
                 ],
                 "relationships": [
