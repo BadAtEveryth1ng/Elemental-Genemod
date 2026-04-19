@@ -202,7 +202,9 @@
         "-combustion",
         "-decay",
         "-magnetic",
-        "-luminescent"
+        "-luminescent",
+        "any",
+        "none"
       ],
       "title": "Element",
       "type": "string"

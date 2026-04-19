@@ -7165,6 +7165,86 @@
                 ],
                 "outsider_rep": 1,
                 "frequency": 4
+            },
+            {
+                "text": "A loner? Interesting. s_c saunters up to the outsider without hesitation, making a show of {PRONOUN/s_c/poss} powers right off the bat. The loner seems impressed, asking questions and requesting further demonstrations for hours.",
+                "exp": 10,
+                "stat_trait": [
+                    "playful",
+                    "charismatic",
+                    "bold",
+                    "daring",
+                    "confident",
+                    "arrogant",
+                    "competitive",
+                    "flamboyant"
+                ],
+                "stat_element": [ "any" ],
+                "new_cat": [
+                    [
+                        "meeting",
+                        "loner",
+                        "age:adolescent"
+                    ]
+                ],
+                "relationships": [
+                    {
+                        "cats_from": [
+                            "n_c:0"
+                        ],
+                        "cats_to": [
+                            "patrol"
+                        ],
+                        "mutual": true,
+                        "values": [ "like", "trust", "comfort" ],
+                        "amount": 10,
+                        "log": {
+                            "cats_from": "cat_to impressed cat_from with {PRONOUN/cat_to/poss} powers."
+                        }
+                    }
+                ],
+                "outsider_rep": 1,
+                "frequency": 4
+            },
+            {
+                "text": "A kittypet! s_c saunters up to the outsider without hesitations, making a show of {PRONOUN/s_c/poss} powers right off the bat. The kittypet isn't as cowardly as some say, asking questions and requesting further demonstrations for hours.",
+                "exp": 10,
+                "stat_trait": [
+                    "playful",
+                    "charismatic",
+                    "bold",
+                    "daring",
+                    "confident",
+                    "arrogant",
+                    "competitive",
+                    "flamboyant"
+                ],
+                "stat_element": ["any"],
+                "new_cat": [
+                    [
+                        "meeting",
+                        "kittypet",
+                        "age:adolescent"
+                    ]
+                ],
+                "relationships": [
+                    {
+                        "cats_from": [
+                            "n_c:0"
+                        ],
+                        "cats_to": [
+                            "patrol"
+                        ],
+                        "mutual": true,
+                        "values": [ "like", "trust", "comfort" ],
+                        "amount": 10,
+                        "log": {
+                            "cats_from": "cat_to impressed cat_from with {PRONOUN/cat_to/poss} powers."
+                        }
+                    }
+                ],
+                "outsider_rep": 1,
+                "frequency": 4
             }
         ],
         "fail_outcomes": [
@@ -7250,6 +7330,66 @@
                     "death": "m_c died from injuries {PRONOUN/p_l/subject} sustained after being attacked by a startled kittypet."
                 },
                 "outsider_rep": 0,
+                "frequency": 4
+            },
+            {
+                "text": "s_c hisses at the loner, but {PRONOUN/n_c:0/subject} {VERB/n_c:0/refuse/refuses} to leave without a fight. s_c has some extra tricks {PRONOUN/n_c:0/subject}'{VERB/n_c:0/re/s} not ready for, though - the loner is sent running with a little use of s_c's powers.",
+                "exp": 0,
+                "stat_element": [ "any" ],
+                "new_cat": [
+                    [
+                        "meeting",
+                        "loner",
+                        "age:adolescent"
+                    ]
+                ],
+                "relationships": [
+                    {
+                        "cats_from": [
+                            "n_c:0"
+                        ],
+                        "cats_to": [
+                            "patrol"
+                        ],
+                        "mutual": false,
+                        "values": [ "like", "comfort" ],
+                        "amount": -20,
+                        "log": {
+                            "cats_from": "cat_to chased cat_from away with {PRONOUN/cat_to/poss} powers."
+                        }
+                    }
+                ],
+                "outsider_rep": -1,
+                "frequency": 4
+            },
+            {
+                "text": "s_c hisses at the kittypet, but {PRONOUN/n_c:0/subject} surprisingly {VERB/n_c:0/refuse/refuses} to leave without a fight. s_c has some extra tricks {PRONOUN/n_c:0/subject}'{VERB/n_c:0/re/s} not ready for, though - the loner is sent running with a little use of s_c's powers.",
+                "exp": 0,
+                "stat_element": [ "any" ],
+                "new_cat": [
+                    [
+                        "meeting",
+                        "kittypet",
+                        "age:adolescent"
+                    ]
+                ],
+                "relationships": [
+                    {
+                        "cats_from": [
+                            "n_c:0"
+                        ],
+                        "cats_to": [
+                            "patrol"
+                        ],
+                        "mutual": false,
+                        "values": [ "like", "comfort" ],
+                        "amount": -20,
+                        "log": {
+                            "cats_from": "cat_to chased cat_from away with {PRONOUN/cat_to/poss} powers."
+                        }
+                    }
+                ],
+                "outsider_rep": -1,
                 "frequency": 4
             },
             {
@@ -7449,7 +7589,7 @@
                     "death": "m_c died from injuries sustained after foolishly trying to take on a c_n apprentice."
                 },
                 "outsider_rep": -2,
-                "frequency": 2
+                "frequency": 4
             }
         ],
         "antag_fail_outcomes": [
