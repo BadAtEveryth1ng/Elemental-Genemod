@@ -8182,10 +8182,10 @@
     },
     {
         "event_id": "gen_death_hitmanmurder1",
-        "location": [ "any" ],
-        "season": [ "any" ],
-        "sub_type": [ "murder" ],
-        "tags": [ ],
+        "location": ["any"],
+        "season": ["any"],
+        "sub_type": ["murder"],
+        "tags": [],
         "frequency": 1,
         "event_text": "r_c meets with a rogue named n_c:0 on the border. A quarter-moon later, m_c turns up dead along the border, n_c:0's scent on {PRONOUN/m_c/poss} cold body.",
         "m_c": {
@@ -8194,27 +8194,27 @@
                 "-leader",
                 "-elder"
             ],
-            "skill": [ "-FIGHTER,2" ],
+            "skill": ["-FIGHTER,2"],
             "dies": true
         },
         "r_c": {
-            "age": [ "young adult", "adult", "senior adult" ]
+            "age": ["young adult", "adult", "senior adult"]
         },
         "new_cat": [
-            [ "meeting", "rogue", "age:adult", "exists" ]
+            ["meeting", "rogue", "age:adult", "exists"]
         ],
         "history": [
             {
-                "cats": [ "m_c" ],
+                "cats": ["m_c"],
                 "death": "m_c was murdered by a rogue hired by r_c."
             }
         ],
         "relationships": [
             {
-                "cats_from": [ "r_c" ],
-                "cats_to": [ "n_c:0" ],
+                "cats_from": ["r_c"],
+                "cats_to": ["n_c:0"],
                 "mutual": false,
-                "values": [ "trust" ],
+                "values": ["trust"],
                 "amount": 10,
                 "log": {
                     "cats_from": "cat_from hired cat_to to kill m_c."
@@ -8246,35 +8246,35 @@
     },
     {
         "event_id": "gen_death_hitmanmurder2",
-        "location": [ "any" ],
-        "season": [ "any" ],
-        "sub_type": [ "murder" ],
-        "tags": [ "lives_remain" ],
+        "location": ["any"],
+        "season": ["any"],
+        "sub_type": ["murder"],
+        "tags": ["lives_remain"],
         "frequency": 2,
         "event_text": "On a solo border patrol, m_c is attacked and killed by a rogue named n_c:0. When m_c is revived, n_c:0 lets it slip that r_c didn't say anything about resurrection as {PRONOUN/n_c:0/subject} {VERB/n_c:0/flee/flees}.",
         "m_c": {
-            "status": [ "leader" ],
-            "skill": [ "-FIGHTER,2" ],
+            "status": ["leader"],
+            "skill": ["-FIGHTER,2"],
             "dies": true
         },
         "r_c": {
-            "age": [ "young adult", "adult", "senior adult" ]
+            "age": ["young adult", "adult", "senior adult"]
         },
         "new_cat": [
-            [ "meeting", "rogue", "age:adult", "exists" ]
+            ["meeting", "rogue", "age:adult", "exists"]
         ],
         "history": [
             {
-                "cats": [ "m_c" ],
+                "cats": ["m_c"],
                 "death": "m_c died when a rogue attacked {PRONOUN/m_c/object} on r_c's orders"
             }
         ],
         "relationships": [
             {
-                "cats_from": [ "r_c" ],
-                "cats_to": [ "n_c:0" ],
+                "cats_from": ["r_c"],
+                "cats_to": ["n_c:0"],
                 "mutual": false,
-                "values": [ "trust" ],
+                "values": ["trust"],
                 "amount": 10,
                 "log": {
                     "cats_from": "cat_from hired cat_to to kill m_c."
@@ -8295,14 +8295,14 @@
                     "mur_c": "m_c",
                     "r_c": "m_c"
                 }
-            } ]
+            }]
     },
     {
         "event_id": "gen_death_hitmanmurder3",
-        "location": [ "any" ],
-        "season": [ "any" ],
-        "sub_type": [ "murder" ],
-        "tags": [ ],
+        "location": ["any"],
+        "season": ["any"],
+        "sub_type": ["murder"],
+        "tags": [],
         "frequency": 2,
         "event_text": "r_c meets with a notorious rogue from {PRONOUN/r_c/poss} past, n_c:0, on the border. A quarter-moon later, m_c turns up dead along the border, n_c:0's scent on {PRONOUN/m_c/poss} cold body.",
         "m_c": {
@@ -8311,28 +8311,28 @@
                 "-leader",
                 "-elder"
             ],
-            "skill": [ "-FIGHTER,3" ],
+            "skill": ["-FIGHTER,3"],
             "dies": true
         },
         "r_c": {
-            "age": [ "young adult", "adult", "senior adult" ],
-            "backstory": [ "rogue1", "rogue2", "rogue3", "refugee4", "tragedy_survivor2", "guided2" ]
+            "age": ["young adult", "adult", "senior adult"],
+            "backstory": ["rogue1", "rogue2", "rogue3", "refugee4", "tragedy_survivor2", "guided2"]
         },
         "new_cat": [
-            [ "meeting", "rogue", "age:senior adult", "exists" ]
+            ["meeting", "rogue", "age:senior adult", "exists"]
         ],
         "history": [
             {
-                "cats": [ "m_c" ],
+                "cats": ["m_c"],
                 "death": "m_c was murdered by a rogue hired by r_c."
             }
         ],
         "relationships": [
             {
-                "cats_from": [ "r_c" ],
-                "cats_to": [ "n_c:0" ],
+                "cats_from": ["r_c"],
+                "cats_to": ["n_c:0"],
                 "mutual": false,
-                "values": [ "trust" ],
+                "values": ["trust"],
                 "amount": 10,
                 "log": {
                     "cats_from": "cat_from hired cat_to to kill m_c."
@@ -8364,10 +8364,10 @@
     },
     {
         "event_id": "gen_death_hitmanmurder4",
-        "location": [ "any" ],
-        "season": [ "any" ],
-        "sub_type": [ "murder" ],
-        "tags": [ ],
+        "location": ["any"],
+        "season": ["any"],
+        "sub_type": ["murder"],
+        "tags": [],
         "frequency": 1,
         "event_text": "r_c promises n_c:0 a new beginning in c_n... at a price paid in blood. Within the moon, m_c is dead and r_c vouches for n_c:0 to join c_n.",
         "m_c": {
@@ -8376,27 +8376,27 @@
                 "-leader",
                 "-elder"
             ],
-            "skill": [ "-FIGHTER,2" ],
+            "skill": ["-FIGHTER,2"],
             "dies": true
         },
         "r_c": {
-            "age": [ "young adult", "adult", "senior adult" ]
+            "age": ["young adult", "adult", "senior adult"]
         },
         "new_cat": [
-            [ "age:adult", "backstory:disgraced1, ostracized_warrior, disgraced3", "clancat", "exiled", "change_clan", "exists" ]
+            [ "age:adult", "backstory:disgraced1, ostracized_warrior, disgraced3", "clancat", "exiled", "change_clan", "exists"]
         ],
         "history": [
             {
-                "cats": [ "m_c" ],
+                "cats": ["m_c"],
                 "death": "m_c was murdered by a rogue hired by r_c in exchange for a place in the Clan."
             }
         ],
         "relationships": [
             {
-                "cats_from": [ "r_c" ],
-                "cats_to": [ "n_c:0" ],
+                "cats_from": ["r_c"],
+                "cats_to": ["n_c:0"],
                 "mutual": false,
-                "values": [ "trust" ],
+                "values": ["trust"],
                 "amount": 10,
                 "log": {
                     "cats_from": "cat_from promised cat_to a place in the Clan in exchange for killing m_c."
@@ -9451,7 +9451,7 @@
         "season": [
             "any"
         ],
-        "tags": [ ],
+        "tags": [],
         "frequency": 1,
         "event_text": "m_c slips out of camp on a dare. c_n finds m_c's cooling body encircled by o_c_n scent.",
         "m_c": {
@@ -9523,5 +9523,53 @@
                 "death": "m_c was killed by a rooster defending his flock."
             }
         ]
+    },
+    {
+        "event_id": "gen_death_war_onwatch",
+        "location": [
+            "any"
+        ],
+        "season": [
+            "any"
+        ],
+        "sub_type": [
+            "war"
+        ],
+        "frequency": 2,
+        "event_text": "m_c and r_c spend the night by the o_c_n border and catch a o_c_n patrol sneaking into c_n territory. While r_c gets reinforcements, m_c tries to hold them off and dies for it.",
+        "m_c": {
+            "status": [
+                "warrior",
+                "deputy",
+                "leader"
+            ],
+            "dies": true
+        },
+        "r_c": {
+            "status": [
+                "warrior",
+                "deputy",
+                "leader"
+            ]
+        },
+        "multiclan_cat": [
+            [ "status:warrior", "clancat", "meeting" ],
+            [ "status:warrior", "clancat", "meeting" ]
+        ],
+        "history": [
+            {
+                "cats": [
+                    "m_c"
+                ],
+                "death": "m_c died while holding off an ambush."
+            }
+        ],
+        "other_clan": {
+            "current_rep": [
+                "hostile"
+            ],
+            "changed": -3,
+            "has_rank": ["warrior_mult"]
+        }
     }
 ]

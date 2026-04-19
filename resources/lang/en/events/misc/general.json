@@ -4849,10 +4849,10 @@
             "m_c"
         ],
         "outsider": {
-        "current_rep": [
-            "welcoming"
-        ],
-        "changed": 5
+            "current_rep": [
+                "welcoming"
+            ],
+            "changed": 5
         }
     },
     {
@@ -4883,10 +4883,10 @@
             "m_c"
         ],
         "outsider": {
-        "current_rep": [
-            "welcoming"
-        ],
-        "changed": 5
+            "current_rep": [
+                "welcoming"
+            ],
+            "changed": 5
         },
         "relationships": [
             {
@@ -4939,11 +4939,11 @@
             "m_c"
         ],
         "outsider": {
-        "current_rep": [
-            "welcoming",
-            "neutral"
-        ],
-        "changed": 5
+            "current_rep": [
+                "welcoming",
+                "neutral"
+            ],
+            "changed": 5
         }
     },
     {
@@ -4969,18 +4969,19 @@
             [
                 "meeting",
                 "clancat",
-                "age:adolescent"
+                "status:any_apprentice"
             ]
         ],
         "exclude_involved": [
             "m_c"
         ],
         "other_clan": {
-        "current_rep": [
-            "ally",
-            "neutral"
-        ],
-        "changed": 3
+            "current_rep": [
+                "ally",
+                "neutral"
+            ],
+            "changed": 3,
+            "has_rank": ["any_app"]
         }
     },
     {
@@ -5012,11 +5013,11 @@
             "m_c"
         ],
         "outsider": {
-        "current_rep": [
-            "welcoming",
-            "neutral"
-        ],
-        "changed": 5
+            "current_rep": [
+                "welcoming",
+                "neutral"
+            ],
+            "changed": 5
         }
     },
     {
@@ -12211,7 +12212,7 @@
                 "values": [ "trust" ],
                 "amount": 10,
                 "log": {
-                    "cats_from": "from_cat hired to_cat to kill r_c."
+                    "cats_from": "cat_from hired cat_to to kill r_c."
                 }
             }
         ]
@@ -12275,6 +12276,168 @@
             "has_rank": [
                 "any_fighter_mult"
             ]
+        }
+    },
+    {
+        "event_id": "gen_misc_war_onwatch1",
+        "location": [
+            "any"
+        ],
+        "season": [
+            "any"
+        ],
+        "sub_type": [
+            "war"
+        ],
+        "frequency": 4,
+        "event_text": "m_c and r_c spend the night by the o_c_n border, on watch for an attack that never comes.",
+        "m_c": {
+            "status": [
+                "warrior",
+                "deputy",
+                "leader"
+            ]
+        },
+        "r_c": {
+            "status": [
+                "warrior",
+                "deputy",
+                "leader"
+            ]
+        },
+        "relationships": [
+            {
+                "cats_from": [ "m_c" ],
+                "cats_to": [ "r_c" ],
+                "mutual": true,
+                "values": [ "trust" ],
+                "amount": 10,
+                "log": {
+                    "cats_from": "cat_from and cat_to spent the night on watch for a potential attack."
+                }
+            }
+        ],
+        "other_clan": {
+            "current_rep": [
+                "hostile"
+            ]
+        }
+    },
+    {
+        "event_id": "gen_misc_war_onwatch2",
+        "location": [
+            "any"
+        ],
+        "season": [
+            "any"
+        ],
+        "sub_type": [
+            "war"
+        ],
+        "frequency": 2,
+        "event_text": "m_c and r_c spend the night by the o_c_n border. They confront a passing o_c_n patrol, but they're more keen on a conversation than a fight.",
+        "m_c": {
+            "status": [
+                "warrior",
+                "deputy",
+                "leader"
+            ]
+        },
+        "r_c": {
+            "status": [
+                "warrior",
+                "deputy",
+                "leader"
+            ]
+        },
+        "multiclan_cat": [
+            [ "status:warrior", "clancat", "meeting" ],
+            [ "status:warrior", "clancat", "meeting" ]
+        ],
+        "other_clan": {
+            "current_rep": [
+                "hostile"
+            ],
+            "changed": 1,
+            "has_rank": [ "warrior_mult" ]
+        }
+    },
+    {
+        "event_id": "gen_misc_war_onwatch3",
+        "location": [
+            "any"
+        ],
+        "season": [
+            "any"
+        ],
+        "sub_type": [
+            "war"
+        ],
+        "frequency": 1,
+        "event_text": "m_c and r_c spend the night by the o_c_n border. They confront a passing o_c_n patrol, but they're more keen on a conversation than a fight and offer to keep them company instead.",
+        "m_c": {
+            "status": [
+                "warrior",
+                "deputy",
+                "leader"
+            ]
+        },
+        "r_c": {
+            "status": [
+                "warrior",
+                "deputy",
+                "leader"
+            ]
+        },
+        "multiclan_cat": [
+            [ "status:warrior", "clancat", "meeting" ],
+            [ "status:warrior", "clancat", "meeting" ]
+        ],
+        "other_clan": {
+            "current_rep": [
+                "hostile"
+            ],
+            "changed": 2,
+            "has_rank": [ "warrior_mult" ]
+        }
+    },
+    {
+        "event_id": "gen_misc_war_onwatch4",
+        "location": [
+            "any"
+        ],
+        "season": [
+            "any"
+        ],
+        "sub_type": [
+            "war"
+        ],
+        "frequency": 3,
+        "event_text": "m_c and r_c spend the night by the o_c_n border. They confront a passing o_c_n patrol, but they're more keen to trade insults than blows.",
+        "m_c": {
+            "status": [
+                "warrior",
+                "deputy",
+                "leader"
+            ]
+        },
+        "r_c": {
+            "status": [
+                "warrior",
+                "deputy",
+                "leader"
+            ]
+        },
+        "multiclan_cat": [
+            [ "status:warrior", "clancat", "meeting" ],
+            [ "status:warrior", "clancat", "meeting" ]
+        ],
+        "other_clan": {
+            "current_rep": [
+                "hostile"
+            ],
+            "changed": -1,
+            "has_rank": [ "warrior_mult" ]
         }
     },
     {

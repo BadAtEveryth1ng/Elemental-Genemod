@@ -3870,7 +3870,7 @@
                         "values": ["like"],
                         "amount": -50,
                         "log": {
-                            "cats_from": "from_cat and the other rogues were about to ambush cat_to in an abandoned Twoleg nest, but cat_to got away."
+                            "cats_from": "cat_from and the other rogues were about to ambush cat_to in an abandoned Twoleg nest, but cat_to got away."
                         }
                     }
                 ],

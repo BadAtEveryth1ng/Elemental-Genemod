@@ -1670,6 +1670,9 @@ class Genotype:
                 if self.elemental_genes[key][1] == "N":
                     self.elemental_genes[key][1] = self.elemental_genes[key][0]
                     self.elemental_genes[key][0] = "N"
+                if self.elemental_genes[key][0] == "n":
+                    self.elemental_genes[key][0] = self.elemental_genes[key][1]
+                    self.elemental_genes[key][1] = "n"
 
         if self.eumelanin[0] == "bl":
             self.eumelanin[0] = self.eumelanin[1]

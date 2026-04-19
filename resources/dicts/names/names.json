@@ -63,7 +63,7 @@
     "blue fire": ["blaze", "blister", "fire", "flame", "flare", "flash", "spark", "wisp"],
     "ice": ["frost", "freeze", "ice", "icicle", "snow", "shiver"],
     "plant": ["berry", "bloom", "blossom", "bramble", "bud", "bush", "leaf", "petal", "pollen", "sprout", "thorn"],
-    "lightning": ["bolt", "crackle", "flash", "lightning", "shock", "storm", "thunder"],
+    "lightning": ["bolt", "crackle", "flash", "lightning", "shock", "spark", "storm", "thunder"],
 
     "magma": ["burn", "blister"],
     "metal": ["glint", "shine"],
@@ -75,7 +75,7 @@
     "mist": ["cloud", "fog", "mist"],
     "oil": ["slick", "shine", "shimmer"],
     "combustion": ["boom", "crash", "rumble", "spark"],
-    "decay": ["beetle", "fly", "hive", "rot", "roach", "swarm"],
+    "decay": ["beetle", "fly", "hive", "rot", "roach", "spore", "swarm"],
     "magnetic": ["float"],
     "luminescent": ["beam", "bright", "flash", "flicker", "gleam", "glow", "light", "shine"]
   },
