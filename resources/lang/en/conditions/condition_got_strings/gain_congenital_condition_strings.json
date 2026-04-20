@@ -137,7 +137,7 @@
         "Some hoped m_c's odd muzzle was just visual quirk, but m_c struggles to keep up and stay active the way other kittens do, tiring easily and struggling to get used to more solid food."
     ],
     "wobbly": [
-        "m_c fell down again, and r_c is called in to check on {PRONOUN/m_c/poss} health. {PRONOUN/r_c/subject} confirms that m_c has a wobbly gait, but {PRONOUN/m_c/subject} should be able to live a normal life.",
-        "m_c has a wobbly gait, and {PRONOUN/m_c/subject} {VERB/m_c/seem/seems} to have trouble keeping {PRONOUN/m_c/poss} balance."
+        "r_c is called in to check on m_c's health when {PRONOUN/m_c/subject} fell over yet again. {PRONOUN/r_c/subject/CAP} {VERB/r_c/confirm/confirms} that m_c has a wobbly gait, but {PRONOUN/m_c/subject} should be able to live a full life.",
+        "m_c seems to have trouble keeping {PRONOUN/m_c/poss} balance."
     ]
 }
