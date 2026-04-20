@@ -56,7 +56,7 @@
 
   "element_suffixes": {
     "fire": ["blaze", "blister", "fire", "flame", "flare", "flash", "spark"],
-    "water": ["billow", "bubble", "brook", "creek", "current", "drop", "flood", "lake", "pond", "pool", "puddle", "river", "stream", "wash", "water", "wave"],
+    "water": ["billow", "bubble", "brook", "creek", "current", "drop", "flood", "lake", "pond", "pool", "puddle", "river", "stream", "splash", "wash", "water", "wave"],
     "earth": ["earth", "rock", "soil", "stone"],
     "air": ["breeze", "gale", "gust", "wind"],
 
