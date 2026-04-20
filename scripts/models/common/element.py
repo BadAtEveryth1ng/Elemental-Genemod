@@ -49,3 +49,6 @@ class Element(Enum):
     not_decay = "-decay"
     not_magnetic = "-magnetic"
     not_luminescent = "-luminescent"
+
+    any = "any"
+    none = "none"

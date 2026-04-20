@@ -12466,5 +12466,35 @@
                 "vengeful"
             ]
         }
+    },
+    {
+        "event_id": "greenleaf_misc_fire_cooking",
+        "location": [ "any" ],
+        "season": [ "greenleaf" ],
+        "sub_type": [  ],
+        "tags": [ ],
+        "frequency": 1,
+        "event_text": "m_c saw a Twoleg holding fresh-kill over a fire and tries to do the same. It comes out awful, what a waste of good fresh-kill!.",
+        "m_c": {
+            "status": [
+                "-kitten"
+            ],
+            "element": ["fire"]
+        }
+    },
+    {
+        "event_id": "greenleaf_misc_blue_fire_cooking",
+        "location": [ "any" ],
+        "season": [ "greenleaf" ],
+        "sub_type": [ ],
+        "tags": [ ],
+        "frequency": 1,
+        "event_text": "m_c saw a Twoleg holding fresh-kill over a fire and tries to do the same. It comes out charred, what a waste of good fresh-kill!.",
+        "m_c": {
+            "status": [
+                "-kitten"
+            ],
+            "element": [ "blue fire" ]
+        }
     }
 ]
