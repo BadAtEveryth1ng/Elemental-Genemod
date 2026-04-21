@@ -352,7 +352,7 @@
             "The itching or jabbing from a pesky hair or occasional debri was annoying, sure, but m_c feels far more alarmed now that {PRONOUN/m_c/subject}{VERB/m_c/'ve/'s} noticed a cloudiness to {PRONOUN/m_c/poss} vision."
         ]
     },
-    "wobbly" : {
+    "wobbly": {
         "broken back": [
             "m_c's back feels like it's on fire after {PRONOUN/m_c/subject} fell, and r_c is quick to help {PRONOUN/m_c/object} to the healer den.",
             "m_c fell and landed hard on {PRONOUN/m_c/poss} back, leaving {PRONOUN/m_c/object} with a broken back."
@@ -374,12 +374,26 @@
             "m_c bruised {PRONOUN/m_c/poss} body when {PRONOUN/m_c/subject} fell."
         ],
         "sore": [
-            "m_c's body is sore from a fall.", 
+            "m_c's body is sore from a fall.",
             "m_c fell and landed hard, leaving {PRONOUN/m_c/object} feeling sore."
         ],
         "scrapes": [
             "m_c's accidentally scraped {PRONOUN/m_c/poss} body on something hard, leaving {PRONOUN/m_c/object} with some scrapes.",
             "m_c fell and scraped {PRONOUN/m_c/poss} body."
+        ]
+    },
+    "cross-eyed": {
+        "bruises": [
+            "m_c misjudged the distance of a jump and came out bruised from the fall.",
+            "m_c misjudged the distance of a jump and came out bruised from the fall."
+        ],
+        "scrapes": [
+            "m_c misjudged the distance of a jump and got scraped up for it.",
+            "m_c misjudged the distance of a jump and got scraped up for it."
+        ],
+        "sprain": [
+            "m_c misjudged the distance of a jump and landed wrong.",
+            "m_c misjudged the distance of a jump and landed wrong."
         ]
     }
 }

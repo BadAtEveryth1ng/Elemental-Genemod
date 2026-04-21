@@ -139,5 +139,9 @@
     "wobbly": [
         "r_c is called in to check on m_c's health when {PRONOUN/m_c/subject} fell over yet again. {PRONOUN/r_c/subject/CAP} {VERB/r_c/confirm/confirms} that m_c has a wobbly gait, but {PRONOUN/m_c/subject} should be able to live a full life.",
         "m_c seems to have trouble keeping {PRONOUN/m_c/poss} balance."
+    ],
+    "cross-eyed": [
+        "m_c's eyes often seem to center on {PRONOUN/m_c/poss} nose rather than forward, but r_c is sure {PRONOUN/m_c/subject}'ll adapt.",
+        "m_c's eyes often seem to center on {PRONOUN/m_c/poss} nose rather than forward."
     ]
 }

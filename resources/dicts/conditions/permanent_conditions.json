@@ -53,9 +53,9 @@
         ],
         "herbs": {
             "1": [
-            "marigold",
-            "ragwort"
-        ],
+                "marigold",
+                "ragwort"
+            ],
             "2": [
                 "daisy",
                 "juniper"
@@ -92,9 +92,9 @@
         ],
         "herbs": {
             "1": [
-            "marigold",
-            "ragwort"
-        ],
+                "marigold",
+                "ragwort"
+            ],
             "2": [
                 "daisy"
             ],
@@ -130,9 +130,9 @@
         ],
         "herbs": {
             "1": [
-            "marigold",
-            "ragwort"
-        ],
+                "marigold",
+                "ragwort"
+            ],
             "2": [
                 "daisy",
                 "juniper"
@@ -169,10 +169,10 @@
         ],
         "herbs": {
             "1": [
-            "marigold",
-            "ragwort",
-            "dandelion"
-        ],
+                "marigold",
+                "ragwort",
+                "dandelion"
+            ],
             "2": [
                 "juniper",
                 "daisy"
@@ -210,8 +210,8 @@
         ],
         "herbs": {
             "1": [
-            "juniper"
-        ],
+                "juniper"
+            ],
             "2": [
                 "ragwort"
             ],
@@ -278,11 +278,11 @@
         ],
         "herbs": {
             "1": [
-            "juniper",
-            "ragwort",
-            "marigold",
-            "dandelion"
-        ],
+                "juniper",
+                "ragwort",
+                "marigold",
+                "dandelion"
+            ],
             "2": [
                 "daisy",
                 "poppy"
@@ -319,8 +319,8 @@
         ],
         "herbs": {
             "1": [
-            "betony"
-        ],
+                "betony"
+            ],
             "2": [
                 "rosemary",
                 "juniper"
@@ -377,11 +377,11 @@
         ],
         "herbs": {
             "1": [
-            "juniper",
-            "ragwort",
-            "goldenrod",
-            "mullein"
-        ],
+                "juniper",
+                "ragwort",
+                "goldenrod",
+                "mullein"
+            ],
             "2": [
                 "betony",
                 "tansy"
@@ -435,11 +435,11 @@
         ],
         "herbs": {
             "1": [
-            "juniper",
-            "ragwort",
-            "goldenrod",
-            "dandelion"
-        ],
+                "juniper",
+                "ragwort",
+                "goldenrod",
+                "dandelion"
+            ],
             "2": [
                 "betony",
                 "mullein"
@@ -687,8 +687,8 @@
         ],
         "herbs": {
             "1": [
-            "marigold"
-        ],
+                "marigold"
+            ],
             "2": [
                 "daisy",
                 "ragwort",
@@ -722,15 +722,15 @@
         ],
         "herbs": {
             "1": [
-            "ragwort"
-        ],
+                "ragwort"
+            ],
             "2": [
                 "juniper"
-        ],
+            ],
             "3": [
                 "thyme",
                 "betony"
-        ]
+            ]
         }
     },
     "allergies": {
@@ -758,8 +758,8 @@
             "1": [
                 "juniper"
             ],
-            "2": [],
-            "3": []
+            "2": [ ],
+            "3": [ ]
         }
     },
     "constantly dizzy": {
@@ -816,8 +816,8 @@
         ],
         "herbs": {
             "1": [
-            "poppy"
-        ],
+                "poppy"
+            ],
             "2": [
                 "juniper"
             ],
@@ -853,8 +853,8 @@
         ],
         "herbs": {
             "1": [
-            "poppy"
-        ],
+                "poppy"
+            ],
             "2": [
                 "juniper",
                 "ragwort"
@@ -957,7 +957,7 @@
             "3": [ ]
         }
     },
-    
+
     "sterile": {
         "severity": "minor",
         "congenital": "sometimes",
@@ -1344,57 +1344,91 @@
         }
     },
     "wobbly": {
-    "severity": "major",
-    "congenital": "always",
-    "moons_until": 1,
-    "mortality": {
-      "newborn": 0,
-      "kitten": 0,
-      "adolescent": 0,
-      "young adult": 0,
-      "adult": 0,
-      "senior adult": 0,
-      "senior": 0
-      },
-    "illness_infectiousness": [],
-    "risks": [
-        {
-        "name": "broken back",
-        "chance": 180
+        "severity": "major",
+        "congenital": "always",
+        "moons_until": 1,
+        "mortality": {
+            "newborn": 0,
+            "kitten": 0,
+            "adolescent": 0,
+            "young adult": 0,
+            "adult": 0,
+            "senior adult": 0,
+            "senior": 0
         },
-        {
-        "name": "broken bone",
-        "chance": 100
-        },
-        {
-        "name": "dislocated joint",
-        "chance": 100
-        },
-        {
-        "name": "sprain",
-        "chance": 50
-        },
-        {
-        "name": "bruises",
-        "chance": 20
-        },
-        {
-        "name": "sore",
-        "chance": 20
-        },
-        {
-        "name": "scrapes",
-        "chance": 20
-        },
-        {
-        "name": "constantly dizzy",
-        "chance": 20
+        "illness_infectiousness": [ ],
+        "risks": [
+            {
+                "name": "broken back",
+                "chance": 180
+            },
+            {
+                "name": "broken bone",
+                "chance": 100
+            },
+            {
+                "name": "dislocated joint",
+                "chance": 100
+            },
+            {
+                "name": "sprain",
+                "chance": 50
+            },
+            {
+                "name": "bruises",
+                "chance": 20
+            },
+            {
+                "name": "sore",
+                "chance": 20
+            },
+            {
+                "name": "scrapes",
+                "chance": 20
+            },
+            {
+                "name": "constantly dizzy",
+                "chance": 20
+            }
+        ],
+        "herbs": {
+            "1": [ ],
+            "2": [ ],
+            "3": [ ]
         }
-      ],
-      "herbs": {
-        "1": [],
-        "2": [],
-        "3": []
-      }
+    },
+    "cross-eyed": {
+        "severity": "minor",
+        "congenital": "sometimes",
+        "moons_until": 1,
+        "mortality": {
+            "newborn": 0,
+            "kitten": 0,
+            "adolescent": 0,
+            "young adult": 0,
+            "adult": 0,
+            "senior adult": 0,
+            "senior": 0
+        },
+        "illness_infectiousness": [ ],
+        "risks": [
+            {
+                "name": "bruises",
+                "chance": 100
+            },
+            {
+                "name": "scrapes",
+                "chance": 100
+            },
+            {
+                "name": "sprain",
+                "chance": 100
+            }
+        ],
+        "herbs": {
+            "1": [ ],
+            "2": [ ],
+            "3": [ ]
+        }
     }
 }
