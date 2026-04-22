@@ -145,13 +145,138 @@
                 ]
             },
             {
+                "text": "Tensions escalate as both patrols get more and more heated, but when s_c starts to spark in warning, o_c_n are quick to back down.",
+                "exp": 0,
+                "stat_element": ["fire", "blue fire", "lightning", "combustion"],
+                "can_have_stat": ["adult"],
+                "stat_trait": [
+                    "troublesome",
+                    "fierce",
+                    "bloodthirsty",
+                    "charismatic",
+                    "bold",
+                    "daring",
+                    "strict",
+                    "ambitious",
+                    "confident",
+                    "shameless",
+                    "vengeful",
+                    "arrogant",
+                    "competitive",
+                    "grumpy",
+                    "cunning",
+                    "flamboyant",
+                    "rebellious"
+                ],
+                "other_clan_rep": -1,
+                "frequency": 4
+            },
+            {
+                "text": "Tensions escalate as both patrols get more and more heated, but when s_c shakes the ground between them in warning, o_c_n are quick to back down.",
+                "exp": 0,
+                "stat_element": [ "earth" ],
+                "can_have_stat": [ "adult" ],
+                "stat_trait": [
+                    "troublesome",
+                    "fierce",
+                    "bloodthirsty",
+                    "charismatic",
+                    "bold",
+                    "daring",
+                    "strict",
+                    "ambitious",
+                    "confident",
+                    "shameless",
+                    "vengeful",
+                    "arrogant",
+                    "competitive",
+                    "grumpy",
+                    "cunning",
+                    "flamboyant",
+                    "rebellious"
+                ],
+                "other_clan_rep": -1,
+                "frequency": 4
+            },
+            {
+                "text": "Tensions escalate as both patrols get more and more heated, but when s_c drips sizzling magma between them, o_c_n are quick to back down.",
+                "exp": 0,
+                "stat_element": [ "magma" ],
+                "can_have_stat": [ "adult" ],
+                "stat_trait": [
+                    "troublesome",
+                    "fierce",
+                    "bloodthirsty",
+                    "charismatic",
+                    "bold",
+                    "daring",
+                    "strict",
+                    "ambitious",
+                    "confident",
+                    "shameless",
+                    "vengeful",
+                    "arrogant",
+                    "competitive",
+                    "grumpy",
+                    "cunning",
+                    "flamboyant",
+                    "rebellious"
+                ],
+                "other_clan_rep": -1,
+                "frequency": 4
+            },
+            {
+                "text": "Tensions escalate as both patrols get more and more heated, but the warning glint of s_c's sharp metal spikes cause o_c_n to back down.",
+                "exp": 0,
+                "stat_element": [ "metal" ],
+                "can_have_stat": [ "adult" ],
+                "stat_trait": [
+                    "troublesome",
+                    "fierce",
+                    "bloodthirsty",
+                    "charismatic",
+                    "bold",
+                    "daring",
+                    "strict",
+                    "ambitious",
+                    "confident",
+                    "shameless",
+                    "vengeful",
+                    "arrogant",
+                    "competitive",
+                    "grumpy",
+                    "cunning",
+                    "flamboyant",
+                    "rebellious"
+                ],
+                "other_clan_rep": -1,
+                "frequency": 4,
+                "relationships": [
+                    {
+                        "cats_to": [
+                            "s_c"
+                        ],
+                        "cats_from": [
+                            "patrol", "-s_c"
+                        ],
+                        "mutual": false,
+                        "values": [
+                            "respect"
+                        ],
+                        "amount": 10,
+                        "log": {
+                            "cats_from": "cat_from was impressed by cat_to's ability to intimidate an enemy patrol."
+                        }
+                    }
+                ]
+            },
+            {
                 "text": "The two patrols begin throwing insults back and forth, the tension ratcheting higher and higher until suddenly a fight breaks out! The tussle quickly becomes deadly, r_c lying motionless on the ground when the enemy patrol backs off.",
                 "exp": 0,
                 "dead_cats": [
                     "r_c"
                 ],
                 "history_text": {
-                    "scar": "m_c was scarred by an enemy warrior.",
                     "death": "m_c was killed by an enemy warrior."
                 },
                 "other_clan_rep": -1,
@@ -1904,6 +2029,186 @@
                 },
                 "other_clan_rep": -1,
                 "frequency": 3
+            },
+            {
+                "text": "Tensions escalate as both patrols get more and more heated, but when s_c starts to spark in warning, o_c_n are quick to back down.",
+                "exp": 0,
+                "can_have_stat": [ "adult" ],
+                "stat_element": [ "fire", "blue fire", "lightning", "combustion" ],
+                "stat_trait": [
+                    "troublesome",
+                    "fierce",
+                    "bloodthirsty",
+                    "charismatic",
+                    "bold",
+                    "daring",
+                    "strict",
+                    "ambitious",
+                    "confident",
+                    "shameless",
+                    "vengeful",
+                    "arrogant",
+                    "competitive",
+                    "grumpy",
+                    "cunning",
+                    "flamboyant",
+                    "rebellious"
+                ],
+                "other_clan_rep": -1,
+                "frequency": 4,
+                "relationships": [
+                    {
+                        "cats_to": [
+                            "s_c"
+                        ],
+                        "cats_from": [
+                            "patrol", "-s_c"
+                        ],
+                        "mutual": false,
+                        "values": [
+                            "respect"
+                        ],
+                        "amount": 10,
+                        "log": {
+                            "cats_from": "cat_from was impressed by cat_to's ability to intimidate an enemy patrol."
+                        }
+                    }
+                ]
+            },
+            {
+                "text": "Tensions escalate as both patrols get more and more heated, but when s_c shakes the ground between them in warning, o_c_n are quick to back down.",
+                "exp": 0,
+                "can_have_stat": [ "adult" ],
+                "stat_element": [ "earth" ],
+                "stat_trait": [
+                    "troublesome",
+                    "fierce",
+                    "bloodthirsty",
+                    "charismatic",
+                    "bold",
+                    "daring",
+                    "strict",
+                    "ambitious",
+                    "confident",
+                    "shameless",
+                    "vengeful",
+                    "arrogant",
+                    "competitive",
+                    "grumpy",
+                    "cunning",
+                    "flamboyant",
+                    "rebellious"
+                ],
+                "other_clan_rep": -1,
+                "frequency": 4,
+                "relationships": [
+                    {
+                        "cats_to": [
+                            "s_c"
+                        ],
+                        "cats_from": [
+                            "patrol", "-s_c"
+                        ],
+                        "mutual": false,
+                        "values": [
+                            "respect"
+                        ],
+                        "amount": 10,
+                        "log": {
+                            "cats_from": "cat_from was impressed by cat_to's ability to intimidate an enemy patrol."
+                        }
+                    }
+                ]
+            },
+            {
+                "text": "Tensions escalate as both patrols get more and more heated, but when s_c drips sizzling magma between them, o_c_n are quick to back down.",
+                "exp": 0,
+                "can_have_stat": [ "adult" ],
+                "stat_element": [ "magma" ],
+                "stat_trait": [
+                    "troublesome",
+                    "fierce",
+                    "bloodthirsty",
+                    "charismatic",
+                    "bold",
+                    "daring",
+                    "strict",
+                    "ambitious",
+                    "confident",
+                    "shameless",
+                    "vengeful",
+                    "arrogant",
+                    "competitive",
+                    "grumpy",
+                    "cunning",
+                    "flamboyant",
+                    "rebellious"
+                ],
+                "other_clan_rep": -1,
+                "frequency": 4,
+                "relationships": [
+                    {
+                        "cats_to": [
+                            "s_c"
+                        ],
+                        "cats_from": [
+                            "patrol", "-s_c"
+                        ],
+                        "mutual": false,
+                        "values": [
+                            "respect"
+                        ],
+                        "amount": 10,
+                        "log": {
+                            "cats_from": "cat_from was impressed by cat_to's ability to intimidate an enemy patrol."
+                        }
+                    }
+                ]
+            },
+            {
+                "text": "Tensions escalate as both patrols get more and more heated, but the warning glint of s_c's sharp metal spikes cause o_c_n to back down.",
+                "exp": 0,
+                "can_have_stat": [ "adult" ],
+                "stat_element": [ "metal" ],
+                "stat_trait": [
+                    "troublesome",
+                    "fierce",
+                    "bloodthirsty",
+                    "charismatic",
+                    "bold",
+                    "daring",
+                    "strict",
+                    "ambitious",
+                    "confident",
+                    "shameless",
+                    "vengeful",
+                    "arrogant",
+                    "competitive",
+                    "grumpy",
+                    "cunning",
+                    "flamboyant",
+                    "rebellious"
+                ],
+                "other_clan_rep": -1,
+                "frequency": 4,
+                "relationships": [
+                    {
+                        "cats_to": [
+                            "s_c"
+                        ],
+                        "cats_from": [
+                            "patrol", "-s_c"
+                        ],
+                        "mutual": false,
+                        "values": [
+                            "respect"
+                        ],
+                        "amount": 10,
+                        "log": {
+                            "cats_from": "cat_from was impressed by cat_to's ability to intimidate an enemy patrol."
+                        }
+                    }
+                ]
             }
         ],
         "antag_fail_outcomes": [
@@ -1998,6 +2303,27 @@
                 "frequency": 1
             },
             {
+                "text": "s_c shifts the wind to carry {PRONOUN/s_c/poss} scent from a false direction to herd the rabbit onto c_n's territory. It's not o_c_n's rabbit now, is it?",
+                "stat_element": [ "air" ],
+                "exp": 10,
+                "prey": [ "medium" ],
+                "frequency": 4
+            },
+            {
+                "text": "s_c pounces without hesitation! And, for good measure, {PRONOUN/s_c/subject} {VERB/s_c/cover/covers} {PRONOUN/s_c/poss} trail up with some convenient use of powers.",
+                "stat_element": [ "earth", "sand", "mud", "water" ],
+                "exp": 10,
+                "prey": [ "medium" ],
+                "frequency": 3
+            },
+            {
+                "text": "s_c grows a tasty looking fresh flower to the rabbit, tempting it closer before pouncing and retreating unnoticed.",
+                "stat_element": [ "plant" ],
+                "exp": 10,
+                "prey": [ "medium" ],
+                "frequency": 4
+            },
+            {
                 "text": "s_c leaps for the rabbit, making a swift kill just before a o_c_n patrol comes into view. The o_c_n cats screech at the trespass and rush at the patrol. s_c barely manages to talk them down from a fight, begrudgingly handing over the rabbit, and the patrols part ways without any cat getting hurt.",
                 "exp": 10,
                 "stat_skill": [
@@ -2065,9 +2391,6 @@
                 "text": "r_c leaps for the rabbit.... and promptly trips over a rock. The rabbit hops away as r_c sheepishly picks {PRONOUN/r_c/self} up before noticing the o_c_n cat watching {PRONOUN/r_c/object} from the other side of the border. The other cat knows exactly what r_c was intending to do and hisses crossly before turning away, presumably to report the incident to their own leader.",
                 "exp": 0,
                 "other_clan_rep": -1,
-                "prey": [
-                    "medium"
-                ],
                 "relationships": [
                     {
                         "cats_to": [
@@ -2104,6 +2427,39 @@
                         }
                     }
                 ],
+                "frequency": 4
+            },
+            {
+                "text": "In the moment it took to make a decision, the rabbit caught s_c's stench and vanished deeper into o_c_n territory.",
+                "stat_element": [ "smoke", "decay" ],
+                "exp": 0,
+                "frequency": 4
+            },
+            {
+                "text": "Too busy concentrating on herding the rabbit into s_c's territory without trespassing, s_c fails to notice the approaching o_c_n patrol who get to the rabbit first.",
+                "stat_element": [ "air", "plant" ],
+                "exp": 0,
+                "frequency": 4
+            },
+            {
+                "text": "s_c pounces without hesitation! Alas, it's while trying to cover up the evidence with {PRONOUN/s_c/poss} powers that o_c_n's patrol catches {PRONOUN/s_c/object} trespassing. And make sure {PRONOUN/s_c/subject} won't think to come back.",
+                "stat_element": [ "water", "earth", "mud", "sand" ],
+                "exp": 0,
+                "injury": [
+                    {
+                        "cats": [
+                            "s_c"
+                        ],
+                        "injuries": [
+                            "battle_injury"
+                        ]
+                    }
+                ],
+                "history_text": {
+                    "scar": "m_c disrespected the border lines and was scarred by an enemy warrior for it.",
+                    "death": "m_c disrespected the border lines and died due to injuries from an enemy warrior."
+                },
+                "other_clan_rep": -1,
                 "frequency": 4
             },
             {

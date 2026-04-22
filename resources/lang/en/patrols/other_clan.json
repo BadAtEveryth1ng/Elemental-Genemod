@@ -349,6 +349,27 @@
                 "frequency": 1
             },
             {
+                "text": "s_c shifts the wind to carry {PRONOUN/s_c/poss} scent from a false direction to herd the rabbit onto c_n's territory. It's not o_c_n's rabbit now, is it?",
+                "stat_element": [ "air" ],
+                "exp": 10,
+                "prey": [ "medium" ],
+                "frequency": 4
+            },
+            {
+                "text": "s_c pounces without hesitation! And, for good measure, {PRONOUN/s_c/subject} {VERB/s_c/cover/covers} {PRONOUN/s_c/poss} trail up with some convenient use of powers.",
+                "stat_element": [ "earth", "sand", "mud", "water" ],
+                "exp": 10,
+                "prey": [ "medium" ],
+                "frequency": 3
+            },
+            {
+                "text": "s_c grows a tasty looking fresh flower to the rabbit, tempting it closer before pouncing and retreating unnoticed.",
+                "stat_element": [ "plant" ],
+                "exp": 10,
+                "prey": [ "medium" ],
+                "frequency": 4
+            },
+            {
                 "text": "r_c leaps for the rabbit, making a swift kill just before a o_c_n patrol comes into view. The o_c_n cats bristle at the trespass and a fight seems to be brewing. Thankfully, s_c smooths things over with the other patrol by graciously gifting them the rabbit. They part ways without damaging the relationship between Clans.",
                 "exp": 10,
                 "stat_skill": [
@@ -434,9 +455,25 @@
                 "text": "r_c leaps for the rabbit.... and promptly trips over a rock. The rabbit hops away as r_c sheepishly picks {PRONOUN/r_c/self} up before noticing the o_c_n cat watching {PRONOUN/r_c/object} from the other side of the border. The other cat knows exactly what r_c was intending to do and turns away, presumably to report the incident to their own leader.",
                 "exp": 0,
                 "other_clan_rep": -1,
-                "prey": [
-                    "medium"
-                ],
+                "frequency": 4
+            },
+            {
+                "text": "In the moment it took to make a decision, the rabbit caught s_c's stench and vanished deeper into o_c_n territory.",
+                "stat_element": [ "smoke", "decay" ],
+                "exp": 0,
+                "frequency": 4
+            },
+            {
+                "text": "Too busy concentrating on herding the rabbit into s_c's territory without trespassing, s_c fails to notice the approaching o_c_n patrol who get to the rabbit first.",
+                "stat_element": [ "air", "plant" ],
+                "exp": 0,
+                "frequency": 4
+            },
+            {
+                "text": "s_c pounces without hesitation! Alas, it's while trying to cover up the evidence with {PRONOUN/s_c/poss} powers that o_c_n's patrol catches {PRONOUN/s_c/object} trespassing.",
+                "stat_element": [ "water", "earth", "mud", "sand" ],
+                "exp": 0,
+                "other_clan_rep": -1,
                 "frequency": 4
             },
             {
