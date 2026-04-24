@@ -498,6 +498,16 @@
                 "frequency": 4
             },
             {
+                "text": "{PRONOUN/s_c/subject/CAP} {VERB/s_c/pad/pads} over to the border and {VERB/s_c/hesitate/hesitates} only momentarily before crossing. {PRONOUN/s_c/subject/CAP} quickly {VERB/s_c/gather/gathers} some of the berries, ripening some of the least ripe berries for o_c_n before leaving.",
+                "stat_element": ["plant"],
+                "exp": 20,
+                "herbs": [
+                    "raspberry"
+                ],
+                "other_clan_rep": 2,
+                "frequency": 4
+            },
+            {
                 "text": "{PRONOUN/p_l/subject/CAP} {VERB/p_l/pad/pads} to the border and {VERB/p_l/pause/pauses} for a heartbeat to scent the air. o_c_n's scent is very strong, but there's something else... o_c_n's healer appears at that moment. They're walking towards the raspberries when they spot p_l and wave their tail in greeting. They invite p_l to gather some, as there's plenty. p_l gratefully accepts.",
                 "exp": 20,
                 "herbs": [
@@ -517,11 +527,28 @@
                 ],
                 "other_clan_rep": 2,
                 "frequency": 4
+            },
+            {
+                "text": "s_c starts to step over the border but a hiss stops {PRONOUN/s_c/object} in {PRONOUN/s_c/poss} tracks. A o_c_n patrol is padding {PRONOUN/s_c/poss} way. Though the patrol seems to calm down as they recognize s_c, they look gravely at the medicine cat and explain that they can't spare any herbs — their medicine cat sent them to collect the last of the berries. s_c offers to grow extra in exchange - which more than satisfies the patrol.",
+                "stat_element": [ "plant" ],
+                "herbs": [
+                    "raspberry"
+                ],
+                "exp": 0,
+                "other_clan_rep": 2,
+                "frequency": 4
             }
         ],
         "fail_outcomes": [
             {
                 "text": "p_l starts to step over the border but a hiss stops {PRONOUN/p_l/object} in {PRONOUN/p_l/poss} tracks. A o_c_n patrol is padding {PRONOUN/p_l/poss} way. Though the patrol seems to calm down as they recognize p_l, they look gravely at the medicine cat and explain that they can't spare any herbs — their medicine cat sent them to collect the last of the berries. p_l nods and thanks them anyway.",
+                "exp": 0,
+                "other_clan_rep": -1,
+                "frequency": 4
+            },
+            {
+                "text": "s_c starts to step over the border but a hiss stops {PRONOUN/s_c/object} in {PRONOUN/s_c/poss} tracks. A o_c_n patrol is padding {PRONOUN/s_c/poss} way. Though the patrol seems to calm down as they recognize s_c, they look gravely at the medicine cat and explain that they can't spare any herbs — their medicine cat sent them to collect the last of the berries. They don't listen to s_c's offer of growing extra for them in exchange.",
+                "stat_element": [ "plant" ],
                 "exp": 0,
                 "other_clan_rep": -1,
                 "frequency": 4
@@ -672,7 +699,6 @@
                     "r_c"
                 ],
                 "history_text": {
-                    "scar": "m_c followed the scent of a trespassing cat and was scarred by a dog.",
                     "death": "m_c followed the scent of a trespassing cat and was killed by a dog."
                 },
                 "other_clan_rep": -1,
