@@ -2391,7 +2391,10 @@
                             "trust",
                             "comfort"
                         ],
-                        "amount": 30
+                        "amount": 30,
+                        "log": {
+                            "cats_from": "cat_from and cat_to fell in love over the course of many stolen moments at the border."
+                        }
                     },
                     {
                         "cats_from": [
@@ -2437,7 +2440,10 @@
                             "trust",
                             "comfort"
                         ],
-                        "amount": 30
+                        "amount": 30,
+                        "log": {
+                            "cats_from": "cat_from and cat_to fell in love over the course of many stolen moments at the border."
+                        }
                     },
                     {
                         "cats_from": [
@@ -2497,11 +2503,14 @@
                             "like",
                             "romance"
                         ],
-                        "amount": 50
+                        "amount": 50,
+                        "log": {
+                            "cats_from": "cat_from and cat_to fell in love over the course of many stolen moments at the border."
+                        }
                     },
                     {
                         "cats_from": [
-                            "high_lawful"
+                            "clan", "high_lawful"
                         ],
                         "cats_to": [
                             "p_l"
@@ -2547,7 +2556,10 @@
                             "trust",
                             "comfort"
                         ],
-                        "amount": 30
+                        "amount": 30,
+                        "log": {
+                            "cats_from": "cat_from and cat_to fell in love over the course of many stolen moments at the border."
+                        }
                     },
                     {
                         "cats_from": [
@@ -2606,7 +2618,10 @@
                             "like",
                             "romance"
                         ],
-                        "amount": 50
+                        "amount": 50,
+                        "log": {
+                            "cats_from": "cat_from and cat_to fell in love over the course of many stolen moments at the border."
+                        }
                     }
                 ],
                 "outsider_rep": 0,
@@ -9385,7 +9400,10 @@
                         "values": [
                             "respect"
                         ],
-                        "amount": 5
+                        "amount": 5,
+                        "log": {
+                            "cats_from": "cat_from was grudgingly impressedy by cat_to's ferocity in a fight."
+                        }
                     },
                     {
                         "cats_to": [

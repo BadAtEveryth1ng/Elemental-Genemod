@@ -548,7 +548,10 @@
                         "values": [
                             "like"
                         ],
-                        "amount": -25
+                        "amount": -25,
+                        "log": {
+                            "cats_from": "cat_from was unhappy with cat_to for pushing the issue of {PRONOUN/cat_to/poss} feelings for {PRONOUN/cat_from/object}."
+                        }
                     },
                     {
                         "cats_to": [
@@ -639,7 +642,10 @@
                         "values": [
                             "like"
                         ],
-                        "amount": -25
+                        "amount": -25,
+                        "log": {
+                            "cats_from": "cat_from was unhappy with cat_to for pushing the issue of {PRONOUN/cat_to/poss} feelings for {PRONOUN/cat_from/object}."
+                        }
                     },
                     {
                         "cats_to": [
@@ -3523,7 +3529,10 @@
                             "trust",
                             "comfort"
                         ],
-                        "amount": 30
+                        "amount": 30,
+                        "log": {
+                            "cats_from": "cat_from and cat_to fell in love over the course of many stolen moments at the border."
+                        }
                     },
                     {
                         "cats_from": [
@@ -3569,7 +3578,10 @@
                             "trust",
                             "comfort"
                         ],
-                        "amount": 30
+                        "amount": 30,
+                        "log": {
+                            "cats_from": "cat_from and cat_to fell in love over the course of many stolen moments at the border."
+                        }
                     },
                     {
                         "cats_from": [
@@ -3629,11 +3641,14 @@
                             "like",
                             "romance"
                         ],
-                        "amount": 50
+                        "amount": 50,
+                        "log": {
+                            "cats_from": "cat_from and cat_to fell in love over the course of many stolen moments at the border."
+                        }
                     },
                     {
                         "cats_from": [
-                            "high_lawful"
+                            "clan", "high_lawful"
                         ],
                         "cats_to": [
                             "p_l"
@@ -3678,7 +3693,10 @@
                             "trust",
                             "comfort"
                         ],
-                        "amount": 30
+                        "amount": 30,
+                        "log": {
+                            "cats_from": "cat_from and cat_to fell in love over the course of many stolen moments at the border."
+                        }
                     },
                     {
                         "cats_from": [
@@ -3723,7 +3741,10 @@
                             "trust",
                             "comfort"
                         ],
-                        "amount": 30
+                        "amount": 30,
+                        "log": {
+                            "cats_from": "cat_from and cat_to fell in love over the course of many stolen moments at the border."
+                        }
                     },
                     {
                         "cats_from": [
@@ -4185,7 +4206,10 @@
                         "cats_from": ["n_c:0"],
                         "cats_to": ["patrol"],
                         "values": ["like", "trust", "comfort"],
-                        "amount": 10
+                        "amount": 10,
+                        "log": {
+                            "cats_from": "cat_from was found and accepted into the Clan by cat_to's patrol."
+                        }
                     }
                 ],
                 "outsider_rep": 1,
