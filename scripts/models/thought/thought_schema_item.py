@@ -6,6 +6,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from pydantic_core import MISSING
 
 from scripts.models.common.age import Age
+from scripts.models.common.element import Element
 from scripts.models.common.all_trait import AllTrait
 from scripts.models.common.backstory import Backstory
 from scripts.models.common.biome import Biome
@@ -103,6 +104,14 @@ class ThoughtSchemaItem(BaseModel):
     random_skill_constraint: Union[List[Skill], MISSING] = Field(
         MISSING,
         description="Constrains the thought to only happen if r_c has a specific skill.",
+    )
+    main_element_constraint: Union[List[Element], MISSING] = Field(
+        MISSING,
+        description="Constrains the thought to only happen if m_c has a certain element.",
+    )
+    random_element_constraint: Union[List[Element], MISSING] = Field(
+        MISSING,
+        description="Constrains the thought to only happen if r_c has a certain element.",
     )
     random_living_status: Union[List[RandomLivingStatus], MISSING] = Field(
         MISSING,

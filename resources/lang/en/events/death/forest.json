@@ -75,14 +75,14 @@
         "frequency": 1,
         "event_text": "m_c was crushed when a tree fell into camp.",
         "m_c": {
-            "dies": true
+            "dies": true,
+            "element": [ "-plant" ]
         },
         "history": [
             {
                 "cats": [
                     "m_c"
                 ],
-                "element": ["-plant"],
                 "death": "m_c was crushed by a falling tree."
             }
         ]
