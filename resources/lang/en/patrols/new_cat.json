@@ -13259,8 +13259,7 @@
                     ]
                 ],
                 "art": "gen_dead_cat_ghost_EXPLICIT",
-                "art_clean": "gen_dead_cat",
-                "future_event": [ ]
+                "art_clean": "gen_dead_cat"
             }
         ],
         "antag_success_outcomes": [
