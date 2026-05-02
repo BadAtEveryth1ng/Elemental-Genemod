@@ -1403,7 +1403,7 @@
                 ],
                 "amount": 40,
                 "log": {
-                    "cats_from": "cat_to sacrificed {PRONOUN/cat_to/poss} life for cat_from in a battle against o_c_n."
+                    "cats_from": "cat_to sacrificed {PRONOUN/cat_to/poss} life for cat_from in a battle against an enemy Clan."
                 }
             }
         ],
@@ -1466,7 +1466,7 @@
                 ],
                 "amount": 40,
                 "log": {
-                    "cats_from": "cat_to sacrificed {PRONOUN/cat_to/poss} life for cat_from in a battle against o_c_n."
+                    "cats_from": "cat_to sacrificed {PRONOUN/cat_to/poss} life for cat_from in a battle against an enemy Clan."
                 }
             }
         ],
@@ -1528,7 +1528,7 @@
                 ],
                 "amount": 40,
                 "log": {
-                    "cats_from": "cat_to sacrificed {PRONOUN/cat_to/poss} life for cat_from in a battle against o_c_n."
+                    "cats_from": "cat_to sacrificed {PRONOUN/cat_to/poss} life for cat_from in a battle against an enemy Clan."
                 }
             }
         ],
@@ -1591,7 +1591,7 @@
                 ],
                 "amount": 40,
                 "log": {
-                    "cats_from": "cat_to sacrificed {PRONOUN/cat_to/poss} life for cat_from in a o_c_n ambush."
+                    "cats_from": "cat_to sacrificed {PRONOUN/cat_to/poss} life for cat_from in an ambush during war."
                 }
             }
         ],
@@ -5069,7 +5069,7 @@
                 "amount": 30,
                 "mutual": false,
                 "log": {
-                    "cats_from": "cat_to was killed by o_c_n while trying to drag cat_from out of battle, and cat_from will always remember {PRONOUN/cat_to/poss} sacrifice."
+                    "cats_from": "cat_to was killed by an enemy Clan while trying to drag cat_from out of battle, and cat_from will always remember {PRONOUN/cat_to/poss} sacrifice."
                 }
             }
         ],
@@ -6106,7 +6106,7 @@
             "any"
         ],
         "tags": [
-            "clan:kits"
+            "clan:kitten"
         ],
         "frequency": 4,
         "event_text": "m_c was killed defending the kits during a o_c_n raid.",
@@ -6158,7 +6158,7 @@
                 "amount": 20,
                 "mutual": false,
                 "log": {
-                    "cats_from": "cat_from will always remember that cat_to gave {PRONOUN/cat_to/poss} life to save kits from o_c_n warriors."
+                    "cats_from": "cat_from will always remember that cat_to gave {PRONOUN/cat_to/poss} life to save kits from warriors of an enemy Clan."
                 }
             }
         ]
@@ -6230,7 +6230,7 @@
                 ],
                 "amount": 30,
                 "log": {
-                    "cats_from": "cat_to died defending cat_from from o_c_n warriors, and cat_from will always remember {PRONOUN/cat_to/poss} sacrifice."
+                    "cats_from": "cat_to died defending cat_from from warriors of an enemy Clan, and cat_from will always remember {PRONOUN/cat_to/poss} sacrifice."
                 }
             }
         ],
@@ -8269,10 +8269,10 @@
     },
     {
         "event_id": "gen_death_stroke",
-        "location": [ "any" ],
-        "season": [ "any" ],
-        "sub_type": [ ],
-        "tags": [ "clan: medicine cat" ],
+        "location": ["any"],
+        "season": ["any"],
+        "sub_type": [],
+        "tags": ["clan:medicine cat"],
         "frequency": 1,
         "event_text": "m_c seemed hale and healthy on patrol until {PRONOUN/m_c/subject} had trouble speaking and began to limp. By the time {PRONOUN/m_c/poss} Clanmates came back with the healer, m_c was dead.",
         "m_c": {
@@ -8561,7 +8561,7 @@
                 "amount": -30,
                 "mutual": false,
                 "log": {
-                    "cats_from": "cat_to stood by and watched as o_c_n's deputy killed cat_from."
+                    "cats_from": "cat_to stood by and watched as an enemy Clan's deputy killed cat_from."
                 }
             }
         ],
@@ -9993,7 +9993,7 @@
         "location": [
             "forest:camp1_camp2",
             "plains:camp1_camp3_camp4",
-            "mountain:camp1_camp2_camp4" ],
+            "mountainous:camp1_camp2_camp4" ],
         "season": [
             "any"
         ],
@@ -10020,7 +10020,7 @@
         "location": [
             "forest:camp1_camp2",
             "plains:camp1_camp3_camp4",
-            "mountain:camp1_camp2_camp4" ],
+            "mountainous:camp1_camp2_camp4" ],
         "season": [
             "any"
         ],
