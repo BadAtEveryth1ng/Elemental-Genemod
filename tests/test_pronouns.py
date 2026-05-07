@@ -33,7 +33,7 @@ def _test():
     # to ensure that we are catching cases where only one verb conjugation
     # was provided - since singular-conjugation
     # should be the second provided conjugation.
-    _r = ("Name", get_new_pronouns("female")[0])
+    _r = ("Name", get_new_pronouns("female")[0], "fire")
     replacement_dict = {
         "m_c": _r,
         "r_c": _r,

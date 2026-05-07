@@ -1101,7 +1101,7 @@ class EventEditScreen(Screens):
             pronoun = choice(
                 [pro for pro in self.test_pronouns if pro["conju"] == conju]
             )
-            test_dict[abbr] = (self.test_cat_names[abbr], pronoun)
+            test_dict[abbr] = (self.test_cat_names[abbr], pronoun, "fire")
         text = process_text(text, test_dict)
         return text
 
@@ -1454,7 +1454,7 @@ class EventEditScreen(Screens):
                 pronoun = choice(
                     [pro for pro in self.test_pronouns if pro["conju"] == 2]
                 )
-                test_dict[abbr] = (self.test_cat_names[abbr], pronoun)
+                test_dict[abbr] = (self.test_cat_names[abbr], pronoun, "fire")
             preview = process_text(event["event_text"], test_dict)
             game.event_editing = True
             self.event_buttons[index] = UISurfaceImageButton(

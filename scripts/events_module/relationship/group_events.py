@@ -682,6 +682,7 @@ class GroupEvents:
             replace_dict[abbr] = (
                 str(Cat.all_cats[cat_id].name),
                 choice(Cat.all_cats[cat_id].pronouns),
+                Cat.all_cats[cat_id].phenotype.element,
             )
 
         return process_text(text, replace_dict)

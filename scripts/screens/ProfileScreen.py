@@ -1596,7 +1596,7 @@ class ProfileScreen(Screens):
                             f"{self.the_cat.name} was", f"{chosen}", 1
                         )
                 cat_dict = {
-                    "m_c": (str(self.the_cat.name), choice(self.the_cat.pronouns))
+                    "m_c": (str(self.the_cat.name), choice(self.the_cat.pronouns), self.the_cat.phenotype.element)
                 }
                 new_text = process_text(new_text, cat_dict)
                 scar_text.append(new_text)
@@ -1725,7 +1725,7 @@ class ProfileScreen(Screens):
                 graduation_history += (
                     f" ({i18n.t('general.moon_date', moon=app_ceremony['moon'])})"
                 )
-        cat_dict = {"m_c": (str(self.the_cat.name), choice(self.the_cat.pronouns))}
+        cat_dict = {"m_c": (str(self.the_cat.name), choice(self.the_cat.pronouns), self.the_cat.phenotype.element)}
         apprenticeship_history = influence_history + " " + graduation_history
         apprenticeship_history = process_text(apprenticeship_history, cat_dict)
         return apprenticeship_history
@@ -1749,7 +1749,7 @@ class ProfileScreen(Screens):
                 "cat.history.mentored",
                 apprentices=adjust_list_text(all_real_apprentices),
             )
-            cat_dict = {"m_c": (str(self.the_cat.name), choice(self.the_cat.pronouns))}
+            cat_dict = {"m_c": (str(self.the_cat.name), choice(self.the_cat.pronouns), self.the_cat.phenotype.element)}
 
             text = process_text(text, cat_dict)
 
@@ -1854,7 +1854,7 @@ class ProfileScreen(Screens):
             else:
                 text = all_deaths[0]
 
-            cat_dict = {"m_c": (str(self.the_cat.name), choice(self.the_cat.pronouns))}
+            cat_dict = {"m_c": (str(self.the_cat.name), choice(self.the_cat.pronouns), self.the_cat.phenotype.element)}
             text = process_text(text, cat_dict)
 
         return text

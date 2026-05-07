@@ -96,6 +96,8 @@ def pronoun_repl(m, cat_pronouns_dict, raise_exception=False):
             out = inner_details[d["conju"] + 1]
         elif inner_details[0].upper() == "ADJ":
             out = inner_details[(d["gender"] + 2) if "gender" in d else 2]
+        elif inner_details[0].upper() == "ELEMENT":
+            out = d["element"]
 
         if out is not None:
             if inner_details[-1] == "CAP":
@@ -306,15 +308,15 @@ def ongoing_event_text_adjust(Cat, text, clan=None, other_clan_name=None):
     """
     cat_dict = {}
     if "lead_name" in text:
-        cat_dict["lead_name"] = (str(clan.leader.name), choice(clan.leader.pronouns))
+        cat_dict["lead_name"] = (str(clan.leader.name), choice(clan.leader.pronouns), clan.leader.phenotype.element)
     if "dep_name" in text:
-        cat_dict["dep_name"] = (str(clan.deputy.name), choice(clan.deputy.pronouns))
+        cat_dict["dep_name"] = (str(clan.deputy.name), choice(clan.deputy.pronouns), clan.deputy.phenotype.element)
     if "med_name" in text:
         meds = find_alive_cats_with_rank(Cat, [CatRank.MEDICINE_CAT], working=True, clan=clan.group_ID)
         kitty = choice(
             meds if meds else find_alive_cats_with_rank(Cat, [CatRank.MEDICINE_CAT], clan=clan.group_ID)
         )
-        cat_dict["med_name"] = (str(kitty.name), choice(kitty.pronouns))
+        cat_dict["med_name"] = (str(kitty.name), choice(kitty.pronouns), kitty.phenotype.element)
 
     if cat_dict:
         text = process_text(text, cat_dict)
@@ -407,25 +409,26 @@ def event_text_adjust(
     # main_cat
     if "m_c" in text:
         if main_cat:
-            replace_dict["m_c"] = (str(main_cat.name), choice(main_cat.pronouns))
+            replace_dict["m_c"] = (str(main_cat.name), choice(main_cat.pronouns), main_cat.phenotype.element)
 
     # patrol_lead
     if "p_l" in text:
         if patrol_leader:
             replace_dict["p_l"] = (
                 str(patrol_leader.name),
-                choice(patrol_leader.pronouns),
+                choice(patrol_leader.pronouns), 
+                patrol_leader.phenotype.element,
             )
 
     # random_cat
     if "r_c" in text:
         if random_cat:
-            replace_dict["r_c"] = (str(random_cat.name), get_pronouns(random_cat))
+            replace_dict["r_c"] = (str(random_cat.name), get_pronouns(random_cat), random_cat.phenotype.element)
 
     # stat cat
     if "s_c" in text:
         if stat_cat:
-            replace_dict["s_c"] = (str(stat_cat.name), get_pronouns(stat_cat))
+            replace_dict["s_c"] = (str(stat_cat.name), get_pronouns(stat_cat), stat_cat.phenotype.element)
 
     # other_cats
     if patrol_cats:
@@ -441,7 +444,8 @@ def event_text_adjust(
             if len(other_cats) > i:
                 replace_dict[abbr] = (
                     str(other_cats[i].name),
-                    choice(other_cats[i].pronouns),
+                    choice(other_cats[i].pronouns), 
+                    other_cats[i].phenotype.element,
                 )
 
     # patrol_apprentices
@@ -453,6 +457,7 @@ def event_text_adjust(
             replace_dict[abbr] = (
                 str(patrol_apprentices[i].name),
                 choice(patrol_apprentices[i].pronouns),
+                patrol_apprentices[i].phenotype.element,
             )
 
     # new_cats (include pre version)
@@ -463,22 +468,22 @@ def event_text_adjust(
             else:
                 pronoun = choice(cat_list[0].pronouns)
 
-            replace_dict[f"n_c:{i}"] = (str(cat_list[0].name), pronoun)
-            replace_dict[f"n_c_pre:{i}"] = (str(cat_list[0].name.prefix), pronoun)
+            replace_dict[f"n_c:{i}"] = (str(cat_list[0].name), pronoun, cat_list[0].phenotype.element)
+            replace_dict[f"n_c_pre:{i}"] = (str(cat_list[0].name.prefix), pronoun, cat_list[0].phenotype.element)
 
     # mur_c (murdered cat for reveals)
     if "mur_c" in text:
-        replace_dict["mur_c"] = (str(victim_cat.name), get_pronouns(victim_cat))
+        replace_dict["mur_c"] = (str(victim_cat.name), get_pronouns(victim_cat), victim_cat.phenotype.element)
 
     # lead_name
     if "lead_name" in text:
         leader = Cat.fetch_cat(clan.leader if clan else game.clan.leader)
-        replace_dict["lead_name"] = (str(leader.name), choice(leader.pronouns))
+        replace_dict["lead_name"] = (str(leader.name), choice(leader.pronouns), leader.phenotype.element)
 
     # dep_name
     if "dep_name" in text:
         deputy = Cat.fetch_cat(clan.deputy if clan else game.clan.deputy)
-        replace_dict["dep_name"] = (str(deputy.name), choice(deputy.pronouns))
+        replace_dict["dep_name"] = (str(deputy.name), choice(deputy.pronouns), deputy.phenotype.element)
 
     # med_name
     if "med_name" in text:
@@ -491,7 +496,7 @@ def event_text_adjust(
             med = choice(
                 find_alive_cats_with_rank(Cat, [CatRank.MEDICINE_CAT], clan=clan.group_ID)
             )
-        replace_dict["med_name"] = (str(med.name), choice(med.pronouns))
+        replace_dict["med_name"] = (str(med.name), choice(med.pronouns), med.phenotype.element)
 
     # assign all names and pronouns
     if replace_dict:
@@ -636,14 +641,15 @@ def leader_ceremony_text_adjust(
     used to adjust the text for leader ceremonies
     """
     replace_dict = {
-        "m_c_star": (str(leader.name.prefix + "star"), choice(leader.pronouns)),
-        "m_c": (str(leader.name.prefix + leader.name.suffix), choice(leader.pronouns)),
+        "m_c_star": (str(leader.name.prefix + "star"), choice(leader.pronouns), leader.phenotype.element),
+        "m_c": (str(leader.name.prefix + leader.name.suffix), choice(leader.pronouns), leader.phenotype.element),
     }
 
     if life_giver:
         replace_dict["r_c"] = (
             str(Cat.fetch_cat(life_giver).name),
-            choice(Cat.fetch_cat(life_giver).pronouns),
+            choice(Cat.fetch_cat(life_giver).pronouns), 
+            Cat.fetch_cat(life_giver).phenotype.element,
         )
 
     text = process_text(text, replace_dict)
@@ -687,55 +693,59 @@ def ceremony_text_adjust(
 
     cat_dict = {
         "m_c": (
-            (str(cat.name), choice(cat.pronouns)) if cat else ("cat_placeholder", None)
+            (str(cat.name), choice(cat.pronouns), cat.phenotype.element) if cat else ("cat_placeholder", None, "")
         ),
         "(mentor)": (
-            (str(mentor.name), choice(mentor.pronouns))
+            (str(mentor.name), choice(mentor.pronouns), mentor.phenotype.element)
             if mentor
-            else ("mentor_placeholder", None)
+            else ("mentor_placeholder", None, "")
         ),
         "(deadmentor)": (
-            (str(dead_mentor.name), get_pronouns(dead_mentor))
+            (str(dead_mentor.name), get_pronouns(dead_mentor), dead_mentor.phenotype.element)
             if dead_mentor
-            else ("dead_mentor_name", None)
+            else ("dead_mentor_name", None, "")
         ),
         "(previous_mentor)": (
-            (str(previous_alive_mentor.name), choice(previous_alive_mentor.pronouns))
+            (str(previous_alive_mentor.name), choice(previous_alive_mentor.pronouns), previous_alive_mentor.phenotype.element)
             if previous_alive_mentor
-            else ("previous_mentor_name", None)
+            else ("previous_mentor_name", None, "")
         ),
         "l_n": (
-            (str(clan.leader.name), choice(clan.leader.pronouns))
+            (str(clan.leader.name), choice(clan.leader.pronouns), clan.leader.phenotype.element)
             if clan.leader
-            else ("leader_name", None)
+            else ("leader_name", None, "")
         ),
-        "c_n": (clanname, None),
+        "c_n": (clanname, None, ""),
     }
 
     if old_name:
-        cat_dict["(old_name)"] = (old_name, None)
+        cat_dict["(old_name)"] = (old_name, None, "")
 
     if random_honor:
-        cat_dict["r_h"] = (random_honor, None)
+        cat_dict["r_h"] = (random_honor, None, "")
 
     if "p1" in adjust_text and "p2" in adjust_text and len(living_parents) >= 2:
         cat_dict["p1"] = (
             str(living_parents[0].name),
-            choice(living_parents[0].pronouns),
+            choice(living_parents[0].pronouns), 
+            living_parents[0].phenotype.element,
         )
         cat_dict["p2"] = (
             str(living_parents[1].name),
             choice(living_parents[1].pronouns),
+            living_parents[1].phenotype.element,
         )
     elif living_parents:
         random_living_parent = choice(living_parents)
         cat_dict["p1"] = (
             str(random_living_parent.name),
             choice(random_living_parent.pronouns),
+            random_living_parent.phenotype.element,
         )
         cat_dict["p2"] = (
             str(random_living_parent.name),
             choice(random_living_parent.pronouns),
+            random_living_parent.phenotype.element,
         )
 
     if (
@@ -746,20 +756,24 @@ def ceremony_text_adjust(
         cat_dict["dead_par1"] = (
             str(dead_parents[0].name),
             get_pronouns(dead_parents[0]),
+            dead_parents[0].phenotype.element,
         )
         cat_dict["dead_par2"] = (
             str(dead_parents[1].name),
             get_pronouns(dead_parents[1]),
+            dead_parents[1].phenotype.element,
         )
     elif dead_parents:
         random_dead_parent = choice(dead_parents)
         cat_dict["dead_par1"] = (
             str(random_dead_parent.name),
             get_pronouns(random_dead_parent),
+            random_dead_parent.phenotype.element,
         )
         cat_dict["dead_par2"] = (
             str(random_dead_parent.name),
             get_pronouns(random_dead_parent),
+            random_dead_parent.phenotype.element,
         )
 
     adjust_text = process_text(adjust_text, cat_dict)

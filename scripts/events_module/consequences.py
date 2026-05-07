@@ -1625,11 +1625,13 @@ def change_relationship_values(
                     replace_dict["cat_from"] = (
                         str(cat_from.name),
                         choice(cat_from.pronouns),
+                        cat_from.phenotype.element
                     )
                 if "cat_to" in log:
                     replace_dict["cat_to"] = (
                         str(cat_to.name),
                         choice(cat_to.pronouns),
+                        cat_to.phenotype.element,
                     )
                 if replace_dict:
                     processed_log = process_text(log, replace_dict)

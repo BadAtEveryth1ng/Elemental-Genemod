@@ -27,7 +27,7 @@ class KillCat(GameWindow):
 
         self.the_cat = cat
 
-        cat_dict = {"m_c": (str(self.the_cat.name), choice(self.the_cat.pronouns))}
+        cat_dict = {"m_c": (str(self.the_cat.name), choice(self.the_cat.pronouns), self.the_cat.phenotype.element)}
         self.heading = pygame_gui.elements.UITextBox(
             "windows.kill_cat_method",
             ui_scale(pygame.Rect((10, 10), (300, -1))),

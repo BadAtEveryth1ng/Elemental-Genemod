@@ -252,8 +252,8 @@ class Relationship:
         """Adjusts the string text for viewing"""
 
         cat_dict = {
-            "m_c": (str(self.cat_from.name), choice(self.cat_from.pronouns)),
-            "r_c": (str(self.cat_to.name), choice(self.cat_to.pronouns)),
+            "m_c": (str(self.cat_from.name), choice(self.cat_from.pronouns), self.cat_from.phenotype.element),
+            "r_c": (str(self.cat_to.name), choice(self.cat_to.pronouns), self.cat_to.phenotype.element),
         }
 
         return process_text(string, cat_dict)
