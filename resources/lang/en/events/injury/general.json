@@ -8008,7 +8008,7 @@
         "other_clan": {
             "current_rep": [ "hostile" ],
             "changed": -3,
-            "has_rank": [ "any_warrior_mult" ]
+            "has_rank": [ "any_fighter_mult" ]
         }
     },
     {
@@ -8065,7 +8065,7 @@
         "other_clan": {
             "current_rep": [ "hostile" ],
             "changed": -1,
-            "has_rank": [ "any_warrior_mult" ]
+            "has_rank": [ "any_fighter_mult" ]
         }
     },
     {
@@ -8097,7 +8097,7 @@
         "other_clan": {
             "current_rep": [ "hostile" ],
             "changed": -2,
-            "has_rank": [ "any_warrior" ]
+            "has_rank": [ "any_fighter_mult" ]
         }
     },
     {
@@ -8168,7 +8168,7 @@
         "other_clan": {
             "current_rep": [ "hostile" ],
             "changed": -1,
-            "has_rank": [ "any_warrior_mult" ]
+            "has_rank": [ "any_fighter_mult" ]
         }
     },
     {
@@ -8203,7 +8203,7 @@
         "other_clan": {
             "current_rep": [ "hostile" ],
             "changed": -2,
-            "has_rank": [ "any_warrior_mult" ]
+            "has_rank": [ "any_fighter_mult" ]
         }
     },
     {
@@ -8238,7 +8238,7 @@
         "other_clan": {
             "current_rep": [ "hostile" ],
             "changed": -2,
-            "has_rank": [ "any_warrior_mult" ]
+            "has_rank": [ "any_fighter_mult" ]
         }
     },
     {
@@ -8273,7 +8273,7 @@
         "other_clan": {
             "current_rep": [ "hostile" ],
             "changed": -2,
-            "has_rank": [ "any_warrior_mult" ]
+            "has_rank": [ "any_fighter_mult" ]
         }
     },
     {
@@ -8507,7 +8507,7 @@
         "other_clan": {
             "current_rep": ["hostile"],
             "changed": -1,
-            "has_rank": [ "any_warrior_mult" ]
+            "has_rank": [ "any_fighter_mult" ]
         }
     },
     {
@@ -8533,7 +8533,7 @@
         "other_clan": {
             "current_rep": ["hostile"],
             "changed": 3,
-            "has_rank": [ "any_warrior_mult" ]
+            "has_rank": [ "any_fighter_mult" ]
         }
     },
     {
@@ -8605,7 +8605,7 @@
         "other_clan": {
             "current_rep": ["any"],
             "changed": -1,
-            "has_rank": [ "any_warrior_mult" ]
+            "has_rank": [ "any_fighter_mult" ]
         }
     },
     {
@@ -8645,7 +8645,7 @@
         "other_clan": {
             "current_rep": ["any"],
             "changed": -1,
-            "has_rank": [ "any_warrior_mult" ]
+            "has_rank": [ "any_fighter_mult" ]
         }
     },
     {
@@ -9429,7 +9429,7 @@
         "other_clan": {
             "current_rep": [ "any" ],
             "changed": -1,
-            "has_rank": ["any_warrior_mult"]
+            "has_rank": ["any_fighter_mult"]
         },
 
         "injury": [

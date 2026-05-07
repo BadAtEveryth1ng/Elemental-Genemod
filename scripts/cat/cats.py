@@ -96,6 +96,8 @@ class Cat:
     rank_sort_order = [
         CatRank.NEWBORN,
         CatRank.KITTEN,
+        CatRank.QUEEN_APPRENTICE,
+        CatRank.QUEEN,
         CatRank.APPRENTICE,
         CatRank.WARRIOR,
         CatRank.ELDER,
@@ -1313,7 +1315,10 @@ class Cat:
 
             self.history.add_mentor_skill_influence_strings()
             self.history.add_mentor_facet_influence_strings()
-        return
+        
+        if self.status.rank.is_any_apprentice_rank():
+            self.history.add_queen_skill_influence_strings()
+            self.history.add_queen_facet_influence_strings()
 
     def change_name(self, new_prefix=None, new_suffix=None):
         self.name = Name(
