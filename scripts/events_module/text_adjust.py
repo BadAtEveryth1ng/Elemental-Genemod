@@ -97,7 +97,7 @@ def pronoun_repl(m, cat_pronouns_dict, raise_exception=False):
         elif inner_details[0].upper() == "ADJ":
             out = inner_details[(d["gender"] + 2) if "gender" in d else 2]
         elif inner_details[0].upper() == "ELEMENT":
-            out = d["element"]
+            out = cat_pronouns_dict[inner_details[1]][2]
 
         if out is not None:
             if inner_details[-1] == "CAP":
