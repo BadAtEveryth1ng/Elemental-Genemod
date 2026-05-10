@@ -977,6 +977,34 @@
                 "frequency": 1
             },
             {
+                "text": "s_c follows the scent to a o_c_n cat taking refuge up a tree. The cat yowls a warning too late as a dog comes bounding towards {PRONOUN/s_c/object}. It pounces towards s_c, only for teeth to snap on air as the dog turns with a whine at the surge of {ELEMENT/s_c}.",
+                "exp": 10,
+                "stat_element": [ "fire", "blue fire", "lightning", "magma", "combustion" ],
+                "other_clan_rep": 1,
+                "frequency": 4
+            },
+            {
+                "text": "s_c follows the scent to a o_c_n cat taking refuge up a tree. The cat yowls a warning too late as a dog comes bounding towards {PRONOUN/s_c/object}. It pounces towards s_c, but recoils after getting a noseful of the scent of {ELEMENT/s_c}, giving s_c time to run.",
+                "exp": 10,
+                "stat_element": [ "smoke", "decay" ],
+                "other_clan_rep": 1,
+                "frequency": 4
+            },
+            {
+                "text": "s_c follows the scent to a o_c_n cat taking refuge up a tree. The cat yowls a warning too late as a dog comes bounding towards {PRONOUN/s_c/object}. It pounces towards s_c, but recoils after getting a faceful of {ELEMENT/s_c}, enough for s_c to escape unharmed.",
+                "exp": 10,
+                "stat_element": [ "earth", "mud", "sand", "oil" ],
+                "other_clan_rep": 1,
+                "frequency": 4
+            },
+            {
+                "text": "s_c follows the scent to a o_c_n cat taking refuge up a tree. The cat yowls a warning too late as a dog comes bounding towards {PRONOUN/s_c/object}. It pounces on s_c, only for its teeth to meet on {ELEMENT/s_c} instead of flesh, s_c time to run.",
+                "exp": 10,
+                "stat_element": [ "ice", "metal" ],
+                "other_clan_rep": 1,
+                "frequency": 4
+            },
+            {
                 "text": "s_c follows the scent and finds a wounded o_c_n warrior. It seems the cat had been caught by a dog and chased into c_n territory. The dog is gone now, but the warrior can't make it back across the border on their own. s_c insists on helping the warrior back to the border.",
                 "exp": 10,
                 "stat_trait": [

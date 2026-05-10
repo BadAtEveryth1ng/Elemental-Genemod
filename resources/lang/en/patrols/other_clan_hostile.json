@@ -3422,6 +3422,34 @@
                 "frequency": 4
             },
             {
+                "text": "The patrol follows the scent to a o_c_n cat taking refuge up a tree. The cat snarls down at them, a gleam in their eye, before a large dog comes bounding towards the patrol. It pounces towards s_c, only for teeth to snap on air as the dog turns with a whine at the surge of {ELEMENT/s_c}.",
+                "exp": 10,
+                "stat_element": [ "fire", "blue fire", "lightning", "magma", "combustion" ],
+                "other_clan_rep": 1,
+                "frequency": 4
+            },
+            {
+                "text": "The patrol follows the scent to a o_c_n cat taking refuge up a tree. The cat snarls down at them, a gleam in their eye, before a large dog comes bounding towards the patrol. It pounces towards s_c, but recoils after getting a noseful of the scent of {ELEMENT/s_c}, giving the cats time to scatter.",
+                "exp": 10,
+                "stat_element": [ "smoke", "decay" ],
+                "other_clan_rep": 1,
+                "frequency": 4
+            },
+            {
+                "text": "The patrol follows the scent to a o_c_n cat taking refuge up a tree. The cat snarls down at them, a gleam in their eye, before a large dog comes bounding towards the patrol. It pounces towards s_c, but recoils after getting a faceful of {ELEMENT/s_c}, enough for the cats to scatter unharmed.",
+                "exp": 10,
+                "stat_element": [ "earth", "mud", "sand", "oil" ],
+                "other_clan_rep": 1,
+                "frequency": 4
+            },
+            {
+                "text": "The patrol follows the scent to a o_c_n cat taking refuge up a tree. The cat snarls down at them, a gleam in their eye, before a large dog comes bounding towards the patrol. It pounces on s_c, only for its teeth to meet on {ELEMENT/s_c} instead of flesh, giving the cats time to scatter.",
+                "exp": 10,
+                "stat_element": [ "ice", "metal" ],
+                "other_clan_rep": 1,
+                "frequency": 4
+            },
+            {
                 "text": "The patrol follows the scent and finds a wounded o_c_n warrior. It seems the cat had been caught by a dog and chased into c_n territory. The dog is gone now, but the warrior can't make it back across the border on their own. s_c is hesitant, but insists that the patrol at least escort the wounded warrior to the border.",
                 "exp": 10,
                 "stat_trait": [
@@ -3526,8 +3554,8 @@
             ]
         },
         "patrol_art": "gen_bord_scent_hostile",
-        "min_cats": 2,
-        "max_cats": 6,
+        "min_cats": 1,
+        "max_cats": 1,
         "min_max_status": {},
         "frequency": 4,
         "intro_text": "As p_l is checking the border lines, they notice that a o_c_n scent has strayed into their territory. o_c_n has been hostile recently, this can't be good.",
@@ -3547,6 +3575,34 @@
                     "SPEAKER,1"
                 ],
                 "other_clan_rep": 2,
+                "frequency": 4
+            },
+            {
+                "text": "s_c follows the scent to a o_c_n cat taking refuge up a tree. As both cats hiss at each other, a dog comes bounding towards {PRONOUN/s_c/object}. It pounces towards s_c, only for teeth to snap on air as the dog turns with a whine at the surge of {ELEMENT/s_c}.",
+                "exp": 10,
+                "stat_element": [ "fire", "blue fire", "lightning", "magma", "combustion" ],
+                "other_clan_rep": 1,
+                "frequency": 4
+            },
+            {
+                "text": "s_c follows the scent to a o_c_n cat taking refuge up a tree. As both cats hiss at each other, a dog comes bounding towards {PRONOUN/s_c/object}. It pounces towards s_c, but recoils after getting a noseful of the scent of {ELEMENT/s_c}, giving s_c time to run.",
+                "exp": 10,
+                "stat_element": [ "smoke", "decay" ],
+                "other_clan_rep": 1,
+                "frequency": 4
+            },
+            {
+                "text": "s_c follows the scent to a o_c_n cat taking refuge up a tree. As both cats hiss at each other, a dog comes bounding towards {PRONOUN/s_c/object}. It pounces towards s_c, but recoils after getting a faceful of {ELEMENT/s_c}, enough for s_c to escape unharmed.",
+                "exp": 10,
+                "stat_element": [ "earth", "mud", "sand", "oil" ],
+                "other_clan_rep": 1,
+                "frequency": 4
+            },
+            {
+                "text": "s_c follows the scent to a o_c_n cat taking refuge up a tree. As both cats hiss at each other, a dog comes bounding towards {PRONOUN/s_c/object}. It pounces on s_c, only for its teeth to meet on {ELEMENT/s_c} instead of flesh, s_c time to run.",
+                "exp": 10,
+                "stat_element": [ "ice", "metal" ],
+                "other_clan_rep": 1,
                 "frequency": 4
             },
             {
