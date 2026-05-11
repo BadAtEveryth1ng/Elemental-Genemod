@@ -672,7 +672,8 @@
                     [
                         "age:senior",
                         "dead",
-                        "loner"
+                        "loner",
+                        "unknown"
                     ],
                     [
                         "age:adult",
@@ -708,7 +709,8 @@
                     [
                         "age:senior",
                         "dead",
-                        "loner"
+                        "loner",
+                        "unknown"
                     ],
                     [
                         "age:adult",
