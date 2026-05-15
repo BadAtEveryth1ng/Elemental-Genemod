@@ -1304,6 +1304,17 @@
                 "other_clan_rep": 2,
                 "frequency": 3,
                 "art": "gen_train_app_otherclan"
+            },
+            {
+                "text": "s_c spies an approaching o_c_n patrol from a distance and hides, waiting and splashing the passing cats with a sudden wave of {ELEMENT/s_c}. The patrol seem to mostly find the humor in it, and brush it off without incident.",
+                "exp": 20,
+                "stat_element": [ "water", "mud", "sand" ],
+                "stat_trait": [
+                    "troublesome",
+                    "childish",
+                    "playful"
+                ],
+                "frequency": 3
             }
         ],
         "fail_outcomes": [
@@ -1340,6 +1351,24 @@
                 "exp": 0,
                 "other_clan_rep": -3,
                 "frequency": 2,
+                "art": "gen_angry_cat_warrior"
+            },
+            {
+                "text": "s_c comes across a o_c_n apprentice on the wrong side of the border and holding prey. {PRONOUN/s_c/subject/CAP} {VERB/s_c/are/is}n't above using a bit of magic to make sure the apprentice is too frightened to try again another day.",
+                "exp": 0,
+                "stat_element": [ "any" ],
+                "stat_trait": [
+                    "troublesome",
+                    "fierce",
+                    "bloodthirsty",
+                    "cold",
+                    "strict",
+                    "vengeful",
+                    "grumpy",
+                    "gloomy"
+                ],
+                "other_clan_rep": -1,
+                "frequency": 4,
                 "art": "gen_angry_cat_warrior"
             },
             {
@@ -1502,7 +1531,7 @@
                     "values": ["trust"],
                     "amount": -5,
                     "log": {
-                        "cats_from": "cat_from heard about cat_to starting accidentally starting a fight with a misplaced border marking."
+                        "cats_from": "cat_from heard about cat_to accidentally starting a fight because of a misplaced border marking."
                     }
                 }],
                 "exp": 0,
@@ -1528,7 +1557,7 @@
                 "min_max_status": {
                     "warrior": [-1,-1]
                 },
-                "text": "r_c is having trouble focusing today and puts a mark in the wrong place — and at the worst possible moment, because a o_c_n patrol sees them doing it! The diplomatic incident spirals into a full blown conflict, and r_c hauls {PRONOUN/r_c/self} back to camp wounded and bleeding.",
+                "text": "r_c is having trouble focusing today and puts a mark in the wrong place — and at the worst possible moment, because a o_c_n patrol sees {PRONOUN/r_c/object} doing it! The diplomatic incident spirals into a full blown conflict, and r_c hauls {PRONOUN/r_c/self} back to camp wounded and bleeding.",
                 "relationships": [{
                     "cats_from": ["some_clan"],
                     "cats_to": ["r_c"],
@@ -1536,7 +1565,7 @@
                     "values": ["trust"],
                     "amount": -5,
                     "log": {
-                        "cats_from": "cat_from heard about cat_to starting accidentally starting a fight with a misplaced border marking."
+                        "cats_from": "cat_from heard about cat_to accidentally starting a fight because of a misplaced border marking."
                     }
                 }],
                 "exp": 0,
@@ -1557,6 +1586,186 @@
                 "other_clan_rep": -1,
                 "frequency": 2,
                 "art": "gen_battle_warrior_other_clan"
+            },
+            {
+                "text": "s_c is having trouble focusing today and puts a mark in the wrong place — and at the worst possible moment, because a o_c_n patrol sees {PRONOUN/s_c/object} doing it! When the confrontation starts nearing an outbreak of violence, s_c cloaks {PRONOUN/s_c/self} in {ELEMENT/s_c} and bolts to c_n territory.",
+                "exp": 0,
+                "stat_element": [ "mist", "smoke", "shadow", "metal" ],
+                "other_clan_rep": -1,
+                "frequency": 3
+            },
+            {
+                "text": "Tensions escalate when an arriving o_c_n patrol begins jeering at s_c, but once s_c starts to spark in warning, o_c_n are quick to back down.",
+                "exp": 0,
+                "stat_element": [ "fire", "blue fire", "lightning", "combustion" ],
+                "can_have_stat": [ "adult" ],
+                "stat_trait": [
+                    "troublesome",
+                    "fierce",
+                    "bloodthirsty",
+                    "charismatic",
+                    "bold",
+                    "daring",
+                    "strict",
+                    "ambitious",
+                    "confident",
+                    "shameless",
+                    "vengeful",
+                    "arrogant",
+                    "competitive",
+                    "grumpy",
+                    "cunning",
+                    "flamboyant",
+                    "rebellious"
+                ],
+                "other_clan_rep": -1,
+                "frequency": 3
+            },
+            {
+                "text": "Tensions escalate when an arriving o_c_n patrol begins jeering at s_c, but once s_c shakes the ground between them in warning, o_c_n are quick to back down.",
+                "exp": 0,
+                "stat_element": [ "earth" ],
+                "can_have_stat": [ "adult" ],
+                "stat_trait": [
+                    "troublesome",
+                    "fierce",
+                    "bloodthirsty",
+                    "charismatic",
+                    "bold",
+                    "daring",
+                    "strict",
+                    "ambitious",
+                    "confident",
+                    "shameless",
+                    "vengeful",
+                    "arrogant",
+                    "competitive",
+                    "grumpy",
+                    "cunning",
+                    "flamboyant",
+                    "rebellious"
+                ],
+                "other_clan_rep": -1,
+                "frequency": 3
+            },
+            {
+                "text": "Tensions escalate when an arriving o_c_n patrol begins jeering at s_c, but once s_c shifts the nearby water in warning, o_c_n are quick to back down.",
+                "exp": 0,
+                "stat_element": [ "water" ],
+                "can_have_stat": [ "adult" ],
+                "stat_trait": [
+                    "troublesome",
+                    "fierce",
+                    "bloodthirsty",
+                    "charismatic",
+                    "bold",
+                    "daring",
+                    "strict",
+                    "ambitious",
+                    "confident",
+                    "shameless",
+                    "vengeful",
+                    "arrogant",
+                    "competitive",
+                    "grumpy",
+                    "cunning",
+                    "flamboyant",
+                    "rebellious"
+                ],
+                "other_clan_rep": -1,
+                "frequency": 4
+            },
+            {
+                "text": "Tensions escalate when an arriving o_c_n patrol begins jeering at s_c, but once s_c drips sizzling magma between them, o_c_n are quick to back down.",
+                "exp": 0,
+                "stat_element": [ "magma" ],
+                "can_have_stat": [ "adult" ],
+                "stat_trait": [
+                    "troublesome",
+                    "fierce",
+                    "bloodthirsty",
+                    "charismatic",
+                    "bold",
+                    "daring",
+                    "strict",
+                    "ambitious",
+                    "confident",
+                    "shameless",
+                    "vengeful",
+                    "arrogant",
+                    "competitive",
+                    "grumpy",
+                    "cunning",
+                    "flamboyant",
+                    "rebellious"
+                ],
+                "other_clan_rep": -1,
+                "frequency": 3
+            },
+            {
+                "text": "Tensions escalate when an arriving o_c_n patrol begins jeering at s_c, but the warning glint of s_c's sharp metal spikes cause o_c_n to back down.",
+                "exp": 0,
+                "stat_element": [ "metal" ],
+                "can_have_stat": [ "adult" ],
+                "stat_trait": [
+                    "troublesome",
+                    "fierce",
+                    "bloodthirsty",
+                    "charismatic",
+                    "bold",
+                    "daring",
+                    "strict",
+                    "ambitious",
+                    "confident",
+                    "shameless",
+                    "vengeful",
+                    "arrogant",
+                    "competitive",
+                    "grumpy",
+                    "cunning",
+                    "flamboyant",
+                    "rebellious"
+                ],
+                "other_clan_rep": -1,
+                "frequency": 3
+            },
+            {
+                "text": "s_c spies an approaching o_c_n patrol from a distance and hides, waiting and splashing the passing cats with a sudden wave of {ELEMENT/s_c}. The patrol find no humor in it even after being informed it was a prank.",
+                "exp": 0,
+                "stat_element": [ "water", "mud", "sand" ],
+                "stat_trait": [
+                    "troublesome",
+                    "childish",
+                    "playful"
+                ],
+                "other_clan_rep": -1,
+                "frequency": 3
+            },
+            {
+                "text": "s_c spies an approaching o_c_n patrol from a distance and hides, waiting and splashing the passing cats with a sudden wave of {ELEMENT/s_c}. The patrol find no humor in it even after being informed it was a prank, turning violent in return.",
+                "exp": 0,
+                "stat_element": [ "water", "mud", "sand" ],
+                "stat_trait": [
+                    "troublesome",
+                    "childish",
+                    "playful"
+                ],
+                "injury": [
+                    {
+                        "cats": [
+                            "s_c"
+                        ],
+                        "injuries": [
+                            "battle_injury"
+                        ]
+                    }
+                ],
+                "history_text": {
+                    "scar": "m_c was injured by an enemy patrol after pranking them with water.",
+                    "death": "m_c died of injuries inflicted by an enemy warrior after pranking them with water."
+                },
+                "other_clan_rep": -3,
+                "frequency": 2
             }
         ]
     },
@@ -1774,6 +1983,18 @@
                 "other_clan_rep": 2,
                 "frequency": 3,
                 "art": "gen_train_app_otherclan"
+            },
+            {
+                "text": "s_c spies an approaching o_c_n patrol from a distance and hides, waiting and splashing the passing cats with a sudden wave of {ELEMENT/s_c}. The patrol find no humor in it even after being informed it was a prank.",
+                "exp": 0,
+                "stat_element": [ "sand" ],
+                "stat_trait": [
+                    "troublesome",
+                    "childish",
+                    "playful"
+                ],
+                "other_clan_rep": -1,
+                "frequency": 3
             }
         ],
         "fail_outcomes": [
@@ -1810,6 +2031,24 @@
                 "exp": 0,
                 "other_clan_rep": -3,
                 "frequency": 2,
+                "art": "gen_angry_cat_warrior"
+            },
+            {
+                "text": "s_c comes across a o_c_n apprentice on the wrong side of the border and holding prey. {PRONOUN/s_c/subject/CAP} {VERB/s_c/are/is}n't above using a bit of magic to make sure the apprentice is too frightened to try again another day.",
+                "exp": 0,
+                "stat_element": [ "any" ],
+                "stat_trait": [
+                    "troublesome",
+                    "fierce",
+                    "bloodthirsty",
+                    "cold",
+                    "strict",
+                    "vengeful",
+                    "grumpy",
+                    "gloomy"
+                ],
+                "other_clan_rep": -1,
+                "frequency": 4,
                 "art": "gen_angry_cat_warrior"
             },
             {
@@ -1972,7 +2211,7 @@
                     "values": ["trust"],
                     "amount": -5,
                     "log": {
-                        "cats_from": "cat_from heard about cat_to starting accidentally starting a fight with a misplaced border marking."
+                        "cats_from": "cat_from heard about cat_to accidentally starting a fight because of a misplaced border marking."
                     }
                 }],
                 "exp": 0,
@@ -1998,7 +2237,7 @@
                 "min_max_status": {
                     "warrior": [-1,-1]
                 },
-                "text": "r_c is having trouble focusing today and puts a mark in the wrong place — and at the worst possible moment, because a o_c_n patrol sees them doing it! The diplomatic incident spirals into a full blown conflict, and r_c hauls {PRONOUN/r_c/self} back to camp wounded and bleeding.",
+                "text": "r_c is having trouble focusing today and puts a mark in the wrong place — and at the worst possible moment, because a o_c_n patrol sees {PRONOUN/r_c/object} doing it! The diplomatic incident spirals into a full blown conflict, and r_c hauls {PRONOUN/r_c/self} back to camp wounded and bleeding.",
                 "relationships": [{
                     "cats_from": ["some_clan"],
                     "cats_to": ["r_c"],
@@ -2006,7 +2245,7 @@
                     "values": ["trust"],
                     "amount": -5,
                     "log": {
-                        "cats_from": "cat_from heard about cat_to starting accidentally starting a fight with a misplaced border marking."
+                        "cats_from": "cat_from heard about cat_to accidentally starting a fight because of a misplaced border marking."
                     }
                 }],
                 "exp": 0,
@@ -2027,6 +2266,159 @@
                 "other_clan_rep": -1,
                 "frequency": 2,
                 "art": "gen_battle_warrior_other_clan"
+            },
+            {
+                "text": "s_c is having trouble focusing today and puts a mark in the wrong place — and at the worst possible moment, because a o_c_n patrol sees {PRONOUN/s_c/object} doing it! When the confrontation starts nearing an outbreak of violence, s_c cloaks {PRONOUN/s_c/self} in {ELEMENT/s_c} and bolts to c_n territory.",
+                "exp": 0,
+                "stat_element": [ "mist", "smoke", "shadow", "metal" ],
+                "other_clan_rep": -1,
+                "frequency": 4
+            },
+            {
+                "text": "Tensions escalate when an arriving o_c_n patrol begins jeering at s_c, but once s_c starts to spark in warning, o_c_n are quick to back down.",
+                "exp": 0,
+                "stat_element": [ "fire", "blue fire", "lightning", "combustion" ],
+                "can_have_stat": [ "adult" ],
+                "stat_trait": [
+                    "troublesome",
+                    "fierce",
+                    "bloodthirsty",
+                    "charismatic",
+                    "bold",
+                    "daring",
+                    "strict",
+                    "ambitious",
+                    "confident",
+                    "shameless",
+                    "vengeful",
+                    "arrogant",
+                    "competitive",
+                    "grumpy",
+                    "cunning",
+                    "flamboyant",
+                    "rebellious"
+                ],
+                "other_clan_rep": -1,
+                "frequency": 4
+            },
+            {
+                "text": "Tensions escalate when an arriving o_c_n patrol begins jeering at s_c, but once s_c shakes the ground between them in warning, o_c_n are quick to back down.",
+                "exp": 0,
+                "stat_element": [ "earth" ],
+                "can_have_stat": [ "adult" ],
+                "stat_trait": [
+                    "troublesome",
+                    "fierce",
+                    "bloodthirsty",
+                    "charismatic",
+                    "bold",
+                    "daring",
+                    "strict",
+                    "ambitious",
+                    "confident",
+                    "shameless",
+                    "vengeful",
+                    "arrogant",
+                    "competitive",
+                    "grumpy",
+                    "cunning",
+                    "flamboyant",
+                    "rebellious"
+                ],
+                "other_clan_rep": -1,
+                "frequency": 4
+            },
+            {
+                "text": "Tensions escalate when an arriving o_c_n patrol begins jeering at s_c, but once s_c drips sizzling magma between them, o_c_n are quick to back down.",
+                "exp": 0,
+                "stat_element": [ "magma" ],
+                "can_have_stat": [ "adult" ],
+                "stat_trait": [
+                    "troublesome",
+                    "fierce",
+                    "bloodthirsty",
+                    "charismatic",
+                    "bold",
+                    "daring",
+                    "strict",
+                    "ambitious",
+                    "confident",
+                    "shameless",
+                    "vengeful",
+                    "arrogant",
+                    "competitive",
+                    "grumpy",
+                    "cunning",
+                    "flamboyant",
+                    "rebellious"
+                ],
+                "other_clan_rep": -1,
+                "frequency": 4
+            },
+            {
+                "text": "Tensions escalate when an arriving o_c_n patrol begins jeering at s_c, but the warning glint of s_c's sharp metal spikes cause o_c_n to back down.",
+                "exp": 0,
+                "stat_element": [ "metal" ],
+                "can_have_stat": [ "adult" ],
+                "stat_trait": [
+                    "troublesome",
+                    "fierce",
+                    "bloodthirsty",
+                    "charismatic",
+                    "bold",
+                    "daring",
+                    "strict",
+                    "ambitious",
+                    "confident",
+                    "shameless",
+                    "vengeful",
+                    "arrogant",
+                    "competitive",
+                    "grumpy",
+                    "cunning",
+                    "flamboyant",
+                    "rebellious"
+                ],
+                "other_clan_rep": -1,
+                "frequency": 4
+            },
+            {
+                "text": "s_c spies an approaching o_c_n patrol from a distance and hides, waiting and splashing the passing cats with a sudden wave of {ELEMENT/s_c}. The patrol find no humor in it even after being informed it was a prank.",
+                "exp": 0,
+                "stat_element": [ "sand" ],
+                "stat_trait": [
+                    "troublesome",
+                    "childish",
+                    "playful"
+                ],
+                "other_clan_rep": -1,
+                "frequency": 3
+            },
+            {
+                "text": "s_c spies an approaching o_c_n patrol from a distance and hides, waiting and splashing the passing cats with a sudden wave of {ELEMENT/s_c}. The patrol find no humor in it even after being informed it was a prank, turning violent in return.",
+                "exp": 0,
+                "stat_element": [ "sand" ],
+                "stat_trait": [
+                    "troublesome",
+                    "childish",
+                    "playful"
+                ],
+                "injury": [
+                    {
+                        "cats": [
+                            "s_c"
+                        ],
+                        "injuries": [
+                            "battle_injury"
+                        ]
+                    }
+                ],
+                "history_text": {
+                    "scar": "m_c was injured by an enemy patrol after pranking them with water.",
+                    "death": "m_c died of injuries inflicted by an enemy warrior after pranking them with water."
+                },
+                "other_clan_rep": -3,
+                "frequency": 2
             }
         ]
     },
@@ -2244,6 +2636,17 @@
                 "other_clan_rep": 2,
                 "frequency": 3,
                 "art": "gen_train_app_otherclan"
+            },
+            {
+                "text": "s_c spies an approaching o_c_n patrol from a distance and hides, waiting and splashing the passing cats with a sudden wave of {ELEMENT/s_c}. The patrol seem to mostly find the humor in it, and brush it off without incident.",
+                "exp": 20,
+                "stat_element": [ "water", "mud", "sand" ],
+                "stat_trait": [
+                    "troublesome",
+                    "childish",
+                    "playful"
+                ],
+                "frequency": 3
             }
         ],
         "fail_outcomes": [
@@ -2280,6 +2683,24 @@
                 "exp": 0,
                 "other_clan_rep": -3,
                 "frequency": 2,
+                "art": "gen_angry_cat_warrior"
+            },
+            {
+                "text": "s_c comes across a o_c_n apprentice on the wrong side of the border and holding prey. {PRONOUN/s_c/subject/CAP} {VERB/s_c/are/is}n't above using a bit of magic to make sure the apprentice is too frightened to try again another day.",
+                "exp": 0,
+                "stat_element": [ "any" ],
+                "stat_trait": [
+                    "troublesome",
+                    "fierce",
+                    "bloodthirsty",
+                    "cold",
+                    "strict",
+                    "vengeful",
+                    "grumpy",
+                    "gloomy"
+                ],
+                "other_clan_rep": -1,
+                "frequency": 4,
                 "art": "gen_angry_cat_warrior"
             },
             {
@@ -2442,7 +2863,7 @@
                     "values": ["trust"],
                     "amount": -5,
                     "log": {
-                        "cats_from": "cat_from heard about cat_to starting accidentally starting a fight with a misplaced border marking."
+                        "cats_from": "cat_from heard about cat_to accidentally starting a fight because of a misplaced border marking."
                     }
                 }],
                 "exp": 0,
@@ -2468,7 +2889,7 @@
                 "min_max_status": {
                     "warrior": [-1,-1]
                 },
-                "text": "r_c is having trouble focusing today and puts a mark in the wrong place — and at the worst possible moment, because a o_c_n patrol sees them doing it! The diplomatic incident spirals into a full blown conflict, and r_c hauls {PRONOUN/r_c/self} back to camp wounded and bleeding.",
+                "text": "r_c is having trouble focusing today and puts a mark in the wrong place — and at the worst possible moment, because a o_c_n patrol sees {PRONOUN/r_c/object} doing it! The diplomatic incident spirals into a full blown conflict, and r_c hauls {PRONOUN/r_c/self} back to camp wounded and bleeding.",
                 "relationships": [{
                     "cats_from": ["some_clan"],
                     "cats_to": ["r_c"],
@@ -2476,7 +2897,7 @@
                     "values": ["trust"],
                     "amount": -5,
                     "log": {
-                        "cats_from": "cat_from heard about cat_to starting accidentally starting a fight with a misplaced border marking."
+                        "cats_from": "cat_from heard about cat_to accidentally starting a fight because of a misplaced border marking."
                     }
                 }],
                 "exp": 0,
@@ -2497,6 +2918,132 @@
                 "other_clan_rep": -1,
                 "frequency": 2,
                 "art": "gen_battle_warrior_other_clan"
+            },
+            {
+                "text": "s_c is having trouble focusing today and puts a mark in the wrong place — and at the worst possible moment, because a o_c_n patrol sees {PRONOUN/s_c/object} doing it! When the confrontation starts nearing an outbreak of violence, s_c cloaks {PRONOUN/s_c/self} in {ELEMENT/s_c} and bolts to c_n territory.",
+                "exp": 0,
+                "stat_element": [ "mist", "smoke", "shadow", "metal" ],
+                "other_clan_rep": -1,
+                "frequency": 4
+            },
+            {
+                "text": "Tensions escalate when an arriving o_c_n patrol begins jeering at s_c, but once s_c starts to spark in warning, o_c_n are quick to back down.",
+                "exp": 0,
+                "stat_element": [ "fire", "blue fire", "lightning", "combustion" ],
+                "can_have_stat": [ "adult" ],
+                "stat_trait": [
+                    "troublesome",
+                    "fierce",
+                    "bloodthirsty",
+                    "charismatic",
+                    "bold",
+                    "daring",
+                    "strict",
+                    "ambitious",
+                    "confident",
+                    "shameless",
+                    "vengeful",
+                    "arrogant",
+                    "competitive",
+                    "grumpy",
+                    "cunning",
+                    "flamboyant",
+                    "rebellious"
+                ],
+                "other_clan_rep": -1,
+                "frequency": 4
+            },
+            {
+                "text": "Tensions escalate when an arriving o_c_n patrol begins jeering at s_c, but once s_c shakes the ground between them in warning, o_c_n are quick to back down.",
+                "exp": 0,
+                "stat_element": [ "earth" ],
+                "can_have_stat": [ "adult" ],
+                "stat_trait": [
+                    "troublesome",
+                    "fierce",
+                    "bloodthirsty",
+                    "charismatic",
+                    "bold",
+                    "daring",
+                    "strict",
+                    "ambitious",
+                    "confident",
+                    "shameless",
+                    "vengeful",
+                    "arrogant",
+                    "competitive",
+                    "grumpy",
+                    "cunning",
+                    "flamboyant",
+                    "rebellious"
+                ],
+                "other_clan_rep": -1,
+                "frequency": 4
+            },
+            {
+                "text": "Tensions escalate when an arriving o_c_n patrol begins jeering at s_c, but the warning glint of s_c's sharp metal spikes cause o_c_n to back down.",
+                "exp": 0,
+                "stat_element": [ "metal" ],
+                "can_have_stat": [ "adult" ],
+                "stat_trait": [
+                    "troublesome",
+                    "fierce",
+                    "bloodthirsty",
+                    "charismatic",
+                    "bold",
+                    "daring",
+                    "strict",
+                    "ambitious",
+                    "confident",
+                    "shameless",
+                    "vengeful",
+                    "arrogant",
+                    "competitive",
+                    "grumpy",
+                    "cunning",
+                    "flamboyant",
+                    "rebellious"
+                ],
+                "other_clan_rep": -1,
+                "frequency": 4
+            },
+            {
+                "text": "s_c spies an approaching o_c_n patrol from a distance and hides, waiting and splashing the passing cats with a sudden wave of {ELEMENT/s_c}. The patrol find no humor in it even after being informed it was a prank.",
+                "exp": 0,
+                "stat_element": [ "water", "mud", "sand" ],
+                "stat_trait": [
+                    "troublesome",
+                    "childish",
+                    "playful"
+                ],
+                "other_clan_rep": -1,
+                "frequency": 3
+            },
+            {
+                "text": "s_c spies an approaching o_c_n patrol from a distance and hides, waiting and splashing the passing cats with a sudden wave of {ELEMENT/s_c}. The patrol find no humor in it even after being informed it was a prank, turning violent in return.",
+                "exp": 0,
+                "stat_element": [ "water", "mud", "sand" ],
+                "stat_trait": [
+                    "troublesome",
+                    "childish",
+                    "playful"
+                ],
+                "injury": [
+                    {
+                        "cats": [
+                            "s_c"
+                        ],
+                        "injuries": [
+                            "battle_injury"
+                        ]
+                    }
+                ],
+                "history_text": {
+                    "scar": "m_c was injured by an enemy patrol after pranking them with water.",
+                    "death": "m_c died of injuries inflicted by an enemy warrior after pranking them with water."
+                },
+                "other_clan_rep": -3,
+                "frequency": 2
             }
         ]
     },
@@ -2715,6 +3262,17 @@
                 "other_clan_rep": 2,
                 "frequency": 3,
                 "art": "gen_train_app_otherclan"
+            },
+            {
+                "text": "s_c spies an approaching o_c_n patrol from a distance and hides, waiting and splashing the passing cats with a sudden wave of {ELEMENT/s_c}. The patrol seem to mostly find the humor in it, and brush it off without incident.",
+                "exp": 20,
+                "stat_element": [ "mud", "sand" ],
+                "stat_trait": [
+                    "troublesome",
+                    "childish",
+                    "playful"
+                ],
+                "frequency": 3
             }
         ],
         "fail_outcomes": [
@@ -2751,6 +3309,24 @@
                 "exp": 0,
                 "other_clan_rep": -3,
                 "frequency": 2,
+                "art": "gen_angry_cat_warrior"
+            },
+            {
+                "text": "s_c comes across a o_c_n apprentice on the wrong side of the border and holding prey. {PRONOUN/s_c/subject/CAP} {VERB/s_c/are/is}n't above using a bit of magic to make sure the apprentice is too frightened to try again another day.",
+                "exp": 0,
+                "stat_element": [ "any" ],
+                "stat_trait": [
+                    "troublesome",
+                    "fierce",
+                    "bloodthirsty",
+                    "cold",
+                    "strict",
+                    "vengeful",
+                    "grumpy",
+                    "gloomy"
+                ],
+                "other_clan_rep": -1,
+                "frequency": 4,
                 "art": "gen_angry_cat_warrior"
             },
             {
@@ -2913,7 +3489,7 @@
                     "values": ["trust"],
                     "amount": -5,
                     "log": {
-                        "cats_from": "cat_from heard about cat_to starting accidentally starting a fight with a misplaced border marking."
+                        "cats_from": "cat_from heard about cat_to accidentally starting a fight because of a misplaced border marking."
                     }
                 }],
                 "exp": 0,
@@ -2939,7 +3515,7 @@
                 "min_max_status": {
                     "warrior": [-1,-1]
                 },
-                "text": "r_c is having trouble focusing today and puts a mark in the wrong place — and at the worst possible moment, because a o_c_n patrol sees them doing it! The diplomatic incident spirals into a full blown conflict, and r_c hauls {PRONOUN/r_c/self} back to camp wounded and bleeding.",
+                "text": "r_c is having trouble focusing today and puts a mark in the wrong place — and at the worst possible moment, because a o_c_n patrol sees {PRONOUN/r_c/object} doing it! The diplomatic incident spirals into a full blown conflict, and r_c hauls {PRONOUN/r_c/self} back to camp wounded and bleeding.",
                 "relationships": [{
                     "cats_from": ["some_clan"],
                     "cats_to": ["r_c"],
@@ -2947,7 +3523,7 @@
                     "values": ["trust"],
                     "amount": -5,
                     "log": {
-                        "cats_from": "cat_from heard about cat_to starting accidentally starting a fight with a misplaced border marking."
+                        "cats_from": "cat_from heard about cat_to accidentally starting a fight because of a misplaced border marking."
                     }
                 }],
                 "exp": 0,
@@ -2968,6 +3544,186 @@
                 "other_clan_rep": -1,
                 "frequency": 2,
                 "art": "gen_battle_warrior_other_clan"
+            },
+            {
+                "text": "s_c is having trouble focusing today and puts a mark in the wrong place — and at the worst possible moment, because a o_c_n patrol sees {PRONOUN/s_c/object} doing it! When the confrontation starts nearing an outbreak of violence, s_c cloaks {PRONOUN/s_c/self} in {ELEMENT/s_c} and bolts to c_n territory.",
+                "exp": 0,
+                "stat_element": [ "mist", "smoke", "shadow", "metal" ],
+                "other_clan_rep": -1,
+                "frequency": 4
+            },
+            {
+                "text": "Tensions escalate when an arriving o_c_n patrol begins jeering at s_c, but once s_c starts to spark in warning, o_c_n are quick to back down.",
+                "exp": 0,
+                "stat_element": [ "fire", "blue fire", "lightning", "combustion" ],
+                "can_have_stat": [ "adult" ],
+                "stat_trait": [
+                    "troublesome",
+                    "fierce",
+                    "bloodthirsty",
+                    "charismatic",
+                    "bold",
+                    "daring",
+                    "strict",
+                    "ambitious",
+                    "confident",
+                    "shameless",
+                    "vengeful",
+                    "arrogant",
+                    "competitive",
+                    "grumpy",
+                    "cunning",
+                    "flamboyant",
+                    "rebellious"
+                ],
+                "other_clan_rep": -1,
+                "frequency": 4
+            },
+            {
+                "text": "Tensions escalate when an arriving o_c_n patrol begins jeering at s_c, but once s_c shakes the ground between them in warning, o_c_n are quick to back down.",
+                "exp": 0,
+                "stat_element": [ "earth" ],
+                "can_have_stat": [ "adult" ],
+                "stat_trait": [
+                    "troublesome",
+                    "fierce",
+                    "bloodthirsty",
+                    "charismatic",
+                    "bold",
+                    "daring",
+                    "strict",
+                    "ambitious",
+                    "confident",
+                    "shameless",
+                    "vengeful",
+                    "arrogant",
+                    "competitive",
+                    "grumpy",
+                    "cunning",
+                    "flamboyant",
+                    "rebellious"
+                ],
+                "other_clan_rep": -1,
+                "frequency": 4
+            },
+            {
+                "text": "Tensions escalate when an arriving o_c_n patrol begins jeering at s_c, but once s_c shifts the snow from an overhead ledge, threatening to bury them, o_c_n are quick to back down.",
+                "exp": 0,
+                "stat_element": [ "ice" ],
+                "can_have_stat": [ "adult" ],
+                "stat_trait": [
+                    "troublesome",
+                    "fierce",
+                    "bloodthirsty",
+                    "charismatic",
+                    "bold",
+                    "daring",
+                    "strict",
+                    "ambitious",
+                    "confident",
+                    "shameless",
+                    "vengeful",
+                    "arrogant",
+                    "competitive",
+                    "grumpy",
+                    "cunning",
+                    "flamboyant",
+                    "rebellious"
+                ],
+                "other_clan_rep": -1,
+                "frequency": 4
+            },
+            {
+                "text": "Tensions escalate when an arriving o_c_n patrol begins jeering at s_c, but once s_c drips sizzling magma between them, o_c_n are quick to back down.",
+                "exp": 0,
+                "stat_element": [ "magma" ],
+                "can_have_stat": [ "adult" ],
+                "stat_trait": [
+                    "troublesome",
+                    "fierce",
+                    "bloodthirsty",
+                    "charismatic",
+                    "bold",
+                    "daring",
+                    "strict",
+                    "ambitious",
+                    "confident",
+                    "shameless",
+                    "vengeful",
+                    "arrogant",
+                    "competitive",
+                    "grumpy",
+                    "cunning",
+                    "flamboyant",
+                    "rebellious"
+                ],
+                "other_clan_rep": -1,
+                "frequency": 4
+            },
+            {
+                "text": "Tensions escalate when an arriving o_c_n patrol begins jeering at s_c, but the warning glint of s_c's sharp metal spikes cause o_c_n to back down.",
+                "exp": 0,
+                "stat_element": [ "metal" ],
+                "can_have_stat": [ "adult" ],
+                "stat_trait": [
+                    "troublesome",
+                    "fierce",
+                    "bloodthirsty",
+                    "charismatic",
+                    "bold",
+                    "daring",
+                    "strict",
+                    "ambitious",
+                    "confident",
+                    "shameless",
+                    "vengeful",
+                    "arrogant",
+                    "competitive",
+                    "grumpy",
+                    "cunning",
+                    "flamboyant",
+                    "rebellious"
+                ],
+                "other_clan_rep": -1,
+                "frequency": 4
+            },
+            {
+                "text": "s_c spies an approaching o_c_n patrol from a distance and hides, waiting and splashing the passing cats with a sudden wave of {ELEMENT/s_c}. The patrol find no humor in it even after being informed it was a prank.",
+                "exp": 0,
+                "stat_element": [ "mud", "sand" ],
+                "stat_trait": [
+                    "troublesome",
+                    "childish",
+                    "playful"
+                ],
+                "other_clan_rep": -1,
+                "frequency": 3
+            },
+            {
+                "text": "s_c spies an approaching o_c_n patrol from a distance and hides, waiting and splashing the passing cats with a sudden wave of {ELEMENT/s_c}. The patrol find no humor in it even after being informed it was a prank, turning violent in return.",
+                "exp": 0,
+                "stat_element": [ "mud", "sand" ],
+                "stat_trait": [
+                    "troublesome",
+                    "childish",
+                    "playful"
+                ],
+                "injury": [
+                    {
+                        "cats": [
+                            "s_c"
+                        ],
+                        "injuries": [
+                            "battle_injury"
+                        ]
+                    }
+                ],
+                "history_text": {
+                    "scar": "m_c was injured by an enemy patrol after pranking them with water.",
+                    "death": "m_c died of injuries inflicted by an enemy warrior after pranking them with water."
+                },
+                "other_clan_rep": -3,
+                "frequency": 2
             }
         ]
     },
@@ -3187,6 +3943,18 @@
                 "other_clan_rep": 2,
                 "frequency": 3,
                 "art": "gen_train_app_otherclan"
+            },
+            {
+                "text": "s_c spies an approaching o_c_n patrol from a distance and hides, waiting and splashing the passing cats with a sudden wave of {ELEMENT/s_c}. The patrol seem to mostly find the humor in it, and brush it off without incident.",
+                "exp": 20,
+                "stat_element": [ "water", "mud", "sand" ],
+                "stat_trait": [
+                    "troublesome",
+                    "childish",
+                    "playful"
+                ],
+                "other_clan_rep": 1,
+                "frequency": 3
             }
         ],
         "fail_outcomes": [
@@ -3223,6 +3991,24 @@
                 "exp": 0,
                 "other_clan_rep": -3,
                 "frequency": 2,
+                "art": "gen_angry_cat_warrior"
+            },
+            {
+                "text": "s_c comes across a o_c_n apprentice on the wrong side of the border and holding prey. {PRONOUN/s_c/subject/CAP} {VERB/s_c/are/is}n't above using a bit of magic to make sure the apprentice is too frightened to try again another day.",
+                "exp": 0,
+                "stat_element": [ "any" ],
+                "stat_trait": [
+                    "troublesome",
+                    "fierce",
+                    "bloodthirsty",
+                    "cold",
+                    "strict",
+                    "vengeful",
+                    "grumpy",
+                    "gloomy"
+                ],
+                "other_clan_rep": -1,
+                "frequency": 4,
                 "art": "gen_angry_cat_warrior"
             },
             {
@@ -3401,7 +4187,7 @@
                 "min_max_status": {
                     "warrior": [-1,-1]
                 },
-                "text": "r_c is having trouble focusing today and puts a mark in the wrong place — and at the worst possible moment, because a o_c_n patrol sees them doing it! The diplomatic incident spirals into a full blown conflict, and r_c hauls {PRONOUN/r_c/self} back to camp wounded and bleeding.",
+                "text": "r_c is having trouble focusing today and puts a mark in the wrong place — and at the worst possible moment, because a o_c_n patrol sees {PRONOUN/r_c/object} doing it! The diplomatic incident spirals into a full blown conflict, and r_c hauls {PRONOUN/r_c/self} back to camp wounded and bleeding.",
                 "relationships": [{
                     "cats_from": ["some_clan"],
                     "cats_to": ["r_c"],
@@ -3409,7 +4195,7 @@
                     "values": ["trust"],
                     "amount": -5,
                     "log": {
-                        "cats_from": "cat_from heard about cat_to starting accidentally starting a fight with a misplaced border marking."
+                        "cats_from": "cat_from heard about cat_to accidentally starting a fight because of a misplaced border marking."
                     }
                 }],
                 "exp": 0,
@@ -3430,6 +4216,159 @@
                 "other_clan_rep": -1,
                 "frequency": 2,
                 "art": "gen_battle_warrior_other_clan"
+            },
+            {
+                "text": "s_c is having trouble focusing today and puts a mark in the wrong place — and at the worst possible moment, because a o_c_n patrol sees {PRONOUN/s_c/object} doing it! When the confrontation starts nearing an outbreak of violence, s_c cloaks {PRONOUN/s_c/self} in {ELEMENT/s_c} and bolts to c_n territory.",
+                "exp": 0,
+                "stat_element": [ "mist", "smoke", "shadow", "metal" ],
+                "other_clan_rep": -1,
+                "frequency": 4
+            },
+            {
+                "text": "Tensions escalate when an arriving o_c_n patrol begins jeering at s_c, but once s_c starts to spark in warning, o_c_n are quick to back down.",
+                "exp": 0,
+                "stat_element": [ "fire", "blue fire", "lightning", "combustion" ],
+                "can_have_stat": [ "adult" ],
+                "stat_trait": [
+                    "troublesome",
+                    "fierce",
+                    "bloodthirsty",
+                    "charismatic",
+                    "bold",
+                    "daring",
+                    "strict",
+                    "ambitious",
+                    "confident",
+                    "shameless",
+                    "vengeful",
+                    "arrogant",
+                    "competitive",
+                    "grumpy",
+                    "cunning",
+                    "flamboyant",
+                    "rebellious"
+                ],
+                "other_clan_rep": -1,
+                "frequency": 4
+            },
+            {
+                "text": "Tensions escalate when an arriving o_c_n patrol begins jeering at s_c, but once s_c shakes the ground between them in warning, o_c_n are quick to back down.",
+                "exp": 0,
+                "stat_element": [ "earth" ],
+                "can_have_stat": [ "adult" ],
+                "stat_trait": [
+                    "troublesome",
+                    "fierce",
+                    "bloodthirsty",
+                    "charismatic",
+                    "bold",
+                    "daring",
+                    "strict",
+                    "ambitious",
+                    "confident",
+                    "shameless",
+                    "vengeful",
+                    "arrogant",
+                    "competitive",
+                    "grumpy",
+                    "cunning",
+                    "flamboyant",
+                    "rebellious"
+                ],
+                "other_clan_rep": -1,
+                "frequency": 4
+            },
+            {
+                "text": "Tensions escalate when an arriving o_c_n patrol begins jeering at s_c, but once s_c shifts the tall grass around them in warning, o_c_n are quick to back down.",
+                "exp": 0,
+                "stat_element": [ "plant" ],
+                "can_have_stat": [ "adult" ],
+                "stat_trait": [
+                    "troublesome",
+                    "fierce",
+                    "bloodthirsty",
+                    "charismatic",
+                    "bold",
+                    "daring",
+                    "strict",
+                    "ambitious",
+                    "confident",
+                    "shameless",
+                    "vengeful",
+                    "arrogant",
+                    "competitive",
+                    "grumpy",
+                    "cunning",
+                    "flamboyant",
+                    "rebellious"
+                ],
+                "other_clan_rep": -1,
+                "frequency": 4
+            },
+            {
+                "text": "Tensions escalate when an arriving o_c_n patrol begins jeering at s_c, but the warning glint of s_c's sharp metal spikes cause o_c_n to back down.",
+                "exp": 0,
+                "stat_element": [ "metal" ],
+                "can_have_stat": [ "adult" ],
+                "stat_trait": [
+                    "troublesome",
+                    "fierce",
+                    "bloodthirsty",
+                    "charismatic",
+                    "bold",
+                    "daring",
+                    "strict",
+                    "ambitious",
+                    "confident",
+                    "shameless",
+                    "vengeful",
+                    "arrogant",
+                    "competitive",
+                    "grumpy",
+                    "cunning",
+                    "flamboyant",
+                    "rebellious"
+                ],
+                "other_clan_rep": -1,
+                "frequency": 4
+            },
+            {
+                "text": "s_c spies an approaching o_c_n patrol from a distance and hides, waiting and splashing the passing cats with a sudden wave of {ELEMENT/s_c}. The patrol find no humor in it even after being informed it was a prank.",
+                "exp": 0,
+                "stat_element": [ "water", "mud", "sand" ],
+                "stat_trait": [
+                    "troublesome",
+                    "childish",
+                    "playful"
+                ],
+                "other_clan_rep": -1,
+                "frequency": 3
+            },
+            {
+                "text": "s_c spies an approaching o_c_n patrol from a distance and hides, waiting and splashing the passing cats with a sudden wave of {ELEMENT/s_c}. The patrol find no humor in it even after being informed it was a prank, turning violent in return.",
+                "exp": 0,
+                "stat_element": [ "water", "mud", "sand" ],
+                "stat_trait": [
+                    "troublesome",
+                    "childish",
+                    "playful"
+                ],
+                "injury": [
+                    {
+                        "cats": [
+                            "s_c"
+                        ],
+                        "injuries": [
+                            "battle_injury"
+                        ]
+                    }
+                ],
+                "history_text": {
+                    "scar": "m_c was injured by an enemy patrol after pranking them with water.",
+                    "death": "m_c died of injuries inflicted by an enemy warrior after pranking them with water."
+                },
+                "other_clan_rep": -3,
+                "frequency": 2
             }
         ]
     },
@@ -3600,6 +4539,17 @@
                 ],
                 "other_clan_rep": 2,
                 "frequency": 4
+            },
+            {
+                "text": "s_c spies an approaching o_c_n patrol from a distance and hides, waiting and splashing the passing cats with a sudden wave of {ELEMENT/s_c}. The patrol seem to mostly find the humor in it, and brush it off without incident.",
+                "exp": 20,
+                "stat_element": [ "water", "mud" ],
+                "stat_trait": [
+                    "troublesome",
+                    "childish",
+                    "playful"
+                ],
+                "frequency": 3
             }
         ],
         "fail_outcomes": [
@@ -3664,6 +4614,176 @@
                 "exp": 0,
                 "other_clan_rep": -1,
                 "frequency": 4
+            },
+            {
+                "text": "Tensions escalate when an arriving o_c_n patrol begins jeering at s_c, but once s_c starts to spark in warning, o_c_n are quick to back down.",
+                "exp": 0,
+                "stat_element": [ "fire", "blue fire", "lightning", "combustion" ],
+                "can_have_stat": [ "adult" ],
+                "stat_trait": [
+                    "troublesome",
+                    "fierce",
+                    "bloodthirsty",
+                    "charismatic",
+                    "bold",
+                    "daring",
+                    "strict",
+                    "ambitious",
+                    "confident",
+                    "shameless",
+                    "vengeful",
+                    "arrogant",
+                    "competitive",
+                    "grumpy",
+                    "cunning",
+                    "flamboyant",
+                    "rebellious"
+                ],
+                "other_clan_rep": -1,
+                "frequency": 4
+            },
+            {
+                "text": "Tensions escalate when an arriving o_c_n patrol begins jeering at s_c, but once s_c shifts the wet terrain around them in warning, o_c_n are quick to back down.",
+                "exp": 0,
+                "stat_element": [ "water", "mud" ],
+                "can_have_stat": [ "adult" ],
+                "stat_trait": [
+                    "troublesome",
+                    "fierce",
+                    "bloodthirsty",
+                    "charismatic",
+                    "bold",
+                    "daring",
+                    "strict",
+                    "ambitious",
+                    "confident",
+                    "shameless",
+                    "vengeful",
+                    "arrogant",
+                    "competitive",
+                    "grumpy",
+                    "cunning",
+                    "flamboyant",
+                    "rebellious"
+                ],
+                "other_clan_rep": -1,
+                "frequency": 4
+            },
+            {
+                "text": "Tensions escalate when an arriving o_c_n patrol begins jeering at s_c, but once s_c shifts the water plants around them in warning, o_c_n are quick to back down.",
+                "exp": 0,
+                "stat_element": [ "plant" ],
+                "can_have_stat": [ "adult" ],
+                "stat_trait": [
+                    "troublesome",
+                    "fierce",
+                    "bloodthirsty",
+                    "charismatic",
+                    "bold",
+                    "daring",
+                    "strict",
+                    "ambitious",
+                    "confident",
+                    "shameless",
+                    "vengeful",
+                    "arrogant",
+                    "competitive",
+                    "grumpy",
+                    "cunning",
+                    "flamboyant",
+                    "rebellious"
+                ],
+                "other_clan_rep": -1,
+                "frequency": 4
+            },
+            {
+                "text": "Tensions escalate when an arriving o_c_n patrol begins jeering at s_c, but the warning glint of s_c's sharp metal spikes cause o_c_n to back down.",
+                "exp": 0,
+                "stat_element": [ "metal" ],
+                "can_have_stat": [ "adult" ],
+                "stat_trait": [
+                    "troublesome",
+                    "fierce",
+                    "bloodthirsty",
+                    "charismatic",
+                    "bold",
+                    "daring",
+                    "strict",
+                    "ambitious",
+                    "confident",
+                    "shameless",
+                    "vengeful",
+                    "arrogant",
+                    "competitive",
+                    "grumpy",
+                    "cunning",
+                    "flamboyant",
+                    "rebellious"
+                ],
+                "other_clan_rep": -1,
+                "frequency": 4
+            },
+            {
+                "text": "s_c is having trouble focusing today and puts a mark in the wrong place — and at the worst possible moment, because a o_c_n patrol sees {PRONOUN/s_c/object} doing it! When the confrontation starts nearing an outbreak of violence, s_c cloaks {PRONOUN/s_c/self} in {ELEMENT/s_c} and bolts to c_n territory.",
+                "exp": 0,
+                "stat_element": [ "mist", "smoke", "shadow", "metal" ],
+                "other_clan_rep": -1,
+                "frequency": 4
+            },
+            {
+                "text": "s_c comes across a o_c_n apprentice on the wrong side of the border and holding prey. {PRONOUN/s_c/subject/CAP} {VERB/s_c/are/is}n't above using a bit of magic to make sure the apprentice is too frightened to try again another day.",
+                "exp": 0,
+                "stat_element": [ "any" ],
+                "stat_trait": [
+                    "troublesome",
+                    "fierce",
+                    "bloodthirsty",
+                    "cold",
+                    "strict",
+                    "vengeful",
+                    "grumpy",
+                    "gloomy"
+                ],
+                "other_clan_rep": -1,
+                "frequency": 4
+            },
+            {
+                "text": "s_c spies an approaching o_c_n patrol from a distance and hides, waiting and splashing the passing cats with a sudden wave of {ELEMENT/s_c}. The patrol find no humor in it even after being informed it was a prank.",
+                "exp": 0,
+                "stat_element": [ "water", "mud" ],
+                "stat_trait": [
+                    "troublesome",
+                    "childish",
+                    "playful"
+                ],
+                "other_clan_rep": -1,
+                "frequency": 3
+            },
+            {
+                "text": "s_c spies an approaching o_c_n patrol from a distance and hides, waiting and splashing the passing cats with a sudden wave of {ELEMENT/s_c}. The patrol find no humor in it even after being informed it was a prank, turning violent in return.",
+                "exp": 0,
+                "stat_element": [ "water", "mud" ],
+                "stat_trait": [
+                    "troublesome",
+                    "childish",
+                    "playful"
+                ],
+                "injury": [
+                    {
+                        "cats": [
+                            "s_c"
+                        ],
+                        "injuries": [
+                            "battle_injury"
+                        ]
+                    }
+                ],
+                "history_text": {
+                    "scar": "m_c was injured by an enemy patrol after pranking them with water.",
+                    "death": "m_c died of injuries inflicted by an enemy warrior after pranking them with water."
+                },
+                "other_clan_rep": -3,
+                "frequency": 2
             }
         ]
     },
@@ -5031,6 +6151,33 @@
                         }
                     }
                 ]
+            },
+            {
+                "text": "With shadows to puppet alongside the story, p_l is easily able to keep the apprentices' attention before beginning. Once, there was a cat called Scrap. And she was a little bit of nothing, no talents, no courage, no beauty, she thought herself worthless and stupid. Yet when her Clan was threatened by invading rogues, she rose up. Nervous, flighty, scared and small — the savior of her Clan, marked with moth wings tucked behind her ear.",
+                "exp": 20,
+                "stat_element": [ "shadow" ],
+                "can_have_stat": [ "p_l" ],
+                "other_clan_rep": 2,
+                "relationships": [
+                    {
+                        "cats_to": [
+                            "p_l"
+                        ],
+                        "cats_from": [
+                            "patrol"
+                        ],
+                        "mutual": false,
+                        "values": [
+                            "respect",
+                            "comfort"
+                        ],
+                        "amount": 10,
+                        "log": {
+                            "cats_from": "cat_from enjoyed listening to cat_to's story on patrol."
+                        }
+                    }
+                ],
+                "frequency": 4
             }
         ],
         "fail_outcomes": [

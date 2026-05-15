@@ -1106,6 +1106,17 @@
                 ],
                 "other_clan_rep": 2,
                 "frequency": 4
+            },
+            {
+                "text": "s_c spies an approaching o_c_n patrol from a distance and hides, waiting and splashing the passing cats with a sudden wave of {ELEMENT/s_c}. The patrol seem to mostly find the humor in it, and brush it off without incident.",
+                "exp": 20,
+                "stat_element": [ "water", "mud", "sand" ],
+                "stat_trait": [
+                    "troublesome",
+                    "childish",
+                    "playful"
+                ],
+                "frequency": 3
             }
         ],
         "fail_outcomes": [
@@ -1117,7 +1128,7 @@
             },
             {
                 "min_max_status": {"warrior": [1, 1]},
-                "text": "r_c is having trouble focusing today and puts a mark in the wrong place — at the worst possible moment, because a o_c_n patrol sees them doing it! {PRONOUN/r_c/subject/CAP} immediately {VERB/r_c/apologize/apologizes} to the o_c_n patrol for the diplomatic incident {PRONOUN/r_c/subject}{VERB/r_c/'ve/'s} inadvertently caused.",
+                "text": "r_c is having trouble focusing today and puts a mark in the wrong place — at the worst possible moment, because a o_c_n patrol sees {PRONOUN/r_c/object} doing it! {PRONOUN/r_c/subject/CAP} immediately {VERB/r_c/apologize/apologizes} to the o_c_n patrol for the diplomatic incident {PRONOUN/r_c/subject}{VERB/r_c/'ve/'s} inadvertently caused.",
                 "exp": 0,
                 "stat_trait": [
                     "ambitious",
@@ -1174,6 +1185,13 @@
                 ]
             },
             {
+                "text": "s_c is having trouble focusing today and puts a mark in the wrong place — and at the worst possible moment, because a o_c_n patrol sees {PRONOUN/s_c/object} doing it! When the confrontation starts nearing an outbreak of violence, s_c cloaks {PRONOUN/s_c/self} in {ELEMENT/s_c} and bolts to c_n territory.",
+                "exp": 0,
+                "stat_element": [ "mist", "smoke", "shadow", "metal" ],
+                "other_clan_rep": -1,
+                "frequency": 2
+            },
+            {
                 "min_max_status": {"warrior": [-1, -1]},
                 "text": "r_c encounters a patrol from o_c_n on the border, and greets them politely, but there's something different here. Something dangerous. They return to camp, blood soaked through their fur and a new fear in their heart — is o_c_n still their ally?",
                 "exp": 0,
@@ -1202,6 +1220,62 @@
                 ],
                 "other_clan_rep": -5,
                 "frequency": 2
+            },
+            {
+                "text": "s_c comes across a o_c_n apprentice on the wrong side of the border and holding prey. {PRONOUN/s_c/subject/CAP} {VERB/s_c/are/is}n't above using a bit of magic to make sure the apprentice is too frightened to try again another day.",
+                "exp": 0,
+                "stat_element": [ "any" ],
+                "stat_trait": [
+                    "troublesome",
+                    "fierce",
+                    "bloodthirsty",
+                    "cold",
+                    "strict",
+                    "vengeful",
+                    "grumpy",
+                    "gloomy"
+                ],
+                "other_clan_rep": -1,
+                "frequency": 4,
+                "art": "gen_angry_cat_warrior"
+            },
+            {
+                "text": "s_c spies an approaching o_c_n patrol from a distance and hides, waiting and splashing the passing cats with a sudden wave of {ELEMENT/s_c}. The patrol find no humor in it even after being informed it was a prank.",
+                "exp": 0,
+                "stat_element": [ "water", "mud", "sand" ],
+                "stat_trait": [
+                    "troublesome",
+                    "childish",
+                    "playful"
+                ],
+                "other_clan_rep": -1,
+                "frequency": 3
+            },
+            {
+                "text": "s_c spies an approaching o_c_n patrol from a distance and hides, waiting and splashing the passing cats with a sudden wave of {ELEMENT/s_c}. The patrol find no humor in it even after being informed it was a prank, turning violent in return.",
+                "exp": 0,
+                "stat_element": [ "water", "mud", "sand" ],
+                "stat_trait": [
+                    "troublesome",
+                    "childish",
+                    "playful"
+                ],
+                "injury": [
+                    {
+                        "cats": [
+                            "s_c"
+                        ],
+                        "injuries": [
+                            "battle_injury"
+                        ]
+                    }
+                ],
+                "history_text": {
+                    "scar": "m_c was injured by an enemy patrol after pranking them with water.",
+                    "death": "m_c died of injuries inflicted by an enemy warrior after pranking them with water."
+                },
+                "other_clan_rep": -3,
+                "frequency": 1
             }
         ]
     },
@@ -1241,6 +1315,33 @@
             {
                 "text": "Once, there was a cat called Scrap. And she was a little bit of nothing, no talents, no courage, no beauty, she thought herself worthless and stupid. Yet when her Clan was threatened by invading rogues, she rose up. Nervous, flighty, scared and small — the savior of her Clan, marked with moth wings tucked behind her ear.",
                 "exp": 20,
+                "other_clan_rep": 2,
+                "relationships": [
+                    {
+                        "cats_to": [
+                            "p_l"
+                        ],
+                        "cats_from": [
+                            "patrol"
+                        ],
+                        "mutual": false,
+                        "values": [
+                            "respect",
+                            "comfort"
+                        ],
+                        "amount": 10,
+                        "log": {
+                            "cats_from": "cat_from enjoyed listening to cat_to's story on patrol."
+                        }
+                    }
+                ],
+                "frequency": 4
+            },
+            {
+                "text": "With shadows to puppet alongside the story, p_l is easily able to keep the apprentices' attention before beginning. Once, there was a cat called Scrap. And she was a little bit of nothing, no talents, no courage, no beauty, she thought herself worthless and stupid. Yet when her Clan was threatened by invading rogues, she rose up. Nervous, flighty, scared and small — the savior of her Clan, marked with moth wings tucked behind her ear.",
+                "exp": 20,
+                "stat_element": ["shadow"],
+                "can_have_stat": ["p_l"],
                 "other_clan_rep": 2,
                 "relationships": [
                     {
