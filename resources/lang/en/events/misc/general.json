@@ -13688,7 +13688,7 @@
             "any"
         ],
         "frequency": 3,
-        "event_text": "m_c caught r_c trying to sneak out of camp while on guard duty.",
+        "event_text": "While on guard duty, m_c caught r_c trying to sneak out of camp.",
         "m_c": {
             "status": [
                 "warrior",
@@ -14229,7 +14229,8 @@
             "current_rep": [
                 "hostile"
             ],
-            "changed": 5
+            "changed": 5,
+            "has_rank": ["deputy"]
         }
     },
     {
@@ -14252,7 +14253,8 @@
             "current_rep": [
                 "hostile"
             ],
-            "changed": 5
+            "changed": 5,
+            "has_rank": ["mediator"]
         }
     },
     {
@@ -14275,7 +14277,8 @@
             "current_rep": [
                 "hostile"
             ],
-            "changed": 10
+            "changed": 10,
+            "has_rank": ["healer"]
         }
     },
     {
@@ -14286,7 +14289,7 @@
         "season": [
             "any"
         ],
-        "tags": [],
+        "tags": [ "not_multiclan" ],
         "exclude_involved": [
             "m_c"
         ],
@@ -14316,7 +14319,7 @@
         "season": [
             "any"
         ],
-        "tags": [],
+        "tags": [ "not_multiclan" ],
         "exclude_involved": [
             "m_c"
         ],
