@@ -29,7 +29,6 @@ from scripts.events_module.event_filters import (
     cat_for_event,
     event_for_poi,
 )
-from scripts.config import PREY_CONFIG
 from scripts.events_module.patrol.patrol_event import PatrolEvent
 from scripts.events_module.patrol.patrol_outcome import PatrolOutcome
 from scripts.config import get_config
@@ -973,7 +972,7 @@ class Patrol:
 
         patrol_size = len(self.patrol_cats)
         total_exp = sum([x.experience for x in self.patrol_cats])
-        gm_modifier = get_config(game.clan, f"patrol_generation.{game.clan.game_mode}_difficulty_modifier")
+        gm_modifier = get_config(game.clan, f"patrol_generation.{"classic" if game.clan.game_mode == "classic" else "expanded"}_difficulty_modifier")
 
         exp_adustment = (
             (1 + 0.10 * patrol_size) * total_exp / (patrol_size * gm_modifier * 2)
@@ -1228,5 +1227,5 @@ class Patrol:
 #                               PATROL CLASS END                               #
 # ---------------------------------------------------------------------------- #
 
-PATROL_WEIGHT_ADAPTION = PREY_CONFIG["patrol_weight_adaption"]
-PATROL_BALANCE = PREY_CONFIG["patrol_balance"]
+PATROL_WEIGHT_ADAPTION = get_config(game.clan, "prey.patrol_weight_adaption")
+PATROL_BALANCE = get_config(game.clan, "prey.patrol_balance")

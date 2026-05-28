@@ -7,7 +7,7 @@ TODO: Docs
 """
 import logging
 import random
-from scripts.config import get_config, PREY_CONFIG
+from scripts.config import get_config
 
 # pylint: enable=line-too-long
 import traceback
@@ -741,11 +741,9 @@ def get_moon_freshkill():
 
     prey_amount = 0
     for cat in healthy_hunter:
-        lower_value = PREY_CONFIG["auto_warrior_prey"][0]
-        upper_value = PREY_CONFIG["auto_warrior_prey"][1]
+        lower_value, upper_value = get_config(game.clan, "prey.auto_warrior_prey")
         if cat.status.rank == CatRank.APPRENTICE:
-            lower_value = PREY_CONFIG["auto_apprentice_prey"][0]
-            upper_value = PREY_CONFIG["auto_apprentice_prey"][1]
+            lower_value, upper_value = get_config(game.clan, "prey.auto_apprentice_prey")
 
         prey_amount += random.randint(lower_value, upper_value)
     game.freshkill_event_list.append(
@@ -2611,14 +2609,13 @@ def handle_injuries_or_general_death(cat, clan):
         Condition_Events.handle_injuries(cat, clan)
         return
 
-    modify_for_war = switch_get_value(Switch.war_rel_change_type) != "rel_up" and game.clan.get_wars(clan)
+    use_war_modifier = switch_get_value(Switch.war_rel_change_type) != "rel_up" and game.clan.get_wars(clan)
 
     # chance to kill leader: 1/50 by default
-    leader_death_chance = (
-        get_config(game.clan, "death_related.leader_death_chance")
-        - (get_config(game.clan, "death_related.war_death_modifier_leader")
-        if modify_for_war
-        else 0)
+    leader_death_chance = get_config(game.clan, "death_related.leader_death_chance") - (
+        get_config(game.clan, "death_related.war_death_modifier_leader")
+        if use_war_modifier
+        else 0
     )
 
     if (
@@ -2670,14 +2667,11 @@ def handle_injuries_or_general_death(cat, clan):
             return True
 
     # final death chance and then, if not triggered, head to injuries
-    death_chance = (
-        get_config(
-            game.clan,
-            f"death_related.{'classic' if game.clan.game_mode == 'classic' else 'expanded'}_death_chance"
-        )
-        - (get_config(game.clan, "death_related.war_death_modifier")
-        if modify_for_war
-        else 0)
+    mode = "expanded" if game.clan.game_mode == "cruel season" else game.clan.game_mode
+    death_chance = get_config(game.clan, f"death_related.{mode}_death_chance") - (
+        get_config(game.clan, "death_related.war_death_modifier")
+        if use_war_modifier
+        else 0
     )
     if not int(random.random() * death_chance) and not cat.not_working():  # 1/400
         create_short_event(
