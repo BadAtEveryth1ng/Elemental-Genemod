@@ -112,7 +112,7 @@ def one_moon():
     Pregnancy_Events.handle_pregnancy_age(game.clan)
 
     if (
-        game.clan.game_mode in ("expanded", "cruel season")
+        game.clan.game_mode in ("expanded", "cruel_season")
         and game.clan.freshkill_pile
     ):
         # feed the cats and update the nutrient status
@@ -307,7 +307,7 @@ def one_moon():
         game.dead_cats_to_grieve.clear()
 
     if (
-        game.clan.game_mode in ("expanded", "cruel season")
+        game.clan.game_mode in ("expanded", "cruel_season")
         and game.clan.freshkill_pile
     ):
         # make a notification if the Clan does not have enough prey
@@ -332,7 +332,7 @@ def one_moon():
         ),
     )
 
-    if game.clan.game_mode in ("expanded", "cruel season"):
+    if game.clan.game_mode in ("expanded", "cruel_season"):
         amount_per_med = get_amount_cat_for_one_medic()
         med_fulfilled = medicine_cats_can_cover_clan(
             Cat.all_cats.values(), amount_per_med, clan=CatGroup.PLAYER_CLAN_ID
@@ -1332,7 +1332,7 @@ def one_moon_cat(cat, clan):
     # handle nutrition amount
     # (CARE: the cats have to be fed before this happens - should be handled in "one_moon" function)
     if (
-        game.clan.game_mode in ("expanded", "cruel season")
+        game.clan.game_mode in ("expanded", "cruel_season")
         and game.clan.freshkill_pile
         and cat.status.alive_in_player_clan
     ):
@@ -1384,7 +1384,7 @@ def one_moon_cat(cat, clan):
     if cat.dead:
         return
 
-    handle_colour_changes(cat, clan)
+    handle_colour_changes(cat, clan)    
     if cat.phenotype.element and cat.moons == 1:
         handle_element(cat,clan)
 
@@ -1450,12 +1450,11 @@ def handle_colour_changes(cat, clan):
         event_text = event_text_adjust(Cat, event_text, main_cat=cat)
         types = ["misc"]
         game.cur_events_list.append(Single_Event(event_text, types, involved_cats, clan=clan.group_ID))
-
+        
 def handle_element(cat, clan):
     involved_cats = [cat.ID]
     ELEMENT_TXT = load_lang_resource("events/element_reveal.json")
     event_text = ELEMENT_TXT.get(cat.phenotype.element)
-
     if event_text:
         event_text = event_text_adjust(Cat, random.choice(event_text), main_cat=cat)
         types = ["misc"]
@@ -1671,27 +1670,28 @@ def perform_ceremonies(cat, clan):
 
         special_can_retire = False
         role_info = get_config(game.clan, "roles")
+        retirement_info = get_config(game.clan, "retirement")
         if cat.status.rank == CatRank.LEADER:
-            special_can_retire = get_clan_setting("leader_retirement") and random.random() < (1/role_info["max_leader_retire_chance"])
+            special_can_retire = get_clan_setting("leader_retirement") and random.random() < (1/retirement_info["max_leader_retire_chance"])
         if cat.status.rank == CatRank.MEDICINE_CAT:
             special_can_retire = get_clan_setting("healer_retirement") and medicine_cats_can_cover_clan(
                 Cat.all_cats.values(), get_amount_cat_for_one_medic(), clan=clan.group_ID, exclude=cat
-            ) and random.random() < (1/role_info["max_healer_retire_chance"])
+            ) and random.random() < (1/retirement_info["max_healer_retire_chance"])
         if cat.status.rank == CatRank.MEDIATOR:
-            special_can_retire = get_clan_setting("mediator_retirement") and random.random() < (1/role_info["max_mediator_retire_chance"])
+            special_can_retire = get_clan_setting("mediator_retirement") and random.random() < (1/retirement_info["max_mediator_retire_chance"])
         if cat.status.rank == CatRank.QUEEN:
-            special_can_retire = random.random() < (1/role_info["max_queen_retire_chance"])
+            special_can_retire = random.random() < (1/retirement_info["max_queen_retire_chance"])
         
         # retiring to elder den
         if (
             not cat.no_retire
             and (cat.status.rank in (CatRank.WARRIOR, CatRank.DEPUTY) or cat.status.rank in (CatRank.MEDICINE_CAT, CatRank.MEDIATOR, CatRank.LEADER, CatRank.QUEEN) and special_can_retire)
             and len(cat.apprentice) < 1
-            and cat.moons > 114
+            and cat.moons >= retirement_info["min_retirement_age"]
         ):
             # There is some variation in the age.
-            if cat.moons > 140 or not int(
-                random.random() * (-0.7 * cat.moons + 100)
+            if cat.moons > retirement_info["min_retirement_age"]+25 or not int(
+                random.random() * (-0.7 * (cat.moons-retirement_info["min_retirement_age"]+115) + 100)
             ):
                 if cat.status.rank == CatRank.DEPUTY:
                     clan.deputy = None
@@ -2089,6 +2089,7 @@ def ceremony(cat, promoted_to, preparedness="prepared"):
             CatRank.ELDER,
         ],
         CatRank.MEDIATOR: [CatRank.MEDIATOR],
+        CatRank.QUEEN: [CatRank.QUEEN],
     }
 
     try:
@@ -2096,7 +2097,7 @@ def ceremony(cat, promoted_to, preparedness="prepared"):
         possible_ceremonies.update(ceremony_id_by_tag["leader_retire"] if was_leader else ceremony_id_by_tag[promoted_to])
 
         # Get ones for prepared status ----------------------------------------------
-        if promoted_to in (CatRank.WARRIOR, CatRank.MEDICINE_CAT, CatRank.MEDIATOR):
+        if promoted_to in (CatRank.WARRIOR, CatRank.MEDICINE_CAT, CatRank.MEDIATOR, CatRank.QUEEN):
             possible_ceremonies = possible_ceremonies.intersection(
                 ceremony_id_by_tag[preparedness]
             )
@@ -2248,7 +2249,7 @@ def ceremony(cat, promoted_to, preparedness="prepared"):
 
     # getting the random honor if it's needed
     random_honor = None
-    if promoted_to in (CatRank.WARRIOR, CatRank.MEDIATOR, CatRank.MEDICINE_CAT):
+    if promoted_to in (CatRank.WARRIOR, CatRank.MEDIATOR, CatRank.MEDICINE_CAT, CatRank.QUEEN):
         traits = load_lang_resource("events/ceremonies/ceremony_traits.json")
 
         try:
@@ -2259,7 +2260,7 @@ def ceremony(cat, promoted_to, preparedness="prepared"):
         if get_clan_setting('modded names') and get_clan_setting('new suffixes') and not cat.name.specsuffix_hidden:
             cat.name.give_suffix(cat.skills, cat.personality, clan.biome, random_honor)
 
-    if cat.status.rank in (CatRank.WARRIOR, CatRank.MEDICINE_CAT, CatRank.MEDIATOR):
+    if cat.status.rank in (CatRank.WARRIOR, CatRank.MEDICINE_CAT, CatRank.MEDIATOR, CatRank.QUEEN):
         cat.history.add_app_ceremony(random_honor)
 
     ceremony_tags, ceremony_text = CEREMONY_TXT[
@@ -2667,8 +2668,12 @@ def handle_injuries_or_general_death(cat, clan):
             return True
 
     # final death chance and then, if not triggered, head to injuries
-    mode = "expanded" if game.clan.game_mode == "cruel season" else game.clan.game_mode
-    death_chance = get_config(game.clan, f"death_related.{mode}_death_chance") - (
+    path = (
+        "death_related.classic_death_chance"
+        if game.clan.game_mode == "classic"
+        else "death_related.death_chance"
+    )
+    death_chance = get_config(game.clan, path) - (
         get_config(game.clan, "death_related.war_death_modifier")
         if use_war_modifier
         else 0
