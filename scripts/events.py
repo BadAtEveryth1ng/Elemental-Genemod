@@ -167,6 +167,7 @@ def one_moon():
     # Calling of "one_moon" functions.
     other_clan_cats = [c for c in Cat.all_cats_list if c.status.is_other_clancat]
     for cat in Cat.all_cats_list.copy():
+        cat.thought = None
         if not cat.status.group_ID or (cat.status.is_other_clancat and game.clan.clancount == "singleclan"):
             one_moon_outside_cat(cat, other_clan_cats)
         elif cat.status.group.is_any_clan_group() or cat.status.group.is_afterlife():
@@ -919,16 +920,16 @@ def handle_focus():
                     chosen_injury = random.choice(possible_injuries)
                     cat.get_injured(chosen_injury)
                     involved_cats["injured"].append(cat.ID)
-                else:
-                    chance = info_dict["illness_chance"]
-                    if not int(random.random() * chance):  # 1/chance
-                        possible_illnesses = []
-                        injury_dict = info_dict["illnesses"]
-                        for illness, amount in injury_dict.items():
-                            possible_illnesses.extend([illness] * amount)
-                        chosen_illness = random.choice(possible_illnesses)
-                        cat.get_ill(chosen_illness)
-                        involved_cats["sick"].append(cat.ID)
+            else:
+                chance = info_dict["illness_chance"]
+                if not int(random.random() * chance):  # 1/chance
+                    possible_illnesses = []
+                    injury_dict = info_dict["illnesses"]
+                    for illness, amount in injury_dict.items():
+                        possible_illnesses.extend([illness] * amount)
+                    chosen_illness = random.choice(possible_illnesses)
+                    cat.get_ill(chosen_illness)
+                    involved_cats["sick"].append(cat.ID)
 
         # if it is raiding, lower the relation to other clans
         if get_clan_setting("raid_other_clans"):
@@ -1303,7 +1304,6 @@ def one_moon_cat(cat, clan):
             cat.status.increase_current_moons_as()
         if cat.moons > 0 and cat.status.rank == CatRank.NEWBORN:
             cat.status._change_rank(CatRank.KITTEN)
-        cat.get_new_thought()
         handle_fading(cat, clan)  # Deal with fading.
         return
 

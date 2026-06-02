@@ -1847,14 +1847,12 @@ class Cat:
         old_age = self.age
 
         if self.dead and not self.faded:
-            self.get_new_thought(CatThought.WHILE_DEAD)
             return
 
         self.moons += 1
         if self.moons > 0 and self.status.rank == CatRank.NEWBORN:
             self.status._change_rank(CatRank.KITTEN)
         self.in_camp = 1
-        self.get_new_thought(CatThought.WHILE_ALIVE)
 
         personality = self.personality.trait
 
@@ -1863,7 +1861,6 @@ class Cat:
             self.personality.set_kit(self.age.is_baby())
             if self.personality.trait != personality:
                 self.history.prev_pers.append(personality)
-            self.get_new_thought(other_clan_cats=other_clan_cats)
             return
 
         if old_age != self.age:
@@ -1897,10 +1894,23 @@ class Cat:
                 CatThought.WHILE_DEAD if self.dead else CatThought.WHILE_ALIVE
             )
 
-        if self.status.is_other_clancat and not self.dead:
+        if self.status.is_other_clancat and not self.dead and game.clan.clancount == "singleclan":
             cat_list = other_clan_cats.copy() if other_clan_cats else []
+            other_clan_id = self.status.group_ID
         else:
             cat_list = self.all_cats_list.copy()
+            if self.status.is_other_clancat: 
+                other_clan_id = (
+                    choice([i for i in game.clan.other_clan_IDs if i != self.status.group_ID]+[game.clan.group_ID])
+                    if game.clan and game.clan.other_clan_IDs
+                    else None
+                )
+            else:
+                other_clan_id = (
+                    choice(game.clan.other_clan_IDs)
+                    if game.clan and game.clan.other_clan_IDs
+                    else None
+                )
 
         clan = self.status.fetch_clan_object(game.clan)
         if not other_cat:
@@ -1908,9 +1918,6 @@ class Cat:
                 cat_list=cat_list,
                 main_cat=self,
             )
-
-        # get chosen thought
-        chosen_thought = new_thought(thought_type, self, other_cat, game_setting_get("ageup dead"))
 
         chosen_thought = event_text_adjust(
             self.__class__,
