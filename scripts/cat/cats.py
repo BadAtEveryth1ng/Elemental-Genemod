@@ -1919,6 +1919,9 @@ class Cat:
                 main_cat=self,
             )
 
+        # get chosen thought
+        chosen_thought = new_thought(thought_type, self, other_cat, other_clan_id=other_clan_id, ageup=game_setting_get("ageup dead"))
+
         chosen_thought = event_text_adjust(
             self.__class__,
             chosen_thought,
