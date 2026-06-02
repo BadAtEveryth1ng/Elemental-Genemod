@@ -33,6 +33,8 @@ def reformat():
         for t in thoughts_dict:
             if "strings" in t:
                 reformatted_thought = t
+                if "season" in reformatted_thought:
+                    reformatted_thought["season"] = [s.lower() for s in t.get("season")]
                 new_thoughts.append(reformatted_thought)
                 continue
             reformatted_thought = {"id": t.get("id")}
