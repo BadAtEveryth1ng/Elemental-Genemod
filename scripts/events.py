@@ -131,7 +131,7 @@ def one_moon():
         handle_lead_den_event()
 
     clancount = game.clan.clancount == "multiclan"
-    clannames = [game.clan.displayname] + [c.displayname for c in game.clan.all_other_clans]
+    clannames = [game.clan.name] + [c.name for c in game.clan.all_other_clans]
 
     check_war()
 
@@ -152,9 +152,9 @@ def one_moon():
     faded_kits = {}
     for clan in [game.clan] + game.clan.all_other_clans:
         if get_clan_setting('modded_kits'):
-            faded_kits[clan.displayname] = kit_deaths(Cat.all_cats_list, clan=clan)
+            faded_kits[clan.name] = kit_deaths(Cat.all_cats_list, clan=clan)
         else:
-            faded_kits[clan.displayname] = []
+            faded_kits[clan.name] = []
         if not clancount:
             break
 
@@ -185,6 +185,8 @@ def one_moon():
             if isinstance(check_cat, Cat):
                 if check_cat.dead or check_cat.status.is_outsider:
                     game.clan.grief_strings.pop(ID)
+            else:
+                game.clan.grief_strings.pop(ID)
 
         # Generate events
 
@@ -216,30 +218,30 @@ def one_moon():
             if ghost.status.is_exiled(last_living) or ghost.status.has_left(last_living):
                 pass
             elif last_living == CatGroup.PLAYER_CLAN_ID:
-                if game.clan.displayname not in ghost_names:
-                    ghost_names[game.clan.displayname] = []
-                    sorted_dead_cats[game.clan.displayname] = []
-                ghost_names[game.clan.displayname].append(str(ghost.name))
-                sorted_dead_cats[game.clan.displayname].append(ghost)
+                if game.clan.name not in ghost_names:
+                    ghost_names[game.clan.name] = []
+                    sorted_dead_cats[game.clan.name] = []
+                ghost_names[game.clan.name].append(str(ghost.name))
+                sorted_dead_cats[game.clan.name].append(ghost)
             elif group := next(filter(lambda c: last_living == c.group_ID, game.clan.all_other_clans), None):
                 group = ghost.status.fetch_clan_object()
-                if group.displayname not in ghost_names:
-                    ghost_names[group.displayname] = []
-                    sorted_dead_cats[group.displayname] = []
-                ghost_names[group.displayname].append(str(ghost.name))
-                sorted_dead_cats[group.displayname].append(ghost)
+                if group.name not in ghost_names:
+                    ghost_names[group.name] = []
+                    sorted_dead_cats[group.name] = []
+                ghost_names[group.name].append(str(ghost.name))
+                sorted_dead_cats[group.name].append(ghost)
         for clan in [game.clan] + game.clan.all_other_clans:
-            if clan.displayname not in ghost_names:
+            if clan.name not in ghost_names:
                 continue
             extra_event = None
-            insert = adjust_list_text(ghost_names[clan.displayname])
+            insert = adjust_list_text(ghost_names[clan.name])
 
-            if len(ghost_names[clan.displayname]) > 1:
+            if len(ghost_names[clan.name]) > 1:
                 event = i18n.t(
-                    "hardcoded.event_deaths", count=len(ghost_names[clan.displayname]), insert=insert
+                    "hardcoded.event_deaths", count=len(ghost_names[clan.name]), insert=insert
                 )
 
-                if len(ghost_names[clan.displayname])-len(faded_kits.get(clan.displayname, [])) > 2:
+                if len(ghost_names[clan.name])-len(faded_kits.get(clan.name, [])) > 2:
                     alive_cats = list(
                         filter(
                             lambda kitty: (
@@ -253,7 +255,7 @@ def one_moon():
                     if len(alive_cats) == 0:
                         return
                     else:
-                        shaken_cats[clan.displayname] = random.sample(
+                        shaken_cats[clan.name] = random.sample(
                             alive_cats,
                             k=max(
                                 int((len(alive_cats) * random.randint(4, 6)) / 100),
@@ -262,7 +264,7 @@ def one_moon():
                         )
 
                     shaken_cat_names = []
-                    for cat in shaken_cats[clan.displayname]:
+                    for cat in shaken_cats[clan.name]:
                         shaken_cat_names.append(str(cat.name))
                         cat.get_injured(
                             "shock",
@@ -285,11 +287,11 @@ def one_moon():
 
             game.cur_events_list.append(
                 Single_Event(
-                    event_text_adjust(Cat, event, main_cat=sorted_dead_cats[clan.displayname][0], clan=clan),
+                    event_text_adjust(Cat, event, main_cat=sorted_dead_cats[clan.name][0], clan=clan),
                     ["birth_death"],
-                    [i.ID for i in sorted_dead_cats[clan.displayname]],
-                    cat_dict={"m_c": (sorted_dead_cats[clan.displayname])[0]} 
-                    if len(sorted_dead_cats[clan.displayname]) == 1 else None,
+                    [i.ID for i in sorted_dead_cats[clan.name]],
+                    cat_dict={"m_c": (sorted_dead_cats[clan.name])[0]} 
+                    if len(sorted_dead_cats[clan.name]) == 1 else None,
                     clan=clan.group_ID
                 )
             )
@@ -298,7 +300,7 @@ def one_moon():
                     Single_Event(
                         event_text_adjust(Cat, extra_event, clan=clan), 
                         ["birth_death"], 
-                        [i.ID for i in shaken_cats.get(clan.displayname, [])], 
+                        [i.ID for i in shaken_cats.get(clan.name, [])], 
                         clan=clan.group_ID
                     )
                 )
@@ -386,7 +388,7 @@ def one_moon():
     # autosave
     if get_clan_setting("autosave") and game.clan.age % 5 == 0:
         try:
-            save_cats(switch_get_value(Switch.clan_name), Cat, game)
+            save_cats(switch_get_value(Switch.clan_save_id), Cat, game)
             game.clan.save_clan()
             game.clan.save_pregnancy(game.clan)
             game.save_events()
@@ -856,7 +858,7 @@ def handle_focus():
         if get_clan_setting("sabotage_other_clans"):
             amount = amount * -1
         for name in game.clan.clans_in_focus:
-            clan = [clan for clan in game.clan.all_other_clans if clan.displayname == name][0]
+            clan = [clan for clan in game.clan.all_other_clans if clan.name == name][0]
             change_clan_relations(game.clan, clan, amount)
         focus_text = None
 
@@ -934,7 +936,7 @@ def handle_focus():
         # if it is raiding, lower the relation to other clans
         if get_clan_setting("raid_other_clans"):
             for name in game.clan.clans_in_focus:
-                clan = [clan for clan in game.clan.all_other_clans if clan.displayname == name][0]
+                clan = [clan for clan in game.clan.all_other_clans if clan.name == name][0]
                 amount = -info_dict["relation"]
                 change_clan_relations(game.clan, clan, amount)
 
@@ -1384,9 +1386,9 @@ def one_moon_cat(cat, clan):
     if cat.dead:
         return
 
-    handle_colour_changes(cat, clan)    
+    handle_colour_changes(cat, clan)
     if cat.phenotype.element and cat.moons == 1:
-        handle_element(cat,clan)
+        handle_element(cat, clan)
 
     # relationships have to be handled separately, because of the ceremony name change
     if cat.status.group.is_any_clan_group():
@@ -1450,15 +1452,19 @@ def handle_colour_changes(cat, clan):
         event_text = event_text_adjust(Cat, event_text, main_cat=cat)
         types = ["misc"]
         game.cur_events_list.append(Single_Event(event_text, types, involved_cats, clan=clan.group_ID))
-        
+
+
 def handle_element(cat, clan):
     involved_cats = [cat.ID]
     ELEMENT_TXT = load_lang_resource("events/element_reveal.json")
     event_text = ELEMENT_TXT.get(cat.phenotype.element)
     if event_text:
-        event_text = event_text_adjust(Cat, random.choice(event_text), main_cat=cat)
+        event_text = event_text_adjust(
+            Cat, random.choice(event_text), main_cat=cat)
         types = ["misc"]
-        game.cur_events_list.append(Single_Event(event_text, types, involved_cats, clan=clan.group_ID))
+        game.cur_events_list.append(Single_Event(
+            event_text, types, involved_cats, clan=clan.group_ID))
+
 
 def load_war_resources():
     global WAR_TXT, war_lang
@@ -1586,11 +1592,11 @@ def check_war():
             event = random.choice(war_events)
             if not victor or victor == clan:
                 event = ongoing_event_text_adjust(
-                    Cat, event, other_clan_name=i18n.t("general.clan", name=enemy_clan.displayname), clan=main_clan
+                    Cat, event, other_clan_name=i18n.t("general.clan", name=enemy_clan.name), clan=main_clan
                 )
             else:
                 event = ongoing_event_text_adjust(
-                    Cat, event, other_clan_name=i18n.t("general.clan", name=main_clan.displayname), clan=enemy_clan
+                    Cat, event, other_clan_name=i18n.t("general.clan", name=main_clan.name), clan=enemy_clan
                 )
             game.cur_events_list.append(Single_Event(event, "other_clans", clan=clan))
             if game.clan.clancount == "multiclan":
