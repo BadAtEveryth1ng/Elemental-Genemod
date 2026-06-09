@@ -3931,9 +3931,7 @@ with open(
     PERMANENT = ujson.loads(read_file.read())
 
 with open(
-    os.path.normpath(f"{_resource_directory}elemental_condition_block.json"),
-    "r",
-    encoding="utf-8",
+    f"{resource_directory}elemental_condition_block.json", "r", encoding="utf-8"
 ) as read_file:
     ELEMENT_BLOCK = ujson.loads(read_file.read())
 
