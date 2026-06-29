@@ -35,6 +35,15 @@
                 ]
             }
         ],
+        "history": [
+            {
+                "cats": [
+                    "m_c"
+                ],
+                "scar": "m_c was scarred after being ambushed by r_c.",
+                "death": "m_c died after being injured by r_c in an ambush."
+            }
+        ],
         "relationships": [
             {
                 "cats_from": [ "m_c" ],
@@ -79,6 +88,15 @@
                 "injuries": [
                     "battle_injury"
                 ]
+            }
+        ],
+        "history": [
+            {
+                "cats": [
+                    "r_c"
+                ],
+                "scar": "m_c was scarred after being attacked by r_c at the Gathering.",
+                "death": "m_c died from {PRONOUN/m_c/poss} injuries after r_c attacked {PRONOUN/m_c/object} at the Gathering."
             }
         ],
         "relationships": [
@@ -2371,8 +2389,8 @@
                 "cats": [
                     "r_c"
                 ],
-                "scar": "r_c gained a scar from m_c's powers.",
-                "death": "r_c died to {PRONOUN/r_c/poss} injuries from m_c's powers."
+                "scar": "m_c gained a scar from r_c's powers.",
+                "death": "m_c died to {PRONOUN/m_c/poss} injuries from r_c's powers."
             }
         ],
         "other_clan":{
