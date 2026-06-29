@@ -61,8 +61,6 @@ class Phenotype(Genotype):
         self.pawtype = ""
         self.furtype = []
 
-        self.element = ""
-
         self.vitiligo_string = ""
         self.mutant_red = ""
         
@@ -523,7 +521,7 @@ class Phenotype(Genotype):
             self.tortie = ""
             self.WhiteFinder()
             self.TabbyFinder()
-            
+
         self.ElementFinder()
 
         if is_today(SpecialDate.APRIL_FOOLS) and "Bs" in self.april_fools.get("black_spotting", []):
@@ -581,7 +579,7 @@ class Phenotype(Genotype):
             breed = " " + breed + " "
         
         outputs = self.length + " " + self.highwhite + self.fade + self.colour + self.mutant_red + " " + self.silvergold + self.tabtype + self.tabby + self.tortie + self.point + self.lowwhite + self.karpati + breed + sexstring + withword
-
+        
         if self.element:
             outputs = self.element + "-elemental " + outputs
 

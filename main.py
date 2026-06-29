@@ -98,9 +98,9 @@ def loading_animation(scale: float = 1):
     # Load images, adjust color
     color = pygame.Surface((200 * scale, 210 * scale))
     if game_setting_get("dark mode"):
-        color.fill(get_config(game.clan, "theme.light_mode_background"))
+        color.fill(get_config("theme.light_mode_background"))
     else:
-        color.fill(get_config(game.clan, "theme.dark_mode_background"))
+        color.fill(get_config("theme.dark_mode_background"))
 
     if len(images) == 0:
         for i in range(1, 11):
@@ -124,9 +124,9 @@ def loading_animation(scale: float = 1):
         clock.tick(8)  # Loading screen is 8FPS
 
         if game_setting_get("dark mode"):
-            screen.fill(get_config(game.clan, "theme.dark_mode_background"))
+            screen.fill(get_config("theme.dark_mode_background"))
         else:
-            screen.fill(get_config(game.clan, "theme.light_mode_background"))
+            screen.fill(get_config("theme.light_mode_background"))
 
         screen.blit(
             images[i], (x - images[i].get_width() / 2, y - images[i].get_height() / 2)
@@ -225,6 +225,7 @@ while 1:
                     GameScreen.SETTINGS,
                     GameScreen.MAKE_CLAN_CHOOSE_CLANCOUNT,
                     GameScreen.MAKE_CLAN_CHOOSE_MODE,
+                    GameScreen.MAKE_CLAN_CHOOSE_CARDS,
                     GameScreen.MAKE_CLAN_CHOOSE_NAME,
                     GameScreen.MAKE_CLAN_CHOOSE_CATS,
                     GameScreen.MAKE_CLAN_CHOOSE_SYMBOL,

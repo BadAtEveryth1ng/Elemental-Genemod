@@ -5,6 +5,9 @@ lock_season = false
 # whether or not development tools are disabled
 dev_tools = false
 
+[cruel_season]
+  card_limit = 12
+
 # settings regarding relationship events, also called "interactions"
 [relationship]
   # sets the max amount of interactions a cat can have each moon
@@ -29,10 +32,6 @@ dev_tools = false
   pos_rel_change_multiplier = 1
   neg_rel_change_multiplier = 1
 
-  # 1/chance that a group event will be a "special group event"
-  # special groups are defined in group_types.json
-  chance_of_special_group = 9
-
   # base 1/chance of a romance interaction with another cat, when a cat has a mate
   chance_romance_not_mate = 15
 
@@ -41,6 +40,25 @@ dev_tools = false
     low = 8
     medium = 12
     high = 16
+
+  [relationship.pair_events]
+    # weights for each type of intensity
+    [relationship.pair_events.intensity_chances]
+      low = 3
+      medium = 4
+      high = 2
+
+  [relationship.group_events]
+    # the possible amounts of cats that can be chosen for a multi_cat group
+    multi_cat_amounts = [2, 3, 4]
+
+    # weights for each type of intensity
+    [relationship.group_events.intensity_chances]
+      low = 2
+      medium = 3
+      high = 1
+
+
 
   [relationship.value_intervals]
     # The cut-off for each value level. This starts at -100 with each int marking the end of that level. 
@@ -79,7 +97,7 @@ dev_tools = false
 
   # base 1/chance for mates to break up. Affected by relationship values and personality compatibility. 0 disables breakups entirely
   base_breakup_chance = 30
-  
+
   # chance to move on from a dead or absent mate, fraction represents a percentage. default is 30% chance.
   chance_to_move_on = 0.3
 
@@ -247,6 +265,9 @@ dev_tools = false
   # 1/chance that kits, relationship and other factors will influence this chance. modded_ is used with modded litters
   primary_chance_unmated = 130
   modded_primary_chance_unmated = 100
+
+  # healer-specific litter chance modifier, added to the applicable base litter chance
+  healer_modifier = 0
 
   # 1/chance that a mated cat has an affair
   random_affair_chance = 50
@@ -497,7 +518,7 @@ dev_tools = false
     # 1/chance that a cat will switch to mediator. rolls every moon, so keep it high.
     warrior = 5000
     apprentice = 1000
-    
+
   [roles."medicine cat apprentice"]
     # maximum number of medicine cat apprentices to full medicine cats (e.g. 4 adult medcats can have 2 apps total)
     max_medcats_to_apps = 2
@@ -589,7 +610,6 @@ dev_tools = false
 
   # forces specified event to occur regardless of if requirements are met
   debug_override_requirements = false
-  
   # forces the given frequency, frequency can be a number from 1-4
   debug_override_frequency = 0
 
@@ -620,7 +640,7 @@ dev_tools = false
 
   # base 1/2^(chance) a completely random murder occurs
   # aggression and instability will make the denominator lower and increase chance of murder
-  base_random_murder_chance = 10
+  base_random_murder_chance = 11
 
   # base 1/chance a disliked cat will be murdered
   base_murder_kill_chance = 80

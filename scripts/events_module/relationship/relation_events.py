@@ -1,16 +1,18 @@
-import os
 import random
-from random import choice, randint
+from random import choice
+from typing import Optional
 
-import ujson
-
+from scripts.cat_relations.enums import RelType
 from scripts.config import get_config
-from scripts.game_structure import game
+from scripts.events_module.relationship import (
+    generate_group_event,
+    generate_pair_event,
+)
 from scripts.cat.cats import Cat
 from scripts.cat.enums import CatRank, CatGroup, CatAge
-from scripts.events_module.relationship.group_events import GroupEvents
 from scripts.events_module.relationship.romantic_events import RomanticEvents
 from scripts.events_module.relationship.welcoming_events import Welcoming_Events
+from scripts.events_module.relationship import generate_group_event
 from scripts.events_module.event_filters import filter_relationship_type
 from scripts.clan_package.get_clan_cats import (
     get_cats_same_age,
@@ -21,15 +23,7 @@ from scripts.clan_package.get_clan_cats import (
 class Relation_Events:
     """All relationship events."""
 
-    had_one_event = False
     cats_triggered_events = {}
-
-    base_path = os.path.join("resources", "dicts", "relationship_events")
-
-    types_path = os.path.join(base_path, "group_interactions", "group_types.json")
-    with open(types_path, "r", encoding="utf-8") as read_file:
-        GROUP_TYPES = ujson.load(read_file)
-    del base_path
 
     @staticmethod
     def handle_relationships(cat: Cat):
@@ -45,12 +39,10 @@ class Relation_Events:
         """
         if not cat.relationships or cat.age == CatAge.NEWBORN:
             return
-        Relation_Events.had_one_event = False
 
-        if not int(
-            random.random()
-            * get_config(game.clan, "relationship.chance_of_group_event")
-        ):
+        Relation_Events.random_cat_events(cat)
+
+        if not int(random.random() * get_config("relationship.chance_of_group_event")):
             Relation_Events.group_events(cat)
 
         Relation_Events.same_age_events(cat)
@@ -64,6 +56,24 @@ class Relation_Events:
     # ---------------------------------------------------------------------------- #
     #                                new event types                               #
     # ---------------------------------------------------------------------------- #
+
+    @staticmethod
+    def random_cat_events(cat):
+        """Randomly choose a cat of the Clan and have an interaction with them."""
+
+        cats_to_choose = [
+            c
+            for c in Cat.all_cats.values()
+            if c.ID != cat.ID
+            and c.status.group_ID == cat.status.group_ID
+            and c.age != CatAge.NEWBORN
+        ]
+        # if there are no cats to interact, stop
+        if not cats_to_choose:
+            return
+
+        other_cat = choice(cats_to_choose)
+        Relation_Events.trigger_pair_event(cat, other_cat)
 
     @staticmethod
     def romantic_events(cat):
@@ -115,7 +125,7 @@ class Relation_Events:
         # that the cat interacts romantic with ANOTHER cat than their mate
         use_mate = False
         if cat.mate:
-            chance_number = get_config(None, "relationship.chance_romance_not_mate")
+            chance_number = get_config("relationship.chance_romance_not_mate")
 
             # the more mates the cat has, the less likely it will be that they interact with another cat romantically
             for mate_id in cat.mate:
@@ -138,9 +148,7 @@ class Relation_Events:
             return
 
         other_cat = choice(cat_to_choose_from)
-        if RomanticEvents.start_interaction(cat, other_cat):
-            Relation_Events.trigger_event(cat)
-            Relation_Events.trigger_event(other_cat)
+        Relation_Events.trigger_pair_event(cat, other_cat, RelType.ROMANCE)
 
     @staticmethod
     def same_age_events(cat):
@@ -153,19 +161,40 @@ class Relation_Events:
 
         # gets cats who are within an age range. range is either 40% their current moon age OR 40 moons, whichever is smaller
         same_age_cats = get_cats_same_age(
-            Cat, cat, min(get_config(None, "mates.age_range"), int(cat.moons * 0.4))
+            Cat, cat, min(get_config("mates.age_range"), int(cat.moons * 0.4))
         )
         if [c for c in same_age_cats if c.age == CatAge.NEWBORN]:
             pass
         if len(same_age_cats) > 0:
-            random_cat = choice(same_age_cats)
+            other_cat = choice(same_age_cats)
             if (
-                Relation_Events.can_trigger_events(random_cat)
-                and random_cat.ID in cat.relationships
+                Relation_Events.can_trigger_events(other_cat)
+                and other_cat.ID in cat.relationships
             ):
-                cat.relationships[random_cat.ID].start_interaction()
-                Relation_Events.trigger_event(cat)
-                Relation_Events.trigger_event(random_cat)
+                Relation_Events.trigger_pair_event(cat, other_cat)
+
+    @staticmethod
+    def trigger_pair_event(cat, other_cat, specific_type: Optional[RelType] = None):
+        """
+        Triggers a relationship event between two cats
+        :param cat: The main cat involved
+        :param other_cat: The other cat involved
+        :param specific_type: The main RelType to influence
+        """
+        successful = generate_pair_event.trigger_interaction(
+            main_cat=cat, other_cat=other_cat, specific_type=specific_type
+        )
+
+        if not successful:
+            return
+
+        # handle contact with ill cat if
+        if cat.is_ill():
+            other_cat.contact_with_ill_cat(cat)
+        if other_cat.is_ill():
+            cat.contact_with_ill_cat(other_cat)
+        Relation_Events.update_events_triggered_count(cat)
+        Relation_Events.update_events_triggered_count(other_cat)
 
     @staticmethod
     def group_events(cat):
@@ -177,54 +206,23 @@ class Relation_Events:
         if not Relation_Events.can_trigger_events(cat):
             return
 
-        chosen_type = "all"
-        if len(Relation_Events.GROUP_TYPES) > 0 and randint(
-            0, get_config(None, "relationship.chance_of_special_group")
-        ):
-            types_to_choose = []
-            for group, value in Relation_Events.GROUP_TYPES.items():
-                types_to_choose.extend([group] * value["frequency"])
-                chosen_type = choice(list(Relation_Events.GROUP_TYPES.keys()))
+        possible_interaction_cats = [
+            c
+            for c in Cat.all_cats_list
+            if c.status.group_ID == cat.status.group_ID
+            and not c.status.rank == CatRank.NEWBORN
+            and c != cat
+            and Relation_Events.can_trigger_events(cat)
+        ]
 
-        if cat.status.is_leader:
-            chosen_type = "all"
-        possible_interaction_cats = list(
-            filter(
-                lambda c: (c.status.group_ID == cat.status.group_ID and not cat.age == CatAge.NEWBORN),
-                Cat.all_cats.values(),
-            )
+        interacted_cat_ids = generate_group_event.trigger_interaction(
+            main_cat=cat,
+            interactable_cats=possible_interaction_cats,
         )
-        if cat in possible_interaction_cats:
-            possible_interaction_cats.remove(cat)
 
-        if chosen_type != "all":
-            possible_interaction_cats = (
-                Relation_Events.cats_with_relationship_constraints(
-                    cat, Relation_Events.GROUP_TYPES[chosen_type]["constraint"]
-                )
-            )
-
-        interacted_cat_ids = GroupEvents.start_interaction(
-            cat, possible_interaction_cats
-        )
-        for id in interacted_cat_ids:
-            inter_cat = Cat.all_cats[id]
-            Relation_Events.trigger_event(inter_cat)
-
-    @staticmethod
-    def family_events(cat):
-        """
-        To have more family related events.
-        """
-        print("TODO")
-
-    @staticmethod
-    def outsider_events(cat):
-        """
-        ONLY for cat OLDER than 6 moons and not major injured.
-        This function will handle when the cat interacts with cat which are outside of the clan.
-        """
-        print("TODO")
+        for i in interacted_cat_ids:
+            inter_cat = Cat.all_cats[i]
+            Relation_Events.update_events_triggered_count(inter_cat)
 
     @staticmethod
     def welcome_new_cats(new_cats=None):
@@ -236,12 +234,12 @@ class Relation_Events:
             same_age_cats = get_cats_same_age(
                 Cat,
                 new_cat,
-                min(get_config(None, "mates.age_range"), int(new_cat.moons * 0.4)),
+                min(get_config("mates.age_range"), int(new_cat.moons * 0.4)),
             )
             alive_cats = [
                 i for i in new_cat.all_cats.values() if i.status.group_ID == new_cat.status.group_ID
             ]
-            number = get_config(None, "new_cat.cat_amount_welcoming")
+            number = get_config("new_cat.cat_amount_welcoming")
 
             if len(alive_cats) == 0:
                 return
@@ -312,7 +310,7 @@ class Relation_Events:
         return filtered_cat_list
 
     @staticmethod
-    def trigger_event(cat):
+    def update_events_triggered_count(cat):
         if cat.ID in Relation_Events.cats_triggered_events:
             Relation_Events.cats_triggered_events[cat.ID] += 1
         else:
@@ -329,9 +327,9 @@ class Relation_Events:
         ]
 
         # set the threshold correctly
-        threshold = get_config(None, "relationship.max_interaction")
+        threshold = get_config("relationship.max_interaction")
         if cat.status.rank in special_ranks:
-            threshold = get_config(None, "relationship.max_interaction_special")
+            threshold = get_config("relationship.max_interaction_special")
 
         if cat.ID not in Relation_Events.cats_triggered_events:
             return True
