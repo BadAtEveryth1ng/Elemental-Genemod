@@ -83,7 +83,7 @@ class Genotype:
         self.wbtype = ""
         self.wbsum = 0
 
-        self.saturation = choice(odds['saturation'])
+        self.fur_shade = choice(odds['fur_shade'])
 
         self.rufousing = ""
         self.ruftype = ""
@@ -226,7 +226,7 @@ class Genotype:
         self.pax3 = jsonstring.get("pax3", ['NoDBE', 'NoDBE'])
 
         self.wideband = jsonstring["wideband"]
-        self.saturation = jsonstring.get("saturation", 3)
+        self.fur_shade = jsonstring.get("fur_shade", jsonstring.get("saturation", 3))
         self.rufousing = jsonstring["rufousing"]
         self.unders_ruf = jsonstring.get("unders_ruf", "")
         self.bengal = jsonstring["bengal"]
@@ -330,7 +330,7 @@ class Genotype:
             "pax3" : self.pax3,
 
             "wideband" : self.wideband,
-            "saturation" : self.saturation,
+            "fur_shade" : self.fur_shade,
             "rufousing" : self.rufousing,
             "unders_ruf": self.unders_ruf,
             "bengal" : self.bengal,
@@ -1236,9 +1236,9 @@ class Genotype:
         self.pax3 = [choice(par1.pax3), choice(par2.pax3)]
 
         if random() < 0.25:
-            self.saturation = par1.saturation
+            self.fur_shade = par1.fur_shade
         elif random() < 0.25:
-            self.saturation = par2.saturation
+            self.fur_shade = par2.fur_shade
         
 
         self.wideband = ""
@@ -2064,7 +2064,7 @@ class Genotype:
             self.Other_Colour = [self.pinkdilute, self.dilutemd, self.ext, self.corin, self.karp, self.bleach, self.ghosting, self.satin, self.glitter]
             self.Body_Genes = [self.curl, self.fold, self.fourear, self.manx, self.kab, self.toybob, self.jbob, self.kub, self.ring, self.munch, self.poly, self.pax3]
             april_fools_output = [self.april_fools.values()]
-        self.Polygenes = ["Wideband:", self.wideband, self.wbtype, "Rufousing:", self.rufousing, self.ruftype, "Underbelly rufousing:", self.unders_ruf, self.unders_ruftype, "Saturation:", self.saturation, "Bengal:", self.bengal, self.bengtype, "Sokoke:", self.sokoke, self.soktype, "Spotted:", self.spotted, self.spottype, "Ticked:", self.tickgenes, self.ticktype, "White Grade:", self.whitegrade, "Refraction:", self.refraction, "Pigmentation:", self.pigmentation]
+        self.Polygenes = ["Wideband:", self.wideband, self.wbtype, "Rufousing:", self.rufousing, self.ruftype, "Underbelly rufousing:", self.unders_ruf, self.unders_ruftype, "Fur Shade:", self.fur_shade, "Bengal:", self.bengal, self.bengtype, "Sokoke:", self.sokoke, self.soktype, "Spotted:", self.spotted, self.spottype, "Ticked:", self.tickgenes, self.ticktype, "White Grade:", self.whitegrade, "Refraction:", self.refraction, "Pigmentation:", self.pigmentation]
         self.ElementalOutput = [self.elemental_genes["air"], self.elemental_genes["earth"], self.elemental_genes["fire"], self.elemental_genes["water"]]
 
         if is_today(SpecialDate.APRIL_FOOLS):
