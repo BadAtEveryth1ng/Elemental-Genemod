@@ -1820,7 +1820,7 @@ def perform_ceremonies(cat, clan):
             else:
                 graduation_info = get_config("graduation")
                 _ready = (
-                    cat.experience_level not in ["untrained", "trainee"]
+                    cat.experience_level not in ["untrained", "learning"]
                     and cat.moons
                     >= graduation_info["min_graduating_age"]
                 ) or cat.moons >= graduation_info["max_apprentice_age"][cat.status.rank]
@@ -1833,7 +1833,7 @@ def perform_ceremonies(cat, clan):
                         cat.moons == graduation_info["min_graduating_age"]
                     ):
                         preparedness = "early"
-                    elif cat.experience_level in ["untrained", "trainee"]:
+                    elif cat.experience_level in ["untrained", "learning"]:
                         preparedness = "unprepared"
                     else:
                         preparedness = "prepared"
@@ -2456,7 +2456,7 @@ def handle_timeskip_EX(cat):
         if cat.not_working() and int(random.random() * 3):
             return
 
-        if cat.experience > cat.experience_levels_range["trainee"][1]:
+        if cat.experience > cat.experience_levels_range["learning"][1]:
             return
     
         exp_info = get_config("clancat_ex")
