@@ -539,13 +539,13 @@ dev_tools = false
 
   [roles.become_queen_chances]
     # 1/chance that a cat will switch to queen. rolls every moon, so keep it high.
-    warrior = 5000
+    warrior = 4000
     mediator = 7500
     elder = 500
 
   [roles.become_healer_chances]
     # 1/chance that a cat will switch to mediator. rolls every moon, so keep it high.
-    warrior = 5000
+    warrior = 7500
     apprentice = 1000
 
   [roles."medicine cat apprentice"]
@@ -893,21 +893,33 @@ dev_tools = false
   fur_shade = [0, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 6]
   rusting = 0.1
   # sorry this one is a lot
-  wideband = [0, 0, 0, 
-              1, 1, 1, 
-              2, 2, 2, 
-              3, 3, 3, 
-              4, 4, 4, 4, 
-              5, 5, 5, 5, 
-              6, 6, 6, 6, 
-              7, 7, 7, 7, 
-              8, 8, 8, 
-              9, 9, 9, 
-              10, 10, 10, 
-              11, 11, 11, 
+  wideband = [0, 0, 0, 0, 
+              1, 1, 1, 1, 
+              2, 2, 2, 2, 
+              3, 3, 3, 3, 
+              4, 4, 4, 4, 4, 4, 
+              5, 5, 5, 5, 5, 5, 
+              6, 6, 6, 6, 6, 6, 
+              7, 7, 7, 7, 7, 7, 
+              8, 8, 8, 8, 
+              9, 9, 9, 9, 
+              10, 10, 10, 10, 
+              11, 11, 11, 11, 
               12, 13, 14, 15, 16]
   rufousing = [0, 1, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 7, 8]
-  wideband_kittypet = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7, 8, 8, 9, 9, 10, 10, 11, 12, 13, 14, 15, 16]
+  wideband_kittypet =  [0, 0, 0, 
+                        1, 1, 1, 
+                        2, 2, 2, 
+                        3, 3, 3, 
+                        4, 4, 4, 4, 
+                        5, 5, 5, 5, 
+                        6, 6, 6, 6, 
+                        7, 7, 7, 7, 
+                        8, 8, 8, 
+                        9, 9, 9, 
+                        10, 10, 10, 
+                        11, 11, 11, 
+                        12, 13, 14, 15, 16]
   rufousing_kittypet = [0, 1, 2, 3, 3, 4, 4, 5, 5, 6, 7, 8]
 
   underside_rufousing = ["2", "1", "1", "1", "0"]

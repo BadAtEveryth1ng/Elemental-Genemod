@@ -1,6 +1,6 @@
 [
     {
-        "patrol_id": "cat_sprites/gen_bord_otherclan_RgRg1",
+        "patrol_id": "gen_bord_otherclan_hostile1",
         "biome": [
             "any"
         ],
@@ -2391,7 +2391,7 @@
         ]
     },
     {
-        "patrol_id": "cat_sprites/gen_bord_otherclan_RgRg2",
+        "patrol_id": "gen_bord_otherclan_hostile2",
         "biome": [
             "any"
         ],
@@ -2838,7 +2838,7 @@
         ]
     },
     {
-        "patrol_id": "cat_sprites/gen_bord_otherclan_RgRg3",
+        "patrol_id": "gen_bord_otherclan_hostile3",
         "biome": [
             "any"
         ],
