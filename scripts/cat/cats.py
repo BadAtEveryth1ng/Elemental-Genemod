@@ -9,7 +9,7 @@ import itertools
 import os.path
 import sys
 import traceback
-from random import choice, randint, sample, random, randrange
+from random import choice, randint, sample, random, randrange, choices
 from operator import xor
 from typing import Dict, List, Any, Union, Callable, Optional, TYPE_CHECKING, Literal
 
