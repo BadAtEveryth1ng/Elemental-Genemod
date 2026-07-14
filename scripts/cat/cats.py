@@ -37,6 +37,7 @@ from scripts.cat.phenotype import Phenotype
 from scripts.cat.personality import Personality
 from scripts.cat.skills import CatSkills
 from scripts.cat.status import Status, StatusDict
+from scripts.config import get_config
 from scripts.events_module.thoughts.generate_thoughts import (
     new_death_thought,
     new_thought,
@@ -141,9 +142,9 @@ class Cat:
         prefix=None,
         gender=None,
         status_dict: StatusDict = None,
-        backstory="clanborn",
-        parent1=None,
-        parent2=None,
+        backstory: str="clanborn",
+        parent1: str=None,
+        parent2: str=None,
         extrapar=None,
         kittypet=False,
         adoptive_parents=None,
@@ -1225,16 +1226,7 @@ class Cat:
         if old_rank == CatRank.MEDICINE_CAT and clan:
             clan.remove_med_cat(self)
 
-        # updates mentors
-        if self.status.rank in [
-            CatRank.APPRENTICE,
-            CatRank.MEDICINE_APPRENTICE,
-            CatRank.MEDIATOR_APPRENTICE,
-            CatRank.MEDIATOR,
-        ]:
-            pass
-
-        elif self.status.rank in [CatRank.WARRIOR, CatRank.ELDER, CatRank.LEADER, CatRank.DEPUTY]:
+        if old_rank in [CatRank.LEADER, CatRank.DEPUTY]:
             if not clan or not hasattr(clan, "deputy"):
                 pass
             elif new_rank != CatRank.LEADER and clan.leader and clan.leader.ID == self.ID:
@@ -1503,8 +1495,8 @@ class Cat:
         load_leader_ceremonies()
         self.history.prev_names.append(str(self.name))
 
-        total_lives = max(1, choice(get_config("clan_creation.leader_lives_nr")))
-        self.status.fetch_clan_object().leader_lives = total_lives
+        num_of_lives_to_give = min(max(1, choice(get_config("death_related.leader_lives_nr"))), get_config("death_related.max_leader_lives"))
+        self.status.fetch_clan_object().leader_lives = num_of_lives_to_give
 
         # determine which dict we're pulling from
         if self.status.fetch_clan_object(game.clan).instructor.status.group == CatGroup.DARK_FOREST:
@@ -1585,7 +1577,7 @@ class Cat:
         # if we have relations, then make sure we only take the top 8
         if dead_relations:
             for i, rel in enumerate(dead_relations):
-                if i == total_lives-1:
+                if i == num_of_lives_to_give-1:
                     break
                 if rel.cat_to.status.is_leader:
                     life_giving_leader = rel.cat_to
@@ -1602,8 +1594,8 @@ class Cat:
         ]
 
         # check amount of life givers, if we need more, then grab from the other dead cats
-        if len(life_givers) < total_lives-1:
-            amount = total_lives-1 - len(life_givers)
+        if len(life_givers) < num_of_lives_to_give - 1:
+            extra_amount_needed = (num_of_lives_to_give - 1) - len(life_givers)
 
             possible_dead_cats = [
                 i
@@ -1613,10 +1605,10 @@ class Cat:
             # this part just checks how many cats are available, if there aren't enough to fill all the slots,
             # then we just take however many are available
 
-            if len(possible_dead_cats) - 1 < amount:
+            if len(possible_dead_cats) - 1 < extra_amount_needed:
                 extra_givers = possible_dead_cats
             else:
-                extra_givers = sample(possible_dead_cats, k=amount)
+                extra_givers = sample(possible_dead_cats, k=extra_amount_needed)
 
             life_givers.extend(extra_givers)
 
@@ -1640,11 +1632,12 @@ class Cat:
             life_givers.append(life_giving_leader)
 
         # check amount again, if more are needed then we'll add the ghost-y cats at the end
-        if len(life_givers) < total_lives:
+        if len(life_givers) < num_of_lives_to_give:
             unknown_blessing = True
         else:
             unknown_blessing = False
-        extra_lives = str(total_lives - len(life_givers))
+
+        extra_lives = num_of_lives_to_give - len(life_givers)
         possible_lives = ceremony_dict["lives"]
         lives = []
         used_lives = []
@@ -1710,7 +1703,7 @@ class Cat:
 
             i = 0
             chosen_life = {}
-            while i <= total_lives:
+            while i <= num_of_lives_to_give:
                 attempted = []
                 if life_list:
                     chosen_life = choice(life_list)
@@ -2700,6 +2693,10 @@ class Cat:
         if (self.status.is_outsider and not outsider) or (other_cat.status.is_outsider and not outsider):
             return False
 
+        # Config check
+        if not get_config("mates.allow_mating"):
+            return False
+
         # No Mates Check
         if not ignore_no_mates and (self.no_mates or other_cat.no_mates):
             return False
@@ -2800,8 +2797,12 @@ class Cat:
 
         inheritance_db.load_inheritances(Cat)
 
-    def set_mate(self, other_cat: Cat):
-        """Sets up a mate relationship between self and other_cat."""
+    def set_mate(self, other_cat: Cat, recalculate_inheritance: bool = True):
+        """
+        Sets up a mate relationship between self and other_cat.
+        :param other_cat: The other cat
+        :param recalculate_inheritance: Set to False if this func should SKIP recalculating inheritance. Take care when using this.
+        """
         if other_cat.ID not in self.mate:
             self.mate.append(other_cat.ID)
         if self.ID not in other_cat.mate:
@@ -2813,7 +2814,8 @@ class Cat:
         if self.ID in other_cat.previous_mates:
             other_cat.previous_mates.remove(self.ID)
 
-        inheritance_db.load_inheritances(Cat)
+        if recalculate_inheritance:
+            inheritance_db.load_inheritances(Cat)
 
         # Set starting relationship values
         if not self.dead:
@@ -3797,17 +3799,19 @@ def create_cat(rank, moons=None, biome=None, kittypet=False, clan=None):
 
 
 # Twelve example cats
-def create_example_cats() -> list[Cat]:
-    warrior_indices = sample(range(12), 3)
+def create_example_cats(majority_rank: CatRank, rank_weights: dict) -> list[Cat]:
+    majority_rank_cats = sample(range(12), 3)
     use_special = get_config("clan_creation.use_special_roller")
-    random_ranks = get_config("clan_creation.random_ranks")
 
     chosen_cats = []
     for cat_index in range(12):
-        if cat_index in warrior_indices:
-            chosen_cats.append(create_cat(rank=CatRank.WARRIOR, kittypet=use_special))
+        if cat_index in majority_rank_cats:
+            chosen_cats.append(create_cat(rank=majority_rank, kittypet=use_special))
         else:
-            chosen_cats.append(create_cat(rank=choice(random_ranks), kittypet=use_special))
+            random_rank = choices(
+                list(rank_weights.keys()), list(rank_weights.values())
+            )[0]
+            chosen_cats.append(create_cat(rank=random_rank, kittypet=use_special))
 
     return chosen_cats
 

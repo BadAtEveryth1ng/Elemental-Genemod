@@ -1061,5 +1061,30 @@
     },
     "special": [],
     "common": []
+  },
+  "element": {
+    "fire": [ ],
+    "water": [ ],
+    "earth": [ ],
+    "air": [ ],
+
+    "blue fire": [ ],
+    "ice": [ ],
+    "plant": [ ],
+    "lightning": [ ],
+
+    "magma": [ ],
+    "metal": [ ],
+    "smoke": [ ],
+    "mud": [ ],
+    "shadow": [ ],
+    "sand": [ ],
+
+    "mist": [ ],
+    "oil": [ ],
+    "combustion": [ ],
+    "decay": [ ],
+    "magnetic": [ ],
+    "luminescent": [ ]
   }
 }

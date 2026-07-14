@@ -126,7 +126,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_roguerunaway",
+                "art": "cat_sprites/gen_bord_roguerunaway_RgRg",
                 "frequency": 4
             },
             {
@@ -155,7 +155,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_roguerunaway",
+                "art": "cat_sprites/gen_bord_roguerunaway_RgRg",
                 "frequency": 3
             },
             {
@@ -184,7 +184,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_roguerunaway",
+                "art": "cat_sprites/gen_bord_roguerunaway_RgRg",
                 "frequency": 1
             },
             {
@@ -212,7 +212,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_roguerunaway",
+                "art": "cat_sprites/gen_bord_roguerunaway_RgRg",
                 "frequency": 2
             },
             {
@@ -240,7 +240,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_roguerunaway",
+                "art": "cat_sprites/gen_bord_roguerunaway_RgRg",
                 "frequency": 3
             },
             {
@@ -268,7 +268,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_roguerunaway",
+                "art": "cat_sprites/gen_bord_roguerunaway_RgRg",
                 "frequency": 3
             },
             {
@@ -296,7 +296,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_roguerunaway",
+                "art": "cat_sprites/gen_bord_roguerunaway_RgRg",
                 "frequency": 4
             },
             {
@@ -324,7 +324,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_roguerunaway",
+                "art": "cat_sprites/gen_bord_roguerunaway_RgRg",
                 "frequency": 3
             },
             {
@@ -352,7 +352,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_roguerunaway",
+                "art": "cat_sprites/gen_bord_roguerunaway_RgRg",
                 "frequency": 4
             }
         ],
@@ -451,7 +451,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_otherclan_hostile",
+                "art": "cat_sprites/gen_bord_otherclan_RgRg",
                 "frequency": 1
             },
             {
@@ -572,7 +572,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_otherclan_hostile",
+                "art": "cat_sprites/gen_bord_otherclan_RgRg",
                 "frequency": 2
             },
             {
@@ -606,7 +606,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_otherclan_hostile",
+                "art": "cat_sprites/gen_bord_otherclan_RgRg",
                 "frequency": 3
             },
             {
@@ -681,7 +681,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_otherclan_hostile",
+                "art": "cat_sprites/gen_bord_otherclan_RgRg",
                 "frequency": 4
             },
             {
@@ -756,7 +756,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_otherclan_hostile",
+                "art": "cat_sprites/gen_bord_otherclan_RgRg",
                 "frequency": 2
             },
             {
@@ -946,7 +946,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_roguerunaway",
+                "art": "cat_sprites/gen_bord_roguerunaway_RgRg",
                 "frequency": 4
             },
             {
@@ -985,7 +985,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_roguerunaway",
+                "art": "cat_sprites/gen_bord_roguerunaway_RgRg",
                 "frequency": 1
             },
             {
@@ -1011,7 +1011,7 @@
                         }
                     }
                 ],
-                "art": "fst_hunt_fun1",
+                "art": "cat_sprites/gen_hunt_funrun_Wr",
                 "frequency": 2
             },
             {
@@ -1037,7 +1037,7 @@
                         }
                     }
                 ],
-                "art": "fst_hunt_fun1",
+                "art": "cat_sprites/gen_hunt_funrun_Wr",
                 "frequency": 3
             },
             {
@@ -1063,7 +1063,7 @@
                         }
                     }
                 ],
-                "art": "fst_hunt_fun1",
+                "art": "cat_sprites/gen_hunt_funrun_Wr",
                 "frequency": 3
             },
             {
@@ -1089,7 +1089,7 @@
                         }
                     }
                 ],
-                "art": "fst_hunt_fun1",
+                "art": "cat_sprites/gen_hunt_funrun_Wr",
                 "frequency": 4
             },
             {
@@ -1115,7 +1115,7 @@
                         }
                     }
                 ],
-                "art": "fst_hunt_fun1",
+                "art": "cat_sprites/gen_hunt_funrun_Wr",
                 "frequency": 4
             },
             {
@@ -1141,7 +1141,7 @@
                         }
                     }
                 ],
-                "art": "fst_hunt_fun1",
+                "art": "cat_sprites/gen_hunt_funrun_Wr",
                 "frequency": 3
             },
             {
@@ -1167,7 +1167,7 @@
                         }
                     }
                 ],
-                "art": "fst_hunt_fun1",
+                "art": "cat_sprites/gen_hunt_funrun_Wr",
                 "frequency": 4
             }
         ],
@@ -1250,7 +1250,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_otherclan_hostile",
+                "art": "cat_sprites/gen_bord_otherclan_RgRg",
                 "frequency": 1
             },
             {
@@ -1283,7 +1283,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_otherclan_hostile",
+                "art": "cat_sprites/gen_bord_otherclan_RgRg",
                 "frequency": 1
             },
             {
@@ -1315,7 +1315,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_otherclan_hostile",
+                "art": "cat_sprites/gen_bord_otherclan_RgRg",
                 "frequency": 3
             },
             {
@@ -1347,7 +1347,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_otherclan_hostile",
+                "art": "cat_sprites/gen_bord_otherclan_RgRg",
                 "frequency": 3
             },
             {
@@ -1379,7 +1379,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_otherclan_hostile",
+                "art": "cat_sprites/gen_bord_otherclan_RgRg",
                 "frequency": 2
             },
             {
@@ -1411,7 +1411,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_otherclan_hostile",
+                "art": "cat_sprites/gen_bord_otherclan_RgRg",
                 "frequency": 2
             },
             {
@@ -1443,7 +1443,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_otherclan_hostile",
+                "art": "cat_sprites/gen_bord_otherclan_RgRg",
                 "frequency": 2
             },
             {
@@ -1475,7 +1475,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_otherclan_hostile",
+                "art": "cat_sprites/gen_bord_otherclan_RgRg",
                 "frequency": 4
             }
         ]
@@ -1666,7 +1666,7 @@
             "border"
         ],
         "tags": [],
-        "patrol_art": "gen_bord_flashflood",
+        "patrol_art": "cat_sprites/gen_bord_flashflood_Wr",
         "min_cats": 2,
         "max_cats": 6,
         "min_max_status": {},
@@ -2019,7 +2019,7 @@
             "border"
         ],
         "tags": [],
-        "patrol_art": "gen_bord_flashflood",
+        "patrol_art": "cat_sprites/gen_bord_flashflood_Wr",
         "min_cats": 1,
         "max_cats": 1,
         "min_max_status": {},
@@ -2217,7 +2217,7 @@
             "border"
         ],
         "tags": [],
-        "patrol_art": "gen_bord_trackrogue",
+        "patrol_art": "backgrounds/gen_pawprints",
         "min_cats": 1,
         "max_cats": 1,
         "min_max_status": {},
@@ -2435,7 +2435,7 @@
         "tags": [
             "app1_mentored"
         ],
-        "patrol_art": "gen_bord_trackrogue",
+        "patrol_art": "backgrounds/gen_pawprints",
         "min_cats": 1,
         "max_cats": 1,
         "min_max_status": {
@@ -2550,7 +2550,7 @@
             "border"
         ],
         "tags": [],
-        "patrol_art": "gen_bord_trackrogue",
+        "patrol_art": "backgrounds/gen_pawprints",
         "min_cats": 2,
         "max_cats": 2,
         "min_max_status": {},
@@ -2755,7 +2755,7 @@
         "tags": [
             "app1_mentored"
         ],
-        "patrol_art": "gen_bord_trackrogue",
+        "patrol_art": "backgrounds/gen_pawprints",
         "min_cats": 2,
         "max_cats": 2,
         "min_max_status": {
@@ -2879,7 +2879,7 @@
             "border"
         ],
         "tags": [],
-        "patrol_art": "gen_bord_trackrogue",
+        "patrol_art": "backgrounds/gen_pawprints",
         "min_cats": 3,
         "max_cats": 6,
         "min_max_status": {},
@@ -3053,7 +3053,7 @@
         "tags": [
             "app1_mentored"
         ],
-        "patrol_art": "gen_bord_trackrogue",
+        "patrol_art": "backgrounds/gen_pawprints",
         "min_cats": 3,
         "max_cats": 6,
         "min_max_status": {
@@ -3824,7 +3824,7 @@
         "tags": [
             "halloween"
         ],
-        "patrol_art": "loveland_frog_INTRO",
+        "patrol_art": "halloween/hal_lovelandfrog",
         "min_cats": 2,
         "max_cats": 6,
         "min_max_status": {},

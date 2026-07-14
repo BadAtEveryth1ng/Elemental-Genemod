@@ -13,7 +13,7 @@
         "tags": [
             "disaster"
         ],
-        "patrol_art": "gen_bord_flashflood",
+        "patrol_art": "cat_sprites/gen_bord_flashflood_Wr",
         "min_cats": 2,
         "max_cats": 6,
         "min_max_status": {},
@@ -408,7 +408,7 @@
         "tags": [
             "disaster"
         ],
-        "patrol_art": "gen_bord_flashflood",
+        "patrol_art": "cat_sprites/gen_bord_flashflood_Wr",
         "min_cats": 1,
         "max_cats": 1,
         "min_max_status": {},
@@ -566,7 +566,7 @@
         "tags": [
             "disaster"
         ],
-        "patrol_art": "gen_bord_abandontwolegdis",
+        "patrol_art": "backgrounds/gen_abandontwolegdis",
         "min_cats": 2,
         "max_cats": 6,
         "min_max_status": {},
@@ -796,7 +796,7 @@
         "tags": [
             "disaster"
         ],
-        "patrol_art": "gen_bord_abandontwolegdis",
+        "patrol_art": "backgrounds/gen_abandontwolegdis",
         "min_cats": 1,
         "max_cats": 1,
         "min_max_status": {},
@@ -1060,7 +1060,7 @@
         "tags": [
             "disaster"
         ],
-        "patrol_art": "gen_bord_abandontwolegdis",
+        "patrol_art": "backgrounds/gen_abandontwolegdis",
         "min_cats": 2,
         "max_cats": 6,
         "min_max_status": {},
@@ -1329,7 +1329,7 @@
         "tags": [
             "disaster"
         ],
-        "patrol_art": "gen_bord_abandontwolegdis",
+        "patrol_art": "backgrounds/gen_abandontwolegdis",
         "min_cats": 1,
         "max_cats": 1,
         "min_max_status": {},
@@ -1650,7 +1650,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_roguerunaway",
+                "art": "cat_sprites/gen_bord_roguerunaway_RgRg",
                 "frequency": 4
             },
             {
@@ -1684,7 +1684,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_roguerunaway",
+                "art": "cat_sprites/gen_bord_roguerunaway_RgRg",
                 "frequency": 4
             },
             {
@@ -1736,7 +1736,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_roguerunaway",
+                "art": "cat_sprites/gen_bord_roguerunaway_RgRg",
                 "frequency": 4
             },
             {
@@ -1780,7 +1780,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_roguerunaway",
+                "art": "cat_sprites/gen_bord_roguerunaway_RgRg",
                 "frequency": 4
             },
             {
@@ -1807,7 +1807,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_roguerunaway",
+                "art": "cat_sprites/gen_bord_roguerunaway_RgRg",
                 "frequency": 3
             },
             {
@@ -1834,7 +1834,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_roguerunaway",
+                "art": "cat_sprites/gen_bord_roguerunaway_RgRg",
                 "frequency": 1
             },
             {
@@ -1860,7 +1860,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_roguerunaway",
+                "art": "cat_sprites/gen_bord_roguerunaway_RgRg",
                 "frequency": 2
             },
             {
@@ -1886,7 +1886,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_roguerunaway",
+                "art": "cat_sprites/gen_bord_roguerunaway_RgRg",
                 "frequency": 3
             },
             {
@@ -1912,7 +1912,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_roguerunaway",
+                "art": "cat_sprites/gen_bord_roguerunaway_RgRg",
                 "frequency": 2
             },
             {
@@ -1938,7 +1938,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_roguerunaway",
+                "art": "cat_sprites/gen_bord_roguerunaway_RgRg",
                 "frequency": 3
             },
             {
@@ -1964,7 +1964,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_roguerunaway",
+                "art": "cat_sprites/gen_bord_roguerunaway_RgRg",
                 "frequency": 4
             },
             {
@@ -1990,7 +1990,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_roguerunaway",
+                "art": "cat_sprites/gen_bord_roguerunaway_RgRg",
                 "frequency": 4
             }
         ],
@@ -2009,7 +2009,7 @@
                 "history_text": {
                     "death": "m_c was killed when rogues ambushed {PRONOUN/m_c/poss} patrol."
                 },
-                "art": "gen_bord_otherclan_hostile",
+                "art": "cat_sprites/gen_bord_otherclan_RgRg",
                 "frequency": 4
             },
             {
@@ -2085,7 +2085,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_otherclan_hostile",
+                "art": "cat_sprites/gen_bord_otherclan_RgRg",
                 "frequency": 1
             },
             {
@@ -2200,7 +2200,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_otherclan_hostile",
+                "art": "cat_sprites/gen_bord_otherclan_RgRg",
                 "frequency": 2
             },
             {
@@ -2232,7 +2232,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_otherclan_hostile",
+                "art": "cat_sprites/gen_bord_otherclan_RgRg",
                 "frequency": 3
             },
             {
@@ -2303,7 +2303,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_otherclan_hostile",
+                "art": "cat_sprites/gen_bord_otherclan_RgRg",
                 "frequency": 4
             },
             {
@@ -2374,7 +2374,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_otherclan_hostile",
+                "art": "cat_sprites/gen_bord_otherclan_RgRg",
                 "frequency": 4
             },
             {
@@ -2517,7 +2517,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_roguerunaway",
+                "art": "cat_sprites/gen_bord_roguerunaway_RgRg",
                 "frequency": 4
             },
             {
@@ -2577,7 +2577,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_roguerunaway",
+                "art": "cat_sprites/gen_bord_roguerunaway_RgRg",
                 "frequency": 4
             },
             {
@@ -2639,7 +2639,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_roguerunaway",
+                "art": "cat_sprites/gen_bord_roguerunaway_RgRg",
                 "frequency": 4
             },
             {
@@ -2683,7 +2683,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_roguerunaway",
+                "art": "cat_sprites/gen_bord_roguerunaway_RgRg",
                 "frequency": 4
             },
             {
@@ -2710,7 +2710,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_roguerunaway",
+                "art": "cat_sprites/gen_bord_roguerunaway_RgRg",
                 "frequency": 3
             },
             {
@@ -2737,7 +2737,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_roguerunaway",
+                "art": "cat_sprites/gen_bord_roguerunaway_RgRg",
                 "frequency": 1
             },
             {
@@ -2763,7 +2763,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_roguerunaway",
+                "art": "cat_sprites/gen_bord_roguerunaway_RgRg",
                 "frequency": 2
             },
             {
@@ -2789,7 +2789,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_roguerunaway",
+                "art": "cat_sprites/gen_bord_roguerunaway_RgRg",
                 "frequency": 3
             },
             {
@@ -2815,7 +2815,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_roguerunaway",
+                "art": "cat_sprites/gen_bord_roguerunaway_RgRg",
                 "frequency": 2
             },
             {
@@ -2841,7 +2841,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_roguerunaway",
+                "art": "cat_sprites/gen_bord_roguerunaway_RgRg",
                 "frequency": 3
             },
             {
@@ -2867,7 +2867,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_roguerunaway",
+                "art": "cat_sprites/gen_bord_roguerunaway_RgRg",
                 "frequency": 4
             },
             {
@@ -2911,7 +2911,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_roguerunaway",
+                "art": "cat_sprites/gen_bord_roguerunaway_RgRg",
                 "frequency": 4
             },
             {
@@ -2937,7 +2937,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_roguerunaway",
+                "art": "cat_sprites/gen_bord_roguerunaway_RgRg",
                 "frequency": 4
             },
             {
@@ -2964,7 +2964,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_roguerunaway",
+                "art": "cat_sprites/gen_bord_roguerunaway_RgRg",
                 "frequency": 3
             }
         ],
@@ -2978,7 +2978,7 @@
                 "history_text": {
                     "death": "m_c was killed when rogues ambushed {PRONOUN/m_c/poss} patrol."
                 },
-                "art": "gen_bord_otherclan_hostile",
+                "art": "cat_sprites/gen_bord_otherclan_RgRg",
                 "frequency": 4
             },
             {
@@ -3080,7 +3080,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_otherclan_hostile",
+                "art": "cat_sprites/gen_bord_otherclan_RgRg",
                 "frequency": 1
             },
             {
@@ -3195,7 +3195,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_otherclan_hostile",
+                "art": "cat_sprites/gen_bord_otherclan_RgRg",
                 "frequency": 2
             },
             {
@@ -3227,7 +3227,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_otherclan_hostile",
+                "art": "cat_sprites/gen_bord_otherclan_RgRg",
                 "frequency": 3
             },
             {
@@ -3298,7 +3298,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_otherclan_hostile",
+                "art": "cat_sprites/gen_bord_otherclan_RgRg",
                 "frequency": 4
             },
             {
@@ -3369,7 +3369,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_otherclan_hostile",
+                "art": "cat_sprites/gen_bord_otherclan_RgRg",
                 "frequency": 4
             },
             {
@@ -3440,7 +3440,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_otherclan_hostile",
+                "art": "cat_sprites/gen_bord_otherclan_RgRg",
                 "frequency": 4
             },
             {
@@ -3472,7 +3472,7 @@
                         }
                     }
                 ],
-                "art": "gen_bord_otherclan_hostile",
+                "art": "cat_sprites/gen_bord_otherclan_RgRg",
                 "frequency": 2
             }
         ]
