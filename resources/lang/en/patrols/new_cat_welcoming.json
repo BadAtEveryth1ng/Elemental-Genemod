@@ -537,7 +537,8 @@
                 "exp": 10,
                 "new_cat": [
                     [
-                        "status:medicine cat"
+                        "status:medicine cat",
+                        "backstory:wandering_healer1,loner_backstories"
                     ],
                     [
                         "loner"
@@ -654,7 +655,8 @@
                     [
                         "age:adult",
                         "status:medicine cat",
-                        "loner"
+                        "loner",
+                       "backstory:wandering_healer1,loner_backstories"
                     ],
                     [
                         "status:apprentice",
@@ -716,7 +718,8 @@
                         "age:adult",
                         "status:medicine cat",
                         "parent:0",
-                        "loner"
+                        "loner",
+                        "backstory:wandering_healer1,loner_backstories"
                     ],
                     [
                         "age:adolescent",
@@ -4625,7 +4628,11 @@
                 "text": "The new healer is welcomed into the Clan.",
                 "exp": 10,
                 "new_cat": [
-                    ["status:healer", "loner"]
+                    [
+                        "status:healer",
+                        "loner",
+                        "backstory:wandering_healer1,wandering_healer2,loner_backstories"
+                    ]
                 ],
                 "relationships": [
                     {
@@ -4669,7 +4676,12 @@
                 "exp": 0,
                 "outsider_rep": 0,
                 "new_cat": [
-                    ["status:healer","meeting", "loner", "backstory:wandering_healer2"]
+                    [
+                        "status:healer",
+                        "meeting",
+                        "loner",
+                        "backstory:wandering_healer1,loner_backstories"
+                    ]
                 ],
                 "frequency": 4
             }
@@ -4738,7 +4750,11 @@
                 "text": "The new healer is welcomed into the Clan.",
                 "exp": 10,
                 "new_cat": [
-                    ["status:healer", "loner"]
+                    [
+                        "status:healer",
+                        "loner",
+                        "backstory:wandering_healer1,loner_backstories"
+                    ]
                 ],
                 "relationships": [
                     {

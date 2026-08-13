@@ -1126,5 +1126,481 @@
                 }
             }
         }
+    },
+    {
+        "id": "fire_gen_kit",
+        "strings": [
+            "Is playing with embers too close to the dens",
+            "Got in trouble for chasing cats around camp with little flames",
+            "Is being used as the nursery's personal heater",
+            "Caught a grass clump on fire, but snuffed it out before getting scolded",
+            "Is whining about the heat, despite being the source",
+            "Is whining about it being too cold when every cat nearby is burning up"
+        ],
+        "involved_cats": {
+            "m_c": {
+                "status": [
+                    "kitten"
+                ],
+                "stat": {
+                    "element": [
+                        "fire",
+                        "blue fire",
+                        "magma"
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "id": "water_gen_kit",
+        "strings": [
+            "Is watering the flowers around camp",
+            "Offers every cat in camp a sip of water",
+            "Is playing with minnows captured in a bubble",
+            "Is playing with tadpoles captured in a bubble",
+            "Is scolded for drenching the brand new nests",
+            "Is secretly spraying cats as they walk by",
+            "Cries when caught in the rain, much to the confusion of others"
+        ],
+        "involved_cats": {
+            "m_c": {
+                "status": [
+                    "kitten"
+                ],
+                "stat": {
+                    "element": [
+                        "water"
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "id": "earth_gen_kit",
+        "strings": [
+            "Is making a little rock burrow",
+            "Is shaking the earth from {PRONOUN/m_c/poss} pelt after digging a giant hole",
+            "Created a shady overhang for cats to avoid the sun",
+            "Is pelting other cats with tiny pebbles",
+            "Smacks a pebble back and forth with someone across camp",
+            "Is trying to make a tiny sculpture out of rocks",
+            "Is annoyed that other cats keep trying to clean {PRONOUN/m_c/poss} fur of dirt"
+        ],
+        "involved_cats": {
+            "m_c": {
+                "status": [
+                    "kitten"
+                ],
+                "stat": {
+                    "element": [
+                        "earth"
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "id": "air_gen_kit",
+        "strings": [
+            "Is blowing other cats' fur the wrong way and giggling at how silly they look",
+            "Complains when {PRONOUN/m_c/poss} ruffled fur is groomed back into place",
+            "Is trying to blow a leaf in the air for as long as possible",
+            "Mistakes a heavy gust of wind for {PRONOUN/m_c/poss} power getting stronger",
+            "Tries to use wind to make {PRONOUN/m_c/self} run faster",
+            "Accidentally made a mess of the herb stores with a stray gust",
+            "Wonders if {PRONOUN/m_c/subject} could fly with a strong enough wind"
+        ],
+        "involved_cats": {
+            "m_c": {
+                "status": [
+                    "kitten"
+                ],
+                "stat": {
+                    "element": [
+                        "air"
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "id": "ice_gen_kit",
+        "strings": [
+            "Almost made someone trip after freezing a puddle",
+            "Freezes the biggest puddle in camp to practice sliding across it",
+            "Is being used as the nursery's personal cooler",
+            "Is chewing on a block of ice with a frozen minnow stuck inside",
+            "Complains about it being too hot outside",
+            "Complains it's too cold, much to the confusion of others",
+            "Is scolded for freezing the whiskers of some cat"
+        ],
+        "involved_cats": {
+            "m_c": {
+                "status": [
+                    "kitten"
+                ],
+                "stat": {
+                    "element": [
+                        "ice"
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "id": "plant_gen_kit",
+        "strings": [
+            "Offers to grow a whole garden so the medicine cat never has to gather herbs again",
+            "Is absolutely covered in leaves",
+            "Floods the nursery with dandelion fluff",
+            "Accidentally grew poison ivy and is itching relentlessly",
+            "Is growing more flowers to attract bugs to chase",
+            "Is growing a few too many flowers and trying to give them to every cat",
+            "Is more interested in growing weeds than flowers this moon"
+        ],
+        "involved_cats": {
+            "m_c": {
+                "status": [
+                    "kitten"
+                ],
+                "stat": {
+                    "element": [
+                        "plant"
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "id": "lightning_gen_kit",
+        "strings": [
+            "Is making cats' fur stand on end with static",
+            "Is slightly shocking cats as a practical joke",
+            "Almost caused a fire with an ill-placed jolt",
+            "Got shocked a little too hard and is now crying",
+            "Accidentally zaps any cat who brushes {PRONOUN/m_c/poss} static-filled fur",
+            "Watches a storm in awe from the nursery, hoping to be that powerful someday",
+            "Tried to share a drink from a puddle, but accidentally shocked the other cats"
+        ],
+        "involved_cats": {
+            "m_c": {
+                "status": [
+                    "kitten"
+                ],
+                "stat": {
+                    "element": [
+                        "lightning"
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "id": "metal_gen_kit",
+        "strings": [
+            "Is laughing at the distorted reflection of other cats in a metal sheet",
+            "Uses a piece of metal in the sun as {PRONOUN/m_c/poss} own basking spot",
+            "Tries to make a metal figure of a cat",
+            "Is attempting to make kitten armor",
+            "Accidentally got scraped on a piece of metal and is now crying",
+            "Is discovering how many rocks have metal in them around camp",
+            "Is being scolded for leaving metal scraps lying around the nursery"
+        ],
+        "involved_cats": {
+            "m_c": {
+                "status": [
+                    "kitten"
+                ],
+                "stat": {
+                    "element": [
+                        "metal"
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "id": "smoke_gen_kit",
+        "strings": [
+            "Is making other cats cough by clogging up the nursery",
+            "Is sent outside to give the nursery some fresh air",
+            "Complains the smoke makes {PRONOUN/m_c/poss} eyes sting",
+            "Is practicing using smoke to hide and sneak around",
+            "Can be seen anywhere in camp from the rising smoke",
+            "Bats at wisps of smoke as they rise",
+            "Complains when the wind blows {PRONOUN/m_c/poss} smoke away"
+        ],
+        "involved_cats": {
+            "m_c": {
+                "status": [
+                    "kitten"
+                ],
+                "stat": {
+                    "element": [
+                        "smoke"
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "id": "mud_gen_kit",
+        "strings": [
+            "Is making the ground so muddy that cats slip and slide around camp",
+            "Is using mud to slide and dash around",
+            "Made a mud slide down a small hill in camp",
+            "Complains about dried mud sticking to {PRONOUN/m_c/poss} fur",
+            "Rolls around in mud to cool off, tracking it everywhere",
+            "Is being scolded for dirtying the freshly-cleaned nursery",
+            "Chases around the neatest cats, threatening to muddy their fur"
+        ],
+        "involved_cats": {
+            "m_c": {
+                "status": [
+                    "kitten"
+                ],
+                "stat": {
+                    "element": [
+                        "mud"
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "id": "shadow_gen_kit",
+        "strings": [
+            "Is playing with {PRONOUN/m_c/poss} shadow friend",
+            "Makes {PRONOUN/m_c/poss} shadow jump out and scare other cats",
+            "Talks to {PRONOUN/m_c/poss} shadow when no cat is around",
+            "Is practicing how to use shadows to sneak around",
+            "Chases around the shadows of birds, pretending to hunt",
+            "Is trying to 'become one with the shadows', whatever that means",
+            "Pretends to be another cat's shadow all day long"
+        ],
+        "involved_cats": {
+            "m_c": {
+                "status": [
+                    "kitten"
+                ],
+                "stat": {
+                    "element": [
+                        "shadow"
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "id": "sand_gen_kit",
+        "strings": [
+            "Complains that sand is stuck all over {PRONOUN/m_c/poss} fur",
+            "Is buried in sun-warmed sand, purring away",
+            "Kicks up sand flurries while running around camp",
+            "Is being scolded for getting every cat dusty after a romp through camp",
+            "Whines about sand in {PRONOUN/m_c/poss} nest, making others change it again",
+            "Got sand in {PRONOUN/m_c/poss} eyes and is crying about it",
+            "Makes sand sculptures in the middle of camp"
+        ],
+        "involved_cats": {
+            "m_c": {
+                "status": [
+                    "kitten"
+                ],
+                "stat": {
+                    "element": [
+                        "sand"
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "id": "mist_gen_kit",
+        "strings": [
+            "Is trying to use mist to be sneaky",
+            "Is making it too foggy to see a thing in the nursery",
+            "Is delighted when fog rolls into camp",
+            "Uses mist to hide something and avoid getting in trouble",
+            "Tries to cheat at a game by using mist, but is very obvious",
+            "Enjoys the coolness of being surrounded by mist",
+            "Is always a little damp"
+        ],
+        "involved_cats": {
+            "m_c": {
+                "status": [
+                    "kitten"
+                ],
+                "stat": {
+                    "element": [
+                        "mist"
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "id": "oil_gen_kit",
+        "strings": [
+            "Is happy they get to avoid grooming sessions",
+            "Tried to lick {PRONOUN/m_c/poss} fur and was disgusted by the taste",
+            "Is scolded for leaving oil in the dry grasses in camp",
+            "Complains when it rains outside, although the water slides right off",
+            "Admires the rainbow of colors that appear on oil in the sunlight",
+            "Dripped oil on {PRONOUN/m_c/poss} prey and is whining about it",
+            "Doesn't get why other cats are nervous when {PRONOUN/m_c/subject} sunbathes near dens"
+        ],
+        "involved_cats": {
+            "m_c": {
+                "status": [
+                    "kitten"
+                ],
+                "stat": {
+                    "element": [
+                        "oil"
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "id": "combustion_gen_kit",
+        "strings": [
+            "Almost started a fire when lighting sparks",
+            "Makes loud pops to startle other cats",
+            "Enjoys putting on a performance at night",
+            "Threatens to 'blow up' mean cats",
+            "Startled {PRONOUN/m_c/self} with an unexpected pop and hopes no cat saw",
+            "Wonders if {PRONOUN/m_c/poss} little bursts could be used to run faster",
+            "Is always smoldering a little"
+        ],
+        "involved_cats": {
+            "m_c": {
+                "status": [
+                    "kitten"
+                ],
+                "stat": {
+                    "element": [
+                        "combustion"
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "id": "decay_gen_kit",
+        "strings": [
+            "Is being scolded for wilting several herbs after getting into the healer's den",
+            "Tries to avoid the pretty flowers around camp",
+            "Is growing mushrooms in the nursery",
+            "Complains that {PRONOUN/m_c/poss} nest is always wilted and dry",
+            "Is herded away from the fresh-kill pile so it won't rot",
+            "Brings wilted flowers to the nursery as a gift",
+            "Knows way more about mushrooms than other cats and wants everyone to know it"
+        ],
+        "involved_cats": {
+            "m_c": {
+                "status": [
+                    "kitten"
+                ],
+                "stat": {
+                    "element": [
+                        "decay"
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "id": "magnetism_gen_kit",
+        "strings": [
+            "Got a few pebbles stuck to {PRONOUN/m_c/poss} fur and is whining about it",
+            "Repels a small rock and chases it around camp",
+            "Keeps attracting twoleg rubbish into camp",
+            "Got scolded for bringing a shiny metal twoleg thing into the nursery",
+            "Is trying to make a metal thing float, but not having much success",
+            "Is aweing at the pretty colors {PRONOUN/m_c/subject} can make",
+            "Wonders why shiny colors appear all around when using {PRONOUN/m_c/poss} power"
+        ],
+        "involved_cats": {
+            "m_c": {
+                "status": [
+                    "kitten"
+                ],
+                "stat": {
+                    "element": [
+                        "magnetic"
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "id": "luminescent_gen_kit",
+        "strings": [
+            "Tries to copy the fireflies around camp at dusk",
+            "Puts on a little light show when it gets dark",
+            "Is trying to glow as bright as possible",
+            "Is trying to dim {PRONOUN/m_c/poss} glow to be more stealthy",
+            "Claims to be the prettiest cat in the clan because of {PRONOUN/m_c/poss} glowing fur",
+            "Is shining a little too brightly to look at",
+            "Keeps the nursery awake with {PRONOUN/m_c/poss} glow"
+        ],
+        "involved_cats": {
+            "m_c": {
+                "status": [
+                    "kitten"
+                ],
+                "stat": {
+                    "element": [
+                        "luminescent"
+                    ]
+                }
+            }
+        }
+    },
+    {
+        "id": "elemental_gen_kit",
+        "strings": [
+            "Is claiming that {PRONOUN/m_c/poss} element is the best one",
+            "Is showing off {PRONOUN/m_c/poss} element for the other cats",
+            "Wonders what it would be like to have a different element",
+            "Wouldn't trade {PRONOUN/m_c/poss} element for anything in the whole world",
+            "Is bragging about being tougher than non-elementals",
+            "Doesn't know what {PRONOUN/m_c/subject} would do without an element",
+            "Wants to be the strongest elemental ever"
+        ],
+        "involved_cats": {
+            "m_c": {
+                "status": [
+                    "kitten"
+                ],
+                "stat": {
+                    "element": [
+                        "fire",
+                        "water",
+                        "earth",
+                        "air",
+                        "blue fire",
+                        "ice",
+                        "plant",
+                        "lightning",
+                        "magma",
+                        "metal",
+                        "smoke",
+                        "mud",
+                        "shadow",
+                        "sand",
+                        "mist",
+                        "oil",
+                        "combustion",
+                        "decay",
+                        "magnetic",
+                        "luminescent"
+                    ]
+                }
+            }
+        }
     }
 ]

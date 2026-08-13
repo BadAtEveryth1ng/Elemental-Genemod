@@ -3385,7 +3385,6 @@
                 "righteous",
                 "loyal",
                 "vengeful",
-                "sneaky",
                 "bloodthirsty"
             ]
         },
@@ -3459,8 +3458,7 @@
                 "cold",
                 "righteous",
                 "loyal",
-                "vengeful",
-                "sneaky"
+                "vengeful"
             ]
         },
         "history": [
@@ -7209,8 +7207,7 @@
                 "bloodthirsty",
                 "righteous",
                 "fierce",
-                "cold",
-                "sneaky"
+                "cold"
             ]
         },
         "history": [
@@ -7284,8 +7281,7 @@
                 "bloodthirsty",
                 "righteous",
                 "fierce",
-                "cold",
-                "sneaky"
+                "cold"
             ],
             "dies": true
         },
@@ -7475,7 +7471,6 @@
                 "confident",
                 "daring",
                 "shameless",
-                "sneaky",
                 "strange",
                 "vengeful",
                 "wise"
@@ -7754,8 +7749,7 @@
                 "shameless",
                 "troublesome",
                 "vengeful",
-                "strange",
-                "sneaky"
+                "strange"
             ],
             "dies": true
         },
@@ -8997,7 +8991,6 @@
                 "-kitten"
             ],
             "trait": [
-                "sneaky",
                 "lonesome",
                 "cold",
                 "strict",
@@ -9803,7 +9796,6 @@
                 "confident",
                 "adventurous",
                 "shameless",
-                "sneaky",
                 "arrogant",
                 "competitive",
                 "cunning",
@@ -9866,7 +9858,6 @@
                 "troublesome",
                 "adventurous",
                 "shameless",
-                "sneaky",
                 "strange",
                 "competitive",
                 "cunning",
@@ -9922,7 +9913,6 @@
             "trait": [
                 "bold",
                 "daring",
-                "sneaky",
                 "loyal",
                 "confident",
                 "thoughtful",
@@ -10873,7 +10863,7 @@
         ],
         "tags": [],
         "frequency": 3,
-        "event_text": "m_c chases a trespassing o_c_n warrior off of the territory. On {PRONOUN/m_c/poss} way back, {PRONOUN/m_c/subject} {VERB/r_c/are/is} ambushed by r_c, who murders {PRONOUN/m_c/object} on the spot.",
+        "event_text": "m_c chases a trespassing o_c_n warrior off of the territory. On {PRONOUN/m_c/poss} way back, {PRONOUN/m_c/subject} {VERB/m_c/are/is} ambushed by r_c, who murders {PRONOUN/m_c/object} on the spot.",
         "m_c": {
             "status": [
                 "warrior",

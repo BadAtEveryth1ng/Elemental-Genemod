@@ -2986,7 +2986,6 @@
                     "careful",
                     "calm",
                     "wise",
-                    "sneaky",
                     "responsible"
                 ],
                 "prey": [
@@ -7108,7 +7107,6 @@
                     "daring",
                     "ambitious",
                     "shameless",
-                    "sneaky",
                     "arrogant",
                     "competitive",
                     "rebellious"
@@ -7255,7 +7253,6 @@
                     "daring",
                     "ambitious",
                     "shameless",
-                    "sneaky",
                     "arrogant",
                     "competitive",
                     "rebellious"
@@ -8154,7 +8151,7 @@
                 "text": "s_c takes the opportunity to entertain the kits with tiny flames dancing in the air. Eventually, {PRONOUN/s_c/subject} {VERB/s_c/ask/asks} if the kits want to see some more tricks. Yet before s_c can start leading the kits away, a o_c_n search party comes barreling towards them, hissing at {PRONOUN/s_c/object} to leave in no uncertain terms.",
                 "exp": 0,
                 "stat_element": [ "fire", "blue fire" ],
-                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "sneaky", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
+                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
                 "multiclan_cat": [
                     [ "age:kitten", "exists", "meeting", "clancat" ],
                     [ "age:kitten", "exists", "meeting", "clancat" ]
@@ -8166,7 +8163,7 @@
                 "text": "s_c takes the opportunity to entertain the kits with little water bubbles for to chase. Eventually, {PRONOUN/s_c/subject} {VERB/s_c/ask/asks} if the kits want to see some more tricks. Yet before s_c can start leading the kits away, a o_c_n search party comes barreling towards them, hissing at {PRONOUN/s_c/object} to leave in no uncertain terms.",
                 "exp": 0,
                 "stat_element": [ "water" ],
-                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "sneaky", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
+                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
                 "multiclan_cat": [
                     [ "age:kitten", "exists", "meeting", "clancat" ],
                     [ "age:kitten", "exists", "meeting", "clancat" ]
@@ -8178,7 +8175,7 @@
                 "text": "s_c takes the opportunity to entertain the kits - lifting them into the air with {PRONOUN/s_c/poss} powers. Eventually, {PRONOUN/s_c/subject} {VERB/s_c/ask/asks} if the kits want to see some more tricks. Yet before s_c can start leading the kits away, a o_c_n search party comes barreling towards them, hissing at {PRONOUN/s_c/object} to leave in no uncertain terms.",
                 "exp": 0,
                 "stat_element": [ "earth", "air" ],
-                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "sneaky", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
+                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
                 "multiclan_cat": [
                     [ "age:kitten", "exists", "meeting", "clancat" ],
                     [ "age:kitten", "exists", "meeting", "clancat" ]
@@ -8190,7 +8187,7 @@
                 "text": "s_c takes the opportunity to entertain the kits - with a bit of effort, {PRONOUN/s_c/subject} {VERB/s_c/are/is} able to make snowballs to play with. Eventually, {PRONOUN/s_c/subject} {VERB/s_c/ask/asks} if the kits want to see some more tricks. Yet before s_c can start leading the kits away, a o_c_n search party comes barreling towards them, hissing at {PRONOUN/s_c/object} to leave in no uncertain terms.",
                 "exp": 0,
                 "stat_element": [ "ice" ],
-                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "sneaky", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
+                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
                 "multiclan_cat": [
                     [ "age:kitten", "exists", "meeting", "clancat" ],
                     [ "age:kitten", "exists", "meeting", "clancat" ]
@@ -8202,7 +8199,7 @@
                 "text": "s_c takes the opportunity to entertain the kits - sprouting multi-coloured flowers across the grass. Eventually, {PRONOUN/s_c/subject} {VERB/s_c/ask/asks} if the kits want to see some more tricks. Yet before s_c can start leading the kits away, a o_c_n search party comes barreling towards them, hissing at {PRONOUN/s_c/object} to leave in no uncertain terms.",
                 "exp": 0,
                 "stat_element": [ "plant" ],
-                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "sneaky", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
+                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
                 "multiclan_cat": [
                     [ "age:kitten", "exists", "meeting", "clancat" ],
                     [ "age:kitten", "exists", "meeting", "clancat" ]
@@ -8214,7 +8211,7 @@
                 "text": "s_c takes the opportunity to entertain the kits - showing off sparks dancing across {PRONOUN/s_c/poss} pelt and playfully shocking the kitten with static. Eventually, {PRONOUN/s_c/subject} {VERB/s_c/ask/asks} if the kits want to see some more tricks. Yet before s_c can start leading the kits away, a o_c_n search party comes barreling towards them, hissing at {PRONOUN/s_c/object} to leave in no uncertain terms.",
                 "exp": 0,
                 "stat_element": [ "lightning" ],
-                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "sneaky", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
+                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
                 "multiclan_cat": [
                     [ "age:kitten", "exists", "meeting", "clancat" ],
                     [ "age:kitten", "exists", "meeting", "clancat" ]
@@ -8226,7 +8223,7 @@
                 "text": "s_c takes the opportunity to entertain the kits - using a piece of metal to reflect little sunspots for them to chase. Eventually, {PRONOUN/s_c/subject} {VERB/s_c/ask/asks} if the kits want to see some more tricks. Yet before s_c can start leading the kits away, a o_c_n search party comes barreling towards them, hissing at {PRONOUN/s_c/object} to leave in no uncertain terms.",
                 "exp": 0,
                 "stat_element": [ "metal" ],
-                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "sneaky", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
+                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
                 "multiclan_cat": [
                     [ "age:kitten", "exists", "meeting", "clancat" ],
                     [ "age:kitten", "exists", "meeting", "clancat" ]
@@ -8238,7 +8235,7 @@
                 "text": "s_c takes the opportunity to entertain the kits with a brief mud fight. Eventually, {PRONOUN/s_c/subject} {VERB/s_c/ask/asks} if the kits want to see some more tricks. Yet before s_c can start leading the kits away, a o_c_n search party comes barreling towards them, hissing at {PRONOUN/s_c/object} to leave in no uncertain terms.",
                 "exp": 0,
                 "stat_element": [ "mud" ],
-                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "sneaky", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
+                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
                 "multiclan_cat": [
                     [ "age:kitten", "exists", "meeting", "clancat" ],
                     [ "age:kitten", "exists", "meeting", "clancat" ]
@@ -8250,7 +8247,7 @@
                 "text": "s_c takes the opportunity to entertain the kits with shadow puppets. Eventually, {PRONOUN/s_c/subject} {VERB/s_c/ask/asks} if the kits want to see some more tricks. Yet before s_c can start leading the kits away, a o_c_n search party comes barreling towards them, hissing at {PRONOUN/s_c/object} to leave in no uncertain terms.",
                 "exp": 0,
                 "stat_element": [ "shadow" ],
-                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "sneaky", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
+                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
                 "multiclan_cat": [
                     [ "age:kitten", "exists", "meeting", "clancat" ],
                     [ "age:kitten", "exists", "meeting", "clancat" ]
@@ -8262,7 +8259,7 @@
                 "text": "s_c takes the opportunity to entertain the kits with a sand pile to play around in. Eventually, {PRONOUN/s_c/subject} {VERB/s_c/ask/asks} if the kits want to see some more tricks. Yet before s_c can start leading the kits away, a o_c_n search party comes barreling towards them, hissing at {PRONOUN/s_c/object} to leave in no uncertain terms.",
                 "exp": 0,
                 "stat_element": [ "sand" ],
-                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "sneaky", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
+                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
                 "multiclan_cat": [
                     [ "age:kitten", "exists", "meeting", "clancat" ],
                     [ "age:kitten", "exists", "meeting", "clancat" ]
@@ -8274,7 +8271,7 @@
                 "text": "s_c takes the opportunity to entertain the kits - letting them disappear into the mist and try to sneak up on {PRONOUN/s_c/object}. Eventually, {PRONOUN/s_c/subject} {VERB/s_c/ask/asks} if the kits want to see some more tricks. Yet before s_c can start leading the kits away, a o_c_n search party comes barreling towards them, hissing at {PRONOUN/s_c/object} to leave in no uncertain terms.",
                 "exp": 0,
                 "stat_element": [ "mist" ],
-                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "sneaky", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
+                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
                 "multiclan_cat": [
                     [ "age:kitten", "exists", "meeting", "clancat" ],
                     [ "age:kitten", "exists", "meeting", "clancat" ]
@@ -8286,7 +8283,7 @@
                 "text": "s_c takes the opportunity to entertain the kits - showing off the rainbow colours {PRONOUN/s_c/poss} oil turns into in the sun. Eventually, {PRONOUN/s_c/subject} {VERB/s_c/ask/asks} if the kits want to see some more tricks. Yet before s_c can start leading the kits away, a o_c_n search party comes barreling towards them, hissing at {PRONOUN/s_c/object} to leave in no uncertain terms.",
                 "exp": 0,
                 "stat_element": [ "oil" ],
-                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "sneaky", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
+                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
                 "multiclan_cat": [
                     [ "age:kitten", "exists", "meeting", "clancat" ],
                     [ "age:kitten", "exists", "meeting", "clancat" ]
@@ -8298,7 +8295,7 @@
                 "text": "s_c takes the opportunity to entertain the kits with crackling little sparks. Eventually, {PRONOUN/s_c/subject} {VERB/s_c/ask/asks} if the kits want to see some more tricks. Yet before s_c can start leading the kits away, a o_c_n search party comes barreling towards them, hissing at {PRONOUN/s_c/object} to leave in no uncertain terms.",
                 "exp": 0,
                 "stat_element": [ "combustion" ],
-                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "sneaky", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
+                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
                 "multiclan_cat": [
                     [ "age:kitten", "exists", "meeting", "clancat" ],
                     [ "age:kitten", "exists", "meeting", "clancat" ]
@@ -8310,7 +8307,7 @@
                 "text": "s_c takes the opportunity to entertain the kits - sprouting up variously shaped mushrooms in the grass. Eventually, {PRONOUN/s_c/subject} {VERB/s_c/ask/asks} if the kits want to see some more tricks. Yet before s_c can start leading the kits away, a o_c_n search party comes barreling towards them, hissing at {PRONOUN/s_c/object} to leave in no uncertain terms.",
                 "exp": 0,
                 "stat_element": [ "decay" ],
-                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "sneaky", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
+                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
                 "multiclan_cat": [
                     [ "age:kitten", "exists", "meeting", "clancat" ],
                     [ "age:kitten", "exists", "meeting", "clancat" ]
@@ -8322,7 +8319,7 @@
                 "text": "s_c takes the opportunity to entertain the kits - kicking off and staying floating in place above their heads. Eventually, {PRONOUN/s_c/subject} {VERB/s_c/ask/asks} if the kits want to see some more tricks. Yet before s_c can start leading the kits away, a o_c_n search party comes barreling towards them, hissing at {PRONOUN/s_c/object} to leave in no uncertain terms.",
                 "exp": 0,
                 "stat_element": [ "magnetic" ],
-                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "sneaky", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
+                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
                 "multiclan_cat": [
                     [ "age:kitten", "exists", "meeting", "clancat" ],
                     [ "age:kitten", "exists", "meeting", "clancat" ]
@@ -8334,7 +8331,7 @@
                 "text": "s_c takes the opportunity to entertain the kits - glowing gently in different colours. Eventually, {PRONOUN/s_c/subject} {VERB/s_c/ask/asks} if the kits want to see some more tricks. Yet before s_c can start leading the kits away, a o_c_n search party comes barreling towards them, hissing at {PRONOUN/s_c/object} to leave in no uncertain terms.",
                 "exp": 0,
                 "stat_element": [ "luminescent" ],
-                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "sneaky", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
+                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
                 "multiclan_cat": [
                     [ "age:kitten", "exists", "meeting", "clancat" ],
                     [ "age:kitten", "exists", "meeting", "clancat" ]
@@ -8368,7 +8365,7 @@
                 "text": "s_c takes the opportunity to entertain the kits with tiny flames dancing in the air. Eventually, {PRONOUN/s_c/subject} {VERB/s_c/ask/asks} if the kits want to see some more tricks, before leading them towards c_n's camp instead.",
                 "exp": 30,
                 "stat_element": [ "fire", "blue fire" ],
-                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "sneaky", "vengeful", "arrogant", "cunning" ],
+                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "vengeful", "arrogant", "cunning" ],
                 "new_cat": [
                     [ "age:kitten", "exists", "change_clan", "clancat" ],
                     [ "age:kitten", "exists", "change_clan", "clancat" ]
@@ -8380,7 +8377,7 @@
                 "text": "s_c takes the opportunity to entertain the kits with little water bubbles for to chase. Eventually, {PRONOUN/s_c/subject} {VERB/s_c/ask/asks} if the kits want to see some more tricks, before leading them towards c_n's camp instead.",
                 "exp": 30,
                 "stat_element": [ "water" ],
-                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "sneaky", "vengeful", "arrogant", "cunning" ],
+                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "vengeful", "arrogant", "cunning" ],
                 "new_cat": [
                     [ "age:kitten", "exists", "change_clan", "clancat" ],
                     [ "age:kitten", "exists", "change_clan", "clancat" ]
@@ -8392,7 +8389,7 @@
                 "text": "s_c takes the opportunity to entertain the kits - lifting them into the air with {PRONOUN/s_c/poss} powers. Eventually, {PRONOUN/s_c/subject} {VERB/s_c/ask/asks} if the kits want to see some more tricks, before leading them towards c_n's camp instead.",
                 "exp": 30,
                 "stat_element": [ "earth", "air" ],
-                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "sneaky", "vengeful", "arrogant", "cunning" ],
+                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "vengeful", "arrogant", "cunning" ],
                 "new_cat": [
                     [ "age:kitten", "exists", "change_clan", "clancat" ],
                     [ "age:kitten", "exists", "change_clan", "clancat" ]
@@ -8404,7 +8401,7 @@
                 "text": "s_c takes the opportunity to entertain the kits - with a bit of effort, {PRONOUN/s_c/subject} {VERB/s_c/are/is} able to make snowballs to play with. Eventually, {PRONOUN/s_c/subject} {VERB/s_c/ask/asks} if the kits want to see some more tricks, before leading them towards c_n's camp instead.",
                 "exp": 30,
                 "stat_element": [ "ice" ],
-                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "sneaky", "vengeful", "arrogant", "cunning" ],
+                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "vengeful", "arrogant", "cunning" ],
                 "new_cat": [
                     [ "age:kitten", "exists", "change_clan", "clancat" ],
                     [ "age:kitten", "exists", "change_clan", "clancat" ]
@@ -8416,7 +8413,7 @@
                 "text": "s_c takes the opportunity to entertain the kits - sprouting multi-coloured flowers across the grass. Eventually, {PRONOUN/s_c/subject} {VERB/s_c/ask/asks} if the kits want to see some more tricks, before leading them towards c_n's camp instead.",
                 "exp": 30,
                 "stat_element": [ "plant" ],
-                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "sneaky", "vengeful", "arrogant", "cunning" ],
+                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "vengeful", "arrogant", "cunning" ],
                 "new_cat": [
                     [ "age:kitten", "exists", "change_clan", "clancat" ],
                     [ "age:kitten", "exists", "change_clan", "clancat" ]
@@ -8428,7 +8425,7 @@
                 "text": "s_c takes the opportunity to entertain the kits - showing off sparks dancing across {PRONOUN/s_c/poss} pelt and playfully shocking the kitten with static. Eventually, {PRONOUN/s_c/subject} {VERB/s_c/ask/asks} if the kits want to see some more tricks, before leading them towards c_n's camp instead.",
                 "exp": 30,
                 "stat_element": [ "lightning" ],
-                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "sneaky", "vengeful", "arrogant", "cunning" ],
+                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "vengeful", "arrogant", "cunning" ],
                 "new_cat": [
                     [ "age:kitten", "exists", "change_clan", "clancat" ],
                     [ "age:kitten", "exists", "change_clan", "clancat" ]
@@ -8440,7 +8437,7 @@
                 "text": "s_c takes the opportunity to entertain the kits - using a piece of metal to reflect little sunspots for them to chase. Eventually, {PRONOUN/s_c/subject} {VERB/s_c/ask/asks} if the kits want to see some more tricks, before leading them towards c_n's camp instead.",
                 "exp": 30,
                 "stat_element": [ "metal" ],
-                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "sneaky", "vengeful", "arrogant", "cunning" ],
+                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "vengeful", "arrogant", "cunning" ],
                 "new_cat": [
                     [ "age:kitten", "exists", "change_clan", "clancat" ],
                     [ "age:kitten", "exists", "change_clan", "clancat" ]
@@ -8452,7 +8449,7 @@
                 "text": "s_c takes the opportunity to entertain the kits with a brief mud fight. Eventually, {PRONOUN/s_c/subject} {VERB/s_c/ask/asks} if the kits want to see some more tricks, before leading them towards c_n's camp instead.",
                 "exp": 30,
                 "stat_element": [ "mud" ],
-                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "sneaky", "vengeful", "arrogant", "cunning" ],
+                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "vengeful", "arrogant", "cunning" ],
                 "new_cat": [
                     [ "age:kitten", "exists", "change_clan", "clancat" ],
                     [ "age:kitten", "exists", "change_clan", "clancat" ]
@@ -8464,7 +8461,7 @@
                 "text": "s_c takes the opportunity to entertain the kits with shadow puppets. Eventually, {PRONOUN/s_c/subject} {VERB/s_c/ask/asks} if the kits want to see some more tricks, before leading them towards c_n's camp instead.",
                 "exp": 30,
                 "stat_element": [ "shadow" ],
-                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "sneaky", "vengeful", "arrogant", "cunning" ],
+                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "vengeful", "arrogant", "cunning" ],
                 "new_cat": [
                     [ "age:kitten", "exists", "change_clan", "clancat" ],
                     [ "age:kitten", "exists", "change_clan", "clancat" ]
@@ -8476,7 +8473,7 @@
                 "text": "s_c takes the opportunity to entertain the kits with a sand pile to play around in. Eventually, {PRONOUN/s_c/subject} {VERB/s_c/ask/asks} if the kits want to see some more tricks, before leading them towards c_n's camp instead.",
                 "exp": 30,
                 "stat_element": [ "sand" ],
-                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "sneaky", "vengeful", "arrogant", "cunning" ],
+                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "vengeful", "arrogant", "cunning" ],
                 "new_cat": [
                     [ "age:kitten", "exists", "change_clan", "clancat" ],
                     [ "age:kitten", "exists", "change_clan", "clancat" ]
@@ -8488,7 +8485,7 @@
                 "text": "s_c takes the opportunity to entertain the kits - letting them disappear into the mist and try to sneak up on {PRONOUN/s_c/object}. Eventually, {PRONOUN/s_c/subject} {VERB/s_c/ask/asks} if the kits want to see some more tricks, before leading them towards c_n's camp instead.",
                 "exp": 30,
                 "stat_element": [ "mist" ],
-                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "sneaky", "vengeful", "arrogant", "cunning" ],
+                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "vengeful", "arrogant", "cunning" ],
                 "new_cat": [
                     [ "age:kitten", "exists", "change_clan", "clancat" ],
                     [ "age:kitten", "exists", "change_clan", "clancat" ]
@@ -8500,7 +8497,7 @@
                 "text": "s_c takes the opportunity to entertain the kits - showing off the rainbow colours {PRONOUN/s_c/poss} oil turns into in the sun. Eventually, {PRONOUN/s_c/subject} {VERB/s_c/ask/asks} if the kits want to see some more tricks, before leading them towards c_n's camp instead.",
                 "exp": 30,
                 "stat_element": [ "oil" ],
-                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "sneaky", "vengeful", "arrogant", "cunning" ],
+                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "vengeful", "arrogant", "cunning" ],
                 "new_cat": [
                     [ "age:kitten", "exists", "change_clan", "clancat" ],
                     [ "age:kitten", "exists", "change_clan", "clancat" ]
@@ -8512,7 +8509,7 @@
                 "text": "s_c takes the opportunity to entertain the kits with crackling little sparks. Eventually, {PRONOUN/s_c/subject} {VERB/s_c/ask/asks} if the kits want to see some more tricks, before leading them towards c_n's camp instead.",
                 "exp": 30,
                 "stat_element": [ "combustion" ],
-                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "sneaky", "vengeful", "arrogant", "cunning" ],
+                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "vengeful", "arrogant", "cunning" ],
                 "new_cat": [
                     [ "age:kitten", "exists", "change_clan", "clancat" ],
                     [ "age:kitten", "exists", "change_clan", "clancat" ]
@@ -8524,7 +8521,7 @@
                 "text": "s_c takes the opportunity to entertain the kits - sprouting up variously shaped mushrooms in the grass. Eventually, {PRONOUN/s_c/subject} {VERB/s_c/ask/asks} if the kits want to see some more tricks, before leading them towards c_n's camp instead.",
                 "exp": 30,
                 "stat_element": [ "decay" ],
-                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "sneaky", "vengeful", "arrogant", "cunning" ],
+                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "vengeful", "arrogant", "cunning" ],
                 "new_cat": [
                     [ "age:kitten", "exists", "change_clan", "clancat" ],
                     [ "age:kitten", "exists", "change_clan", "clancat" ]
@@ -8536,7 +8533,7 @@
                 "text": "s_c takes the opportunity to entertain the kits - kicking off and staying floating in place above their heads. Eventually, {PRONOUN/s_c/subject} {VERB/s_c/ask/asks} if the kits want to see some more tricks, before leading them towards c_n's camp instead.",
                 "exp": 30,
                 "stat_element": [ "magnetic" ],
-                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "sneaky", "vengeful", "arrogant", "cunning" ],
+                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "vengeful", "arrogant", "cunning" ],
                 "new_cat": [
                     [ "age:kitten", "exists", "change_clan", "clancat" ],
                     [ "age:kitten", "exists", "change_clan", "clancat" ]
@@ -8548,7 +8545,7 @@
                 "text": "s_c takes the opportunity to entertain the kits - glowing gently in different colours. Eventually, {PRONOUN/s_c/subject} {VERB/s_c/ask/asks} if the kits want to see some more tricks, before leading them towards c_n's camp instead.",
                 "exp": 30,
                 "stat_element": [ "luminescent" ],
-                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "sneaky", "vengeful", "arrogant", "cunning" ],
+                "stat_trait": [ "troublesome", "charismatic", "bold", "ambitious", "shameless", "vengeful", "arrogant", "cunning" ],
                 "new_cat": [
                     [ "age:kitten", "exists", "change_clan", "clancat" ],
                     [ "age:kitten", "exists", "change_clan", "clancat" ]
@@ -8560,7 +8557,7 @@
                 "text": "s_c takes the opportunity to entertain the kits with tiny flames dancing in the air. Eventually, {PRONOUN/s_c/subject} {VERB/s_c/ask/asks} if the kits want to see some more tricks and lead the kits away from the border to be killed and buried swiftly.",
                 "exp": 20,
                 "stat_element": [ "fire", "blue fire" ],
-                "stat_trait": [ "troublesome", "bold", "ambitious", "shameless", "sneaky", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
+                "stat_trait": [ "troublesome", "bold", "ambitious", "shameless", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
                 "new_cat": [
                     [ "age:kitten", "exists", "dead", "meeting", "clancat" ],
                     [ "age:kitten", "exists", "dead", "meeting", "clancat" ]
@@ -8592,7 +8589,7 @@
                 "text": "s_c takes the opportunity to entertain the kits with little water bubbles for to chase. Eventually, {PRONOUN/s_c/subject} {VERB/s_c/ask/asks} if the kits want to see some more tricks and lead the kits away from the border to be killed and buried swiftly.",
                 "exp": 20,
                 "stat_element": [ "water" ],
-                "stat_trait": [ "troublesome", "bold", "ambitious", "shameless", "sneaky", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
+                "stat_trait": [ "troublesome", "bold", "ambitious", "shameless", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
                 "new_cat": [
                     [ "age:kitten", "exists", "dead", "meeting", "clancat" ],
                     [ "age:kitten", "exists", "dead", "meeting", "clancat" ]
@@ -8624,7 +8621,7 @@
                 "text": "s_c takes the opportunity to entertain the kits - lifting them into the air with {PRONOUN/s_c/poss} powers. Eventually, {PRONOUN/s_c/subject} {VERB/s_c/ask/asks} if the kits want to see some more tricks and lead the kits away from the border to be killed and buried swiftly.",
                 "exp": 20,
                 "stat_element": [ "earth", "air" ],
-                "stat_trait": [ "troublesome", "bold", "ambitious", "shameless", "sneaky", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
+                "stat_trait": [ "troublesome", "bold", "ambitious", "shameless", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
                 "new_cat": [
                     [ "age:kitten", "exists", "dead", "meeting", "clancat" ],
                     [ "age:kitten", "exists", "dead", "meeting", "clancat" ]
@@ -8656,7 +8653,7 @@
                 "text": "s_c takes the opportunity to entertain the kits - with a bit of effort, {PRONOUN/s_c/subject} {VERB/s_c/are/is} able to make snowballs to play with. Eventually, {PRONOUN/s_c/subject} {VERB/s_c/ask/asks} if the kits want to see some more tricks and lead the kits away from the border to be killed and buried swiftly.",
                 "exp": 20,
                 "stat_element": [ "ice" ],
-                "stat_trait": [ "troublesome", "bold", "ambitious", "shameless", "sneaky", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
+                "stat_trait": [ "troublesome", "bold", "ambitious", "shameless", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
                 "new_cat": [
                     [ "age:kitten", "exists", "dead", "meeting", "clancat" ],
                     [ "age:kitten", "exists", "dead", "meeting", "clancat" ]
@@ -8688,7 +8685,7 @@
                 "text": "s_c takes the opportunity to entertain the kits - sprouting multi-coloured flowers across the grass. Eventually, {PRONOUN/s_c/subject} {VERB/s_c/ask/asks} if the kits want to see some more tricks and lead the kits away from the border to be killed and buried swiftly.",
                 "exp": 20,
                 "stat_element": [ "plant" ],
-                "stat_trait": [ "troublesome", "bold", "ambitious", "shameless", "sneaky", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
+                "stat_trait": [ "troublesome", "bold", "ambitious", "shameless", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
                 "new_cat": [
                     [ "age:kitten", "exists", "dead", "meeting", "clancat" ],
                     [ "age:kitten", "exists", "dead", "meeting", "clancat" ]
@@ -8720,7 +8717,7 @@
                 "text": "s_c takes the opportunity to entertain the kits - showing off sparks dancing across {PRONOUN/s_c/poss} pelt and playfully shocking the kitten with static. Eventually, {PRONOUN/s_c/subject} {VERB/s_c/ask/asks} if the kits want to see some more tricks and lead the kits away from the border to be killed and buried swiftly.",
                 "exp": 20,
                 "stat_element": [ "lightning" ],
-                "stat_trait": [ "troublesome", "bold", "ambitious", "shameless", "sneaky", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
+                "stat_trait": [ "troublesome", "bold", "ambitious", "shameless", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
                 "new_cat": [
                     [ "age:kitten", "exists", "dead", "meeting", "clancat" ],
                     [ "age:kitten", "exists", "dead", "meeting", "clancat" ]
@@ -8752,7 +8749,7 @@
                 "text": "s_c takes the opportunity to entertain the kits - using a piece of metal to reflect little sunspots for them to chase. Eventually, {PRONOUN/s_c/subject} {VERB/s_c/ask/asks} if the kits want to see some more tricks and lead the kits away from the border to be killed and buried swiftly.",
                 "exp": 20,
                 "stat_element": [ "metal" ],
-                "stat_trait": [ "troublesome", "bold", "ambitious", "shameless", "sneaky", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
+                "stat_trait": [ "troublesome", "bold", "ambitious", "shameless", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
                 "new_cat": [
                     [ "age:kitten", "exists", "dead", "meeting", "clancat" ],
                     [ "age:kitten", "exists", "dead", "meeting", "clancat" ]
@@ -8784,7 +8781,7 @@
                 "text": "s_c takes the opportunity to entertain the kits with a brief mud fight. Eventually, {PRONOUN/s_c/subject} {VERB/s_c/ask/asks} if the kits want to see some more tricks and lead the kits away from the border to be killed and buried swiftly.",
                 "exp": 20,
                 "stat_element": [ "mud" ],
-                "stat_trait": [ "troublesome", "bold", "ambitious", "shameless", "sneaky", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
+                "stat_trait": [ "troublesome", "bold", "ambitious", "shameless", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
                 "new_cat": [
                     [ "age:kitten", "exists", "dead", "meeting", "clancat" ],
                     [ "age:kitten", "exists", "dead", "meeting", "clancat" ]
@@ -8816,7 +8813,7 @@
                 "text": "s_c takes the opportunity to entertain the kits with shadow puppets. Eventually, {PRONOUN/s_c/subject} {VERB/s_c/ask/asks} if the kits want to see some more tricks and lead the kits away from the border to be killed and buried swiftly.",
                 "exp": 20,
                 "stat_element": [ "shadow" ],
-                "stat_trait": [ "troublesome", "bold", "ambitious", "shameless", "sneaky", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
+                "stat_trait": [ "troublesome", "bold", "ambitious", "shameless", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
                 "new_cat": [
                     [ "age:kitten", "exists", "dead", "meeting", "clancat" ],
                     [ "age:kitten", "exists", "dead", "meeting", "clancat" ]
@@ -8848,7 +8845,7 @@
                 "text": "s_c takes the opportunity to entertain the kits with a sand pile to play around in. Eventually, {PRONOUN/s_c/subject} {VERB/s_c/ask/asks} if the kits want to see some more tricks and lead the kits away from the border to be killed and buried swiftly.",
                 "exp": 20,
                 "stat_element": [ "sand" ],
-                "stat_trait": [ "troublesome", "bold", "ambitious", "shameless", "sneaky", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
+                "stat_trait": [ "troublesome", "bold", "ambitious", "shameless", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
                 "new_cat": [
                     [ "age:kitten", "exists", "dead", "meeting", "clancat" ],
                     [ "age:kitten", "exists", "dead", "meeting", "clancat" ]
@@ -8880,7 +8877,7 @@
                 "text": "s_c takes the opportunity to entertain the kits - letting them disappear into the mist and try to sneak up on {PRONOUN/s_c/object}. Eventually, {PRONOUN/s_c/subject} {VERB/s_c/ask/asks} if the kits want to see some more tricks and lead the kits away from the border to be killed and buried swiftly.",
                 "exp": 20,
                 "stat_element": [ "mist" ],
-                "stat_trait": [ "troublesome", "bold", "ambitious", "shameless", "sneaky", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
+                "stat_trait": [ "troublesome", "bold", "ambitious", "shameless", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
                 "new_cat": [
                     [ "age:kitten", "exists", "dead", "meeting", "clancat" ],
                     [ "age:kitten", "exists", "dead", "meeting", "clancat" ]
@@ -8912,7 +8909,7 @@
                 "text": "s_c takes the opportunity to entertain the kits - showing off the rainbow colours {PRONOUN/s_c/poss} oil turns into in the sun. Eventually, {PRONOUN/s_c/subject} {VERB/s_c/ask/asks} if the kits want to see some more tricks and lead the kits away from the border to be killed and buried swiftly.",
                 "exp": 20,
                 "stat_element": [ "oil" ],
-                "stat_trait": [ "troublesome", "bold", "ambitious", "shameless", "sneaky", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
+                "stat_trait": [ "troublesome", "bold", "ambitious", "shameless", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
                 "new_cat": [
                     [ "age:kitten", "exists", "dead", "meeting", "clancat" ],
                     [ "age:kitten", "exists", "dead", "meeting", "clancat" ]
@@ -8944,7 +8941,7 @@
                 "text": "s_c takes the opportunity to entertain the kits with crackling little sparks. Eventually, {PRONOUN/s_c/subject} {VERB/s_c/ask/asks} if the kits want to see some more tricks and lead the kits away from the border to be killed and buried swiftly.",
                 "exp": 20,
                 "stat_element": [ "combustion" ],
-                "stat_trait": [ "troublesome", "bold", "ambitious", "shameless", "sneaky", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
+                "stat_trait": [ "troublesome", "bold", "ambitious", "shameless", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
                 "new_cat": [
                     [ "age:kitten", "exists", "dead", "meeting", "clancat" ],
                     [ "age:kitten", "exists", "dead", "meeting", "clancat" ]
@@ -8976,7 +8973,7 @@
                 "text": "s_c takes the opportunity to entertain the kits - sprouting up variously shaped mushrooms in the grass. Eventually, {PRONOUN/s_c/subject} {VERB/s_c/ask/asks} if the kits want to see some more tricks and lead the kits away from the border to be killed and buried swiftly.",
                 "exp": 20,
                 "stat_element": [ "decay" ],
-                "stat_trait": [ "troublesome", "bold", "ambitious", "shameless", "sneaky", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
+                "stat_trait": [ "troublesome", "bold", "ambitious", "shameless", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
                 "new_cat": [
                     [ "age:kitten", "exists", "dead", "meeting", "clancat" ],
                     [ "age:kitten", "exists", "dead", "meeting", "clancat" ]
@@ -9008,7 +9005,7 @@
                 "text": "s_c takes the opportunity to entertain the kits - kicking off and staying floating in place above their heads. Eventually, {PRONOUN/s_c/subject} {VERB/s_c/ask/asks} if the kits want to see some more tricks and lead the kits away from the border to be killed and buried swiftly.",
                 "exp": 20,
                 "stat_element": [ "magnetic" ],
-                "stat_trait": [ "troublesome", "bold", "ambitious", "shameless", "sneaky", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
+                "stat_trait": [ "troublesome", "bold", "ambitious", "shameless", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
                 "new_cat": [
                     [ "age:kitten", "exists", "dead", "meeting", "clancat" ],
                     [ "age:kitten", "exists", "dead", "meeting", "clancat" ]
@@ -9040,7 +9037,7 @@
                 "text": "s_c takes the opportunity to entertain the kits - glowing gently in different colours. Eventually, {PRONOUN/s_c/subject} {VERB/s_c/ask/asks} if the kits want to see some more tricks and lead the kits away from the border to be killed and buried swiftly.",
                 "exp": 20,
                 "stat_element": [ "luminescent" ],
-                "stat_trait": [ "troublesome", "bold", "ambitious", "shameless", "sneaky", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
+                "stat_trait": [ "troublesome", "bold", "ambitious", "shameless", "vengeful", "arrogant", "cunning", "bloodthirsty" ],
                 "new_cat": [
                     [ "age:kitten", "exists", "dead", "meeting", "clancat" ],
                     [ "age:kitten", "exists", "dead", "meeting", "clancat" ]

@@ -3122,7 +3122,8 @@
                 "new_cat": [
                     [
                         "status:healer",
-                        "loner"
+                        "loner",
+                       "backstory:wandering_healer1,loner_backstories"
                     ]
                 ],
                 "relationships": [
@@ -3294,7 +3295,8 @@
                 "new_cat": [
                     [
                         "status:healer",
-                        "loner"
+                        "loner",
+                       "backstory:wandering_healer1,loner_backstories"
                     ]
                 ],
                 "relationships": [
@@ -3326,7 +3328,8 @@
                     [
                         "status:healer",
                         "age:has_kits",
-                        "loner"
+                        "loner",
+                        "backstory:wandering_healer1,loner_backstories"
                     ],
                     [
                         "litter",

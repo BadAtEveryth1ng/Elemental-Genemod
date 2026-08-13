@@ -85,7 +85,7 @@ def _resolve_event(
         )
     # collect all the names and pronouns for the other cats
     replace_dict = {
-        abbr: (str(c.name), choice(c.pronouns))
+        abbr: (str(c.name), choice(c.pronouns), c.phenotype.element)
         for abbr, c in involved_cats.items()
         if abbr != "multi_cat"
     }
