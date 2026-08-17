@@ -4516,7 +4516,8 @@
                         "status:kitten",
                         "clancat",
                         "meeting",
-                        "backstory:abandoned2"
+                        "backstory:abandoned2",
+                        "-exists"
                     ]
                 ],
                 "outsider_rep": -2
@@ -4602,7 +4603,8 @@
                         "status:kitten",
                         "clancat",
                         "meeting",
-                        "backstory:abandoned2"
+                        "backstory:abandoned2",
+                        "-exists"
                     ]
                 ],
                 "outsider_rep": -2

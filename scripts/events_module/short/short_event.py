@@ -276,7 +276,7 @@ class ShortEvent:
             if self.handle_accessories() is False:
                 return
 
-        # update gender
+        # update gender before relationships
         if self.new_gender:
             self.handle_transition()
 
@@ -406,6 +406,17 @@ class ShortEvent:
                     clan=self.random_cat.status.get_last_living_group()
                 )
             )
+        for attribute_list in self.new_cat_attributes:
+            if "change_clan" in attribute_list or "change_clan_rev" in attribute_list:
+                game.cur_events_list.append(
+                    Single_Event(
+                        self.text + " " + self.additional_event_text,
+                        self.types,
+                        self.all_involved_cat_ids,
+                        clan=other_clan.group_ID
+                    )
+                )
+
 
     def gather_future_event(self, clan):
         """
@@ -449,7 +460,7 @@ class ShortEvent:
             in_event_cats["r_c"] = self.random_cat
 
         for i, attribute_list in enumerate(self.new_cat_attributes):
-            if ("clancat" not in attribute_list and "former clancat" not in attribute_list and "change_clan" not in attribute_list) or game.clan.clancount != 'multiclan':
+            if ("clancat" not in attribute_list and "former clancat" not in attribute_list and "change_clan" not in attribute_list or "-exists" in attribute_list) or game.clan.clancount != 'multiclan':
                 self.new_cats.append(
                     create_new_cat_block(
                         Cat, Relationship, self, in_event_cats, i, attribute_list, clan=clan, other_clan=other_clan
