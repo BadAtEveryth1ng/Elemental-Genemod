@@ -2,7 +2,8 @@ from random import choice, random, randint
 from typing import Optional
 from operator import xor
 
-from scripts.cat.cats import Cat, BACKSTORIES
+from scripts.cat.cats import Cat
+from scripts.cat.constants import BACKSTORIES
 from scripts.cat.enums import (
     CatAge,
     CatRank,
@@ -22,6 +23,7 @@ from scripts.events_module.pregnancy.check_family_size import (
 from scripts.events_module.event_filters import (
     get_highest_romantic_relation,
 )
+from scripts.events_module.thoughts.generate_thoughts import get_new_thought
 from scripts.config import get_config
 
 def cat_is_amab(cat):
@@ -95,7 +97,7 @@ def check_second_parent(cat: Cat, second_parent: Cat) -> tuple[bool, bool]:
     same_sex_adoption = get_clan_setting("same sex adoption")
 
     if not second_parent:
-        if get_clan_setting("single_parentage"):
+        if get_clan_setting("single parentage"):
             return True, False, second_parent
         else:
             return False, False, second_parent
@@ -258,7 +260,7 @@ def get_second_parent(cat, clan):
                     if not p_rel.opposite_relationship:
                         p_rel.link_relationship()
                     p_rel_opp = p_rel.opposite_relationship
-                    if p_rel_opp.like > -20 and p_rel.like > -20:
+                    if p_rel_opp.like > -15 and p_rel.like > -15:
                         p_affairs.append(p_affair)
         possible_partners = p_affairs
 
@@ -375,7 +377,7 @@ def handle_surrogate(cat, other_cats, clan):
                                         gender=('fem' if cat_is_amab(cat) else 'masc') if not get_clan_setting('same sex birth') else None,
                                         outside=True,
                                         is_parent=True)[0]
-        outside_parent.get_new_thought(CatThought.OUTSIDE_SURROGATE)
+        outside_parent.assign_thought(CatThought.OUTSIDE_SURROGATE)
     return outside_parent
     
 def handle_outside_parent(cat, clan, amount=0, background_category= "1"):
@@ -392,7 +394,8 @@ def handle_outside_parent(cat, clan, amount=0, background_category= "1"):
                             and (get_clan_setting('same sex birth') or cat_is_amab(i) != cat_is_amab(cat))
                                 and len(i.mate) == 0 and not i.birth_cooldown
                                 and i.ID not in game.clan.pregnancy_data
-                                and i.status.group_ID != cat.status.group_ID]
+                                and i.status.group_ID != cat.status.group_ID
+                                and (not cat.relationships.get(i.ID) or cat.relationships.get(i.ID).total_relationship_value > -15)]
     outsider_affair_partners = [
         i for i in possible_affair_partners if not i.status.group.is_any_clan_group() and i.status.is_near()]
     other_clan_affair_partners = [
@@ -413,7 +416,7 @@ def handle_outside_parent(cat, clan, amount=0, background_category= "1"):
                                             gender=('fem' if cat_is_amab(cat) else 'masc') if not get_clan_setting('same sex birth') else None,
                                             outside=True,
                                             is_parent=True)
-        outside_parent[0].get_new_thought(CatThought.OUTSIDE_DAM if background_category == "2" else CatThought.OUTSIDE_SIRE, other_cat=cat)
+        get_new_thought(outside_parent[0], CatThought.OUTSIDE_DAM if background_category == "2" else CatThought.OUTSIDE_SIRE, other_cat=cat)
         if random() < get_config("mates.crossclan_litter_mates_chance") and get_config("mates.allow_mating"):
             outside_parent[0].set_mate(cat)
             cat.set_mate(outside_parent[0])
@@ -449,7 +452,7 @@ def handle_outside_parent(cat, clan, amount=0, background_category= "1"):
                                                     gender=('fem' if cat_is_amab(cat) else 'masc') if not get_clan_setting('same sex birth') else None,
                                                     outside=True,
                                                     is_parent=True)[0]
-                outside_parent.get_new_thought(CatThought.OUTSIDE_DAM if background_category == "2" else CatThought.OUTSIDE_SIRE, other_cat=cat)
+                get_new_thought(outside_parent, CatThought.OUTSIDE_DAM if background_category == "2" else CatThought.OUTSIDE_SIRE, other_cat=cat)
                 outside_parent.birth_cooldown = get_config("pregnancy.birth_cooldown")
                 if random() < get_config("mates.outsider_litter_mates_chance") and get_config("mates.allow_mating"):
                     outside_parent.set_mate(cat)

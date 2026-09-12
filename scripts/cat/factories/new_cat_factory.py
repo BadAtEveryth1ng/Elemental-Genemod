@@ -1,12 +1,12 @@
-import abc
 import random
 from operator import xor
-from typing import Tuple, Literal
+from typing import Tuple
 
 from abc import ABC, abstractmethod
 from scripts.cat.phenotype import Phenotype
 from scripts.cat import save_load
-from scripts.cat.cats import Cat, BACKSTORIES
+from scripts.cat.cats import Cat
+from scripts.cat.constants import BACKSTORIES
 from scripts.cat.enums import CatAge, CatRank, CatSocial
 from scripts.cat.factories.base_factory import BaseCatFactory
 from scripts.cat.factories.typed_dicts import (
@@ -22,7 +22,6 @@ from scripts.cat.skills import CatSkills
 from scripts.cat.status import Status
 from scripts.game_structure import game
 from scripts.config import get_config
-from scripts.clan_package.settings import get_clan_setting
 from scripts.game_structure.game.settings import game_setting_get
 
 BASE_RNG = random.Random
@@ -44,6 +43,8 @@ class NewCatFactory(BaseCatFactory, ABC):
         status_dict = overrides.get("status_dict", {})
         if "rank" in overrides:
             status_dict["rank"] = overrides.get("rank")
+        if "group_ID" in overrides:
+            status_dict["group_ID"] = overrides.get("group_ID")
 
         # the worst combined dependency ever
         age, moons, status = cls._determine_age_moons_and_status(
@@ -255,6 +256,8 @@ class NewCatFactory(BaseCatFactory, ABC):
                 age = cls._get_random_age()
             status = Status(**status_dict)
             moons = cls._get_random_moons(age)
+            if moons > 200:
+                moons = 200
         else:
             status = None
 
@@ -271,10 +274,12 @@ class NewCatFactory(BaseCatFactory, ABC):
 
         trans_chance = cls.rng.randint(0, 50)
         nb_chance = cls.rng.randint(0, 75)
+        agender_chance = cls.rng.randint(0, 100)
 
         if age.is_baby():
             trans_chance = 0
             nb_chance = 0
+            agender_chance = 0
 
         # GENDER IDENTITY
         gender["genderalign"] = ""
@@ -285,6 +290,8 @@ class NewCatFactory(BaseCatFactory, ABC):
             gender["genderalign"] = 'intersex '
         if nb_chance == 1:
             gender["genderalign"] += "sam"
+        elif agender_chance == 1:
+            gender["genderalign"] += "agender"
         elif (gender["sex"] == "molly" or (gender["sex"] == 'intersex' and 'Y' not in phenotype.sexgene)):
             if trans_chance == 1:
                 gender["genderalign"] += "trans tom"

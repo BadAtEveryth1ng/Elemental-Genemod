@@ -1,11 +1,11 @@
 from random import Random
 from typing import Dict, Tuple, Optional, Union, List
-from operator import xor
 
 import ujson
 
 from scripts.cat.phenotype import Phenotype
-from scripts.cat.cats import Cat, BACKSTORIES
+from scripts.cat.cats import Cat
+from scripts.cat.constants import BACKSTORIES
 from scripts.cat.enums import CatAge, CatGroup, CatSocial
 from scripts.cat.factories.base_factory import BaseCatFactory
 from scripts.cat.factories.typed_dicts import (
@@ -22,7 +22,6 @@ from scripts.cat.personality import Personality
 from scripts.cat.skills import CatSkills
 from scripts.cat.status import Status
 from scripts.config import get_config
-from scripts.clan_package.settings import get_clan_setting
 from scripts.game_structure.game.settings import game_setting_get
 
 

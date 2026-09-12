@@ -7,7 +7,6 @@ from scripts.ui.elements.dropdown_container import UIDropDownContainer
 from scripts.ui.elements.scrolling_button_list import UIScrollingButtonList
 from scripts.ui.elements.surface_image_button import UISurfaceImageButton
 from scripts.ui.generate_button import ButtonStyles, get_button_dict
-from scripts.ui.scale import ui_scale
 
 
 class UIScrollingDropDown(UIDropDownContainer):
@@ -96,6 +95,7 @@ class UIScrollingDropDown(UIDropDownContainer):
             disable_selection=disable_selection,
             starting_selection=starting_selection,
         )
+        self.item_list = item_list
         self.child_buttons = self.child_button_container.buttons.values()
         self.child_button_dicts = self.child_button_container.buttons
 
@@ -113,6 +113,7 @@ class UIScrollingDropDown(UIDropDownContainer):
 
     def set_selected_list(self, new_list):
         self.child_button_container.set_selected_list(new_list)
+        self.selected_list = self.child_button_container.selected_list
 
     def new_item_list(self, item_list):
         """

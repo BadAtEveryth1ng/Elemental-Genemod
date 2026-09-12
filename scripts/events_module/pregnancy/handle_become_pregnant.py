@@ -1,17 +1,19 @@
 from random import randint, choice, choices, random
 from typing import Optional, List
+from copy import copy
 
 import i18n
 
 from scripts.config import get_config
 from scripts.cat.cats import Cat
 from scripts.clan_package.settings import get_clan_setting
-from scripts.event_class import Single_Event
+from scripts.cat.microservices.conditions import get_injured
+from scripts.events_module.event_information import EventInformation
 from scripts.events_module.pregnancy.build_strings import (
     get_pregnancy_strings,
 )
 from scripts.events_module.pregnancy.create_kits import get_amount_of_kits, get_stillborn_chance, get_kits
-from scripts.events_module.pregnancy.check_parents import cat_is_amab, handle_surrogate, handle_outside_parent, no_kits_allowed
+from scripts.events_module.pregnancy.check_parents import cat_is_amab, handle_outside_parent, no_kits_allowed
 from scripts.events_module.text_adjust import event_text_adjust
 from scripts.game_structure import game
 
@@ -38,8 +40,7 @@ def handle_zero_moon_pregnant(cat: Cat, other_cat=None, surrogate=False, clan=ga
                 return
 
     hidden = get_config("pregnancy.hidden_pregnancy_chance") and not (random() * (get_config("pregnancy.hidden_pregnancy_chance")-1))
-    birth_cooldown = get_config("pregnancy.birth_cooldown")
-
+    
     if get_clan_setting("same sex birth") and not (not other_cat and randint(0, 1)):
         # same sex birth enables all cats to get pregnant,
         # therefore the main cat will be used, regarding of gender
@@ -52,26 +53,32 @@ def handle_zero_moon_pregnant(cat: Cat, other_cat=None, surrogate=False, clan=ga
         # if the other cat is afab and the current cat is amab, make the afab cat pregnant
         pregnant_cat = cat
         second_parent = other_cat
+        second_parent_copy = copy(second_parent)
+        if second_parent:
+            for x in second_parent_copy:
+                if cat_is_amab(pregnant_cat) and not cat_is_amab(x):
+                    second_parent.append(pregnant_cat)
+                    second_parent.remove(x)
+                    pregnant_cat = x
+                    break
+
         _handle_pregnancy_notice(pregnant_cat, second_parent, surrogate, hidden, clan)
 
 
 def _handle_pregnancy_notice(cat, other_cat, surrogate, hidden, clan):
-    allow_affair = get_clan_setting("affair")
-    allow_coparenting = get_clan_setting("unmated parentage")
-
     ids = []
     affair_partner = []
     surrogates = []
+    other_cat_has_mate = []
     if other_cat:
         if surrogate:
             surrogates.append(other_cat[0].ID)
         for x in other_cat:
-            if cat.mate and x.ID not in cat.mate:
+            if cat.mate and x.ID not in cat.mate and x.ID not in surrogates:
                 affair_partner.append(x.ID)
-            else:
-                ids.append(x.ID)
-    if surrogate:
-        affair_partner = []
+            if x.mate and x.ID not in surrogates and cat.ID not in x.mate:
+                other_cat_has_mate.append(x.ID)
+            ids.append(x.ID)
 
     mate = []
     afab_mate = []
@@ -95,7 +102,7 @@ def _handle_pregnancy_notice(cat, other_cat, surrogate, hidden, clan):
     if cat.status.group_ID != clan.group_ID:
         clan = cat.status.fetch_clan_object(game.clan)
 
-    _create_pregnancy_data(cat, ids, affair_partner, surrogates, hidden)
+    _create_pregnancy_data(cat, ids, affair_partner, surrogates, hidden, other_cat_has_mate)
 
     if not hidden:
         # if both cats are faithful to each other and aren't cheaters,
@@ -129,25 +136,25 @@ def _handle_pregnancy_notice(cat, other_cat, surrogate, hidden, clan):
         # sometimes they won't...
         elif (
             affair_partner
-            and amab_mate
+            and (amab_mate or mate)
         ):
             announcement_key = choice(["announcement_affair", "announcement"])
             _set_affair_visibility(cat, announcement_key == "announcement_affair")
-            random_cat = choice(amab_mate) if amab_mate else None
+            random_cat = choice(amab_mate) if amab_mate else choice(mate)
             text, involved_cats = _create_pregnancy_announcement(cat, announcement_key, clan, random_cat=random_cat)
         # if all else fails, just a regular announcement happens
         else:
             text, involved_cats = _create_pregnancy_announcement(cat, "announcement", clan, random_cat=choice(other_cat))
         game.cur_events_list.append(
-            Single_Event(
-                text, "birth_death", involved_cats, clan=clan.group_ID
+            EventInformation(
+                text, ["birth_death"], involved_cats, clan=clan.group_ID
             )
         )
     else:
-        cat.get_injured("pregnant", severity="minor")
+        get_injured(cat, "pregnant", severity="minor")
 
 
-def _create_pregnancy_data(pregnant_cat: Cat, second_parent: Optional[Cat], affair_partner: Optional[list[Cat]], surrogate: Optional[list[Cat]], hidden=False):
+def _create_pregnancy_data(pregnant_cat: Cat, second_parent: Optional[Cat], affair_partner: Optional[list[Cat]], surrogate: Optional[list[Cat]], hidden=False, other_cat_has_mate=None):
     """Creates the pregnancy data entry for a new pregnancy."""
     fever = False
     if len(pregnant_cat.illnesses) > 0:
@@ -160,6 +167,7 @@ def _create_pregnancy_data(pregnant_cat: Cat, second_parent: Optional[Cat], affa
     game.clan.pregnancy_data[pregnant_cat.ID] = {
         "second_parent": second_parent if second_parent else None,
         "affair_partner": affair_partner if affair_partner else None,
+        "other_cat_affair": other_cat_has_mate if other_cat_has_mate else None,
         "surrogate": surrogate if surrogate else None,
         "moons": 0,
         "amount": 0,
@@ -188,7 +196,7 @@ def _retrieve_secret_kittens(cat, other_cat, surrogate, clan):
         text, involved_cats = _create_pregnancy_announcement(
             pregnant_cat, "announcement_surrogate", clan, random_cat=cat
         )
-        game.cur_events_list.append(Single_Event(text, "birth_death", cats_involved=involved_cats, clan=clan.group_ID))
+        game.cur_events_list.append(EventInformation(text, ["birth_death"], cats_involved=involved_cats, clan=clan.group_ID))
         
         ids = [cat.ID]
         if get_clan_setting('multisire'):
@@ -224,7 +232,7 @@ def _retrieve_secret_kittens(cat, other_cat, surrogate, clan):
         if surrogate:
             cats_involved.append(pregnant_cat.ID)
             
-            pregnant_cat.get_injured("recovering from birth", event_triggered=True)
+            get_injured(pregnant_cat, "recovering from birth", event_triggered=True)
             pregnant_cat.injuries["recovering from birth"]["risks"] = []
             print_event = i18n.t(
                 "conditions.pregnancy.outside_surrogate_dam",
@@ -245,16 +253,16 @@ def _retrieve_secret_kittens(cat, other_cat, surrogate, clan):
                     if par:
                         cats_involved.append(par.ID)
                         par.birth_cooldown = birth_cooldown
-                        par.get_injured("recovering from birth", event_triggered=True)
+                        get_injured(par, "recovering from birth", event_triggered=True)
                         par.injuries["recovering from birth"]["risks"] = []
                         if par.status.group_ID != cat.status.group_ID and not par.status.is_outsider:
                             events = get_pregnancy_strings()
                             secondary_event = choice(events["birth"]["otherclan_mother"])
                             secondary_event = event_text_adjust(Cat, secondary_event, main_cat=par)
-                            game.cur_events_list.append(Single_Event(secondary_event, "birth_death", cats_involved=cats_involved, clan=par.status.group_ID))
+                            game.cur_events_list.append(EventInformation(secondary_event, ["birth_death"], cats_involved=cats_involved, clan=par.status.group_ID))
         for kit in kits:
             cats_involved.append(kit.ID)
-        game.cur_events_list.append(Single_Event(print_event, "birth_death", cats_involved=cats_involved, clan=clan.group_ID))
+        game.cur_events_list.append(EventInformation(print_event, ["birth_death"], cats_involved=cats_involved, clan=clan.group_ID))
 
 
 def _create_pregnancy_announcement(
@@ -269,7 +277,7 @@ def _create_pregnancy_announcement(
     text = choice(get_pregnancy_strings()[announcement_key])
     event_text = text
     severity = choices(["minor", "major"], [3, 1], k=1)[0] if not force_minor else "minor"
-    pregnant_cat.get_injured("pregnant", severity=severity)
+    get_injured(pregnant_cat, "pregnant", severity=severity)
     text += choice(get_pregnancy_strings()[f"{severity}_severity"])
     text = event_text_adjust(
         Cat,

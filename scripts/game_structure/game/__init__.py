@@ -3,13 +3,12 @@ from typing import Optional, TYPE_CHECKING, Any
 import pygame
 import ujson
 
-from scripts.event_class import Single_Event
+from scripts.events_module.event_information import EventInformation
 from scripts.housekeeping.datadir import get_save_dir
 
-from scripts.game_structure import constants
 from scripts.game_structure.screen_settings import toggle_fullscreen
 
-from . import save_load, settings, switches
+from . import save_load, settings, switches  # noqa: F401
 
 from .save_load import safe_save
 from .settings import game_setting_get
@@ -196,7 +195,7 @@ def load_events():
         with open(events_path, "r", encoding="utf-8") as f:
             events_list = ujson.loads(f.read())
         for event_dict in events_list:
-            event_obj = Single_Event.from_dict(event_dict, cat_class)
+            event_obj = EventInformation.from_dict(event_dict, cat_class)
             if event_obj:
                 if event_obj.clan and (event_obj.clan == CatGroup.PLAYER_CLAN.value or event_obj.clan == clan.prefix):
                     event_obj.clan = CatGroup.PLAYER_CLAN_ID

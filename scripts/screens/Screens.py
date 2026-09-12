@@ -58,7 +58,7 @@ class Screens:
         It will handle keeping track of the last screen and cur screen.
         Last screen must be tracked to ensure a clear transition between screens."""
 
-        if new_screen not in [GameScreen.CAMP, GameScreen.MEDIATION, GameScreen.PROFILE] and game.clan and game.clan.clancount == "multiclan":
+        if new_screen not in [GameScreen.CAMP, GameScreen.MEDIATION, GameScreen.MED_DEN, GameScreen.PROFILE] and game.clan and game.clan.clancount == "multiclan":
             game.selected_clan = game.clan
             if Screens.menu_buttons.get("supplies"):
                 for b in Screens.menu_buttons["supplies"].child_buttons:
@@ -293,7 +293,6 @@ class Screens:
         """Runs when screen exits"""
         # reset matrix map so that it can be recreated cleanly later
         self.matrix_map.clear()
-        pass
 
     def add_to_map(self, element_list: list[UIElement]):
         """

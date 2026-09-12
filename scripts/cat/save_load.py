@@ -1,6 +1,6 @@
 import os
 from pathlib import Path
-from typing import TYPE_CHECKING, Type, List
+from typing import TYPE_CHECKING, Type
 
 import ujson
 
@@ -10,7 +10,6 @@ from scripts.housekeeping.datadir import get_save_dir
 
 if TYPE_CHECKING:
     from scripts.cat.cats import Cat
-    from scripts.game_structure import game
 
 faded_ids = []
 """List of IDs of faded cats"""
@@ -170,6 +169,8 @@ def get_faded_ids():
 
 def load_faded_cat_ids(clanname):
     global faded_ids
+    global cat_to_fade
+    cat_to_fade = []
     fade_cat_dir = Path(get_save_dir()) / clanname / "faded_cats"
     if not fade_cat_dir.exists():
         faded_ids = []

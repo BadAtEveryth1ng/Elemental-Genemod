@@ -6,16 +6,17 @@ from copy import deepcopy, copy
 import i18n
 
 from scripts.cat.cats import Cat
-from scripts.cat.enums import CatAge, CatRank, CatSocial, CatGroup, CatThought, CatCompatibility
+from scripts.cat.enums import CatRank, CatSocial, CatThought, CatCompatibility
 from scripts.cat.factories.new_cat_factory import NewCatFactory
-from scripts.cat.factories.typed_dicts import StatusDict
+from scripts.cat.microservices.add_to_clan import add_to_clan
 from scripts.cat.names import Name
 from scripts.cat_relations.enums import RelType
 from scripts.cat_relations.inheritance2 import inheritance_db
-from scripts.cat_relations.relationship import Relationship
+from scripts.cat_relations.relationship import Relationship, create_one_relationship
 from scripts.clan_package.settings import get_clan_setting
+from scripts.cat.microservices.conditions import add_congenital_condition
 from scripts.config import get_config
-from scripts.event_class import Single_Event
+from scripts.events_module.event_information import EventInformation
 from scripts.events_module.consequences import (
     create_new_cat,
     change_relationship_values,
@@ -39,6 +40,7 @@ def get_kits(
     other_cat=None, 
     clan=game.clan, 
     adoptive_parents=None, 
+    affair_parents=None,
     backkit=None, 
     surrogate=None):
     """Create some amount of kits
@@ -82,13 +84,14 @@ def get_kits(
     all_pars = [cat]
     if other_cat:
         all_pars += other_cat
-    birth_parents = [i.ID for i in all_pars if i and (
+    birth_parents = [i for i in all_pars if i and (
         not surrogate or i not in surrogate)]
-    for _par in all_pars:
-        if not _par or _par.ID not in cat.mate:
+    for _par in birth_parents:
+        if affair_parents and _par in affair_parents:
             continue
         for _m in _par.mate:
-            if _m not in birth_parents and _m not in all_adoptive_parents:
+            _mcat = Cat.fetch_cat(_m)
+            if _mcat not in birth_parents and _m not in all_adoptive_parents and not _mcat.dead:
                 all_adoptive_parents.append(_m)
 
     # Then, add any additional adoptive parents that were provided passed directly into the
@@ -261,7 +264,7 @@ def get_kits(
                 kits_amount += 1
                 identical = True
 
-        kit.get_new_thought()
+        kit.assign_thought()
 
         # make lost status match parent
         if cat and cat.status.is_lost():
@@ -288,7 +291,7 @@ def get_kits(
         if game.clan and not int(
             random() * get_config("cat_generation.base_permanent_condition")
         ):
-            kit.congenital_condition(kit)
+            add_congenital_condition(kit)
             for condition in kit.permanent_condition:
                 if kit.permanent_condition[condition] == "born without a leg":
                     kit.pelt.scars = (*cat.pelt.scars, "NOPAW")
@@ -381,14 +384,14 @@ def get_kits(
             final_adoptive_parents.append(adoptive_p)
         if Cat.fetch_cat(adoptive_p).status.group_ID != all_kitten[0].status.group_ID:
             continue
-        Cat.fetch_cat(adoptive_p).get_new_thought(CatThought.ON_BIRTH)
+        Cat.fetch_cat(adoptive_p).assign_thought(CatThought.ON_BIRTH)
     if not adoptive_parents:
-        cat.get_new_thought(CatThought.ON_BIRTH)
+        cat.assign_thought(CatThought.ON_BIRTH)
         if other_cat:
             for x in other_cat:
                 if x.status.group_ID != all_kitten[0].status.group_ID:
                     continue
-                x.get_new_thought(CatThought.ON_BIRTH)
+                x.assign_thought(CatThought.ON_BIRTH)
 
     # Add the adoptive parents.
     for kit in all_kitten:
@@ -576,17 +579,17 @@ def handle_adoption(cat: Cat, other_cat: Optional[Cat] = None, clan=game.clan):
     )
     
     cats_involved = [cat.ID]
-    cat.get_new_thought(CatThought.ON_BIRTH)
+    cat.assign_thought(CatThought.ON_BIRTH)
     if other_cat:
         for x in other_cat:
             if x.status.group_ID != kits[0].status.group_ID:
                 continue
             cats_involved.append(x.ID)
-            x.get_new_thought(CatThought.ON_BIRTH)
+            x.assign_thought(CatThought.ON_BIRTH)
     for kit in kits:
-        kit.get_new_thought(CatThought.ON_JOIN)
+        kit.assign_thought(CatThought.ON_JOIN)
         cats_involved.append(kit.ID)
-        kit.add_to_clan(clan.group_ID)
+        add_to_clan(kit, clan.group_ID)
 
     # Normally, birth cooldown is only applied to cat who gave birth. However, if we don't apply birth cooldown to
     # adoption, we get too much adoption, since adoptive couples are using the increased two-parent kits chance.
@@ -595,7 +598,7 @@ def handle_adoption(cat: Cat, other_cat: Optional[Cat] = None, clan=game.clan):
     cat.birth_cooldown = get_config("pregnancy.birth_cooldown")
 
     game.cur_events_list.append(
-        Single_Event(print_event, "birth_death", cats_involved=cats_involved, clan=clan.group_ID)
+        EventInformation(print_event, ["birth_death"], cats_involved=cats_involved, clan=clan.group_ID)
     )
 
 
@@ -680,7 +683,7 @@ def get_balanced_kit_chance(first_parent: Cat, second_parent: Cat, is_affair, cl
 
     # SETTINGS
     # - decrease inverse chance if only mated pairs can have kits
-    if not get_clan_setting("single parentage") or not get_clan_setting(
+    if not get_clan_setting("single parentage") and not get_clan_setting(
         "unmated parentage"
     ):
         inverse_chance = int(inverse_chance * 0.7)
@@ -714,7 +717,6 @@ def get_balanced_kit_chance(first_parent: Cat, second_parent: Cat, is_affair, cl
     # COMPATIBILITY
     # - decrease / increase depending on the compatibility
     comp = None
-    inv = inverse_chance
     if second_parent:
         for x in second_parent:
             if x == "Surrogate":
@@ -742,7 +744,7 @@ def get_balanced_kit_chance(first_parent: Cat, second_parent: Cat, is_affair, cl
             if x.ID in first_parent.relationships:
                 second_parent_relation = first_parent.relationships[x.ID]
             else:
-                second_parent_relation = first_parent.create_one_relationship(x)
+                second_parent_relation = create_one_relationship(first_parent, x)
             if not second_parent_relation.opposite_relationship:
                 second_parent_relation.link_relationship()
 

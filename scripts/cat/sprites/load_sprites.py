@@ -205,7 +205,8 @@ class Sprites:
 
                 except ValueError:
                     # Fallback for non-existent sprites
-                    print(f"WARNING: nonexistent sprite - {full_name}")
+                    if "CRYPTIC" not in full_name:
+                        print(f"WARNING: nonexistent sprite - {full_name}")
                     if not self.blank_sprite:
                         self.blank_sprite = pygame.Surface(
                             (self.size, self.size), pygame.HWSURFACE | pygame.SRCALPHA
@@ -560,13 +561,13 @@ class Sprites:
                     )
 
                     for patch in patches:
-                        addition = self.sprites[f"{patch}{i}"]
+                        addition = self.sprites[f"{patch}{i}".removeprefix("little").removeprefix("mid").removeprefix("high").removeprefix("mostly")]
                         new_patch.blit(
                             addition,
                             (0, 0),
                         )
 
-                    self.sprites[f"{white_category}{name}{i}"] = new_patch
+                    self.sprites[f"{name}{i}"] = new_patch
                     i += 1
 
     def load_sheet(self, spritesheet: str, sprite_names: list[list[str]]):

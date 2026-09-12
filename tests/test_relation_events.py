@@ -8,6 +8,8 @@ from scripts.clan_package.settings import (
     load_clan_settings,
     set_clan_setting,
 )
+from scripts.cat.microservices.conditions import get_injured
+from scripts.game_structure import game
 
 os.environ["SDL_VIDEODRIVER"] = "dummy"
 os.environ["SDL_AUDIODRIVER"] = "dummy"
@@ -107,7 +109,7 @@ class CanHaveKits(unittest.TestCase):
         test_clan = Clan(save_id="clan")
         test_clan.pregnancy_data = {}
         cat = cat_factory.create_cat(gender="female", moons=50)
-        cat.get_injured("broken bone")
+        get_injured(cat, "broken bone")
 
         self.assertFalse(pregnancy_events.handle_having_kits(cat, test_clan))
 
@@ -157,11 +159,12 @@ class SameSexAdoptions(unittest.TestCase):
         cat1.mate.append(cat2.ID)
         cat2.mate.append(cat1.ID)
         set_clan_setting("same sex adoption", True)
+        set_clan_setting("surrogates", False)
         # when
         self.assertTrue(pregnancy_events.check_if_can_have_kits(cat1))
         self.assertTrue(pregnancy_events.check_if_can_have_kits(cat2))
 
-        can_have_kits, kits_are_adopted = pregnancy_events.check_second_parent(
+        can_have_kits, kits_are_adopted, second_parent = pregnancy_events.check_second_parent(
             cat=cat1, second_parent=[cat2]
         )
         self.assertTrue(can_have_kits)

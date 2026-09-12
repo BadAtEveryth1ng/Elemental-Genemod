@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from random import choice, choices, getrandbits, randint
+from random import choice
 from re import sub
 from typing import Optional
 from uuid import uuid4
@@ -9,13 +9,9 @@ import pygame_gui
 
 from scripts.cat import save_load
 from scripts.cat.cats import Cat
-from scripts.cat.enums import CatAge, CatRank, CatSocial, CatGroup
-from scripts.cat.names import names
-from scripts.cat.status import Status
 from scripts.clan import Clan
 from scripts.clan_package.settings import load_clan_settings
 from scripts.clan_package.clan_names import get_possible_clan_names
-from scripts.clan_package.settings import set_clan_setting, save_clan_settings
 from scripts.config import get_config
 from scripts.events_module.patrol.patrol import Patrol
 from scripts.game_structure import game
@@ -255,7 +251,8 @@ class MakeClanScreenBase(Screens):
         game.just_died.clear()
         game.dead_cats_to_grieve.clear()
         save_load.faded_ids.clear()
-        Patrol.used_patrols.clear()
+        Patrol.used_patrols["normal"].clear()
+        Patrol.used_patrols["romance"].clear()
 
         # extra sanitization for filenames
         save_id = sub(r"[/\\?%*:|\"<>\x7F\x00-\x1F]", "-", self.clan_info.display_name)

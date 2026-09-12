@@ -9,7 +9,6 @@ from scripts.cat.enums import CatRank
 from scripts.cat.skills import SkillPath
 from scripts.clan_resources.freshkill import (
     FRESHKILL_EVENT_ACTIVE,
-    FRESHKILL_EVENT_TRIGGER_FACTOR,
 )
 from scripts.events_module.event_filters import (
     event_for_location,
@@ -18,6 +17,7 @@ from scripts.events_module.event_filters import (
     event_for_cat,
     event_for_reputation,
     event_for_clan_relations,
+    event_for_temperament,
     event_for_freshkill_supply,
     event_for_herb_supply,
     event_for_season,
@@ -32,7 +32,6 @@ from scripts.events_module.short.short_event import ShortEvent
 from scripts.config import get_config
 from scripts.game_structure import constants, game
 from scripts.game_structure.game.switches import switch_get_value, Switch
-from scripts.clan_package.cotc import get_warring_clan
 from scripts.clan_package.get_clan_cats import (
     get_living_clan_cat_count,
     find_alive_cats_with_rank,
@@ -478,7 +477,7 @@ def filter_events(
 
         # check if outsider event is allowed
         if event.outsider:
-            if not event_for_reputation(event.outsider["current_rep"]):
+            if not event_for_reputation(event.outsider["current_rep"], clan):
                 continue
 
         # other Clan related checks
@@ -493,6 +492,11 @@ def filter_events(
 
             if game.clan.clancount == 'multiclan' and not event_for_other_clan(
                 Cat, event.other_clan.get("has_rank"), other_clan.group_ID
+            ):
+                continue
+
+            if not event_for_temperament(
+                event.other_clan["temperament"], other_clan.temperament
             ):
                 continue
 
@@ -542,10 +546,7 @@ def filter_events(
                         continue
 
                     if not event_for_freshkill_supply(
-                        game.clan.freshkill_pile,
-                        trigger,
-                        FRESHKILL_EVENT_TRIGGER_FACTOR,
-                        clan_size,
+                        game.clan.freshkill_pile, trigger, clan_size
                     ):
                         discard = True
                         break
@@ -553,7 +554,7 @@ def filter_events(
                         discard = False
 
                 else:  # if supply type wasn't freshkill, then it must be an herb type
-                    if not event_for_herb_supply(trigger, supply_type, clan_size):
+                    if not event_for_herb_supply(trigger, supply_type):
                         discard = True
                         break
                     else:
@@ -645,7 +646,7 @@ def filter_events(
             ).copy(),
             injuries=r_c_injuries,
             return_id=False,
-            tags=chosen_event.tags,
+            tags=chosen_event.tags, clan=clan,
         )
 
         if not chosen_cat:

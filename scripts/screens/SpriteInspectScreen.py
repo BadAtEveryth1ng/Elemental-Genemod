@@ -342,7 +342,7 @@ class SpriteInspectScreen(Screens):
         cat_name = str(self.the_cat.name)  # name
         if self.the_cat.dead:
             cat_name = i18n.t("general.dead_label", name=cat_name)
-        short_name = shorten_text_to_fit(cat_name, 195, 20)
+        # short_name = shorten_text_to_fit(cat_name, 195, 20)
 
         self.cat_elements["cat_name"] = pygame_gui.elements.UITextBox(
             cat_name,
@@ -433,7 +433,7 @@ class SpriteInspectScreen(Screens):
             manager=MANAGER,
             check=self.hide_white,
         )
-        if (self.the_cat.phenotype.white_pattern != "No" or self.the_cat.phenotype.white[0] != "w") and (not self.the_cat.chimerapheno or self.the_cat.chimerapheno.white_pattern != "No" or self.the_cat.chimerapheno.white[0] != "w"):
+        if (self.the_cat.phenotype.white_pattern == "No" and self.the_cat.phenotype.white[0] == "w") and (not self.the_cat.chimerapheno or self.the_cat.chimerapheno.white_pattern == "No" and self.the_cat.chimerapheno.white[0] == "w"):
             self.checkboxes["hide_white"].disable()
 
     def make_cat_image(self):

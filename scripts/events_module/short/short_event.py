@@ -2,25 +2,20 @@ from random import choice, randrange, random, randint, choices, sample
 from typing import List, Optional, Dict
 
 import i18n
-import re
 
-from scripts.cat import pronouns
-from scripts.cat.cats import Cat, ILLNESSES, INJURIES, PERMANENT, ELEMENT_BLOCK
-from scripts.cat.enums import CatGroup
+from scripts.cat.cats import Cat
+from scripts.cat.constants import ILLNESSES, INJURIES, PERMANENT, ELEMENT_BLOCK
+from scripts.cat.microservices.conditions import get_injured, get_ill, get_permanent_condition
+from scripts.cat.enums import CatAge, CatRank, CatGroup, CatSocial
 from scripts.cat.pelts import Pelt
+from scripts.cat.personality import Personality
+from scripts.cat.skills import SkillPath
 from scripts.cat_relations.relationship import Relationship
+from scripts.clan_package.cotc import change_clan_reputation, change_clan_relations
+from scripts.clan_package.get_clan_cats import find_alive_cats_with_rank
 from scripts.clan_package.settings import get_clan_setting
 from scripts.config import get_config
-from scripts.event_class import Single_Event
-from scripts.events_module.future.prep_and_trigger import prep_future_event
-from scripts.events_module.relationship import relation_events
-from scripts.game_structure import localization, game
-from scripts.events_module.text_adjust import (
-    event_text_adjust,
-    get_leader_life_notice,
-    adjust_list_text,
-    history_text_adjust,
-)
+from scripts.events_module.event_information import EventInformation
 from scripts.events_module.consequences import (
     create_new_cat_block,
     unpack_rel_block,
@@ -28,14 +23,17 @@ from scripts.events_module.consequences import (
     find_clan_cats,
     check_stolen_vitality,
 )
-from scripts.clan_package.cotc import change_clan_reputation, change_clan_relations
-from scripts.clan_package.get_clan_cats import find_alive_cats_with_rank
 
-from scripts.cat.enums import CatAge, CatRank, CatSocial, CatStanding
-from scripts.cat.personality import Personality
-from scripts.cat.skills import SkillPath
-from scripts.config import get_config
+from scripts.events_module.future.prep_and_trigger import prep_future_event
+from scripts.events_module.relationship import relation_events
+from scripts.events_module.text_adjust import (
+    event_text_adjust,
+    get_leader_life_notice,
+    adjust_list_text,
+    history_text_adjust,
+)
 from scripts.game_structure import constants
+from scripts.game_structure import game
 
 
 class ShortEvent:
@@ -203,6 +201,8 @@ class ShortEvent:
                 self.weight -= int(self.weight * abs(get_config("event_generation.clan_rel_change_multiplier")))
             if self.other_clan["changed"] < 0 and get_config("event_generation.clan_rel_change_multiplier") > 0:
                 self.weight -= int(self.weight * abs(get_config("event_generation.clan_rel_change_multiplier")))
+            if "temperament" not in self.other_clan:
+                self.other_clan["temperament"] = []
         self.supplies = supplies if supplies else []
         self.new_gender = new_gender
         self.future_event = future_event if future_event else {}
@@ -275,10 +275,6 @@ class ShortEvent:
         if self.new_accessory:
             if self.handle_accessories() is False:
                 return
-
-        # update gender before relationships
-        if self.new_gender:
-            self.handle_transition()
 
         # change relationships before killing anyone
         if self.relationships:
@@ -390,7 +386,7 @@ class ShortEvent:
 
         if "m_c" not in self.exclude_involved or not second_clan:
             game.cur_events_list.append(
-                Single_Event(
+                EventInformation(
                     self.text + " " + self.additional_event_text,
                     self.types,
                     self.all_involved_cat_ids,
@@ -399,7 +395,7 @@ class ShortEvent:
             )
         if second_clan and "r_c" not in self.exclude_involved:
             game.cur_events_list.append(
-                Single_Event(
+                EventInformation(
                     self.text + " " + self.additional_event_text,
                     self.types,
                     self.all_involved_cat_ids,
@@ -409,7 +405,7 @@ class ShortEvent:
         for attribute_list in self.new_cat_attributes:
             if "change_clan" in attribute_list or "change_clan_rev" in attribute_list:
                 game.cur_events_list.append(
-                    Single_Event(
+                    EventInformation(
                         self.text + " " + self.additional_event_text,
                         self.types,
                         self.all_involved_cat_ids,
@@ -522,7 +518,7 @@ class ShortEvent:
                         and possible_parent [0].ID in (possible_kittens[0].parent1, possible_kittens[0].parent2)
                         and possible_parent[0].status.group_ID == clan.group_ID
                     ):
-                        possible_parent[0].get_injured("recovering from birth")
+                        get_injured(possible_parent[0], "recovering from birth")
                         break  # Break - only one parent ever gives birth
 
     def handle_accessories(self):
@@ -587,24 +583,6 @@ class ShortEvent:
             self.main_cat.pelt.accessory = ([choice(acc_list)])
             return None
 
-    def handle_transition(self):
-        """
-        handles updating gender_align and pronouns
-        """
-        possible_genders = getattr(self, "new_gender", [])
-
-        if possible_genders:
-            new_gender = choice(possible_genders)
-            self.main_cat.genderalign = "intersex " if (self.main_cat.gender == 'intersex' or 
-            (self.main_cat.gender == "molly" and 'Y' in self.main_cat.phenotype.sexgene) or 
-            (self.main_cat.gender == "tom" and 'Y' not in self.main_cat.phenotype.sexgene) or
-            (len(self.main_cat.phenotype.sexgene) != 2)) else "" 
-            self.main_cat.genderalign += new_gender.replace("female", "molly").replace("male", "tom").replace("nonbinary", "sam")
-
-            self.main_cat.pronouns = pronouns.get_new_pronouns(
-                self.main_cat.genderalign
-            )
-
     def handle_death(self, clan):
         """
         handles killing/murdering cats
@@ -624,7 +602,6 @@ class ShortEvent:
             body = False
         else:
             body = True
-        pass
 
         if self.m_c.get("dies") and self.main_cat not in dead_list:
             dead_list.append(self.main_cat)
@@ -722,12 +699,12 @@ class ShortEvent:
                         if kitty.moons > 3:
                             kitty.pelt.scars = (*kitty.pelt.scars, "TNR")
                             kitty.pelt.rebuild_sprite = True
-                            kitty.get_permanent_condition("sterile", False)
+                            get_permanent_condition(kitty, "sterile", False)
                             if 'pregnant' in kitty.injuries:
                                 kitty.permanent_condition['sterile']['moon_start'] += 3
                         else:
                             kitty.leave_clan(CatSocial.KITTYPET)
-                            kitty.get_permanent_condition("sterile", False, event_triggered=True, custom_reveal=randint(4, 6))
+                            get_permanent_condition(kitty, "sterile", False, event_triggered=True, custom_reveal=randint(4, 6))
                     elif tnr:
                         taken_cats.append(kitty)
                         continue
@@ -919,11 +896,11 @@ class ShortEvent:
             give_injury = choice(possible_injuries)
 
         if give_injury in INJURIES:
-            cat.get_injured(give_injury, potential_scars=potential_scars)
+            get_injured(cat, give_injury, potential_scars=potential_scars)
         elif give_injury in ILLNESSES:
-            cat.get_ill(give_injury)
+            get_ill(cat, give_injury)
         elif give_injury in PERMANENT:
-            cat.get_permanent_condition(give_injury)
+            get_permanent_condition(cat, give_injury)
         else:
             print("WARNING: No Conditions to Give")
             return False
@@ -1036,7 +1013,7 @@ class ShortEvent:
                 elif adjustment == "reduce_eighth":
                     herb_supply.remove_herb(herb, count / 8)
                 elif "increase" in adjustment:
-                    herb_supply.add_herb(herb, adjustment.split("_")[1])
+                    herb_supply.add_herb(herb, int(adjustment.split("_")[1]))
 
         # if we weren't adjusted the whole herb store, then adjust an individual
         else:

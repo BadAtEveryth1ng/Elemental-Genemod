@@ -38,9 +38,34 @@
             ]
         },
         {
+            "url": "./schemas/ceremony.schema.json",
+            "fileMatch": [
+                "events/ceremonies/*.json",
+                "!events/ceremonies/ceremony_traits.json"
+            ]
+        },
+        {
+            "url": "./schemas/crossclan_rel.schema.json",
+            "fileMatch": [
+                "events/relationship_events/cross-clan_interactions/*/*.json"
+            ]
+        },
+        {
+            "url": "./schemas/transition.schema.json",
+            "fileMatch": [
+                "events/transition.json"
+            ]
+        },
+        {
             "url": "./schemas/poi.schema.json",
             "fileMatch": [
                 "points_of_interest.json"
+            ]
+        },
+        {
+            "url": "./schemas/pelt_recipe.schema.json",
+            "fileMatch": [
+                "sprites/dicts/pelt_recipes/*.json"
             ]
         }
     ],
@@ -84,5 +109,6 @@
         "ujson",
         "verdana"
     ],
-    "json.format.keepLines": true
+    "json.format.keepLines": true,
+    "editor.defaultColorDecorators": "always"
 }

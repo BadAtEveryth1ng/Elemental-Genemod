@@ -18,16 +18,13 @@ from scripts.game_structure import game
 from scripts.game_structure.screen_settings import MANAGER
 from scripts.ui.elements.dropdown import UIDropDown
 from scripts.ui.elements.modified_image import UIModifiedImage
-from scripts.ui.elements.image_button import UIImageButton
 from scripts.ui.elements.surface_image_button import UISurfaceImageButton
 from scripts.housekeeping.version import get_version_info
 from scripts.ui.generate_box import get_box, BoxStyles
 from scripts.ui.generate_button import get_button_dict, ButtonStyles
 from scripts.ui.icon import Icon
-from scripts.ui.theme import get_text_box_theme
 from scripts.ui.scale import (
     ui_scale,
-    ui_scale_dimensions,
     ui_scale_offset,
     ui_scale_value,
     ui_scale_blit,
@@ -353,10 +350,10 @@ def rebuild_moon_n_season_indicator(change_moon: bool = False, visible: bool = F
     if change_moon:
         start_moon_animation()
 
-    menu_buttons["moon_indicator"].set_tooltip(
+    menu_buttons["moon_indicator_frame"].set_tooltip(
         i18n.t("general.moon_date", moon=clan_age)
     )
-    menu_buttons["moon_indicator"].tool_tip_delay = 0
+    menu_buttons["moon_indicator_frame"].tool_tip_delay = 0
     menu_buttons["moon_indicator"].disable()
 
     menu_buttons["season_indicator"] = UIModifiedImage(

@@ -7,7 +7,8 @@ import pygame
 import pygame_gui
 import ujson
 
-from scripts.cat.cats import Cat, BACKSTORIES
+from scripts.cat.cats import Cat
+from scripts.cat.constants import BACKSTORIES
 from scripts.cat.factories.create_example_cat import create_option_preview_cat
 from scripts.cat.pelts import Pelt
 from scripts.cat.personality import Personality
@@ -16,7 +17,6 @@ from scripts.cat_relations.enums import rel_type_tiers
 from scripts.events_module.short.condition_events import Condition_Events
 
 from scripts.events_module.short.scar_events import Scar_Events
-from scripts.events_module.short.short_event import ShortEvent
 from scripts.game_structure import image_cache, constants
 from scripts.game_structure import game
 from scripts.cat.pronouns import get_default_pronouns
@@ -34,7 +34,6 @@ from scripts.ui.elements.text_box_tweaked import UITextBoxTweaked
 from scripts.ui.elements.surface_image_button import UISurfaceImageButton
 from scripts.ui.windows.editor_save_check import EditorSaveCheck
 from scripts.ui.windows.editor_missing_info import EditorMissingInfoWindow
-from scripts.screens.RelationshipScreen import RelationshipScreen
 from scripts.screens.Screens import Screens
 from scripts.screens.enums import GameScreen
 from scripts.ui.generate_box import get_box, BoxStyles

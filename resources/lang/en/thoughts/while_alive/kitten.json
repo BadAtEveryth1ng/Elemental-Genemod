@@ -1,6 +1,6 @@
 [
     {
-        "id": "gen_kit",
+        "event_id": "gen_kit",
         "strings": [
             "Plays moss ball by {PRONOUN/m_c/self}",
             "Wants to take a nap",
@@ -43,7 +43,7 @@
         ]
     },
     {
-        "id": "gen_kit_and_cat",
+        "event_id": "gen_kit_and_cat",
         "strings": [
             "Wonders who {PRONOUN/m_c/poss} mentor will be",
             "Is nervous for {PRONOUN/m_c/poss} apprentice ceremony",
@@ -68,7 +68,7 @@
         }
     },
     {
-        "id": "kit_to_kit",
+        "event_id": "kit_to_kit",
         "strings": [
             "Is telling on r_c for climbing a bit too high",
             "Is telling on r_c for doing something bad",
@@ -93,7 +93,7 @@
         }
     },
     {
-        "id": "kit_older_cats",
+        "event_id": "kit_older_cats",
         "strings": [
             "Is asking older cats how kits are born",
             "Wishes other cats would stop babying {PRONOUN/m_c/object}",
@@ -121,7 +121,7 @@
         }
     },
     {
-        "id": "kit_alive_med_cat",
+        "event_id": "kit_alive_med_cat",
         "strings": [
             "Refuses to eat the herbs the medicine cat has given {PRONOUN/m_c/object} for {PRONOUN/m_c/poss} tummy",
             "Hides in the medicine cat's herb stores",
@@ -145,7 +145,7 @@
         }
     },
     {
-        "id": "kit_alive_elder",
+        "event_id": "kit_alive_elder",
         "strings": [
             "Was nipped on the rump by an elder for being naughty",
             "Was hissed at by r_c for being too noisy",
@@ -168,7 +168,7 @@
         }
     },
     {
-        "id": "gen_greenleaf_kit",
+        "event_id": "gen_greenleaf_kit",
         "season": [
             "greenleaf"
         ],
@@ -185,7 +185,7 @@
         }
     },
     {
-        "id": "gen_leafbare_kit",
+        "event_id": "gen_leafbare_kit",
         "season": [
             "leaf-bare"
         ],
@@ -202,7 +202,7 @@
         }
     },
     {
-        "id": "attention-seeker_kit",
+        "event_id": "attention-seeker_kit",
         "strings": [
             "Wakes r_c in the middle of the night to ask a question about snails",
             "Wakes up early to say hello to the dawn patrol",
@@ -232,7 +232,7 @@
         }
     },
     {
-        "id": "guarding_kit",
+        "event_id": "guarding_kit",
         "strings": [
             "Guards the fresh-kill pile to make sure each Clanmate only takes one piece",
             "Demands to be allowed to guard camp",
@@ -254,7 +254,7 @@
         }
     },
     {
-        "id": "tattletale_kit",
+        "event_id": "tattletale_kit",
         "strings": [
             "Is telling on r_c for something m_c was told {PRONOUN/m_c/subject} couldn't do"
         ],
@@ -286,7 +286,7 @@
         }
     },
     {
-        "id": "bossy_kit",
+        "event_id": "bossy_kit",
         "strings": [
             "Can't wait to be deputy so {PRONOUN/m_c/subject} can assign patrols",
             "Tells r_c to catch {PRONOUN/m_c/object} some fresh prey",
@@ -315,7 +315,7 @@
         }
     },
     {
-        "id": "bullying_kit",
+        "event_id": "bullying_kit",
         "strings": [
             "Knocks over r_c",
             "Makes fun of r_c's insecurities",
@@ -351,7 +351,7 @@
         }
     },
     {
-        "id": "bullying_kit_to_other",
+        "event_id": "bullying_kit_to_other",
         "strings": [
             "Knocks over r_c",
             "Shoved r_c out of the nest",
@@ -376,7 +376,7 @@
         }
     },
     {
-        "id": "charming_kit",
+        "event_id": "charming_kit",
         "strings": [
             "Is rolling around cutely while warriors look upon {PRONOUN/m_c/object}",
             "Is rubbing up against the warriors' legs",
@@ -407,7 +407,7 @@
         }
     },
     {
-        "id": "daydreamer_kit",
+        "event_id": "daydreamer_kit",
         "strings": [
             "Thinks {PRONOUN/m_c/subject} saw a StarClan cat in {PRONOUN/m_c/poss} dreams",
             "Is mesmerized by the night sky",
@@ -446,7 +446,7 @@
         }
     },
     {
-        "id": "fearless_kit",
+        "event_id": "fearless_kit",
         "strings": [
             "Is attempting to pounce on the tail of r_c",
             "Tries to sneak out of camp with a patrol",
@@ -480,7 +480,7 @@
         }
     },
     {
-        "id": "fearless_kit_to_apprentice",
+        "event_id": "fearless_kit_to_apprentice",
         "strings": [
             "Picks a fight with an apprentice so {PRONOUN/m_c/subject} can show {PRONOUN/m_c/poss} skills"
         ],
@@ -503,7 +503,7 @@
         }
     },
     {
-        "id": "fearless_kit_to_leader",
+        "event_id": "fearless_kit_to_leader",
         "strings": [
             "Is trying to challenge the leader but isn't being taken very seriously",
             "Is sneaking into the leader's nest"
@@ -527,7 +527,7 @@
         }
     },
     {
-        "id": "impulsive_kit",
+        "event_id": "impulsive_kit",
         "strings": [
             "Is streaking across the clearing",
             "Is pretending to be a rabbit and hopping about",
@@ -588,7 +588,7 @@
         }
     },
     {
-        "id": "know-it-all_kit",
+        "event_id": "know-it-all_kit",
         "strings": [
             "Has already learned the hunter's crouch",
             "Doesn't need r_c to tell {PRONOUN/m_c/object} anything",
@@ -619,7 +619,7 @@
         }
     },
     {
-        "id": "noisy_kit",
+        "event_id": "noisy_kit",
         "strings": [
             "Is practicing a mighty roar",
             "Yowls as loudly as {PRONOUN/m_c/subject} can",
@@ -651,7 +651,7 @@
         }
     },
     {
-        "id": "noisy_kit_to_elder",
+        "event_id": "noisy_kit_to_elder",
         "strings": [
             "Asked r_c for a story but keeps interrupting {PRONOUN/r_c/object}"
         ],
@@ -674,7 +674,7 @@
         }
     },
     {
-        "id": "polite_kit",
+        "event_id": "polite_kit",
         "strings": [
             "Always says please and thank you",
             "Is making sure not to be in anyone's way",
@@ -704,7 +704,7 @@
         }
     },
     {
-        "id": "quiet_kit",
+        "event_id": "quiet_kit",
         "strings": [
             "Is too good at playing hide and seek",
             "Is asked to speak up",
@@ -744,7 +744,7 @@
         }
     },
     {
-        "id": "self-conscious_kit",
+        "event_id": "self-conscious_kit",
         "strings": [
             "Doesn't think {PRONOUN/m_c/subject} will ever be an apprentice",
             "Thinks r_c doesn't like {PRONOUN/m_c/object}",
@@ -775,7 +775,7 @@
         }
     },
     {
-        "id": "shy_kit",
+        "event_id": "shy_kit",
         "strings": [
             "Feels alone",
             "Wishes {PRONOUN/m_c/subject} had friends",
@@ -806,7 +806,7 @@
         }
     },
     {
-        "id": "skittish_kit",
+        "event_id": "skittish_kit",
         "strings": [
             "Was startled by a croaking frog",
             "Is doing {PRONOUN/m_c/poss} best not to get stepped on",
@@ -859,7 +859,7 @@
         }
     },
     {
-        "id": "sweet_kit",
+        "event_id": "sweet_kit",
         "strings": [
             "Is pretending to be the medicine cat",
             "Plucks feathers from a fresh-kill bird to add to nests",
@@ -903,7 +903,7 @@
         }
     },
     {
-        "id": "unruly_kit",
+        "event_id": "unruly_kit",
         "strings": [
             "Thinks about mischief",
             "Wonders what trouble {PRONOUN/m_c/subject} can create",
@@ -947,7 +947,7 @@
         }
     },
     {
-        "id": "kit_med_parent",
+        "event_id": "kit_med_parent",
         "strings": [
             "Is visiting the medicine cat den to see {PRONOUN/m_c/poss} parent, r_c",
             "Is wondering why r_c became a medicine cat and not a warrior",
@@ -983,7 +983,7 @@
         ]
     },
     {
-        "id": "kit_dead_kit",
+        "event_id": "kit_dead_kit",
         "strings": [
             "Is wondering if r_c would have been {PRONOUN/m_c/poss} friend"
         ],
@@ -1013,7 +1013,7 @@
         ]
     },
     {
-        "id": "kit_dead_kit2",
+        "event_id": "kit_dead_kit2",
         "strings": [
             "Is missing seeing r_c in the nursery",
             "Is asking when r_c is coming back",
@@ -1035,7 +1035,7 @@
         }
     },
     {
-        "id": "kittencough_gen",
+        "event_id": "kittencough_gen",
         "strings": [
             "Wants to play but can't stop coughing",
             "Is unusually willing to nap",
@@ -1054,7 +1054,7 @@
         }
     },
     {
-        "id": "kit_to_pregnant_cat",
+        "event_id": "kit_to_pregnant_cat",
         "strings": [
             "Wants r_c to let {PRONOUN/m_c/object} name one of the kits",
             "Can't wait for r_c's kits to be here so they can play together",
@@ -1072,7 +1072,7 @@
         }
     },
     {
-        "id": "kit_to_newborn",
+        "event_id": "kit_to_newborn",
         "strings": [
             "Asks when r_c will be big enough to play with",
             "Tries to give r_c a juicy piece of prey",
@@ -1108,7 +1108,7 @@
         }
     },
     {
-        "id": "plant_camp_kit",
+        "event_id": "plant_camp_kit",
         "strings": [
             "Is trying to help reinforce the camp walls by growing brambles",
             "Is decorating the camp walls with flowers",
@@ -1128,7 +1128,7 @@
         }
     },
     {
-        "id": "fire_gen_kit",
+        "event_id": "fire_gen_kit",
         "strings": [
             "Is playing with embers too close to the dens",
             "Got in trouble for chasing cats around camp with little flames",
@@ -1153,7 +1153,7 @@
         }
     },
     {
-        "id": "water_gen_kit",
+        "event_id": "water_gen_kit",
         "strings": [
             "Is watering the flowers around camp",
             "Offers every cat in camp a sip of water",
@@ -1177,7 +1177,7 @@
         }
     },
     {
-        "id": "earth_gen_kit",
+        "event_id": "earth_gen_kit",
         "strings": [
             "Is making a little rock burrow",
             "Is shaking the earth from {PRONOUN/m_c/poss} pelt after digging a giant hole",
@@ -1201,7 +1201,7 @@
         }
     },
     {
-        "id": "air_gen_kit",
+        "event_id": "air_gen_kit",
         "strings": [
             "Is blowing other cats' fur the wrong way and giggling at how silly they look",
             "Complains when {PRONOUN/m_c/poss} ruffled fur is groomed back into place",
@@ -1225,7 +1225,7 @@
         }
     },
     {
-        "id": "ice_gen_kit",
+        "event_id": "ice_gen_kit",
         "strings": [
             "Almost made someone trip after freezing a puddle",
             "Freezes the biggest puddle in camp to practice sliding across it",
@@ -1249,7 +1249,7 @@
         }
     },
     {
-        "id": "plant_gen_kit",
+        "event_id": "plant_gen_kit",
         "strings": [
             "Offers to grow a whole garden so the medicine cat never has to gather herbs again",
             "Is absolutely covered in leaves",
@@ -1273,7 +1273,7 @@
         }
     },
     {
-        "id": "lightning_gen_kit",
+        "event_id": "lightning_gen_kit",
         "strings": [
             "Is making cats' fur stand on end with static",
             "Is slightly shocking cats as a practical joke",
@@ -1297,7 +1297,7 @@
         }
     },
     {
-        "id": "metal_gen_kit",
+        "event_id": "metal_gen_kit",
         "strings": [
             "Is laughing at the distorted reflection of other cats in a metal sheet",
             "Uses a piece of metal in the sun as {PRONOUN/m_c/poss} own basking spot",
@@ -1321,7 +1321,7 @@
         }
     },
     {
-        "id": "smoke_gen_kit",
+        "event_id": "smoke_gen_kit",
         "strings": [
             "Is making other cats cough by clogging up the nursery",
             "Is sent outside to give the nursery some fresh air",
@@ -1345,7 +1345,7 @@
         }
     },
     {
-        "id": "mud_gen_kit",
+        "event_id": "mud_gen_kit",
         "strings": [
             "Is making the ground so muddy that cats slip and slide around camp",
             "Is using mud to slide and dash around",
@@ -1369,7 +1369,7 @@
         }
     },
     {
-        "id": "shadow_gen_kit",
+        "event_id": "shadow_gen_kit",
         "strings": [
             "Is playing with {PRONOUN/m_c/poss} shadow friend",
             "Makes {PRONOUN/m_c/poss} shadow jump out and scare other cats",
@@ -1393,7 +1393,7 @@
         }
     },
     {
-        "id": "sand_gen_kit",
+        "event_id": "sand_gen_kit",
         "strings": [
             "Complains that sand is stuck all over {PRONOUN/m_c/poss} fur",
             "Is buried in sun-warmed sand, purring away",
@@ -1417,7 +1417,7 @@
         }
     },
     {
-        "id": "mist_gen_kit",
+        "event_id": "mist_gen_kit",
         "strings": [
             "Is trying to use mist to be sneaky",
             "Is making it too foggy to see a thing in the nursery",
@@ -1441,7 +1441,7 @@
         }
     },
     {
-        "id": "oil_gen_kit",
+        "event_id": "oil_gen_kit",
         "strings": [
             "Is happy they get to avoid grooming sessions",
             "Tried to lick {PRONOUN/m_c/poss} fur and was disgusted by the taste",
@@ -1465,7 +1465,7 @@
         }
     },
     {
-        "id": "combustion_gen_kit",
+        "event_id": "combustion_gen_kit",
         "strings": [
             "Almost started a fire when lighting sparks",
             "Makes loud pops to startle other cats",
@@ -1489,7 +1489,7 @@
         }
     },
     {
-        "id": "decay_gen_kit",
+        "event_id": "decay_gen_kit",
         "strings": [
             "Is being scolded for wilting several herbs after getting into the healer's den",
             "Tries to avoid the pretty flowers around camp",
@@ -1513,7 +1513,7 @@
         }
     },
     {
-        "id": "magnetism_gen_kit",
+        "event_id": "magnetism_gen_kit",
         "strings": [
             "Got a few pebbles stuck to {PRONOUN/m_c/poss} fur and is whining about it",
             "Repels a small rock and chases it around camp",
@@ -1537,7 +1537,7 @@
         }
     },
     {
-        "id": "luminescent_gen_kit",
+        "event_id": "luminescent_gen_kit",
         "strings": [
             "Tries to copy the fireflies around camp at dusk",
             "Puts on a little light show when it gets dark",
@@ -1561,7 +1561,7 @@
         }
     },
     {
-        "id": "elemental_gen_kit",
+        "event_id": "elemental_gen_kit",
         "strings": [
             "Is claiming that {PRONOUN/m_c/poss} element is the best one",
             "Is showing off {PRONOUN/m_c/poss} element for the other cats",
@@ -1604,7 +1604,7 @@
         }
     },
     {
-        "id": "Stolen_kit",
+        "event_id": "Stolen_kit",
         "strings": [
             "Fears what might happen to {PRONOUN/m_c/object}",
             "Is thinking of {PRONOUN/m_c/poss} family",
@@ -1627,7 +1627,7 @@
         }
     },
     {
-        "id": "Stolen_kit_to_other_kit",
+        "event_id": "Stolen_kit_to_other_kit",
         "strings": [
             "Is hesitant to play with r_c",
             "Watches r_c carefully",
@@ -1654,7 +1654,7 @@
         }
     },
     {
-        "id": "Stolen_kit_bold",
+        "event_id": "Stolen_kit_bold",
         "strings": [
             "Is caught trying to escape",
             "Nips r_c to demostrate {PRONOUN/m_c/poss} strength",
@@ -1689,7 +1689,7 @@
         }
     },
     {
-        "id": "Stolen_kit_nervous",
+        "event_id": "Stolen_kit_nervous",
         "strings": [
             "Is avoiding everyone",
             "Tries to stay quiet",

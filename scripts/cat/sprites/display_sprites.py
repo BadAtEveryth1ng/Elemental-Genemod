@@ -2,19 +2,18 @@ import logging
 import traceback
 
 import pygame
+from copy import deepcopy
+from random import randint
 
 from scripts.cat.enums import CatAge, CatGroup
-from scripts.cat.phenotype import Phenotype
 from scripts.cat.sprites.load_sprites import sprites
 from scripts.clan_package.settings import get_clan_setting
 from scripts.config import get_config
 from scripts.game_structure import image_cache
 from scripts.game_structure.game import game_setting_get
 from scripts.ui.scale import ui_scale_dimensions
-from copy import deepcopy
 from scripts.game_structure import game
 from scripts.special_dates import SpecialDate, is_today
-from random import randint
 
 logger = logging.getLogger(__name__)
 
@@ -142,6 +141,31 @@ def generate_sprite(
                 phenotype.silver = ['i', 'i']
                 phenotype.SpriteInfo(sprite_age)
                 phenotype.silver = old_silver
+
+            def create_hairless_layer():
+                hairless = pygame.Surface((sprites.size, sprites.size), pygame.HWSURFACE | pygame.SRCALPHA)
+                if cat.phenotype.sedesp == ['hr', 're'] or (cat.phenotype.sedesp[0] == 're' and sprite_age < 12):
+                    hairless.blit(sprites.sprites['furpoint' + cat_sprite], (0, 0))
+                    hairless.blit(sprites.sprites['furpoint' + cat_sprite], (0, 0))
+                elif(cat.pelt.length == 'hairless' and (cat.phenotype.sedesp[0] == "hr" or cat.phenotype.ruhr[1] == "Hrbd" or sprite_age > 11)):
+                    hairless.blit(sprites.sprites['hairless' + cat_sprite], (0, 0))
+                    hairless.blit(sprites.sprites['break/nose1' + cat_sprite], (0, 0), special_flags=pygame.BLEND_RGBA_SUB)
+                    hairless.blit(sprites.sprites['furpoint' + cat_sprite], (0, 0))
+                    if get_current_season(season_override) == "Leaf-bare":
+                        hairless.set_alpha(200)
+                elif cat.phenotype.laperm[0] == 'Lp' and sprite_age < 4:
+                    hairless.blit(sprites.sprites['furpoint' + cat_sprite], (0, 0))
+                    hairless.blit(sprites.sprites['furpoint' + cat_sprite], (0, 0))
+                    hairless.set_alpha(120)
+                elif ('patchy ' in cat.phenotype.furtype) or (cat.pelt.length == 'hairless' and cat.phenotype.sedesp[0] != "hr" and cat.phenotype.ruhr[1] != "Hrbd" and sprite_age > 5):
+                    hairless.blit(sprites.sprites['donskoy' + cat_sprite], (0, 0))
+                
+                if('sparse' in cat.phenotype.furtype):
+                    hairless.blit(sprites.sprites['satin0'], (0, 0))
+                    hairless.blit(sprites.sprites['lykoi' + cat_sprite], (0, 0))
+                
+                hairless.blit(sprites.sprites['nose' + cat_sprite], (0, 0), special_flags=pygame.BLEND_RGBA_SUB)
+                return hairless
 
             def calculate_red_stripes(base, rufousing):
                 is_apricot = "apricot" in base
@@ -645,7 +669,7 @@ def generate_sprite(
                     'beige' : 14
                 }
 
-                if(phenotype.white[0] == 'W' or phenotype.pointgene[0] == 'c' or phenotype.white_pattern == ['full white'] or whichcolour == "white"):
+                if(phenotype.white[0] == 'W' or phenotype.pointgene[0] == 'c' or phenotype.white_pattern == ['FULLWHITE'] or whichcolour == "white"):
                     pads.blit(sprites.sprites['padcolours1'], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
                 elif ('amber' not in phenotype.colour or phenotype.agouti[0] != 'a') and ('russet' in phenotype.colour or 'carnelian' in phenotype.colour or is_red):
                     pads.blit(sprites.sprites['padcolours0'], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
@@ -705,7 +729,7 @@ def generate_sprite(
 
             def make_cat(whichmain, whichcolour, whichbase, cat_unders, special=None):
                 is_red = ('red' in whichcolour or 'cream' in whichcolour or 'honey' in whichcolour or 'ivory' in whichcolour or 'apricot' in whichcolour)
-                is_white = (phenotype.white[0] == 'W' or phenotype.pointgene[0] == 'c' or whichbase == 'white' or phenotype.white_pattern == ['full white'])
+                is_white = (phenotype.white[0] == 'W' or phenotype.pointgene[0] == 'c' or whichbase == 'white' or phenotype.white_pattern == ['FULLWHITE'])
 
                 if is_white:
                     if phenotype.white[0] == "W" and phenotype.colour == "black":
@@ -1080,6 +1104,7 @@ def generate_sprite(
                 if not is_red and not is_white and cat.pelt.rusting:
                     for rust, opacity in cat.pelt.rusting.items():
                         rusting = sprites.sprites[rust + cat_sprite].copy()
+                        rusting.blit(create_hairless_layer(), (0, 0), special_flags=pygame.BLEND_RGBA_SUB)
                         rusting.fill((255, 255, 255, int((255/100)*opacity)), special_flags=pygame.BLEND_RGBA_MULT)
                         whichmain.blit(rusting.premul_alpha(), (0, 0), special_flags=pygame.BLEND_RGB_ADD)
                     
@@ -1140,7 +1165,7 @@ def generate_sprite(
                     sprite.blit(sunshine, (0, 0))
                 return sprite
 
-            is_white = 'W' in phenotype.white or phenotype.pointgene[0] == 'c' or phenotype.white_pattern == ['full white']
+            is_white = 'W' in phenotype.white or phenotype.pointgene[0] == 'c' or phenotype.white_pattern == ['FULLWHITE']
             
             if(phenotype.patchmain != "" and 'rev' in phenotype.tortiepattern[0]):
                 gensprite = make_cat(gensprite, phenotype.patchmain, phenotype.patchcolour, phenotype.patchunders)
@@ -1240,7 +1265,7 @@ def generate_sprite(
                         try:
                             whitesprite.blit(sprites.sprites[x + cat_sprite], (0, 0), special_flags=pygame.BLEND_RGBA_SUB)
                         except:
-                            whitesprite.blit(sprites.sprites[x.removeprefix("break/") + cat_sprite], (0, 0), special_flags=pygame.BLEND_RGBA_SUB)
+                            whitesprite.blit(sprites.sprites[x.removeprefix("break/") + cat_sprite].premul_alpha(), (0, 0), special_flags=pygame.BLEND_RGBA_SUB)
             
             whitesprite.blit(sprites.sprites["lightbasecolours0"], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
             tintedwhitesprite.blit(whitesprite, (0, 0))
@@ -1285,28 +1310,7 @@ def generate_sprite(
                 tintedwhitesprite.blit(tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
             gensprite.blit(tintedwhitesprite, (0, 0))
 
-            hairless = pygame.Surface((sprites.size, sprites.size), pygame.HWSURFACE | pygame.SRCALPHA)
-            if cat.phenotype.sedesp == ['hr', 're'] or (cat.phenotype.sedesp[0] == 're' and sprite_age < 12):
-                hairless.blit(sprites.sprites['furpoint' + cat_sprite], (0, 0))
-                hairless.blit(sprites.sprites['furpoint' + cat_sprite], (0, 0))
-            elif(cat.pelt.length == 'hairless' and (cat.phenotype.sedesp[0] == "hr" or cat.phenotype.ruhr[1] == "Hrbd" or sprite_age > 11)):
-                hairless.blit(sprites.sprites['hairless' + cat_sprite], (0, 0))
-                hairless.blit(sprites.sprites['break/nose1' + cat_sprite], (0, 0), special_flags=pygame.BLEND_RGBA_SUB)
-                hairless.blit(sprites.sprites['furpoint' + cat_sprite], (0, 0))
-                if get_current_season(season_override) == "Leaf-bare":
-                    hairless.set_alpha(200)
-            elif cat.phenotype.laperm[0] == 'Lp' and sprite_age < 4:
-                hairless.blit(sprites.sprites['furpoint' + cat_sprite], (0, 0))
-                hairless.blit(sprites.sprites['furpoint' + cat_sprite], (0, 0))
-                hairless.set_alpha(120)
-            elif ('patchy ' in cat.phenotype.furtype) or (cat.pelt.length == 'hairless' and cat.phenotype.sedesp[0] != "hr" and cat.phenotype.ruhr[1] != "Hrbd" and sprite_age > 5):
-                hairless.blit(sprites.sprites['donskoy' + cat_sprite], (0, 0))
-            
-            if('sparse' in cat.phenotype.furtype):
-                hairless.blit(sprites.sprites['satin0'], (0, 0))
-                hairless.blit(sprites.sprites['lykoi' + cat_sprite], (0, 0))
-            
-            hairless.blit(sprites.sprites['nose' + cat_sprite], (0, 0), special_flags=pygame.BLEND_RGBA_SUB)
+            hairless = create_hairless_layer()
             gensprite.blit(hairless, (0, 0))
 
             gensprite.blit(white_leathers, (0, 0))
@@ -1770,6 +1774,17 @@ def generate_sprite(
         new_sprite = pygame.transform.flip(new_sprite, True, False)
 
     return new_sprite
+
+
+# ------------------------------------------------------------------------------------------------------
+#  generate_sprites() Helper Functions
+# ------------------------------------------------------------------------------------------------------
+
+
+
+# ------------------------------------------------------------------------------------------------------
+#  Other Sprite Functions
+# ------------------------------------------------------------------------------------------------------
 
 
 def update_sprite(cat):
