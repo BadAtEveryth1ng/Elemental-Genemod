@@ -1118,7 +1118,7 @@ class ProfileScreen(Screens):
 
         # CAT SKILLS
         output += the_cat.skills.skill_string(
-            is_adolescent=(the_cat.age == CatAge.ADOLESCENT)
+            is_adolescent=not the_cat.age.is_baby()
         )
         # NEWLINE ----------
         output += "\n"
@@ -1626,7 +1626,7 @@ class ProfileScreen(Screens):
         """
         returns adjusted former apprentice text
         """
-        if CatGroup.PLAYER_CLAN_ID not in self.the_cat.status.all_groups:
+        if CatGroup.PLAYER_CLAN_ID not in self.the_cat.status.all_groups and (game.clan.clancount != "multiclan" or not self.the_cat.status.get_last_living_group()):
             return ""
 
         output: str = ""

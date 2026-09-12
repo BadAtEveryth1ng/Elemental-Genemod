@@ -12,6 +12,7 @@ from scripts.clan_resources.point_of_interest import (
     get_poi_names_set,
     get_poi_tags_set,
     get_poi_categories_set,
+    get_poi_from_constraints,
 )
 from scripts.cat_relations.relationship import Relationship, create_one_relationship
 from scripts.config import get_config
@@ -292,19 +293,11 @@ def event_for_poi(pois: dict[str, list], clan=None) -> bool:
     if not get_poi_names_set(clan):
         return False  # we know they're requesting something
 
-    has_matching_name, has_matching_tags, has_matching_categories = False, False, False
-    if "name" in pois:
-        has_matching_name = not set(pois.get("name", [])).isdisjoint(
-            get_poi_names_set(clan)
+    return bool(
+        get_poi_from_constraints(
+            pois.get("name"), pois.get("tags"), pois.get("category"), clan.group_ID
         )
-
-    if "tags" in pois:
-        has_matching_tags = not set(pois.get("tags", [])).isdisjoint(get_poi_tags_set(clan))
-
-    if "category" in pois:
-        has_matching_categories = pois["category"] in get_poi_categories_set()
-
-    return has_matching_name or has_matching_tags or has_matching_categories
+    )
 
 
 def event_for_reputation(required_rep: list, clan) -> bool:
@@ -768,7 +761,7 @@ def _check_cat_stat(cat, stat: dict) -> bool:
     """
     has_skill = False
     has_trait = False
-    has_element = False
+    has_element = True
 
     if stat.get("skill"):
         if _check_cat_skills(cat, stat["skill"]):
@@ -1488,6 +1481,12 @@ def _get_cats_with_status(cat_list: list, statuses: list[str]) -> list:
         return cat_list
 
     statuses = [s.replace("medicine cat", "healer") for s in statuses]
+    if "any_healer" in statuses:
+        statuses += [CatRank.MEDICINE_CAT, CatRank.MEDICINE_APPRENTICE]
+    if "any_fighter" in statuses:
+        statuses += [CatRank.WARRIOR, CatRank.DEPUTY, CatRank.LEADER, CatRank.APPRENTICE]
+    if "any_apprentice" in statuses:
+        statuses += [CatRank.QUEEN_APPRENTICE, CatRank.MEDIATOR_APPRENTICE, CatRank.MEDICINE_APPRENTICE, CatRank.APPRENTICE]
 
     is_exclusionary = _check_for_exclusionary_value(statuses)
 
@@ -2314,7 +2313,7 @@ def get_highest_romantic_relation(
     max_love_value = 0
     current_max_relationship = None
     for rel in relationships:
-        if rel.romance < 0:
+        if rel.romance < 0 or not rel.cat_to:
             continue
         if exclude_mate and rel.cat_from.ID in rel.cat_to.mate:
             continue

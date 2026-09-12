@@ -1,5 +1,4 @@
 import unittest
-import os
 from copy import deepcopy
 from itertools import permutations
 
@@ -25,8 +24,6 @@ try:
 except ImportError:
     import tomli as tomllib
 
-os.environ["SDL_VIDEODRIVER"] = "dummy"
-os.environ["SDL_AUDIODRIVER"] = "dummy"
 from random import Random
 
 from scripts.cat.cats import Cat
@@ -379,11 +376,12 @@ class TestPointsOfInterest(unittest.TestCase):
             "empty name": {"name": [], "tags": ["water"]},
             "empty tags": {"name": ["test_name"], "tags": []},
             "None category": {"name": ["test_name"], "category": None},
+            "category and tag": {"tags": ["prey"], "category": "gathering"},
         }
 
         for title, event_poi in combinations.items():
             with self.subTest(title=title):
-                self.assertTrue(event_for_poi(event_poi))
+                self.assertTrue(event_for_poi(event_poi, game.clan))
 
         # expected False combinations
         bad_combinations = {
@@ -391,11 +389,19 @@ class TestPointsOfInterest(unittest.TestCase):
             "no tag": {"tags": ["Twolegs", "cave"]},
             "match generic tag but not exact": {"tags": ["prey:bird"]},
             "invalid category": {"category": "not found"},
+            "invalid category with valid tag": {
+                "tags": ["prey"],
+                "category": "not found",
+            },
+            "invalid tag with valid category": {
+                "tags": ["prey:bird"],
+                "category": "gathering",
+            },
         }
 
         for title, event_poi in bad_combinations.items():
             with self.subTest(title=title):
-                self.assertFalse(event_for_poi(event_poi))
+                self.assertFalse(event_for_poi(event_poi, game.clan))
 
 
 class TestInterpersonalRelationshipConstraints(unittest.TestCase):
@@ -2453,7 +2459,7 @@ class TestCatConstraint(unittest.TestCase):
                     cat=cat,
                     cat_info={
                         "stat": {
-                            "skill": ["CAMP, 0"],
+                            "skill": ["CAMP,0"],
                             "trait": ["arrogant"],
                             "must_have_both": True,
                         }

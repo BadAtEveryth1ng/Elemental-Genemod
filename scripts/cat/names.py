@@ -342,10 +342,10 @@ class Name:
         colour_mappings = {
             "black" : ["BLACK"],
             "blue" : ["GREY", "DARKGREY"],
-            "chocolate" : ["BROWN", "GOLDEN-BROWN", "DARKBROWN", "CHOCOLATE"],
+            "chocolate" : ["BROWN", "GOLDEN-BROWN", "DARKBROWN", "CHOCOLATE", "RUST"],
             "lilac" : ["PALEGREY", "SILVER", "LILAC"],
             "cinnamon" : ["SIENNA", "DARKGINGER", "GOLDEN-BROWN"],
-            "fawn" : ["LIGHTBROWN"],
+            "fawn" : ["LIGHTBROWN", "BLOSSOM"],
             "ginger" : ["GINGER", "DARKGINGER"],
             "cream" : ["CREAM", "PALEGINGER"],
             "white" : ["WHITE"],
@@ -369,6 +369,7 @@ class Name:
         if params[2]['pattern'] != '' and params[2]['type'] == 'regular' and params[0] == "black":
             colours.append('BROWN')
             colours.append('DARKBROWN')
+            colours.append('RUST')
 
         # Add possible prefix categories to list.
         possible_prefix_categories = []
@@ -464,7 +465,7 @@ class Name:
             for i in range(suffix_settings["element"]):
                 options.append(self.mod_suffixes.get('element', {}).get(self.phenotype.element, []))
 
-            appearance = self.mod_suffixes['other']['common']
+            appearance = self.mod_suffixes['other']['common'].copy()
 
             if self.phenotype:
                 if self.phenotype.length == 'longhaired':
@@ -519,6 +520,39 @@ class Name:
         else:
             """Generate possible suffix."""
             pelt = []
+
+            colour_mappings = {
+                "black": ["BLACK"],
+                "blue": ["GREY", "DARKGREY"],
+                "chocolate": ["BROWN", "GOLDEN-BROWN", "DARKBROWN", "CHOCOLATE", "RUST"],
+                "lilac": ["PALEGREY", "SILVER", "LILAC"],
+                "cinnamon": ["SIENNA", "DARKGINGER", "GOLDEN-BROWN"],
+                "fawn": ["LIGHTBROWN", "BLOSSOM"],
+                "ginger": ["GINGER", "DARKGINGER"],
+                "cream": ["CREAM", "PALEGINGER"],
+                "white": ["WHITE"],
+                "silver shaded": ["WHITE"]
+            }
+
+            namer = Namer([], [], self.moons, self.phenotype, self.chimpheno)
+            params = namer.parse_chimera() if self.chimpheno else namer.get_categories(self.phenotype)
+
+            colours = colour_mappings[params[0]]
+            if params[2]['type'] == 'silver' and params[0] not in ['ginger', 'cream']:
+                colours.append('PALEGREY')
+                colours.append('SILVER')
+            if params[2]['type'] == 'dark' and params[0] == "black":
+                colours.append('GHOST')
+            if params[2]['type'] == 'golden' and params[0] not in ['ginger', 'cream']:
+                colours.append('GOLDEN')
+            if self.phenotype.ruftype == 'rufoused' and params[0] == 'ginger':
+                colours.append('DARKGINGER')
+            if self.phenotype.ruftype == 'low' and params[0] == 'ginger':
+                colours.append('PALEGINGER')
+            if params[2]['pattern'] != '' and params[2]['type'] == 'regular' and params[0] == "black":
+                colours.append('BROWN')
+                colours.append('DARKBROWN')
+                colours.append('RUST')
             if self.phenotype:
                 if (self.phenotype.white[1] not in ['ws', 'wt'] or self.phenotype.whitegrade < 4):
                     if self.phenotype.tabby != "":
@@ -553,14 +587,19 @@ class Name:
                 tries += 1
                 if tries > 20:
                     break
+                # Chance for True is '1/8'.
                 named_after_pelt = not random.getrandbits(3)
-                named_after_element = not random.getrandbits(3) and self.phenotype
+                named_after_element = not random.getrandbits(
+                    3) and self.phenotype
+                named_after_colour = not random.getrandbits(3)
                 named_after_biome = not random.getrandbits(3)  # 1/8
                 # Pelt name only gets used if there's an associated suffix.
                 if named_after_pelt and len(pelt) > 0:
                     self.suffix = random.choice(self.names_dict["pelt_suffixes"][random.choice(pelt)])
                 if named_after_element and self.names_dict.get("element_suffixes", {}).get(self.phenotype.element):
                     self.suffix = random.choice(self.names_dict["element_suffixes"][self.phenotype.element])
+                if named_after_colour and len(colours) > 0:
+                    self.suffix = random.choice(self.names_dict["colour_suffixes"][random.choice(colours)])
                 elif named_after_biome:
                     if biome in self.names_dict["biome_suffixes"]:
                         self.suffix = random.choice(

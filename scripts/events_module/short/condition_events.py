@@ -6,7 +6,8 @@ import i18n
 import ujson
 import logging
 
-from scripts.cat.cats import Cat, ELEMENT_BLOCK
+from scripts.cat.cats import Cat
+from scripts.cat.constants import ELEMENT_BLOCK
 from scripts.cat.enums import CatAge, CatRank
 from scripts.clan_package.settings import get_clan_setting
 from scripts.clan_resources.freshkill import (

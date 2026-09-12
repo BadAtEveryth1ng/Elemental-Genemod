@@ -33,7 +33,7 @@ def get_ill(cat, illness_name, event_triggered=False, lethal=True, severity="def
     if illness_name == "kittencough" and cat.status.rank != CatRank.KITTEN:
         return
 
-    if cat.phenotype.element and name in ELEMENT_BLOCK.get(cat.phenotype.element, []):
+    if cat.phenotype.element and illness_name in ELEMENT_BLOCK.get(cat.phenotype.element, []):
         print(
             f"WARNING: tried to give {cat.phenotype.element} cat {name}")
         return

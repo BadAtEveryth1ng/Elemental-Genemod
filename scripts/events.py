@@ -1211,7 +1211,7 @@ def queen_influence(cat):
                 affect_personality[0],
                 affect_personality[1],
             )
-            if cat.personality.trait != personality:
+            if cat.personality.trait != personality and (not cat.history.prev_pers or personality != cat.history.prev_pers[-1]):
                 cat.history.prev_pers.append(personality)
         if affect_skills:
             cat.history.add_skill_queen_influence(
@@ -1325,6 +1325,9 @@ def one_moon_cat(cat, clan):
     if cat.status.group.is_any_clan_group():
         relation_events.handle_relationships(cat)
 
+    if old_age_death(cat, clan):
+        return
+
     # now we make sure ill and injured cats don't get interactions they shouldn't
     if cat.is_ill() or cat.is_injured():
         return
@@ -1335,15 +1338,13 @@ def one_moon_cat(cat, clan):
 
     # switches between the two death handles
     if random.getrandbits(1):
-        triggered_death = handle_injuries_or_general_death(cat, clan)
-        if not triggered_death:
+        if not handle_injuries_or_general_death(cat, clan):
             handle_illnesses_or_illness_deaths(cat, clan)
         else:
             switch_set_value(Switch.skip_conditions, [])
             return
     else:
-        triggered_death = handle_illnesses_or_illness_deaths(cat, clan)
-        if not triggered_death:
+        if not handle_illnesses_or_illness_deaths(cat, clan):
             handle_injuries_or_general_death(cat, clan)
         else:
             switch_set_value(Switch.skip_conditions, [])
@@ -1392,7 +1393,7 @@ def handle_element(cat, clan):
         event_text = event_text_adjust(
             Cat, random.choice(event_text), main_cat=cat)
         types = ["misc"]
-        game.cur_events_list.append(Single_Event(
+        game.cur_events_list.append(EventInformation(
             event_text, types, involved_cats, clan=clan.group_ID))
 
 
@@ -1833,30 +1834,6 @@ def handle_injuries_or_general_death(cat, clan):
         )
 
         return True
-
-    # chance to die of old age
-    age_start = get_config("death_related.old_age_death_start")
-    death_curve_setting = get_config("death_related.old_age_death_curve")
-    death_curve_value = 0.001 * death_curve_setting
-    # made old_age_death_chance into a separate value to make testing with print statements easier
-    old_age_death_chance = ((1 + death_curve_value) ** (cat.moons - age_start)) - 1
-    if random.random() <= old_age_death_chance:
-        create_short_event(
-            event_type="birth_death",
-            main_cat=cat,
-            sub_type=["old_age"],
-            clan=clan
-        )
-        return True
-    # max age has been indicated to be 300, so if a cat reaches that age, they die of old age
-    elif cat.moons >= 300:
-        create_short_event(
-            event_type="birth_death",
-            main_cat=cat,
-            sub_type=["old_age"],
-            clan=clan
-        )
-        return True
     
     # disaster death chance
     if get_clan_setting("disasters"):
@@ -1891,6 +1868,32 @@ def handle_injuries_or_general_death(cat, clan):
         triggered_death = Condition_Events.handle_injuries(cat, clan)
 
         return triggered_death
+
+
+def old_age_death(cat, clan):
+    # chance to die of old age
+    age_start = get_config("death_related.old_age_death_start")
+    death_curve_setting = get_config("death_related.old_age_death_curve")
+    death_curve_value = 0.001 * death_curve_setting
+    # made old_age_death_chance into a separate value to make testing with print statements easier
+    old_age_death_chance = ((1 + death_curve_value) ** (cat.moons - age_start)) - 1
+    if random.random() <= old_age_death_chance:
+        create_short_event(
+            event_type="birth_death",
+            main_cat=cat,
+            sub_type=["old_age"],
+            clan=clan
+        )
+        return True
+    # max age has been indicated to be 300, so if a cat reaches that age, they die of old age
+    elif cat.moons >= 300:
+        create_short_event(
+            event_type="birth_death",
+            main_cat=cat,
+            sub_type=["old_age"],
+            clan=clan
+        )
+        return True
 
 def handle_murder(cat, clan):
     """Handles murder"""
@@ -2156,9 +2159,7 @@ def handle_outbreaks(cat, clan):
                 population.append(n)
                 weight = 1 / (0.75 * n)  # Lower chance for more infected cats
                 weights.append(weight)
-            infected_count = random.choices(population, weights=weights)[
-                0
-            ]  # the infected..
+            infected_count = random.choices(population, weights=weights)[0]  # the infected..
 
             infected_names = []
             involved_cats = []

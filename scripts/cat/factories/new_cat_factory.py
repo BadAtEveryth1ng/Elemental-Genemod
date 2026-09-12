@@ -135,7 +135,7 @@ class NewCatFactory(BaseCatFactory, ABC):
             ),
             "birth_cooldown": overrides.get("birth_cooldown", 0),
             "faded": False,
-            "specsuffix_hidden": False,
+            "specsuffix_hidden": overrides.get("specsuffix_hidden", False),
         }
 
         cat = Cat(**cat_params)
@@ -146,7 +146,7 @@ class NewCatFactory(BaseCatFactory, ABC):
             prefix=overrides.get("prefix"),
             suffix=overrides.get("suffix"),
             specsuffix_hidden=overrides.get("specsuffix_hidden", False),
-            load_existing_name=True,
+            load_existing_name="suffix" in overrides,
             cat=cat,
         )
 
@@ -219,7 +219,7 @@ class NewCatFactory(BaseCatFactory, ABC):
         :param age: CatAge
         :return: Appropriate moons
         """
-        return cls.rng.randint(Cat.age_moons[age][0], Cat.age_moons[age][1])
+        return cls.rng.randint(Cat.age_moons[age][0], min(Cat.age_moons[age][1], get_config("cat_generation.max_age")))
 
     @classmethod
     def _determine_age_moons_and_status(
@@ -256,8 +256,6 @@ class NewCatFactory(BaseCatFactory, ABC):
                 age = cls._get_random_age()
             status = Status(**status_dict)
             moons = cls._get_random_moons(age)
-            if moons > 200:
-                moons = 200
         else:
             status = None
 
@@ -371,7 +369,7 @@ class NewCatFactory(BaseCatFactory, ABC):
                 phenotype.munch[1] = "mk"
             if phenotype.manx[1] not in ['m', 'ab']:
                 phenotype.manx[1] = phenotype.manx[1].lower()
-            if 'NoDBE' not in phenotype.pax3 and 'DBEalt' not in phenotype.pax3:
+            if 'NoDBE' not in phenotype.pax3 and 'DBEalt' not in phenotype.pax3 and phenotype.pax3 != ["DBEcel", "DBEcel"]:
                 phenotype.pax3[0] = 'DBEalt'
 
         if (cls.rng.randint(1, gene_config["intersex"]) == 1) or (chimerapheno and xor('Y' in phenotype.sexgene, 'Y' in chimerapheno.sexgene)):

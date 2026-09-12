@@ -66,6 +66,7 @@ class TextPoolEvent:
     meet: list[MeetDict] = field(default_factory=list[dict])
     future_event: list[FutureEventDict] = field(default_factory=list[dict])
 
+    other_clan_filter: dict[str, list[str]] = field(default_factory=dict)
     nr_involved_clans: int = 2
     involved_clans: list[str] = field(default_factory=list)
     # only for use in transition events
@@ -79,6 +80,16 @@ class TextPoolEvent:
             self.weight += 4 * (len(constants.SEASONS) - len(self.season))
         if self.tags:
             self.weight += len(self.tags) * 2
+
+        # add 8, 6, 4 or 2 if there are between 1-4 specific named locations
+        # todo: check for balancing
+        if self.poi.get("name") and not 1 > len(self.poi["name"]) > 5:
+            self.weight += 8 - 2 * len(self.poi["name"])
+        elif self.poi.get("tags"):
+            # add 4-1 depending on how many specific points of interest are included
+            # but only if specific ones are not already requested
+            self.weight += min(4, len(self.poi.get("tags", [])))
+
         self.weight += self.involved_cat_weight(self.involved_cats)
 
         if self.relationship_constraint:
@@ -140,7 +151,7 @@ class TextPoolEvent:
                     stat_weight *= 2
                 if constraints["stat"].get("element"):
                     element_constraint = constraints["stat"]["element"]
-                    if "-" in element[0]:
+                    if "-" in element_constraint[0]:
                         stat_weight += 20 - len(element_constraint)
                     else:
                         stat_weight += len(element_constraint)

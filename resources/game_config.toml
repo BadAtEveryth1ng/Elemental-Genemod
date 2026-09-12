@@ -537,6 +537,9 @@ dev_tools = false
   # kittypets will have a higher chance of having many rarer genes, even if not purebred
   kittypet_gene_boost = false
 
+  # max age a new cat can generate as
+  max_age = 200
+
 [cat_name_controls]
   # if changing prefixes is enabled, 1/chance for a cat to change their prefix when coming out as trans
   trans_prefix_change_chance = 25
@@ -723,7 +726,6 @@ dev_tools = false
   # by default the first string will be used (index 0)
   debug_ensure_thought_index = 0
 
-
 [patrol_generation]
   # modifies success rate based on game mode. higher = more difficult.
   difficulty_modifier = 2.5
@@ -753,8 +755,6 @@ dev_tools = false
     # specify an outcome to use via its index in the outcome list. by default this is 0 (the first outcome)
     # this will not work if no patrol_id and outcome_type is set
     outcome_index = 0
-
-
 
 [event_generation]
   # forces event with this id to occur
@@ -813,7 +813,7 @@ dev_tools = false
   # if you have modded kits on, this is the highest modifier permaqueens can have for lowering kitten death chances
   # 1 = completely negate kit death boosts, 0 = no influence at all, 0.5 - half the chance of death, etc.
   # will be less effective if there's not enough permaqueens in your Clan, however
-  max_queen_influence = 0.2
+  max_queen_influence = 0.4
 
   # 0-1 chance for a kit of a certain age to die on moonskip if modded litters is on 
   [death_related.kit_death_chances]

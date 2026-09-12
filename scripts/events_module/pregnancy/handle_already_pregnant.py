@@ -1,4 +1,4 @@
-from random import choices, choice, randint, random
+from random import choices, choice, randint, random, sample
 from typing import Optional, Dict, List
 
 import i18n
@@ -216,7 +216,7 @@ def handle_two_moon_pregnant(cat: Cat, clan):
         if surrogate:
             for x in surrogate:
                 kit.surrogate_parents.append(x.ID)
-        if random() < stillborn_chance or kit.phenotype.sexgene[0] == "Y" or kit.phenotype.manx[1] == "Ab" or kit.phenotype.manx[1] == "M" or kit.phenotype.munch[1] == "Mk" or ('NoDBE' not in kit.phenotype.pax3 and 'DBEalt' not in kit.phenotype.pax3):
+        if random() < stillborn_chance or kit.phenotype.sexgene[0] == "Y" or kit.phenotype.manx[1] == "Ab" or kit.phenotype.manx[1] == "M" or kit.phenotype.munch[1] == "Mk" or ('NoDBE' not in kit.phenotype.pax3 and 'DBEalt' not in kit.phenotype.pax3 and kit.phenotype.pax3 != ["DBEcel", "DBEcel"]):
             kit.moons = 0
             if not kit.dead:
                 kit.dead = True
@@ -469,7 +469,7 @@ def _get_affair_visibility_from_pregnancy(
 def _get_cheated_mate(subject_cat: Cat, include_dead: bool = False):
     """Gets cheating cat's mate for the events"""
     mates = []
-    for mate_id in choices(subject_cat.mate):
+    for mate_id in subject_cat.mate:
         mate = Cat.fetch_cat(mate_id)
         if not mate or mate.status.is_outsider:
             continue
@@ -610,8 +610,8 @@ def _handle_main_birth_event(
         # including the dead mate version
         # because of a bug where the game can't find any birthing events
         # if the cheated mate is dead
-        else:
-            cat_dict["mc_mate"] = dead_mate
+        elif dead_mate:
+            cat_dict["mc_mate"] = choice(dead_mate)
             involved_cats.append(dead_mate.ID)
             event_list.append(
                 choice(events["birth"]["affair_mated_dead_mate"]))

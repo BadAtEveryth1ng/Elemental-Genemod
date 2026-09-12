@@ -261,7 +261,7 @@ class Cat:
         self.faded = faded  # This is only used to flag cats that are faded, but won't be added to the faded list until
         # the next save.
 
-        if self.phenotype.munch[1] == "Mk" or self.phenotype.sexgene[0] == "Y" or (self.phenotype.manx[1] == "Ab" or self.phenotype.manx[1] == "M") or ('NoDBE' not in self.phenotype.pax3 and 'DBEalt' not in self.phenotype.pax3):
+        if self.phenotype.munch[1] == "Mk" or self.phenotype.sexgene[0] == "Y" or (self.phenotype.manx[1] == "Ab" or self.phenotype.manx[1] == "M") or ('NoDBE' not in self.phenotype.pax3 and 'DBEalt' not in self.phenotype.pax3 and self.phenotype.pax3 != ["DBEcel", "DBEcel"]):
             if not self.dead:
                 self.dead = True
 
@@ -781,7 +781,7 @@ class Cat:
                             affect_personality[0],
                             affect_personality[1],
                         )
-                        if self.personality.trait != personality:
+                        if self.personality.trait != personality and (not self.history.prev_pers or personality != self.history.prev_pers[-1]):
                             self.history.prev_pers.append(personality)
                     if affect_skills:
                         self.history.add_skill_mentor_influence(
@@ -801,7 +801,7 @@ class Cat:
             prefix=new_prefix,
             suffix=new_suffix,
             biome=self.status.fetch_clan_object(game.clan).biome,
-            specsuffix_hidden=self.specsuffix_hidden,
+            specsuffix_hidden=self.name.specsuffix_hidden if self.name else self.specsuffix_hidden,
         )
 
     def change_affinity(self, starclan_change: int = 0, dark_forest_change: int = 0):
@@ -1360,7 +1360,7 @@ class Cat:
         if not self.status.is_clancat:
             # this is handled in events.py
             self.personality.set_kit(self.age.is_baby())
-            if self.personality.trait != personality:
+            if self.personality.trait != personality and (not self.history.prev_pers or personality != self.history.prev_pers[-1]):
                 self.history.prev_pers.append(personality)
             return
 
@@ -1374,7 +1374,7 @@ class Cat:
 
         # Set personality to correct type
         self.personality.set_kit(self.age.is_baby())
-        if self.personality.trait != personality:
+        if self.personality.trait != personality and (not self.history.prev_pers or personality != self.history.prev_pers[-1]):
             self.history.prev_pers.append(personality)
         # Upon age-change
 
@@ -1755,10 +1755,11 @@ class Cat:
         if self.ID in mentor_cat.apprentice:
             mentor_cat.apprentice.remove(self.ID)
 
-        if self.ID not in mentor_cat.former_apprentices:
-            mentor_cat.former_apprentices.append(self.ID)
-        if mentor_cat.ID not in self.former_mentor:
-            self.former_mentor.append(mentor_cat.ID)
+        if self.moons > self.age_moons[CatAge.ADOLESCENT][0]:
+            if self.ID not in mentor_cat.former_apprentices:
+                mentor_cat.former_apprentices.append(self.ID)
+            if mentor_cat.ID not in self.former_mentor:
+                self.former_mentor.append(mentor_cat.ID)
         self.mentor = None
 
     def __add_mentor(self, new_mentor_id: str):
@@ -2642,7 +2643,7 @@ class Cat:
                 "reverse": self.pelt.reverse,
                 "rusting": self.pelt.rusting,
                 "tint": self.pelt.tint,
-                "white_tint": self.pelt.white_patches_tint,
+                "white_patches_tint": self.pelt.white_patches_tint,
                 "skill_dict": self.skills.get_skill_dict(),
                 "scars": self.pelt.scars or [],
                 "accessory": self.pelt.accessory,

@@ -41,7 +41,7 @@ def get_patrol_list(
 
     possible_patrols.extend(_get_all_patrols_of_type(patrol_type, biome, path, season))
 
-    if not getrandbits(1):
+    if not int(getrandbits(1)):
         # OTHER CLAN
         possible_patrols.extend(_load_file(f"{path}other_clan.json"))
         if other_clan_rep != "neutral":
@@ -54,8 +54,9 @@ def get_patrol_list(
             possible_patrols.extend(_load_file(f"{path}new_cat_{outsider_rep}.json"))
 
     # DISASTERS
-    if get_clan_setting("disasters"):
-        possible_patrols.extend(_load_file(f"{path}disaster.json"))
+    if not int(getrandbits(2)):
+        if get_clan_setting("disasters"):
+            possible_patrols.extend(_load_file(f"{path}disaster.json"))
 
     return possible_patrols
 

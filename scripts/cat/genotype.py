@@ -1528,10 +1528,10 @@ class Genotype:
         else:
             self.soktype = soktypes[2]
 
-        body_types = ['snub-nosed cobby', 'cobby', 'semi-cobby', 'intermediate', 'semi-oriental', 'oriental', 'wedge-faced oriental']
+        body_types = ['snub-nosed cobby', 'cobby', 'semi-cobby', 'intermediate', 'semi-lanky', 'lanky', 'wedge-faced lanky']
         height_types = ['teacup', 'tiny', 'small', 'below average', 'average', 'above average', 'large', 'massive', 'giant', 'goliath']
 
-        if self.body_label != '':
+        if self.body_label in body_types:
             self.VerifyBody(body_types)
         else:
             index = next((n for n in range(7) if self.body_value <= self.body_indexes[n]))
@@ -2218,7 +2218,7 @@ class Genotype:
                                     'right back bicolour2', 'left back bicolour2', 
                                     'right front bicolour1', 'left front bicolour1', 
                                     'right back bicolour1', 'left back bicolour1', 
-                                    "LEFTEAR", "RIGHTEAR", "BACKSPOT", "TAILTIP"])
+                                    "LEFTEAR", "RIGHTEAR", "BACKSPOT", "SADDLE_SMALL", "TAILTIP"])
 
         possible_mutes = {
         "furtype" : ["wirehair", "laperm", "cornish", "urals", "tenn", "fleece", "sedesp"],
@@ -2286,7 +2286,7 @@ class Genotype:
             self.somatic = {}
             return
 
-        top_patches = ['Somatic/leftface', 'Somatic/rightface', 'Somatic/tail', "LEFTEAR", "RIGHTEAR", "BACKSPOT", "HELMET", "EYESPOT_L", "EYESPOT_R"]
+        top_patches = ['Somatic/leftface', 'Somatic/rightface', 'Somatic/tail', "LEFTEAR", "RIGHTEAR", "BACKSPOT", "SADDLE_SMALL", "HELMET", "EYESPOT_L", "EYESPOT_R"]
         if self.white[1] in ['ws', 'wt'] and self.somatic["base"] not in top_patches:
             self.somatic["base"] = choice(top_patches)
         
@@ -2345,6 +2345,7 @@ class Genotype:
             'LEFTEAR' : 'ear', 
             'RIGHTEAR' : 'ear', 
             "BACKSPOT": "back",
+            "SADDLE_SMALL": "back",
             "TAILTIP": "tail tip",
             "BEARD": "chin",
             "BELLY": "belly",
