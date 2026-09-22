@@ -117,7 +117,7 @@ class Pelt:
                   'RAVENPAW', 'DAPPLEPAW', 'LILTWO', 'REVERSEHEART', 'SPARKLE', 'REVERSEEYE', "CHEST_MID", "CHEST_SMALL",
                   "CHEST_STREAK", "BELLY_MIN"],
             '3': ['TUXEDO', 'SAVANNAH', 'FANCY', 'DIVA', 'BEARD', "DAMIEN_REDUCED", 'DAMIEN', 'BELLY', 'SQUEAKS', 'STAR', 'MISS', 'BOWTIE',
-                  'FCTWO', 'FCONE', 'MIA', 'PRINCESS', 'DOUGIE', 'STREAMSTRIKE'],
+                  'FCTWO', 'FCONE', 'MIA', 'PRINCESS', 'DOUGIE', 'STREAMSTRIKE', "NECKTIE"],
             '4': ['TUXEDO', 'SAVANNAH', 'OWL', 'RINGTAIL', 'UNDERS', 'FAROFA', 'VEST', 'FRONT', 'BLOSSOMSTEP', 'DIGIT',
                   'HAWKBLAZE', "BERRYHEART"],
             '5': ['ANY', 'SHIBAINU', 'FAROFA', 'MISTER', 'PANTS', 'TRIXIE']
@@ -467,11 +467,14 @@ class Pelt:
                         
                         white_pattern = clean_white(white_pattern)
                 elif KITgrade == 3:
-                    while len(white_pattern) < 4:
+                    if pax3[0] != "NoDBE" and random() < 0.2:
+                        white_pattern.append("TOM")
+
+                    while len(white_pattern) < 4 or "TOM" in white_pattern:
                         #chest
                         if random () < 0.8:
                             white_pattern.append(choice(['chest', 'chest', 'beard', 'chest', 'bib', 
-                            "BIB", "CHEST_BROKEN", "CHEST_MID", "DAMIEN_REDUCED", "NECKBEARD"]))
+                            "BIB", "CHEST_BROKEN", "CHEST_MID", "DAMIEN_REDUCED", "NECKBEARD", "NECKTIE"]))
 
                         # belly
                         if random() < 0.8:
@@ -623,7 +626,7 @@ class Pelt:
                             else:
                                 white_pattern.append(order[i] + choice([' bicolour1', ' bicolour2', ' bicolour2']))
 
-                        if random() < 0.2:
+                        if random() < 0.15:
                             nropaws = choice([4, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1])
                             order = ['right front', 'left front', 'right back', 'left back']
                             shuffle(order)
@@ -658,7 +661,7 @@ class Pelt:
                     for i in range(nropaws):
                         white_pattern.append(order[i] + ' bicolour2')
 
-                    if random() < 0.15:
+                    if random() < 0.1:
                         nropaws = choice([4, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1])
                         order = ['right front', 'left front', 'right back', 'left back']
                         shuffle(order)
@@ -692,7 +695,7 @@ class Pelt:
                     if random() < 0.25:
                         white_pattern.append(choice(['FOREHEAD_STRIPE']))
                     
-                    if random() < 0.1:
+                    if random() < 0.05:
                         nropaws = choice([4, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1])
                         order = ['right front', 'left front',
                                  'right back', 'left back']
@@ -730,7 +733,7 @@ class Pelt:
                     if random() < 0.25:
                         white_pattern.append(choice(["break/BACKSPOT", "break/SADDLE_SMALL"]))
 
-                    if random() < 0.05:
+                    if random() < 0.01:
                         nropaws = choice([4, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1])
                         order = ['right front', 'left front', 'right back', 'left back']
                         shuffle(order)
@@ -765,7 +768,7 @@ class Pelt:
                             white_pattern.append(choice(['break/bracelet left', 'break/bracelet right']))
                         
 
-                    if random() < 0.01:
+                    if random() < 0.001:
                         nropaws = choice([4, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1])
                         order = ['right front', 'left front', 'right back', 'left back']
                         shuffle(order)

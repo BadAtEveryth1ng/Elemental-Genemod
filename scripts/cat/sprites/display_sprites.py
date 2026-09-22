@@ -1232,6 +1232,7 @@ def generate_sprite(
             
             if (
                 game_setting_get('tints')
+                and cat.pelt.tint is not None
                 and cat.pelt.tint in sprites.cat_tints["tint_colours"]
             ):
                 tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
@@ -1239,11 +1240,21 @@ def generate_sprite(
                 gensprite.blit(tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
             if (
                 game_setting_get('tints')
+                and cat.pelt.tint is not None
                 and cat.pelt.tint in sprites.cat_tints["dilute_tint_colours"]
             ):
                 tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
                 tint.fill(tuple(sprites.cat_tints["dilute_tint_colours"][cat.pelt.tint]))
                 gensprite.blit(tint, (0, 0), special_flags=pygame.BLEND_RGB_ADD)
+
+            if (
+                game_setting_get('tints')
+                and cat.pelt.tint is not None
+                and cat.pelt.tint in sprites.cat_tints["remove_tone_tint_colours"]
+            ):
+                tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                tint.fill(tuple(sprites.cat_tints["remove_tone_tint_colours"][cat.pelt.tint]))
+                gensprite.blit(tint, (0, 0), special_flags=pygame.BLEND_RGB_SUB)
 
             if is_today(SpecialDate.APRIL_FOOLS) and "Dg" in phenotype.april_fools.get("danish_green", []):
                 green = pygame.Surface((sprites.size, sprites.size), pygame.HWSURFACE | pygame.SRCALPHA)
@@ -1778,6 +1789,8 @@ def generate_sprite(
 # ------------------------------------------------------------------------------------------------------
 #  generate_sprites() Helper Functions
 # ------------------------------------------------------------------------------------------------------
+
+
 
 
 
