@@ -41,13 +41,16 @@ class Pelt:
 
     # SCARS
     # bite scars by @wood pank on discord
+    all_scars = []
     general_scars = []
-    for sprite_list in sprites.SCAR_DATA["sprite_list"]:
-        general_scars.extend(sprite_list)
-
     missing_part_scars = []
-    for sprite_list in sprites.SCAR_MISSING_PART_DATA["sprite_list"]:
-        missing_part_scars.extend(sprite_list)
+    for sprite_list in sprites.SCAR_DATA["sprite_list"]:
+        # missing parts are the last row of the sheet.
+        if sprite_list == sprites.SCAR_DATA["sprite_list"][-1]:
+            missing_part_scars.extend(sprite_list)
+        # general_scars is everything else
+        else:
+            general_scars.extend(sprite_list)
 
     all_scars = general_scars + missing_part_scars
 
@@ -115,7 +118,7 @@ class Pelt:
             "LEG_BACK_RIGHT_SMALL", "LEG_BACK_RIGHT_MIN", "LEG_FRONT_RIGHT_SMALL", "LEG_FRONT_RIGHT_MIN"],
             '2': ['LITTLE', 'LIGHTTUXEDO', 'BUZZARDFANG', 'TIP', 'PAWS', 'BROKENBLAZE', 'BEARD', 'BIB', 'VEE', 'HONEY', 'TOESTAIL',
                   'RAVENPAW', 'DAPPLEPAW', 'LILTWO', 'REVERSEHEART', 'SPARKLE', 'REVERSEEYE', "CHEST_MID", "CHEST_SMALL",
-                  "CHEST_STREAK", "BELLY_MIN", "MINTOESTAIL"],
+                  "CHEST_STREAK", "BELLY_MIN", "MINTOESTAIL", "SPARKLECAT"],
             '3': ['TUXEDO', 'SAVANNAH', 'FANCY', 'DIVA', 'BEARD', "DAMIEN_REDUCED", 'DAMIEN', 'BELLY', 'SQUEAKS', 'STAR', 'MISS', 'BOWTIE',
                   'FCTWO', 'FCONE', 'MIA', 'PRINCESS', 'DOUGIE', 'STREAMSTRIKE', "NECKTIE"],
             '4': ['TUXEDO', 'SAVANNAH', 'OWL', 'RINGTAIL', 'UNDERS', 'FAROFA', 'VEST', 'FRONT', 'BLOSSOMSTEP', 'DIGIT',
