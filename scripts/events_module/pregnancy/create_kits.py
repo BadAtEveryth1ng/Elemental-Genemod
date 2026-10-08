@@ -224,7 +224,7 @@ def get_kits(
             ref_cat = copy(all_kitten[-1])
             kit.permanent_condition = ref_cat.permanent_condition
             kit.phenotype = deepcopy(ref_cat.phenotype)
-            kit.phenotype.tortiepattern = None
+            kit.phenotype.tortiepattern = {}
             kit.phenotype.chimerapattern = None
             kit.phenotype.merlepattern = None
             kit.phenotype.somatic = {}
@@ -239,7 +239,7 @@ def get_kits(
 
             if ref_cat.chimerapheno:
                 kit.chimerapheno = deepcopy(ref_cat.chimerapheno)
-                kit.chimerapheno.tortiepattern = None
+                kit.chimerapheno.tortiepattern = {}
                 kit.chimerapheno.chimerapattern = kit.chimerapheno.ChooseTortiePattern(
                     "chimera")
                 kit.chimerapheno.merlepattern = None
@@ -433,7 +433,7 @@ def get_kits(
     all_relatives = [
         Cat.fetch_cat(c)
         for c in all_relatives
-        if c not in list(parents) and c not in [k.ID for k in all_kitten]
+        if c and c not in list(parents) and c not in [k.ID for k in all_kitten]
     ]
     all_relatives = [c for c in all_relatives if c.status.group_ID == all_kitten[0].status.group_ID]
 
@@ -673,16 +673,20 @@ def get_balanced_kit_chance(first_parent: Cat, second_parent: Cat, is_affair, cl
         else:
             inverse_chance = get_config("pregnancy.modded_primary_chance_mated")
     
-    is_med = False
-    if first_parent.status.rank in (CatRank.MEDICINE_CAT, CatRank.MEDICINE_APPRENTICE):
-        is_med = True
-    elif second_parent:
+    modifier = 0
+    parent_ranks = set()
+    parent_ranks.add(first_parent.status.rank)
+    if second_parent:
         for p in second_parent:
-            if p != "Surrogate" and p.status.rank in (CatRank.MEDICINE_CAT, CatRank.MEDICINE_APPRENTICE):
-                is_med = True
-
-    if is_med:
-        inverse_chance += get_config("pregnancy.healer_modifier")
+            if p != "Surrogate":
+                parent_ranks.add(p.status.rank)
+    applicable_ranks = get_config("pregnancy.rank_litter_chance_modifier").keys()
+    for rank in parent_ranks:
+        if rank in applicable_ranks:
+            mod = get_config(f"pregnancy.rank_litter_chance_modifier.{rank}")
+            if abs(mod) >= abs(modifier):
+                modifier = mod
+    inverse_chance += modifier
 
     # SETTINGS
     # - decrease inverse chance if only mated pairs can have kits

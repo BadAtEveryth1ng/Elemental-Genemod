@@ -146,14 +146,14 @@ class Namer():
         point = 'none'
 
         try:
-            phenotype.maincolour
+            phenotype.basecolour
         except:
             phenotype.SpriteInfo(self.moons)
 
         if (phenotype.colour in ['white', 'albino'] or 
-            (phenotype.maincolour == 'white' and not phenotype.patchmain) or
+            phenotype.basecolour == 'white' or
             (phenotype.white[1] in ['ws', 'wt'] and phenotype.whitegrade == 5) or
-            (phenotype.tortiepattern == ['revCRYPTIC'] and phenotype.brindledbi) or 
+            (phenotype.is_cryptic(all_rev=True) and phenotype.brindledbi) or 
             (phenotype.dilute[0] == 'd' and phenotype.pinkdilute[0] == 'dp' and 
                 (('dove' in phenotype.colour and phenotype.fur_shade < 2) or 
                 ('platinum' in phenotype.colour and phenotype.fur_shade < 3) or
@@ -164,29 +164,29 @@ class Namer():
         elif ('silver' in phenotype.silvergold and ('shaded' in phenotype.tabby or 'chinchilla' in phenotype.tabby)):
             base = 'silver shaded'
             return [base, tortie, tabby, white, point]
-        elif (('o' not in phenotype.sexgene or phenotype.tortiepattern == ['revCRYPTIC']) or (phenotype.ext[0] == 'ea' and ((self.moons > 11 and phenotype.agouti[0] != 'a') or (self.moons > 35))) or (phenotype.ext[0] == 'er' and self.moons > 23) or (phenotype.ext[0] == 'ec' and self.moons > 0 and (phenotype.agouti[0] != 'a' or self.moons > 5))) and not phenotype.specialred in ['cinnamon'] and not (phenotype.silver[0] == 'I' and phenotype.specialred in ['blue-red']):
+        elif (("o" not in phenotype.x_colours or phenotype.is_cryptic(all_rev=True)) or (phenotype.ext[0] == 'ea' and ((self.moons > 11 and phenotype.agouti[0] != 'a') or (self.moons > 35))) or (phenotype.ext[0] == 'er' and self.moons > 23) or (phenotype.ext[0] == 'ec' and self.moons > 0 and (phenotype.agouti[0] != 'a' or self.moons > 5))) and not phenotype.specialred in ['cinnamon'] and not (phenotype.silver[0] == 'I' and phenotype.specialred in ['blue-red']):
             if phenotype.dilute[0] == 'd' or phenotype.pinkdilute[0] == 'dp' or (phenotype.silver[0] == 'I' and phenotype.specialred in ['cameo', 'merle']):
                 base = 'cream'
             else:
                 base = 'ginger'
         else:
-            if ('O' in phenotype.sexgene and not phenotype.brindledbi and (not phenotype.tortiepattern or 'CRYPTIC' not in phenotype.tortiepattern[0])) or 'bimetal' in phenotype.silvergold or (phenotype.silver[0] == 'I' and phenotype.specialred == 'merle'):
+            if ("O" in phenotype.x_colours and not phenotype.brindledbi and not phenotype.is_cryptic()) or 'bimetal' in phenotype.silvergold or (phenotype.silver[0] == 'I' and phenotype.specialred == 'merle'):
                 tortie = True
-            elif ('O' in phenotype.sexgene and phenotype.brindledbi):
+            elif ('O' in phenotype.x_colours and phenotype.brindledbi):
                 white = 'mid'
             
-            if (phenotype.eumelanin[0] == 'bl') or (phenotype.colour == 'sable' and phenotype.pointgene[0] == 'cm') or 'cinnamon' in phenotype.maincolour or 'fawn' in phenotype.spritecolour:
-                if 'fawn' in phenotype.spritecolour or phenotype.dilute[0] == 'd' or phenotype.pinkdilute[0] == 'dp':
+            if (phenotype.eumelanin[0] == 'bl') or (phenotype.colour == 'sable' and phenotype.pointgene[0] == 'cm') or 'cinnamon' in phenotype.basecolour or 'fawn' in phenotype.secondarycolour:
+                if 'fawn' in phenotype.secondarycolour or phenotype.dilute[0] == 'd' or phenotype.pinkdilute[0] == 'dp':
                     base = 'fawn'
                 else:
                     base = 'cinnamon'
-            elif phenotype.eumelanin[0] == 'b' or 'lilac' in phenotype.spritecolour:
-                if 'lilac' in phenotype.spritecolour or phenotype.dilute[0] == 'd' or phenotype.pinkdilute[0] == 'dp':
+            elif phenotype.eumelanin[0] == 'b' or 'lilac' in phenotype.secondarycolour:
+                if 'lilac' in phenotype.secondarycolour or phenotype.dilute[0] == 'd' or phenotype.pinkdilute[0] == 'dp':
                     base = 'lilac'
                 else:
                     base = 'chocolate'
             else:
-                if 'blue' in phenotype.spritecolour or phenotype.dilute[0] == 'd' or phenotype.pinkdilute[0] == 'dp':
+                if 'blue' in phenotype.secondarycolour or phenotype.dilute[0] == 'd' or phenotype.pinkdilute[0] == 'dp':
                     base = 'blue'
                 else:
                     base = 'black'
@@ -244,8 +244,8 @@ class Namer():
         elif random() < 0.25:
             return True
         else:
-            pattern = self.phenotype.tortiepattern if self.phenotype.tortiepattern else self.chimera_pheno.chimerapattern
-            base = self.phenotype.maincolour
+            pattern = self.phenotype.tortiepattern["0"] if self.phenotype.tortiepattern else self.chimera_pheno.chimerapattern
+            base = self.phenotype.basecolour
             if random() < 0.75 and len(pattern) > 2 and ('rufoused' in base or 'medium' in base or 'low' in base):
                 return True
         return False
@@ -596,10 +596,10 @@ class Namer():
             return self.tabby(params[0], params[1], params[2], params[3])
         
     def lilac(self, params):
-        if random() < 0.1:
+        if self.phenotype.colour_warmth < 2 and random() < 0.1:
             self.purple(params)
 
-        if self.phenotype.fur_shade > 4 and random() < 0.2 and params[0] not in ['blue', 'fawn']:
+        if self.phenotype.colour_warmth > 1 and random() < 0.2 and params[0] not in ['blue', 'fawn']:
             params[4] = params[4].replace('sepia', 'mink')
             return self.blue(params)
 
@@ -713,10 +713,12 @@ class Namer():
             return self.tabby(params[0], params[1], params[2], params[3])
         
     def fawn(self, params):
-        if self.phenotype.fur_shade > 4 and random() < 0.2 and params[0] not in ['black', 'chocolate', 'cinnamon', 'blue', 'lilac']:
+        if self.phenotype.colour_warmth > 0 and random() < 0.2 and params[0] not in ['black', 'chocolate', 'cinnamon', 'blue', 'lilac']:
             return self.lilac(params)
-        if random() < 0.1:
+        if self.phenotype.colour_warmth > 1 and random() < 0.1:
             return self.pink(params)
+        if self.phenotype.colour_warmth > 1 and random() < 0.2 and params[0] not in ['black', 'chocolate', 'cinnamon', 'blue', 'lilac']:
+            return self.cream(params)
 
         if params[4] != 'none' and params[0] not in ['black', 'chocolate', 'cinnamon', 'blue', 'lilac']:
             #babies don't have points
