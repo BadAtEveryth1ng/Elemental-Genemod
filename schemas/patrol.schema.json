@@ -2522,6 +2522,10 @@
         {
           "pattern": "^-?clan:(.+)$",
           "type": "string"
+        },
+        {
+          "pattern": "^-?card:(.+)$",
+          "type": "string"
         }
       ],
       "title": "Tag"
