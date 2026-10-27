@@ -1,15 +1,15 @@
 {
-    "fire": ["burn", "severe_burn", "sunburn", "heat_stroke", "heat_exhaustion", "frostbite", "shivering"],
+    "fire": ["burn", "severe_burn", "sunburn", "heat_stroke", "heat_exhaustion", "frostbite", "dangerously_cold"],
     "water": ["water_in_lungs", "dehydrated", "diarrhea_dehydrated"],
     "earth": [],
     "air": ["breathless_fit"],
 
-    "blue fire": ["burn", "severe_burn", "sunburn", "heat_stroke", "heat_exhaustion", "frostbite", "shivering"],
-    "ice": ["frostbite", "shivering"],
+    "blue fire": ["burn", "severe_burn", "sunburn", "heat_stroke", "heat_exhaustion", "frostbite", "dangerously_cold"],
+    "ice": ["frostbite", "dangerously_cold"],
     "plant": [],
     "lightning": [],
 
-    "magma": ["burn", "severe_burn", "sunburn", "heat_stroke", "heat_exhaustion", "frostbite", "shivering"],
+    "magma": ["burn", "severe_burn", "sunburn", "heat_stroke", "heat_exhaustion", "frostbite", "dangerously_cold"],
     "metal": [ ],
     "smoke": [ ],
     "mud": [ ],
