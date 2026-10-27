@@ -490,7 +490,7 @@ def _check_progression(
     return event_list, conditions_to_remove, scar_applied
 
 
-def _condition_overlaps(current_conditions, new_condition):
+def _condition_overlaps(current_conditions, new_condition, element):
     """
     Checks if given condition overlaps with the progressions of the current conditions.
     """
@@ -501,7 +501,7 @@ def _condition_overlaps(current_conditions, new_condition):
     if "partial_hearing_loss" in current_conditions and new_condition in ["partial_hearing_loss_one_ear"]:
         return True
 
-    if element and new_condition in ELEMENT_BLOCK.get(selement, []):
+    if element and new_condition in ELEMENT_BLOCK.get(element, []):
         return
 
     if new_condition in all_conditions:
