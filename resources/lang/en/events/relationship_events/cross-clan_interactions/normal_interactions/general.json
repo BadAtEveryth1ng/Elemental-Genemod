@@ -2625,7 +2625,7 @@
         "condition": [
             {
                 "cats": ["r_c0"],
-                "condition": ["burn", "severe burn"],
+                "condition": ["burn", "severe_burn"],
                 "scar_history": "m_c gained a scar from r_c's powers.",
                 "death_history": "m_c died to {PRONOUN/m_c/poss} injuries from r_c's powers."
             }

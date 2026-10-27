@@ -212,7 +212,7 @@
                 "condition": [
                     {
                         "cats": [ "n_c0" ],
-                        "condition": [ "severe burn", "burn" ],
+                        "condition": [ "severe_burn", "burn" ],
                         "no_results": true,
                         "scar_history": "m_c gained a scar sustained from an elemental chasing {PRONOUN/m_c/object} away.",
                         "death_history": "m_c died from wounds sustained from an elemental chasing {PRONOUN/m_c/object} away."
@@ -3404,7 +3404,7 @@
                 "condition": [
                     {
                         "cats": [ "n_c0" ],
-                        "condition": [ "severe burn", "burn" ],
+                        "condition": [ "severe_burn", "burn" ],
                         "no_results": true,
                         "scar_history": "m_c gained a scar sustained from an elemental chasing {PRONOUN/m_c/object} away.",
                         "death_history": "m_c died from wounds sustained from an elemental chasing {PRONOUN/m_c/object} away."
@@ -4109,7 +4109,7 @@
                 "condition": [
                     {
                         "cats": [ "n_c0" ],
-                        "condition": [ "severe burn", "burn" ],
+                        "condition": [ "severe_burn", "burn" ],
                         "no_results": true,
                         "scar_history": "m_c gained a scar sustained from an elemental chasing {PRONOUN/m_c/object} away.",
                         "death_history": "m_c died from wounds sustained from an elemental chasing {PRONOUN/m_c/object} away."
@@ -4787,7 +4787,7 @@
                 "condition": [
                     {
                         "cats": [ "n_c0" ],
-                        "condition": [ "severe burn", "burn" ],
+                        "condition": [ "severe_burn", "burn" ],
                         "no_results": true,
                         "scar_history": "m_c gained a scar sustained from an elemental chasing {PRONOUN/m_c/object} away.",
                         "death_history": "m_c died from wounds sustained from an elemental chasing {PRONOUN/m_c/object} away."

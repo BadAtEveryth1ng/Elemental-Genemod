@@ -361,7 +361,7 @@ def _check_risks(
             continue
 
         # don't give them a condition that they already have a progression of
-        if _condition_overlaps(current_conditions, risk):
+        if _condition_overlaps(current_conditions, risk, cat.phenotype.element):
             continue
 
         if chance and random() <= chance:
@@ -421,7 +421,7 @@ def _check_progression(
     }
 
     # don't give them a condition that they already have a progression of
-    if _condition_overlaps(current_conditions, progression):
+    if _condition_overlaps(current_conditions, progression, cat.phenotype.element):
         return event_list, conditions_to_remove, False
 
     # gather the base progression info
@@ -501,7 +501,7 @@ def _condition_overlaps(current_conditions, new_condition):
     if "partial_hearing_loss" in current_conditions and new_condition in ["partial_hearing_loss_one_ear"]:
         return True
 
-    if cat.phenotype.element and new_condition in ELEMENT_BLOCK.get(cat.phenotype.element, []):
+    if element and new_condition in ELEMENT_BLOCK.get(selement, []):
         return
 
     if new_condition in all_conditions:

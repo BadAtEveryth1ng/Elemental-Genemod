@@ -3150,7 +3150,7 @@
                 "condition": [
                     {
                         "cats": ["s_c0"],
-                        "condition": ["battle_injury", "small_bite_injury", "torn pelt", "torn ear"],
+                        "condition": ["battle_injury", "small_bite_injury", "torn_pelt", "torn_ear"],
                         "scar_history": "m_c was scarred after a o_c_n search party mistook {PRONOUN/m_c/object} as trying to steal o_c_n kits.",
                         "death_history": "m_c died of injuries inflicted when a o_c_n search party mistook {PRONOUN/m_c/object} as trying to steal o_c_n kits."
                     }
@@ -3187,7 +3187,7 @@
                 "condition": [
                     {
                         "cats": [ "s_c0" ],
-                        "condition": [ "battle_injury", "small_bite_injury", "torn pelt", "torn ear" ],
+                        "condition": [ "battle_injury", "small_bite_injury", "torn_pelt", "torn_ear" ],
                         "scar_history": "m_c was scarred after a o_c_n search party mistook {PRONOUN/m_c/object} as trying to steal o_c_n kits.",
                         "death_history": "m_c died of injuries inflicted when a o_c_n search party mistook {PRONOUN/m_c/object} as trying to steal o_c_n kits."
                     }
@@ -3224,7 +3224,7 @@
                 "condition": [
                     {
                         "cats": [ "s_c0" ],
-                        "condition": [ "battle_injury", "small_bite_injury", "torn pelt", "torn ear" ],
+                        "condition": [ "battle_injury", "small_bite_injury", "torn_pelt", "torn_ear" ],
                         "scar_history": "m_c was scarred after a o_c_n search party mistook {PRONOUN/m_c/object} as trying to steal o_c_n kits.",
                         "death_history": "m_c died of injuries inflicted when a o_c_n search party mistook {PRONOUN/m_c/object} as trying to steal o_c_n kits."
                     }
@@ -3261,7 +3261,7 @@
                 "condition": [
                     {
                         "cats": [ "s_c0" ],
-                        "condition": [ "battle_injury", "small_bite_injury", "torn pelt", "torn ear" ],
+                        "condition": [ "battle_injury", "small_bite_injury", "torn_pelt", "torn_ear" ],
                         "scar_history": "m_c was scarred after a o_c_n search party mistook {PRONOUN/m_c/object} as trying to steal o_c_n kits.",
                         "death_history": "m_c died of injuries inflicted when a o_c_n search party mistook {PRONOUN/m_c/object} as trying to steal o_c_n kits."
                     }
@@ -3298,7 +3298,7 @@
                 "condition": [
                     {
                         "cats": [ "s_c0" ],
-                        "condition": [ "battle_injury", "small_bite_injury", "torn pelt", "torn ear" ],
+                        "condition": [ "battle_injury", "small_bite_injury", "torn_pelt", "torn_ear" ],
                         "scar_history": "m_c was scarred after a o_c_n search party mistook {PRONOUN/m_c/object} as trying to steal o_c_n kits.",
                         "death_history": "m_c died of injuries inflicted when a o_c_n search party mistook {PRONOUN/m_c/object} as trying to steal o_c_n kits."
                     }
@@ -3335,7 +3335,7 @@
                 "condition": [
                     {
                         "cats": [ "s_c0" ],
-                        "condition": [ "battle_injury", "small_bite_injury", "torn pelt", "torn ear" ],
+                        "condition": [ "battle_injury", "small_bite_injury", "torn_pelt", "torn_ear" ],
                         "scar_history": "m_c was scarred after a o_c_n search party mistook {PRONOUN/m_c/object} as trying to steal o_c_n kits.",
                         "death_history": "m_c died of injuries inflicted when a o_c_n search party mistook {PRONOUN/m_c/object} as trying to steal o_c_n kits."
                     }
@@ -3372,7 +3372,7 @@
                 "condition": [
                     {
                         "cats": [ "s_c0" ],
-                        "condition": [ "battle_injury", "small_bite_injury", "torn pelt", "torn ear" ],
+                        "condition": [ "battle_injury", "small_bite_injury", "torn_pelt", "torn_ear" ],
                         "scar_history": "m_c was scarred after a o_c_n search party mistook {PRONOUN/m_c/object} as trying to steal o_c_n kits.",
                         "death_history": "m_c died of injuries inflicted when a o_c_n search party mistook {PRONOUN/m_c/object} as trying to steal o_c_n kits."
                     }
@@ -3409,7 +3409,7 @@
                 "condition": [
                     {
                         "cats": [ "s_c0" ],
-                        "condition": [ "battle_injury", "small_bite_injury", "torn pelt", "torn ear" ],
+                        "condition": [ "battle_injury", "small_bite_injury", "torn_pelt", "torn_ear" ],
                         "scar_history": "m_c was scarred after a o_c_n search party mistook {PRONOUN/m_c/object} as trying to steal o_c_n kits.",
                         "death_history": "m_c died of injuries inflicted when a o_c_n search party mistook {PRONOUN/m_c/object} as trying to steal o_c_n kits."
                     }
@@ -3446,7 +3446,7 @@
                 "condition": [
                     {
                         "cats": [ "s_c0" ],
-                        "condition": [ "battle_injury", "small_bite_injury", "torn pelt", "torn ear" ],
+                        "condition": [ "battle_injury", "small_bite_injury", "torn_pelt", "torn_ear" ],
                         "scar_history": "m_c was scarred after a o_c_n search party mistook {PRONOUN/m_c/object} as trying to steal o_c_n kits.",
                         "death_history": "m_c died of injuries inflicted when a o_c_n search party mistook {PRONOUN/m_c/object} as trying to steal o_c_n kits."
                     }
@@ -3483,7 +3483,7 @@
                 "condition": [
                     {
                         "cats": [ "s_c0" ],
-                        "condition": [ "battle_injury", "small_bite_injury", "torn pelt", "torn ear" ],
+                        "condition": [ "battle_injury", "small_bite_injury", "torn_pelt", "torn_ear" ],
                         "scar_history": "m_c was scarred after a o_c_n search party mistook {PRONOUN/m_c/object} as trying to steal o_c_n kits.",
                         "death_history": "m_c died of injuries inflicted when a o_c_n search party mistook {PRONOUN/m_c/object} as trying to steal o_c_n kits."
                     }
@@ -3520,7 +3520,7 @@
                 "condition": [
                     {
                         "cats": [ "s_c0" ],
-                        "condition": [ "battle_injury", "small_bite_injury", "torn pelt", "torn ear" ],
+                        "condition": [ "battle_injury", "small_bite_injury", "torn_pelt", "torn_ear" ],
                         "scar_history": "m_c was scarred after a o_c_n search party mistook {PRONOUN/m_c/object} as trying to steal o_c_n kits.",
                         "death_history": "m_c died of injuries inflicted when a o_c_n search party mistook {PRONOUN/m_c/object} as trying to steal o_c_n kits."
                     }
@@ -3557,7 +3557,7 @@
                 "condition": [
                     {
                         "cats": [ "s_c0" ],
-                        "condition": [ "battle_injury", "small_bite_injury", "torn pelt", "torn ear" ],
+                        "condition": [ "battle_injury", "small_bite_injury", "torn_pelt", "torn_ear" ],
                         "scar_history": "m_c was scarred after a o_c_n search party mistook {PRONOUN/m_c/object} as trying to steal o_c_n kits.",
                         "death_history": "m_c died of injuries inflicted when a o_c_n search party mistook {PRONOUN/m_c/object} as trying to steal o_c_n kits."
                     }
@@ -3594,7 +3594,7 @@
                 "condition": [
                     {
                         "cats": [ "s_c0" ],
-                        "condition": [ "battle_injury", "small_bite_injury", "torn pelt", "torn ear" ],
+                        "condition": [ "battle_injury", "small_bite_injury", "torn_pelt", "torn_ear" ],
                         "scar_history": "m_c was scarred after a o_c_n search party mistook {PRONOUN/m_c/object} as trying to steal o_c_n kits.",
                         "death_history": "m_c died of injuries inflicted when a o_c_n search party mistook {PRONOUN/m_c/object} as trying to steal o_c_n kits."
                     }
@@ -3631,7 +3631,7 @@
                 "condition": [
                     {
                         "cats": [ "s_c0" ],
-                        "condition": [ "battle_injury", "small_bite_injury", "torn pelt", "torn ear" ],
+                        "condition": [ "battle_injury", "small_bite_injury", "torn_pelt", "torn_ear" ],
                         "scar_history": "m_c was scarred after a o_c_n search party mistook {PRONOUN/m_c/object} as trying to steal o_c_n kits.",
                         "death_history": "m_c died of injuries inflicted when a o_c_n search party mistook {PRONOUN/m_c/object} as trying to steal o_c_n kits."
                     }
@@ -3668,7 +3668,7 @@
                 "condition": [
                     {
                         "cats": [ "s_c0" ],
-                        "condition": [ "battle_injury", "small_bite_injury", "torn pelt", "torn ear" ],
+                        "condition": [ "battle_injury", "small_bite_injury", "torn_pelt", "torn_ear" ],
                         "scar_history": "m_c was scarred after a o_c_n search party mistook {PRONOUN/m_c/object} as trying to steal o_c_n kits.",
                         "death_history": "m_c died of injuries inflicted when a o_c_n search party mistook {PRONOUN/m_c/object} as trying to steal o_c_n kits."
                     }
@@ -3705,7 +3705,7 @@
                 "condition": [
                     {
                         "cats": [ "s_c0" ],
-                        "condition": [ "battle_injury", "small_bite_injury", "torn pelt", "torn ear" ],
+                        "condition": [ "battle_injury", "small_bite_injury", "torn_pelt", "torn_ear" ],
                         "scar_history": "m_c was scarred after a o_c_n search party mistook {PRONOUN/m_c/object} as trying to steal o_c_n kits.",
                         "death_history": "m_c died of injuries inflicted when a o_c_n search party mistook {PRONOUN/m_c/object} as trying to steal o_c_n kits."
                     }

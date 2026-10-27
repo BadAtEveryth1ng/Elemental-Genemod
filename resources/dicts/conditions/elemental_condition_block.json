@@ -1,15 +1,15 @@
 {
-    "fire": ["burn", "severe burn", "sunburn", "body sunburn", "heat stroke", "heat exhaustion", "frostbite", "shivering"],
-    "water": ["water in their lungs", "dehydrated"],
+    "fire": ["burn", "severe_burn", "sunburn", "heat_stroke", "heat_exhaustion", "frostbite", "shivering"],
+    "water": ["water_in_lungs", "dehydrated", "diarrhea_dehydrated"],
     "earth": [],
-    "air": ["breathless fit"],
+    "air": ["breathless_fit"],
 
-    "blue fire": ["burn", "severe burn", "sunburn", "body sunburn", "heat stroke", "heat exhaustion", "frostbite", "shivering"],
+    "blue fire": ["burn", "severe_burn", "sunburn", "heat_stroke", "heat_exhaustion", "frostbite", "shivering"],
     "ice": ["frostbite", "shivering"],
     "plant": [],
     "lightning": [],
 
-    "magma": ["burn", "severe burn", "sunburn", "body sunburn", "heat stroke", "heat exhaustion", "frostbite", "shivering"],
+    "magma": ["burn", "severe_burn", "sunburn", "heat_stroke", "heat_exhaustion", "frostbite", "shivering"],
     "metal": [ ],
     "smoke": [ ],
     "mud": [ ],
@@ -17,9 +17,9 @@
     "sand": [ ],
 
     "mist": [ ],
-    "oil": ["cyst", "itchy skin"],
+    "oil": ["cyst", "itchy_skin"],
     "combustion": [ ],
-    "decay": ["an infected wound", "a festering wound", "carrionplace disease"],
+    "decay": ["infection", "festering_wound", "carrionplace_disease"],
     "magnetic": [ ],
     "luminescent": [ ]
 }

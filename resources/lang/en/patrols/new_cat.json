@@ -207,7 +207,7 @@
                 "condition": [
                     {
                         "cats": [ "n_c0" ],
-                        "condition": [ "severe burn", "burn" ],
+                        "condition": [ "severe_burn", "burn" ],
                         "no_results": true,
                         "scar_history": "m_c gained a scar sustained from an elemental chasing {PRONOUN/m_c/object} away.",
                         "death_history": "m_c died from wounds sustained from an elemental chasing {PRONOUN/m_c/object} away."
@@ -2083,7 +2083,7 @@
                 "condition": [
                     {
                         "cats": [ "n_c0" ],
-                        "condition": [ "severe burn", "burn" ],
+                        "condition": [ "severe_burn", "burn" ],
                         "no_results": true,
                         "scar_history": "m_c gained a scar sustained from an elemental chasing {PRONOUN/m_c/object} away.",
                         "death_history": "m_c died from wounds sustained from an elemental chasing {PRONOUN/m_c/object} away."
@@ -2799,7 +2799,7 @@
                 "condition": [
                     {
                         "cats": [ "n_c0" ],
-                        "condition": [ "severe burn", "burn" ],
+                        "condition": [ "severe_burn", "burn" ],
                         "no_results": true,
                         "scar_history": "m_c gained a scar sustained from an elemental chasing {PRONOUN/m_c/object} away.",
                         "death_history": "m_c died from wounds sustained from an elemental chasing {PRONOUN/m_c/object} away."
@@ -3496,7 +3496,7 @@
                 "condition": [
                     {
                         "cats": [ "n_c0" ],
-                        "condition": [ "severe burn", "burn" ],
+                        "condition": [ "severe_burn", "burn" ],
                         "no_results": true,
                         "scar_history": "m_c gained a scar sustained from an elemental chasing {PRONOUN/m_c/object} away.",
                         "death_history": "m_c died from wounds sustained from an elemental chasing {PRONOUN/m_c/object} away."
@@ -8828,7 +8828,7 @@
                 "condition": [
                     {
                         "cats": ["r_c0"],
-                        "condition": ["claw-wound"],
+                        "condition": ["claw_wound"],
                         "scar_history": "m_c gained a scar after tussling with a rogue.",
                         "death_history": "m_c died from injuries sustained in a fight with a rogue."
                     }
@@ -8882,7 +8882,7 @@
                 "condition": [
                     {
                         "cats": [ "r_c0" ],
-                        "condition": [ "claw-wound" ],
+                        "condition": [ "claw_wound" ],
                         "scar_history": "m_c gained a scar after tussling with a rogue.",
                         "death_history": "m_c died from injuries sustained in a fight with a rogue."
                     }
@@ -8936,7 +8936,7 @@
                 "condition": [
                     {
                         "cats": [ "r_c0" ],
-                        "condition": [ "claw-wound" ],
+                        "condition": [ "claw_wound" ],
                         "scar_history": "m_c gained a scar after tussling with a kittypet.",
                         "death_history": "m_c died from injuries sustained in a fight with a kittypet."
                     }
@@ -8990,7 +8990,7 @@
                 "condition": [
                     {
                         "cats": [ "r_c0" ],
-                        "condition": [ "claw-wound" ],
+                        "condition": [ "claw_wound" ],
                         "scar_history": "m_c gained a scar after tussling with a rogue.",
                         "death_history": "m_c died from injuries sustained in a fight with a rogue."
                     }
@@ -9044,7 +9044,7 @@
                 "condition": [
                     {
                         "cats": [ "r_c0" ],
-                        "condition": [ "claw-wound" ],
+                        "condition": [ "claw_wound" ],
                         "scar_history": "m_c gained a scar after tussling with a rogue.",
                         "death_history": "m_c died from injuries sustained in a fight with a rogue."
                     }
@@ -9098,7 +9098,7 @@
                 "condition": [
                     {
                         "cats": [ "r_c0" ],
-                        "condition": [ "claw-wound" ],
+                        "condition": [ "claw_wound" ],
                         "scar_history": "m_c gained a scar after tussling with a kittypet.",
                         "death_history": "m_c died from injuries sustained in a fight with a kittypet."
                     }
@@ -19586,7 +19586,7 @@
                             "s_c0"
                         ],
                         "condition": [
-                            "blunt_force_injury", "water in their lungs"
+                            "blunt_force_injury", "water_in_lungs"
                         ],
                         "scar_history": "m_c was scarred after a Twoleg kicked {PRONOUN/m_c/object} into the lake.",
                         "death_history": "m_c died of injuries inflicted by a Twoleg."
