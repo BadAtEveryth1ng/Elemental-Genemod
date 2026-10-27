@@ -257,6 +257,9 @@ class PredictOffspringScreen(Screens):
             starting_height=1,
             manager=MANAGER,
         )
+        if not get_config("genetics_config.show_genotype"):
+            self.search_toggle_checkbox.checked = False
+            self.search_toggle_checkbox.disable()
 
         self.outsider_toggle_checkbox = UICheckbox(
             (310, 160),
@@ -353,7 +356,7 @@ class PredictOffspringScreen(Screens):
             for i in Cat.all_cats_list
             if i.is_potential_mate(self.selected_cat, for_love_interest=False, age_restriction=False, ignore_no_mates=True, outsider=True)
             and (i.status.group_ID == self.selected_cat.status.group_ID or self.include_outsiders)
-            and "sterile" not in i.permanent_condition
+            and "sterile" not in i.permanent_conditions
             and (get_clan_setting("same sex birth") or xor('Y' in i.phenotype.sexgene, 'Y' in self.selected_cat.phenotype.sexgene))
         ]
 

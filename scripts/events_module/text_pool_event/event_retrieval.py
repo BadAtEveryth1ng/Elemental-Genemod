@@ -1,9 +1,10 @@
-from random import choices
+from random import choices, choice
 from typing import Union, Optional
 
 
 from scripts.cat.cats import Cat
 from scripts.clan import OtherClan
+from scripts.clan_package.get_clan_cats import get_living_clan_cat_count
 from scripts.events_module.event_filters import find_new_frequency, get_frequency
 from scripts.events_module.patrol.patrol_event import PatrolEvent
 from scripts.events_module.text_pool_event.check_general_constraints import (
@@ -12,17 +13,22 @@ from scripts.events_module.text_pool_event.check_general_constraints import (
 from scripts.events_module.text_pool_event.find_involved_cats import find_cats
 from scripts.events_module.text_pool_event.text_pool_event import TextPoolEvent
 from scripts.game_structure.localization import load_lang_resource
+from scripts.game_structure import game
 
 loaded_events = {}
 
+def select_valid_other_clan(clan):
+    options = [c for c in game.clan.all_other_clans+[game.clan] if clan and c.group_ID != clan.group_ID and (game.clan.clancount == "singleclan" or get_living_clan_cat_count(Cat, c.group_ID, include_newborns=False))]
+    return choice(options) if options else None
 
 def get_valid_event(
-    primary_cat: Cat,
+    primary_cat: Cat | None,
     involved_cats: dict,
     interactable_cats: list[Cat],
     possible_events: list[PatrolEvent | TextPoolEvent],
     clan,
     other_clan: Optional[OtherClan] = None,
+    chosen_poi: Optional[str] = None,
     ensured_id: Optional[str] = None,
     general_constraints_active: bool = True,
     cat_constraints_active: bool = True,
@@ -39,6 +45,7 @@ def get_valid_event(
     :param interactable_cats: List of cat objects who can participate in this event
     :param possible_events: List of event objects that we should find an event from
     :param other_clan: The other clan involved in this event
+    :param chosen_poi: If a POI has been pre-chosen for this event, include it here
     :param ensured_id: ID of the ensured event, if any
     :param general_constraints_active: If true, filters by general constraints
     :param cat_constraints_active: If true, filters by cat constraints
@@ -49,8 +56,11 @@ def get_valid_event(
     chosen_frequency = get_frequency() if frequency_active else 4
 
     chosen_event: Optional[Union[PatrolEvent, TextPoolEvent]] = None
-    temp_involved_cats = {}
+
     tested_events = set()
+
+    if other_clan is None and game.clan.all_other_clans:
+        other_clan = select_valid_other_clan(clan)
 
     # retrieve the ensured event from the list
     ensured_event = None
@@ -69,7 +79,7 @@ def get_valid_event(
         outside_cats = [
             c
             for c in Cat.all_cats_list
-            if (c.status.group_ID != clan.group_ID or c.status.is_outsider) and not c.dead and c.status.is_near()
+            if (clan and c.status.group_ID != clan.group_ID or c.status.is_outsider) and not c.dead and c.status.is_near()
         ]
     while not chosen_event:
         temp_involved_cats = involved_cats.copy()
@@ -122,6 +132,7 @@ def get_valid_event(
                 involved_cats=involved_cats,
                 clan=clan,
                 other_clan=other_clan,
+                chosen_poi=chosen_poi,
                 is_debug_event=bool(ensured_event),
             ):
                 tested_events.add(test_event.event_id)

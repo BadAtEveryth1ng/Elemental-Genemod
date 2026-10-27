@@ -384,6 +384,7 @@ class Genotype:
                 "rainbow_eyes" : ["NoDRE", "NoDRE"],
                 "black_spotting" : ["bs", "bs"],
                 "peacock_blue" : ["pb", "pb"],
+                "mineral_red" : ["mr", "mr"],
             }
             for i in range(2):
                 if self.odds["green"] > 0 and random() < (1/self.odds["green"]):
@@ -396,7 +397,9 @@ class Genotype:
                     self.april_fools["black_spotting"][i] = "Bs"
                 if self.odds["peacock_blue"] > 0 and random() < (1/self.odds["peacock_blue"]):
                     self.april_fools["peacock_blue"][i] = "Pb"
-            for key in ["danish_green", "polycaudal", "black_spotting", "peacock_blue"]:
+                if self.odds["mineral_red"] > 0 and random() < (1/self.odds["mineral_red"]):
+                    self.april_fools["mineral_red"][i] = "Mr"
+            for key in ["danish_green", "polycaudal", "black_spotting", "peacock_blue", "mineral_red"]:
                 if self.april_fools[key][0].islower() and self.april_fools[key][1].islower():
                     del self.april_fools[key]
             if self.april_fools["rainbow_eyes"][0] == "NoDRE" and self.april_fools["rainbow_eyes"][1] == "NoDRE":
@@ -1061,7 +1064,7 @@ class Genotype:
         if self.odds['pseudo_merle'] > 0 and randint(1, self.odds['pseudo_merle'])==1:
             self.pseudomerle = True 
         
-        for gene in ["danish_green", "polycaudal", "rainbow_eyes", "black_spotting", "peacock_blue"]:
+        for gene in ["danish_green", "polycaudal", "rainbow_eyes", "black_spotting", "peacock_blue", "mineral_red"]:
             self.april_fools[gene] = ["", ""]
             if gene in par1.april_fools.keys():
                 self.april_fools[gene][0] = choice(par1.april_fools[gene])
@@ -2231,14 +2234,15 @@ class Genotype:
     def GenerateSomatic(self):
         self.somatic["base"] = choice(['Somatic/leftface', 'Somatic/rightface', "EYELINER_MAX_L", "EYELINER_MAX_R", "EYESPOT_L", "EYESPOT_R", 
                                     "HELMET",
-                                    "BEARD_FULL", "BEARD_HIGH", 
+                                    'underbelly1', "BEARD", "BEARD_FULL", "BEARD_HIGH", 
                                     'Somatic/tail', 
-                                    'underbelly1', "BEARD", "BELLY", "BELLY_HIGH", "BELLY_MID", "BELLY_SMALL", "BIB",
+                                    "BELLY", "BELLY_HIGH", "BELLY_MID", "BELLY_SMALL", "BIB", "TEARDROP",
                                     'right front bicolour2', 'left front bicolour2', 
                                     'right back bicolour2', 'left back bicolour2', 
                                     'right front bicolour1', 'left front bicolour1', 
                                     'right back bicolour1', 'left back bicolour1', 
-                                    "LEFTEAR", "RIGHTEAR", "BACKSPOT", "SADDLE_SMALL", "TAILTIP"])
+                                    "LEFTEAR", "RIGHTEAR", "BACKSPOT", "SADDLE_SMALL", 
+                                    "TAILTIP", "TAIL_HIGH_RING", "TAIL_MID", "TAIL_REVERSE_HALF", "TAIL_REVERSE_MIN"])
 
         possible_mutes = {
         "furtype" : ["wirehair", "laperm", "cornish", "urals", "tenn", "fleece", "sedesp"],
@@ -2306,7 +2310,7 @@ class Genotype:
             self.somatic = {}
             return
 
-        top_patches = ['Somatic/leftface', 'Somatic/rightface', 'Somatic/tail', "LEFTEAR", "RIGHTEAR", "BACKSPOT", "SADDLE_SMALL", "HELMET", "EYESPOT_L", "EYESPOT_R"]
+        top_patches = ['Somatic/leftface', 'Somatic/rightface', 'Somatic/tail', "LEFTEAR", "RIGHTEAR", "BACKSPOT", "SADDLE_SMALL", "HELMET", "EYESPOT_L", "EYESPOT_R", "TAIL_MID", "TAIL_REVERSE_HALF", "TAIL_REVERSE_MIN"]
         if self.white[1] in ['ws', 'wt'] and self.somatic["base"] not in top_patches:
             self.somatic["base"] = choice(top_patches)
         
@@ -2353,7 +2357,6 @@ class Genotype:
             "EYESPOT_R": "face",
             "HELMET": "head",
             "Somatic/tail" : 'tail',
-            "underbelly1" : 'underbelly',
             'right front bicolour2' : 'front leg', 
             'left front bicolour2' : 'front leg', 
             'right back bicolour2' : 'back leg', 
@@ -2367,12 +2370,18 @@ class Genotype:
             "BACKSPOT": "back",
             "SADDLE_SMALL": "back",
             "TAILTIP": "tail tip",
+            "TAIL_HIGH_RING": "tail",
+            "TAIL_MID": "tail",
+            "TAIL_REVERSE_HALF": "tail",
+            "TAIL_REVERSE_MIN": "tail base",
+            "underbelly1" : 'underbelly',
             "BEARD": "chin",
             "BELLY": "belly",
             "BELLY_HIGH": "belly",
             "BELLY_MID": "belly",
             "BELLY_SMALL": "belly",
             "BIB": "chest",
+            "TEARDROP": 'chest',
             "BEARD_FULL": "chest",
             "BEARD_HIGH": "chest"
         }

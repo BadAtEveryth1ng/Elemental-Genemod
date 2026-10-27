@@ -7,7 +7,16 @@ import i18n
 
 from scripts.cat_relations.relationship import Relationship
 from scripts.cat.cats import Cat
-from scripts.cat.constants import PERMANENT, ILLNESSES, INJURIES, BACKSTORIES
+from scripts.cat.conditions.gain_conditions import (
+    gain_temporary_condition,
+    gain_permanent_condition,
+)
+from scripts.cat.constants import (
+    TEMPORARY_CONDITIONS,
+    PERMANENT_CONDITIONS,
+    CONDITION_GROUPS,
+    BACKSTORIES
+)
 from scripts.cat.enums import CatRank, CatSocial, CatThought, CatStanding, CatGroup
 from scripts.cat.microservices.add_to_clan import add_to_clan, add_dependents_to_clan
 from scripts.cat.pelts import Pelt
@@ -20,19 +29,13 @@ from scripts.clan_resources.freshkill import (
     HUNTER_BONUS,
     HUNTER_EXP_BONUS,
 )
-from scripts.cat.microservices.conditions import (
-    get_ill,
-    get_injured,
-    get_permanent_condition,
-)
 from scripts.clan_resources.point_of_interest import get_poi_from_constraints
 from scripts.config import get_config
 from scripts.events_module.consequences import unpack_rel_block, check_stolen_vitality
 from scripts.events_module.future.prep_and_trigger import prep_future_event
-from scripts.events_module.patrol.create_new_cat import updated_create_new_cat
 from scripts.events_module.parameter_dicts import SupplyDict
+from scripts.events_module.patrol.create_new_cat import updated_create_new_cat
 from scripts.events_module.patrol.patrol_event import PatrolEvent
-from scripts.events_module.relationship import relation_events
 from scripts.clan_package.settings import get_clan_setting
 from scripts.events_module.text_adjust import (
     event_text_adjust,
@@ -41,8 +44,7 @@ from scripts.events_module.text_adjust import (
     process_text,
 )
 from scripts.events_module.text_pool_event.text_pool_event import TextPoolEvent
-from scripts.events_module.thoughts.generate_thoughts import get_new_thought
-from scripts.game_structure import game, constants
+from scripts.game_structure import game
 
 disable_random: bool = False
 logger = logging.getLogger(__name__)
@@ -55,10 +57,14 @@ def execute_outcome(
     other_clan: OtherClan = None,
     chosen_poi: str = None,
     tags=None,
-) -> tuple[str, str, dict]:
+) -> tuple[str, dict, dict]:
     """
     Executes the outcome, applying any specified consequences.
     If new cats are created, event_involved_cats *will* be modified to add the newly created cats.
+    :param event: The TextPoolEvent to execute.
+    :param event_involved_cats: Dictionary of involved cats. Key is their event string and value is object.
+    :param other_clan: OtherClan if one is involved
+    :param chosen_poi: The POI being used for this event, if there is one
     :returns: Outcome text, results text, list of created rel logs (might be empty)
     """
 
@@ -103,21 +109,21 @@ def execute_outcome(
             chosen_poi=chosen_poi,
         )
 
-    results = [
-        _handle_multiclan(event, event_involved_cats, clan, other_clan),
-        _handle_joining(event, event_involved_cats, clan),
-        _handle_meeting(event, event_involved_cats),
-        _handle_death(event, event_involved_cats, clan, other_clan, chosen_poi),
-        _handle_lost(event, event_involved_cats, tags),
-        _handle_conditions(event, event_involved_cats, other_clan),
-        _handle_reputation_changes(event, clan, other_clan),
-        _handle_supply_changes(event, event_involved_cats, clan),
-    ]
+    results = {
+        "multiclan": _handle_multiclan(event, event_involved_cats, clan, other_clan),
+        "join": _handle_joining(event, event_involved_cats, clan),
+        "death": _handle_death(event, event_involved_cats, clan, other_clan, chosen_poi),
+        "meet": _handle_meeting(event, event_involved_cats),
+        "lost": _handle_lost(event, event_involved_cats, tags),
+        "condition": _handle_conditions(event, event_involved_cats, other_clan),
+        "reputation": _handle_reputation_changes(event, clan, other_clan),
+        "supply": _handle_supply_changes(event, event_involved_cats, clan),
+    }
 
     acc_results, processed_text = _handle_accessories(
         event, event_involved_cats, processed_text
     )
-    results.append(acc_results)
+    results["acc"] = acc_results
 
     _handle_exp(event, event_involved_cats)
     _handle_mentor_app(event_involved_cats)
@@ -142,15 +148,10 @@ def execute_outcome(
         unpack_rel_block(Cat, rel_changes, involved_cats=event_involved_cats, clan=clan)
     )
     if rel_results:
-        results.append(i18n.t(f"screens.patrol.relationship_changed"))
-
-    final_results = []
-    for r in results:
-        if r:
-            final_results.append(r)
+        results["relationship"] = i18n.t(f"screens.patrol.relationship_changed")
 
     # return all the bullshit
-    return processed_text, "\n".join(final_results), rel_results
+    return processed_text, results, rel_results
 
 def _handle_multiclan(
     event: TextPoolEvent, event_involved_cats: dict[str, Union[Cat, list[Cat]]], clan, other_clan
@@ -442,6 +443,11 @@ def _handle_joining(
         cat_names.append(_profile_link(c))
         c.assign_thought(CatThought.ON_JOIN)
 
+    # i'm sorry this is so gross but it was the only way to get the bulk timeskip test to stop dying over circular imports
+    # eventually we should rework how the `trigger_joining_relationship_events` is handled so that we don't have
+    # to call it here
+    from scripts.events_module.relationship import relation_events
+
     relation_events.trigger_joining_relationship_events(joined)
 
     return i18n.t("screens.patrol.new_outsider", cats=adjust_list_text(cat_names))
@@ -469,7 +475,7 @@ def _handle_meeting(
     for c in met:
         c.status.change_standing(CatStanding.KNOWN, CatGroup.PLAYER_CLAN_ID)
         if c.status.is_outsider:
-            get_new_thought(c, CatThought.ON_MEETING)
+            c.next_thought_type = CatThought.ON_MEETING
 
     return i18n.t(
         "screens.patrol.met_outsider",
@@ -515,74 +521,78 @@ def _handle_death(
                 if "all_lives" in death_tags:
                     lives_lost = clan.leader_lives
                     clan.leader_lives = 0
-                    results.append(
-                        event_text_adjust(
-                            Cat,
-                            i18n.t("cat.history.n_leader_death_all"),
-                            main_cat=c,
-                            chosen_poi=chosen_poi,
+
+                    if not block.get("no_results"):
+                        results.append(
+                            event_text_adjust(
+                                Cat,
+                                i18n.t("cat.history.n_leader_death_all"),
+                                main_cat=c,
+                                chosen_poi=chosen_poi,
+                            )
                         )
-                    )
                 elif "some_lives" in death_tags:
                     lives_lost = randint(2, max(1, clan.leader_lives - 1))
                     clan.leader_lives -= lives_lost
                     for i in range(lives_lost - 1):
                         c.history.add_death("multi_lives")
-                    results.append(
-                        event_text_adjust(
-                            Cat,
-                            i18n.t("cat.history.n_leader_lost_lives", count=lives_lost),
-                            main_cat=c,
-                            chosen_poi=chosen_poi,
+
+                    if not block.get("no_results"):
+                        results.append(
+                            event_text_adjust(
+                                Cat,
+                                i18n.t(
+                                    "cat.history.n_leader_lost_lives", count=lives_lost
+                                ),
+                                main_cat=c,
+                                chosen_poi=chosen_poi,
+                            )
                         )
-                    )
                 else:
                     lives_lost = 1
                     clan.leader_lives -= 1
-                    results.append(
-                        event_text_adjust(
-                            Cat,
-                            i18n.t("cat.history.n_leader_lost_lives", count=1),
-                            main_cat=c,
-                            chosen_poi=chosen_poi,
+
+                    if not block.get("no_results"):
+                        results.append(
+                            event_text_adjust(
+                                Cat,
+                                i18n.t("cat.history.n_leader_lost_lives", count=1),
+                                main_cat=c,
+                                chosen_poi=chosen_poi,
+                            )
                         )
-                    )
                 if extra_result := check_stolen_vitality(c, lives_lost):
                     results.append(extra_result)
 
             # OUTSIDER
-            if c.status.is_outsider:
+            elif c.status.is_outsider:
                 other_cat_names.append(_profile_link(c))
+
+                if not block.get("no_results"):
+                    results.append(
+                        i18n.t(
+                            "screens.patrol.dead_outsider",
+                            cats=adjust_list_text(other_cat_names),
+                            count=len(other_cat_names),
+                        )
+                    )
 
             # NORMAL PLAYER CAT
             else:
                 player_cat_names.append(_profile_link(c))
 
+                if not block.get("no_results"):
+                    results.append(
+                        i18n.t(
+                            "cat.history.regular_death",
+                            cats=adjust_list_text(player_cat_names),
+                            count=len(player_cat_names),
+                        )
+                    )
+
             # KILL
             __handle_death_history(c, block["history"], other_clan)
             c.die(body)
-
-        # CREATE RESULTS
-        if block.get("no_results"):
-            continue
-
-        if player_cat_names:
-            results.append(
-                i18n.t(
-                    "cat.history.regular_death",
-                    cats=adjust_list_text(player_cat_names),
-                    count=len(player_cat_names),
-                )
-            )
-        # other cats get special text
-        if other_cat_names:
-            results.append(
-                i18n.t(
-                    "screens.patrol.dead_outsider",
-                    cats=adjust_list_text(other_cat_names),
-                    count=len(other_cat_names),
-                )
-            )
 
     return " ".join(results)
 
@@ -639,9 +649,9 @@ def _handle_lost(
             elif tnr and 'TNR' not in c.pelt.scars:
                 if not tnr2:
                     c.pelt.scars = (*c.pelt.scars, "TNR")
-                get_permanent_condition(c, "sterile", False)
-                if 'pregnant' in c.injuries:
-                    c.permanent_condition['sterile']['moon_start'] += 3
+                gain_permanent_condition(c, "sterile", False)
+                if 'pregnant' in c.temporary_conditions:
+                    c.get_condition("sterile")['moons_until_discovery'] = 3
             elif tnr and "TNR" in c.pelt.scars and not tnr2:
                 cat_list.remove(c)
             if not tnr:
@@ -670,7 +680,7 @@ def _handle_conditions(
         return ""
 
     results = []
-    condition_groups = constants.INJURY_GROUPS
+    condition_groups = CONDITION_GROUPS
 
     cats_and_conditions: dict[Cat, list[str]] = {}
 
@@ -688,7 +698,7 @@ def _handle_conditions(
         for tag in block["condition"]:
             if tag in condition_groups:
                 possible_conditions.extend(condition_groups[tag])
-            elif tag in INJURIES or tag in ILLNESSES or tag in PERMANENT:
+            elif tag in TEMPORARY_CONDITIONS or tag in PERMANENT_CONDITIONS:
                 possible_conditions.append(tag)
 
         if not possible_conditions:
@@ -696,15 +706,13 @@ def _handle_conditions(
                 f"Something went wrong with outcome: {event}. None of the given conditions were valid."
             )
 
-        lethal = block.get("non_lethal", False)
+        non_lethal = block.get("non_lethal", False)
         scars = block.get("scar_pool_override", [])
 
         for c in cat_list:
-            current_conditions = (
-                list(c.injuries.keys())
-                + list(c.illnesses.keys())
-                + list(c.permanent_condition.keys())
-            )
+            current_conditions = [
+                con.name for con in c.temporary_conditions + c.permanent_conditions
+            ]
 
             if set(possible_conditions).issubset(current_conditions):
                 print(
@@ -717,12 +725,15 @@ def _handle_conditions(
             )
             chosen_condition = choice(list(conditions_for_cat))
 
-            if chosen_condition in INJURIES:
-                get_injured(c, chosen_condition, lethal=lethal, potential_scars=scars)
-            elif chosen_condition in ILLNESSES:
-                get_ill(c, chosen_condition, lethal=lethal)
+            if chosen_condition in TEMPORARY_CONDITIONS:
+                gain_temporary_condition(
+                    c,
+                    chosen_condition,
+                    prevent_death=non_lethal,
+                    scar_pool_override=scars,
+                )
             else:
-                get_permanent_condition(c, chosen_condition)
+                gain_permanent_condition(c, chosen_condition)
 
             no_results = block.get("no_results", False)
 
@@ -747,7 +758,12 @@ def _handle_conditions(
             i18n.t(
                 "general.got_condition",
                 cat=_profile_link(c),
-                conditions=adjust_list_text(conditions),
+                conditions=adjust_list_text(
+                    [
+                        i18n.t(f"conditions.temporary_conditions.{_con}")
+                        for _con in conditions
+                    ]
+                ),
             )
         )
 

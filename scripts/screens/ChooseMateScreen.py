@@ -312,6 +312,9 @@ class ChooseMateScreen(Screens):
             if self.search_genotype
             else "screens.list.search_genotypes_tooltip"
         )
+        if not get_config("genetics_config.show_genotype"):
+            self.search_toggle_checkbox.checked = False
+            self.search_toggle_checkbox.disable()
 
         self.show_all_checkbox = UICheckbox(
             position=(220, 629),
@@ -1138,8 +1141,8 @@ class ChooseMateScreen(Screens):
         if (
             not ((get_clan_setting("same sex birth")
             or xor('Y' in self.the_cat.phenotype.sexgene, 'Y' in self.selected_cat.phenotype.sexgene) )
-            and 'sterile' not in self.the_cat.permanent_condition 
-            and 'sterile' not in self.selected_cat.permanent_condition)
+            and 'sterile' not in self.the_cat.permanent_conditions 
+            and 'sterile' not in self.selected_cat.permanent_conditions)
         ):
             warning_rect = ui_scale(pygame.Rect((0, 0), (160, 45)))
             warning_rect.bottomleft = ui_scale_offset((0, -5))
@@ -1274,8 +1277,8 @@ class ChooseMateScreen(Screens):
                 or 
                 ((get_clan_setting("same sex birth")
                 or xor('Y' in i.phenotype.sexgene, 'Y' in self.the_cat.phenotype.sexgene)) 
-                and 'sterile' not in i.permanent_condition
-                and 'sterile' not in self.the_cat.permanent_condition)
+                and 'sterile' not in i.permanent_conditions
+                and 'sterile' not in self.the_cat.permanent_conditions)
             )
         ]
 

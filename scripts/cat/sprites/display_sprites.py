@@ -44,7 +44,7 @@ def generate_sprite(
     :param acc_hidden: If True, hide the accessory. If false, show the accessory.
     :param always_living: If True, always show the cat with living lineart
     :param disable_sick_sprite: If true, never use the not_working lineart.
-                    If false, use the cat.not_working() to determine the no_working art.
+                    If false, use the not i.can_work() to determine the no_working art.
     """
     poses: list = sprites.POSE_DATA["poses"]
     sprite_poses = {x: str(poses.index(x)) for x in poses}
@@ -70,7 +70,7 @@ def generate_sprite(
     # sick sprites
     if (
         not disable_sick_sprite
-        and cat.not_working()
+        and not cat.can_work()
         and age != CatAge.NEWBORN
         and get_config("cat_sprites.sick_sprites")
     ):
@@ -104,6 +104,7 @@ def generate_sprite(
             else:
                 cat_sprite = sprite_poses[cat.pelt.cat_sprites[age]]
 
+    cat_sprite = "_" + cat_sprite
     new_sprite = pygame.Surface(
         (sprites.size, sprites.size), pygame.HWSURFACE | pygame.SRCALPHA
     )
@@ -139,6 +140,7 @@ def generate_sprite(
             age = 120
         elif int(cat_sprite) > 15 and cat_sprite not in ['28', '29'] and cat.moons < 12:
             age = 60
+        cat_sprite = "_" + cat_sprite
         gensprite.blit(create_cat(cat, phenotype, cat_sprite, age, season_override), (0, 0))
 
         if(cat.chimerapheno):
@@ -265,9 +267,8 @@ def generate_sprite(
             else:
                 bodylines.blit(sprites.sprites['lineart_sc' + cat_sprite], (0, 0))
             
-        if int(cat_sprite) > 2:
-            earlines.blit(sprites.sprites['isolateears' + cat_sprite],
-                      (0, 0), special_flags=pygame.BLEND_RGBA_SUB)
+        if age > 0:
+            earlines.blit(sprites.sprites['isolateears' + cat_sprite], (0, 0), special_flags=pygame.BLEND_RGBA_SUB)
             lineart.blit(earlines, (0, 0))
             bodylines.blit(sprites.sprites['noears' + cat_sprite], (0, 0), special_flags=pygame.BLEND_RGBA_SUB)
         lineart.blit(bodylines, (0, 0))
@@ -283,8 +284,7 @@ def generate_sprite(
         gensprite = new_sprite
         if cat.phenotype.bobtailnr > 0:
             gensprite.blit(_recolor_lineart(
-                sprites.sprites['bobtail' +
-                                str(cat.phenotype.bobtailnr) + cat_sprite],
+                sprites.sprites['bobtail' + str(cat.phenotype.bobtailnr) + cat_sprite],
                 lineart_color,
                 gradient_surface,
             ), (0, 0))
@@ -305,11 +305,11 @@ def generate_sprite(
                 tail.blit(new_sprite, (0, 0),
                           special_flags=pygame.BLEND_RGBA_MIN)
                 offset = 2
-                if cat_sprite in ["2", "11", "16", "17", "18", "19", "21", "24"]:
+                if cat_sprite[1:] in ["2", "11", "16", "17", "18", "19", "21", "24"]:
                     new_sprite.blit(tail, (offset, 1))
-                elif cat_sprite in ["5", "8", "9", "10", "12", "13", "14", "20", "25", "26", "27"]:
+                elif cat_sprite[1:] in ["5", "8", "9", "10", "12", "13", "14", "20", "25", "26", "27"]:
                     new_sprite.blit(tail, (-offset, -1))
-                elif cat_sprite in ["1", "6", "7"]:
+                elif cat_sprite[1:] in ["1", "6", "7"]:
                     new_sprite.blit(tail, (0, -2))
 
             if get_config("fun.april_fools_hats"):
@@ -472,11 +472,11 @@ def generate_sprite(
             geno.white = ["w", "w"]
             geno.white_pattern = "No"
             geno.PhenotypeOutput()
-        new_sprite = draw_sprite(geno, cat_sprite)
+        new_sprite = draw_sprite(geno, cat_sprite[1:])
         if cat.phenotype.somatic.get('base', False):
             som_sprite = pygame.Surface((sprites.size, sprites.size), pygame.HWSURFACE | pygame.SRCALPHA)
             som_sprite.blit(sprites.sprites[geno.somatic["base"] + cat_sprite], (0, 0))
-            som_sprite.blit(draw_sprite(geno, cat_sprite, somatic=True), (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
+            som_sprite.blit(draw_sprite(geno, cat_sprite[1:], somatic=True), (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
             new_sprite.blit(som_sprite, (0, 0))
 
     except (TypeError, KeyError):
@@ -584,6 +584,8 @@ stripecolourdict = {
 def calculate_base_colour(base, warmth):
     if ('red' in base or 'cream' in base or 'honey' in base or 'ivory' in base or 'apricot' in base):
         return sprites.sprites[stripecolourdict.get(base[:-1], base[:-1])+base[-1]].copy()
+    if "basecolours" in base:
+        return sprites.sprites[base].copy()
     if warmth == 0:
         return sprites.sprites[base].copy()
     if warmth == 2:
@@ -597,6 +599,32 @@ def calculate_base_colour(base, warmth):
     
     layer = pygame.Surface((sprites.size, sprites.size), pygame.HWSURFACE | pygame.SRCALPHA)
     layer.fill(lukewarm_colour)
+    return layer
+
+def apply_mineral_red(phenotype, layer):
+    if is_today(SpecialDate.APRIL_FOOLS) and phenotype.mineral:
+        colouradd = pygame.Surface(
+            (sprites.size, sprites.size), pygame.HWSURFACE | pygame.SRCALPHA)
+        if phenotype.rufousing > 5:
+            if phenotype.dilute[0] == "D" and phenotype.pinkdilute[0] == "Dp":
+                colouradd.fill((255, 75, 25))
+            else:
+                colouradd.fill((255, 255, 50))
+            layer.blit(colouradd, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+        elif phenotype.rufousing > 2:
+            if phenotype.dilute[0] == "D" and phenotype.pinkdilute[0] == "Dp":
+                colouradd.fill((255, 175, 0))
+            else:
+                colouradd.fill((255, 225, 200))
+            layer.blit(colouradd, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+        else:
+            if phenotype.dilute[0] == "D" and phenotype.pinkdilute[0] == "Dp":
+                colouradd.fill((255, 255, 75))
+                layer.blit(colouradd, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+            else:
+                colouradd.fill((255, 255, 255))
+                colouradd.set_alpha(100)
+                layer.blit(colouradd, (0, 0))
     return layer
 
 def calculate_red_stripes(phenotype, base, rufousing):
@@ -641,6 +669,9 @@ def calculate_red_stripes(phenotype, base, rufousing):
 
     layer = pygame.Surface((sprites.size, sprites.size), pygame.HWSURFACE | pygame.SRCALPHA)
     layer.fill(final_colour)
+
+    layer = apply_mineral_red(phenotype, layer)
+
     return layer
 
 def get_tabby_base(phenotype, base_string, stripe_colour, is_apricot = False):
@@ -673,7 +704,7 @@ def get_tabby_base(phenotype, base_string, stripe_colour, is_apricot = False):
         if not rufousing == "silver":
             next_ruf_block = 0
     
-    main_colour = sprites.sprites[basecolour + ruf_blocks[main_ruf_block] + wb_blocks[main_wb_block]+"0"].get_at((0, 0))
+    main_colour = sprites.sprites[basecolour + ruf_blocks[main_ruf_block] + wb_blocks[main_wb_block]].get_at((0, 0))
     final_colour = deepcopy(main_colour)
 
     shift_by = calculate_base_colour(stripe_colour, phenotype.colour_warmth).get_at((0, 0))
@@ -682,18 +713,18 @@ def get_tabby_base(phenotype, base_string, stripe_colour, is_apricot = False):
         final_colour[i] = max(min(final_colour[i] + int((shift_by[i] - comp[i]) * 0.25 * (4-main_wb_block)), 255), 0)
     
     if is_apricot and (next_ruf_block < main_ruf_block or main_ruf_block == "silver"):
-        comparison_colour = sprites.sprites[next_base + ruf_blocks[next_ruf_block] + wb_blocks[main_wb_block]+"0"].get_at((0, 0))
+        comparison_colour = sprites.sprites[next_base + ruf_blocks[next_ruf_block] + wb_blocks[main_wb_block]].get_at((0, 0))
         steps = rufousing % 4 if rufousing != "silver" else phenotype.rufousing-4
         for i in range(3):
             final_colour[i] = max(min(final_colour[i] + int((comparison_colour[i]-main_colour[i])/4*steps), 255), 0)
 
     elif main_ruf_block != next_ruf_block:
-        comparison_colour = sprites.sprites[basecolour + ruf_blocks[next_ruf_block] + wb_blocks[main_wb_block]+"0"].get_at((0, 0))
+        comparison_colour = sprites.sprites[basecolour + ruf_blocks[next_ruf_block] + wb_blocks[main_wb_block]].get_at((0, 0))
         for i in range(3):
             final_colour[i] = max(min(final_colour[i] + int((comparison_colour[i]-main_colour[i])/(ruf_steps[next_ruf_block]-ruf_steps[main_ruf_block])*(rufousing-ruf_steps[main_ruf_block])), 255), 0)
 
     if main_wb_block != next_wb_block:
-        comparison_colour = sprites.sprites[basecolour + ruf_blocks[main_ruf_block] + wb_blocks[next_wb_block]+"0"].get_at((0, 0))
+        comparison_colour = sprites.sprites[basecolour + ruf_blocks[main_ruf_block] + wb_blocks[next_wb_block]].get_at((0, 0))
         for i in range(3):
             final_colour[i] = max(min(final_colour[i] + int((comparison_colour[i]-main_colour[i])/(wb_steps[next_wb_block]-wb_steps[main_wb_block])*(wideband-wb_steps[main_wb_block])), 255), 0)
     
@@ -933,7 +964,7 @@ def create_cat(cat, phenotype, cat_sprite, sprite_age, season_override, merle=Fa
                 shading.blit(
                     sprites.sprites[phenotype.wbtype + 'shading' + cat_sprite], (0, 0))
             if "silver" in whichbase:
-                shading.set_alpha(150)
+                shading.set_alpha(200)
 
             stripebase.blit(shading, (0, 0))
 
@@ -957,7 +988,9 @@ def create_cat(cat, phenotype, cat_sprite, sprite_age, season_override, merle=Fa
     def tabby_base(whichcolour, whichbase, cat_unders, special=None):
         is_red = ('red' in whichcolour or 'cream' in whichcolour or 'honey' in whichcolour or 'ivory' in whichcolour or 'apricot' in whichcolour)
         whichmain = get_tabby_base(phenotype, whichbase, stripecolourdict.get(whichcolour[:-1], whichcolour[:-1])+whichcolour[-1], 'apricot' in whichcolour)
-        if special !='copper' and sprite_age > 12 and (phenotype.silver[0] == 'I' and phenotype.corin[0] == 'fg' and (get_current_season(season_override) in ['Leaf-fall', 'Leaf-bare'] or 'sterile' in cat.permanent_condition)):
+        if is_red:
+            whichmain = apply_mineral_red(phenotype, whichmain)
+        if special !='copper' and sprite_age > 12 and (phenotype.silver[0] == 'I' and phenotype.corin[0] == 'fg' and (get_current_season(season_override) in ['Leaf-fall', 'Leaf-bare'] or 'sterile' in cat.permanent_conditions)):
             sunshine = pygame.Surface((sprites.size, sprites.size), pygame.HWSURFACE | pygame.SRCALPHA)
             
             colours = phenotype.FindRed(phenotype, sprite_age, special='low')
@@ -1086,6 +1119,7 @@ def create_cat(cat, phenotype, cat_sprite, sprite_age, season_override, merle=Fa
         pad_dict = {
             'red' : 0,
             'whit' : 1,
+            'lightbasecolours' : 1,
             'black' : 3,
             'chocolate' : 4,
             'cinnamon' : 5,
@@ -1101,16 +1135,16 @@ def create_cat(cat, phenotype, cat_sprite, sprite_age, season_override, merle=Fa
         }
 
         if(phenotype.white[0] == 'W' or phenotype.pointgene[0] == 'c' or phenotype.white_pattern == ['FULLWHITE'] or whichcolour == "white"):
-            pads.blit(sprites.sprites['padcolours1'], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
+            pads.blit(sprites.sprites['padcolours_1'], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
         elif ('amber' not in phenotype.colour or phenotype.agouti[0] != 'a') and ('russet' in phenotype.colour or 'carnelian' in phenotype.colour or is_red):
-            pads.blit(sprites.sprites['padcolours0'], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
+            pads.blit(sprites.sprites['padcolours_0'], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
         elif 'amber' in phenotype.colour:
             phenotype.SpriteInfo(10)
             whichcolour = phenotype.basecolour
-            pads.blit(sprites.sprites['padcolours' + str(pad_dict.get(whichcolour[:-1], 0))], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
+            pads.blit(sprites.sprites['padcolours_' + str(pad_dict.get(whichcolour[:-1], 0))], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
             phenotype.SpriteInfo(sprite_age)
         else:
-            pads.blit(sprites.sprites['padcolours' + str(pad_dict.get(whichcolour[:-1]))], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
+            pads.blit(sprites.sprites['padcolours_' + str(pad_dict.get(whichcolour[:-1]))], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
 
         sprite.blit(pads, (0, 0))
 
@@ -1122,7 +1156,8 @@ def create_cat(cat, phenotype, cat_sprite, sprite_age, season_override, merle=Fa
 
         nose_dict = {
             'red' : 0,
-            'whit' : 1,
+            'whit': 1,
+            'lightbasecolours': 1,
             'tabby' : 2,
             'black' : 3,
             'chocolate' : 4,
@@ -1139,21 +1174,21 @@ def create_cat(cat, phenotype, cat_sprite, sprite_age, season_override, merle=Fa
         }
 
         if maincolour == "white":
-            nose.blit(sprites.sprites['nosecolours1'], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
+            nose.blit(sprites.sprites['nosecolours_1'], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
         elif ('amber' in phenotype.colour and phenotype.agouti[0] != 'a' and sprite_age > 11) or isred:
-            nose.blit(sprites.sprites['nosecolours0'], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
+            nose.blit(sprites.sprites['nosecolours_0'], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
         elif 'amber' in phenotype.colour:
             phenotype.SpriteInfo(10)
-            nose.blit(sprites.sprites['nosecolours' + str(nose_dict.get(phenotype.basecolour[:-1]))], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
+            nose.blit(sprites.sprites['nosecolours_' + str(nose_dict.get(phenotype.basecolour[:-1]))], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
             phenotype.SpriteInfo(sprite_age)
         elif maincolour != spritecolour and "masked" not in phenotype.silvergold and "charcoal" not in phenotype.tabtype and not phenotype.blacknose:
             if phenotype.corin[0] != "N" and not (phenotype.corin[0] == "sh" and phenotype.agouti[1] == "a"):
-                nose.blit(sprites.sprites['nosecolours0'], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
+                nose.blit(sprites.sprites['nosecolours_0'], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
             else:
-                nose.blit(sprites.sprites['nosecolours2'], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
+                nose.blit(sprites.sprites['nosecolours_2'], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
             nose.set_alpha(200)
         else:
-            nose.blit(sprites.sprites['nosecolours' + str(nose_dict.get(maincolour[:-1]))], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
+            nose.blit(sprites.sprites['nosecolours_' + str(nose_dict.get(maincolour[:-1]))], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
 
         sprite.blit(nose, (0, 0))
         return sprite
@@ -1716,7 +1751,6 @@ def create_cat(cat, phenotype, cat_sprite, sprite_age, season_override, merle=Fa
                 except:
                     whitesprite.blit(sprites.sprites[x.removeprefix("break/") + cat_sprite].premul_alpha(), (0, 0), special_flags=pygame.BLEND_RGBA_SUB)
     
-    whitesprite.blit(sprites.sprites["lightbasecolours0"], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
     tintedwhitesprite.blit(whitesprite, (0, 0))
 
     leathers = pygame.Surface((sprites.size, sprites.size), pygame.HWSURFACE | pygame.SRCALPHA)
@@ -1740,6 +1774,7 @@ def create_cat(cat, phenotype, cat_sprite, sprite_age, season_override, merle=Fa
     
     if is_today(SpecialDate.APRIL_FOOLS) and "Bs" in phenotype.april_fools.get("black_spotting", []):
         tintedwhitesprite.blit(sprites.sprites[f'black{phenotype.fur_shade}'], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
+    tintedwhitesprite.blit(sprites.sprites["lightbasecolours0"], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
     
     if (
         game_setting_get('tints')
@@ -1770,7 +1805,7 @@ def create_cat(cat, phenotype, cat_sprite, sprite_age, season_override, merle=Fa
         gensprite.blit(sprites.sprites['ears' + cat_sprite], (0, 0))
 
 
-    if(int(cat_sprite) % 4 != 3 and int(cat_sprite) > 3):
+    if(int(cat_sprite[1:]) % 4 != 3 and int(cat_sprite[1:]) > 3):
         lefteye = pygame.Surface((sprites.size, sprites.size), pygame.HWSURFACE | pygame.SRCALPHA)
         righteye = pygame.Surface((sprites.size, sprites.size), pygame.HWSURFACE | pygame.SRCALPHA)
         special = pygame.Surface((sprites.size, sprites.size), pygame.HWSURFACE | pygame.SRCALPHA)

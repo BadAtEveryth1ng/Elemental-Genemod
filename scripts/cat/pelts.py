@@ -1,5 +1,5 @@
 import random
-from random import choice, random, randint, shuffle
+from random import choice, choices, random, randint, shuffle
 
 import i18n
 
@@ -103,7 +103,7 @@ class Pelt:
         for sprite_list in sprites.COLLAR_DATA["sprite_list"]:
             collar_accessories.extend(sprite_list)
 
-    # this is used for acc-giving events, only change if you're adding a new category tag to the event filter
+    # this is used for acc-giving events and acc constraints, only change if you're adding a new category tag to the event filter
     # adding a category here will automatically update the event editor's options
     acc_categories = {
         "PLANT": plant_accessories,
@@ -397,6 +397,9 @@ class Pelt:
     @staticmethod
     def generate_white(KIT, albino, KITgrade, vit, white_pattern, pax3):
 
+        if white_pattern and "muzzle" in white_pattern:
+            white_pattern.remove("muzzle")
+            white_pattern.append("muzzle1")
         if white_pattern and "break/inverse thai" in white_pattern:
             white_pattern.remove("break/inverse thai")
             white_pattern.append("break/dorsal stripe")
@@ -448,17 +451,17 @@ class Pelt:
                     white_pattern.append(choice(Pelt.maingame_white["low"].get(str(KITgrade))))
 
                 elif KITgrade == 1:
-                    if random () < 0.95:
-                        white_pattern.append(choice(['chest tuft', 'belly tuft', 'belly tuft', 'belly tuft', "CHEST_MIN", "LOCKET"]))
+                    if random() < 0.95:
+                        white_pattern.append(choice(['chest tuft', 'belly tuft', 'belly tuft', 'belly tuft', "CHEST_MIN", "LOCKET", "UNDER_MIN"]))
                     
                 elif KITgrade == 2:
                     while len(white_pattern) == 0:
                         #chest
-                        if random () < 0.5:
-                            white_pattern.append(choice(['chest tuft', 'locket', 'chest tuft', 'locket', 'bib', "BIB_SMALL", "CHEST_MIN", "CHEST_SMALL", "LOCKET", "CHEST_STREAK", "NECKBEARD"]))
+                        if random() < 0.5:
+                            white_pattern.append(choice(['chest tuft', 'locket', 'chest tuft', 'locket', 'bib', "BIB_SMALL", "CHEST_MIN", "CHEST_SMALL", "LOCKET", "CHEST_STREAK", "NECKBEARD", "VEE", "VEE_MID"]))
                         #belly
-                        elif random () < 0.5:
-                            white_pattern.append(choice(['belly tuft', 'belly spot', 'belly tuft', 'belly spot', 'belly', "BELLY_SMALL", "BELLY_MIN"]))
+                        elif random() < 0.5:
+                            white_pattern.append(choice(['belly tuft', 'belly spot', 'belly tuft', 'belly spot', 'belly', "BELLY_SMALL", "BELLY_MIN", "UNDER_SMALL"]))
 
                         #toes
                         nropaws = choice([4, 3, 2, 1, 0, 0])
@@ -473,11 +476,11 @@ class Pelt:
                     if pax3[0] != "NoDBE" and random() < 0.2:
                         white_pattern.append("TOM")
 
-                    while len(white_pattern) < 4 or "TOM" in white_pattern:
+                    while len(white_pattern) < 4 and "TOM" not in white_pattern:
                         #chest
                         if random () < 0.8:
                             white_pattern.append(choice(['chest', 'chest', 'beard', 'chest', 'bib', 
-                            "BIB", "CHEST_BROKEN", "CHEST_MID", "DAMIEN_REDUCED", "NECKBEARD", "NECKTIE"]))
+                            "BIB", "CHEST_BROKEN", "CHEST_MID", "DAMIEN_REDUCED", "NECKBEARD", "NECKTIE", "TEARDROP", "UNDER_HEART", "UNDER_MID", "VEE_MID"]))
 
                         # belly
                         if random() < 0.8:
@@ -511,14 +514,16 @@ class Pelt:
                     while len(white_pattern) < 6:
                         #chest
                         white_pattern.append(choice(
-                            ['underbelly1', 'underbelly1', 'underbelly1', 
-                            'beard', 'chest', 
-                            "CHEST_BROKEN", "BELLY", "CHEST_MID"]))
+                            ['underbelly1', 'underbelly1', 
+                            choice(['beard', 'chest', "CHEST_BROKEN", "BELLY", "CHEST_MID", "TEARDROP", "UNDER_HEART", "UNDER_MID", "VEE_FULL"])
+                            ]))
 
                         #belly
                         if 'underbelly1' not in white_pattern:
                             white_pattern.append('belly')
-                        white_pattern.append(choice(['belt', 'belt', 'pants'] + [None] * 7))
+                        
+                        if random() < 0.25:
+                            white_pattern.append(choice(['belt', 'BELLY_FULL', 'pants']))
 
                         #paws
                         nropaws = choice([4, 4, 4, 4, 3, 3, 2, 2, 1])
@@ -540,8 +545,9 @@ class Pelt:
                             for i in range(nropaws):
                                 white_pattern.append("break/"+ order[i] + choice([' toes', ' mitten']))
                         
-                        for i in range(randint(0, 2)):
-                            white_pattern.append(choice(['break/bracelet left', 'break/bracelet right'] + [None] * 5))
+                        if random() < 0.2:
+                            for i in range(randint(1, 2)):
+                                white_pattern.append(choice(['break/bracelet left', 'break/bracelet right']))
 
                         #face
                         if 'beard' or 'underbelly1' in white_pattern:
@@ -554,15 +560,18 @@ class Pelt:
                             white_pattern.append(choice(['break/chin', "break/CHIN"]))
 
                         #tail
-                        if random() < 0.2:
+                        if random() < 0.1:
                             white_pattern.append(choice(['tail tip', "TAILTIP"]))
+                            if random() < 0.1:
+                                white_pattern.append(choice(["TAIL_HIGH_RING"]))
                         white_pattern.append(choice([None, None, None, choice(['break/nose1', 'break/nose2'])]))
                         white_pattern = clean_white(white_pattern)
                 else:
                     while len(white_pattern) < 6:
                         #chest
                         white_pattern.append('underbelly1')
-                        white_pattern.append(choice(['belt', 'belt', 'pants'] + [None] * 7))
+                        if random() < 0.25:
+                            white_pattern.append(choice(['belt', 'BELLY_FULL', 'pants']))
 
                         #paws
                         nropaws = 4
@@ -585,8 +594,9 @@ class Pelt:
                             for i in range(nropaws):
                                 white_pattern.append("break/" + order[i] + choice([' toes', ' mitten', ' mitten']))
 
-                        for i in range(randint(0, 2)):
-                            white_pattern.append(choice(['break/bracelet left', 'break/bracelet right'] + [None] * 5))
+                        if random() < 0.2:
+                            for i in range(randint(1, 2)):
+                                white_pattern.append(choice(['break/bracelet left', 'break/bracelet right']))
                         #face
                         white_pattern.append(choice(['chin', 'muzzle1', 'muzzle1', 'muzzle1', 'muzzle2', 'blaze', "MUSTACHE", "MUZZLE"]))
 
@@ -594,14 +604,19 @@ class Pelt:
                             white_pattern.append(choice(["BEARD_MID", "BEARD_HIGH"]))
 
                         if random() < 0.1:
-                            white_pattern.append(
-                                choice(['break/chin', "break/CHIN"]))
+                            white_pattern.append(choice(['break/chin', "break/CHIN"]))
 
                         # tail
-                        if random() < 0.2:
-                            white_pattern.append(
-                                choice(['tail tip', "TAILTIP"]))
-                        white_pattern.append(choice([None, None, None, choice(['break/nose1', 'break/nose2'])]))
+                        if random() < 0.1:
+                            white_pattern.append(choice(['tail tip', "TAILTIP"]))
+                            if random() < 0.1:
+                                white_pattern.append(
+                                    choice(["TAIL_HIGH_RING"]))
+                        if random() < 0.05:
+                            white_pattern.append(choice(["TAIL_LOW_RING", "TAIL_REVERSE_MIN"]))
+                        
+                        if random () < 0.2:
+                            white_pattern.append(choice(['break/nose1', 'break/nose2']))
                         white_pattern = clean_white(white_pattern)
             else:
                 if "NoDBE" not in pax3 and (random() < 0.75):
@@ -614,7 +629,8 @@ class Pelt:
                     while len(white_pattern) < 6:
                         #chest
                         white_pattern.append('underbelly1')
-                        white_pattern.append(choice(['belt', 'belt', 'pants'] + [None] * 7))
+                        if random() < 0.25:
+                            white_pattern.append(choice(['belt', 'BELLY_FULL', 'pants']))
 
                         #paws
                         nropaws = 4
@@ -636,8 +652,9 @@ class Pelt:
                             for i in range(nropaws):
                                 white_pattern.append("break/"+ order[i] + choice([' toes', ' mitten', ' mitten', ' low sock']))
 
-                        for i in range(randint(0, 2)):
-                            white_pattern.append(choice(['break/bracelet left', 'break/bracelet right'] + [None] * 5))
+                        if random() < 0.2:
+                            for i in range(randint(1, 2)):
+                                white_pattern.append(choice(['break/bracelet left', 'break/bracelet right']))
                         #face
                         white_pattern.append(choice(['chin', 'muzzle1', 'muzzle1', 'muzzle1', 'muzzle2', 'blaze', 'blaze']))
                         white_pattern.append(choice(['break/chin'] + [None] * 5))
@@ -646,9 +663,14 @@ class Pelt:
                             white_pattern.append(choice(["BEARD_FULL", "BEARD_HIGH", "BEARD_MID"]))
 
                         #tail
-                        if random() < 0.2:
+                        if random() < 0.1:
                             white_pattern.append(choice(['tail tip', "TAILTIP"]))
-                        white_pattern.append(choice([None, None, None, choice(['break/nose1', 'break/nose2'])]))
+                            if random() < 0.1:
+                                white_pattern.append(choice(["TAIL_HIGH_RING"]))
+                        if random() < 0.05:
+                            white_pattern.append(choice(["TAIL_LOW_RING", "TAIL_LOW_RING", "TAIL_REVERSE_HALF", "TAIL_REVERSE_MIN", "TAIL_REVERSE_MIN"]))
+                        if random () < 0.2:
+                            white_pattern.append(choice(['break/nose1', 'break/nose2']))
 
                 elif KITgrade == 2:
                     #body
@@ -671,71 +693,88 @@ class Pelt:
                         for i in range(nropaws):
                             white_pattern.append("break/"+ order[i] + choice([' toes', ' mitten', ' mitten', ' low sock']))
 
-                    for i in range(randint(0, 2)):
-                        white_pattern.append(choice(['break/bracelet left', 'break/bracelet right'] + [None] * 5))
+                    if random() < 0.2:
+                        for i in range(randint(1, 2)):
+                            white_pattern.append(choice(['break/bracelet left', 'break/bracelet right']))
                     
                     # face
                     if random() < 0.1:
                         white_pattern.append(choice(["MASK_FULL", "MASK_HIGH"]))
                     else:
                         white_pattern.append(choice(['muzzle1', 'muzzle1', 'muzzle2', 'blaze', 'blaze']))
-                    
 
+                    if random() < 0.1:
+                        white_pattern.append(choice(["BLAZE_FULL", "FOREHEAD_MID", choice(["TEARS", "TEARS", "TEARS_L", "TEARS_R"]), choice(["UNDEREYE_MAX_L", "UNDEREYE_MAX_R"])]))
                     if random() < 0.25:
                         white_pattern.append(choice(["BEARD_FULL", "BEARD_HIGH", "BEARD_MID"]))
 
                     if random () < 0.2:
                         white_pattern.append(choice(['break/nose1', 'break/nose2']))
                     if random () < 0.1:
-                        white_pattern.append(choice(['break/chin', "BLAZE_FULL", "FOREHEAD_MID", "break/CHIN"]))
+                        white_pattern.append(choice(['break/chin', "break/CHIN"]))
 
                     #tail
-                    if random() < 0.2:
+                    if random() < 0.1:
                         white_pattern.append(choice(['tail tip', "TAILTIP"]))
+                        if random() < 0.1:
+                            white_pattern.append(choice(["TAIL_HIGH_RING"]))
+                    if random() < 0.1:
+                        white_pattern.append(choice(["TAIL_LOW_RING", "TAIL_LOW_RING", "TAIL_MID", "TAIL_REVERSE_HALF", "TAIL_REVERSE_MIN", "TAIL_REVERSE_MIN"]))
                 elif KITgrade == 3:
                     white_pattern.append('van2')
-
-                    if random() < 0.25:
-                        white_pattern.append(choice(['FOREHEAD_STRIPE']))
+                    white_pattern.append(choice(['break/piebald1', 'break/piebald3']))
                     
                     if random() < 0.05:
                         nropaws = choice([4, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1])
-                        order = ['right front', 'left front',
-                                 'right back', 'left back']
+                        order = ['right front', 'left front', 'right back', 'left back']
                         shuffle(order)
                         for i in range(nropaws):
-                            white_pattern.append("break/" + order[i] + choice(
-                                [' toes', ' toes', ' mitten', ' mitten', ' mitten', ' low sock', ' high sock']))
-                    for i in range(randint(0, 2)):
-                        white_pattern.append(
-                            choice(['break/bracelet left', 'break/bracelet right'] + [None] * 9))
-
-                    if random() < 0.25:
-                        white_pattern.append(choice(["break/BACKSPOT", "break/SADDLE_SMALL"]))
-                    white_pattern.append(choice(['break/piebald1', 'break/piebald3']))
+                            white_pattern.append("break/" + order[i] + choice([' toes', ' toes', ' mitten', ' mitten', ' mitten', ' low sock', ' high sock']))
+                    
+                    if random() < 0.1:
+                        for i in range(randint(1, 2)):
+                            white_pattern.append(choice(['break/bracelet left', 'break/bracelet right']))
                     
                     if random() < 0.1:
                         white_pattern.append(choice(['break/pants']))
                     if random() < 0.05:
                         white_pattern.append(choice(['break/right no', 'break/left no']))
+
+                    #tail
+                    if random() < 0.1:
+                        white_pattern.append(choice(['tail tip', "TAILTIP"]))
+                        if random() < 0.1:
+                            white_pattern.append(choice(["TAIL_HIGH_RING"]))
+                    if random() < 0.1:
+                        white_pattern.append(choice(["TAIL_LOW_RING", "TAIL_LOW_RING", "TAIL_MID", "TAIL_REVERSE_HALF", "TAIL_REVERSE_MIN", "TAIL_REVERSE_MIN"]))
                     
                     if random() < 0.9:
-                        for i in range(randint(1, 2)):
-                            white_pattern.append(choice([
-                                choice(['break/LEFTEAR', 'break/LEFTEAR_MID', 'break/LEFTEAR_MOSTLY', 'break/LEFTEAR_TIP']), 
-                                choice(['break/RIGHTEAR', 'break/RIGHTEAR_MID', 'break/RIGHTEAR_MOSTLY', 'break/RIGHTEAR_TIP']), 
-                                'break/left face', 'break/right face', 'break/bowl cut', 
-                                'break/EYESPOT_L', 'break/EYESPOT_R', "break/FOREHEAD_MIN"]))
-                    if random() < 0.25:
-                        white_pattern.append(choice(['break/nose1', 'break/nose2']))
-                    if random() < 0.1:
-                        white_pattern.append(choice(['break/chin', "break/CHIN", "break/FOREHEAD_MID"]))
+                        options = []
+                        weights = []
+
+                        options += [choice(["break/FOREHEAD_MIN", "break/FOREHEAD_STRIPE", 'break/bowl cut', 'break/HELMET'])]
+                        weights += [1]
+
+                        options += [choice(['break/left face', "break/EYESPOT_L", "break/EYESPOT_L"]),
+                                    choice(['break/right face', "break/EYESPOT_R", "break/EYESPOT_R"])]
+                        weights += [2, 2]
+
+                        options += [choice(['break/chin', "break/CHIN"]),
+                                    choice(['break/nose1', 'break/nose2'])]
+                        weights += [1, 1]
+
+                        options += [choice(['FOREHEAD_STRIPE']),
+                                    choice(["TEARS", "TEARS", "TEARS_L", "TEARS_R"]),
+                                    choice(["UNDEREYE_MAX_L", "UNDEREYE_MAX_R"])]
+                        weights += [1, 2, 2]
+
+                        options += [choice(["break/BACKSPOT", "break/SADDLE_SMALL"])]
+                        weights += [2]
+
+                        white_pattern += choices(options, weights, k=choices([1, 2, 3, 4, 5], weights=[1, 5, 5, 3, 1], k=1)[0])
                 elif KITgrade == 4:
                     white_pattern.append(choice(['van1', 'van2', 'van3', 'van1', 'van2', 'van3', 'FULLWHITE']))
 
-                    if random() < 0.25:
-                        white_pattern.append(choice(["break/BACKSPOT", "break/SADDLE_SMALL"]))
-
                     if random() < 0.01:
                         nropaws = choice([4, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1])
                         order = ['right front', 'left front', 'right back', 'left back']
@@ -743,55 +782,94 @@ class Pelt:
                         for i in range(nropaws):
                             white_pattern.append("break/"+ order[i] + choice([' toes', ' toes', ' mitten', ' mitten', ' mitten', ' low sock', ' high sock']))
 
-                    for i in range(randint(0, 2)):
-                        white_pattern.append(choice(['break/bracelet left', 'break/bracelet right'] + [None] * 9))
-                    white_pattern.append(choice(['break/right no', 'break/left no'] + [None] * 14))
-                    white_pattern.append(choice(['break/pants'] + [None] * 14))
-                    if random() < 0.66:
+                    if random() < 0.1:
                         for i in range(randint(1, 2)):
-                            white_pattern.append(choice([
-                                choice(['break/LEFTEAR', 'break/LEFTEAR_MID', 'break/LEFTEAR_MOSTLY', 'break/LEFTEAR_TIP']), 
-                                choice(['break/RIGHTEAR', 'break/RIGHTEAR_MID', 'break/RIGHTEAR_MOSTLY', 'break/RIGHTEAR_TIP']), 
-                                'break/left face', 'break/tail tip', 'break/TAILTIP', 'break/tail band',
-                                'break/tail rings', 'break/right face', 'EYESPOT_REVERSE_L', 'EYESPOT_REVERSE_R', 
-                                'break/EYESPOT_L', 'break/EYESPOT_R', "break/FOREHEAD_MIN", "break/FOREHEAD_STRIPE"]))
-                    if random() < 0.2:
-                        white_pattern.append(choice([
-                            choice(['break/LEFTEAR', 'break/LEFTEAR_MID', 'break/LEFTEAR_MOSTLY', 'break/LEFTEAR_TIP']), 
-                            choice(['break/RIGHTEAR', 'break/RIGHTEAR_MID', 'break/RIGHTEAR_MOSTLY', 'break/RIGHTEAR_TIP']), 
-                            'break/left face', 'break/right face', 'break/bowl cut']))
-                    white_pattern.append(choice([None, None, None, None, choice(['break/nose1', 'break/nose2'])]))
-                    
-                    if random () < 0.1:
-                        white_pattern.append(choice(['break/chin', "break/CHIN"]))
+                            white_pattern.append(choice(['break/bracelet left', 'break/bracelet right']))
+                    if random() < 0.075:
+                        white_pattern.append(choice(['break/right no', 'break/left no']))
+                    if random() < 0.075:
+                        white_pattern.append(choice(['break/pants']))
+                        
+                    if random() < 0.1:
+                        white_pattern.append(choice(choice(["UNDEREYE_MAX_L", "UNDEREYE_MAX_R"])))
+
+                    if random() < 0.9:
+                        options = []
+                        weights = []
+
+                        options += [choice(['break/LEFTEAR', 'break/LEFTEAR_MID', 'break/LEFTEAR_MOSTLY', 'break/LEFTEAR_TIP']), 
+                                    choice(['break/RIGHTEAR', 'break/RIGHTEAR_MID', 'break/RIGHTEAR_MOSTLY', 'break/RIGHTEAR_TIP'])]
+                        weights += [5, 5]
+
+                        tail = [choice(['break/tail tip', "break/TAILTIP", "break/TAIL_MIN"]), 'break/tail band', 'break/TAIL_HIGH_RING', 'break/TAIL_LOW_RING', "break/TAIL_MID", "break/TAIL_MID_RING"]
+                        options += tail
+                        weights += [5] * len(tail)
+
+                        options += [choice(["break/TAIL_REVERSE_HALF", "break/TAIL_REVERSE_MIN"])]
+                        weights += [1]
+
+                        options += [choice(["break/FOREHEAD_MIN", "break/FOREHEAD_STRIPE", 'break/bowl cut', 'break/HELMET'])]
+                        weights += [5]
+
+                        options += [choice(['break/left face', "break/EYESPOT_L"]),
+                                    choice(['break/right face', "break/EYESPOT_R"])]
+                        weights += [3, 3]
+
+                        options += [choice(["break/BACKSPOT", "break/SADDLE_SMALL"]),
+                                    choice(["break/piebald2"])]
+                        weights += [3, 1]
+
+                        options += [choice(['break/chin', "break/CHIN"]),
+                                    choice(['break/nose1', 'break/nose2'])]
+                        weights += [1, 1]
+
+                        white_pattern += choices(options, weights, k=choices([1, 2, 3, 4, 5], weights=[3, 5, 3, 1, 1], k=1)[0])
                 else:
-                    white_pattern.append(choice(["FULLWHITE", 'van3']))
+                    white_pattern.append(choice(["FULLWHITE", "FULLWHITE", "FULLWHITE", 'van3']))
                     if random() < 0.05:
-                        for i in range(randint(0, 2)):
+                        for i in range(randint(1, 2)):
                             white_pattern.append(choice(['break/bracelet left', 'break/bracelet right']))
                         
 
-                    if random() < 0.001:
+                    if random() < 0.005:
                         nropaws = choice([4, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1])
                         order = ['right front', 'left front', 'right back', 'left back']
                         shuffle(order)
                         for i in range(nropaws):
                             white_pattern.append("break/"+ order[i] + choice([' toes', ' toes', ' mitten', ' mitten', ' mitten', ' low sock', ' high sock']))
 
-                    if random() < 0.25:
-                        white_pattern.append(choice(["break/BACKSPOT", "break/SADDLE_SMALL"]))
-                    
-                    if random() < 0.9:
-                        for i in range(randint(1, 2)):
-                            white_pattern.append(choice([
-                            choice(['break/LEFTEAR', 'break/LEFTEAR_MID', 'break/LEFTEAR_MOSTLY', 'break/LEFTEAR_TIP']), 
-                            choice(['break/RIGHTEAR', 'break/RIGHTEAR_MID', 'break/RIGHTEAR_MOSTLY', 'break/RIGHTEAR_TIP']), 
-                            'break/tail tip', "break/TAILTIP", 'break/tail band', 
-                            "break/FOREHEAD_MIN", "break/FOREHEAD_STRIPE"]))
-                    elif random() < 0.2:
-                        white_pattern.append(choice(['break/left face', 'break/right face', 'break/bowl cut', "break/EYESPOT_R", "break/EYESPOT_L", 'break/chin']))
+                    if random() < 0.95:
+                        options = []
+                        weights = []
 
-                    if random() < 0.01:
+                        options += [choice(['break/LEFTEAR', 'break/LEFTEAR_MID', 'break/LEFTEAR_MOSTLY', 'break/LEFTEAR_TIP']), 
+                                    choice(['break/RIGHTEAR', 'break/RIGHTEAR_MID', 'break/RIGHTEAR_MOSTLY', 'break/RIGHTEAR_TIP'])]
+                        weights += [5, 5]
+
+                        tail = [choice(['break/tail tip', "break/TAILTIP", "break/TAIL_MIN"]), 'break/tail band', 'break/TAIL_HIGH_RING', "break/TAIL_MID", "break/TAIL_MID_RING"]
+                        options += tail
+                        weights += [5] * len(tail)
+
+                        options += [choice(["break/TAIL_REVERSE_HALF", "break/TAIL_REVERSE_MIN"])]
+                        weights += [1]
+
+                        options += [choice(["break/FOREHEAD_MIN", "break/FOREHEAD_STRIPE", 'break/bowl cut', 'break/HELMET'])]
+                        weights += [5]
+
+                        options += [choice(['break/left face', "break/EYESPOT_L"]),
+                                    choice(['break/right face', "break/EYESPOT_R"])]
+                        weights += [3, 3]
+
+                        options += [choice(['break/chin', "break/CHIN"]),
+                                    choice(['break/nose1', 'break/nose2'])]
+                        weights += [1, 1]
+
+                        options += [choice(["break/BACKSPOT", "break/SADDLE_SMALL"])]
+                        weights += [3]
+
+                        white_pattern += choices(options, weights, k=choices([1, 2, 3], weights=[1, 3, 2], k=1)[0])
+
+                    if random() < 0.001:
                         white_pattern = ["FULLWHITE", "break/dorsal stripe"]
 
             if random() < 0.25:
@@ -802,8 +880,10 @@ class Pelt:
 
             if "NoDBE" not in pax3:
                 white_pattern.append(choice(["MASK_HIGH", "MASK_MID", "MASK_FACE", "MASK_REVERSE_BROWS"]))
-            elif pax3[0] != "NoDBE" and random() < 0.5:
-                white_pattern.append(choice(["BLAZE", "BLAZE_MID", "BLAZE_SMALL", "EYESPOT_L", "EYESPOT_R", "MUZZLE"]))
+            elif pax3[0] != "NoDBE" and random() < 0.25:
+                white_pattern.append(choice(["BLAZE", "BLAZE_MID", "BLAZE_SMALL", "EYESPOT_L", "EYESPOT_R", "MUZZLE",
+                "UNDEREYE_MAX_L", "UNDEREYE_MAX_R", "UNDEREYE_MIN_L", "UNDEREYE_MIN_R"]))
+            
             if KIT[0] != "wg" and random() < 0.2:
                 valid_legs = []
                 for w in white_pattern:
