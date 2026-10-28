@@ -702,9 +702,6 @@
             "herb_gathering", "border"
         ],
         "frequency": 2,
-        "season": [
-            "leaf-bare"
-        ],
         "other_clan_filter": {
             "has_rank": [
                 "any_healer",
