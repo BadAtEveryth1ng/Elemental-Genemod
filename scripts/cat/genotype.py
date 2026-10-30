@@ -1983,7 +1983,7 @@ class Genotype:
         return self.Cat_Genes, "Other Fur Genes: ", self.Fur_Genes, "Other Colour Genes: ", self.Other_Colour, "Body Mutations: ", self.Body_Genes, "Elemental:", self.ElementalOutput, "Polygenes: ", self.Polygenes
     
     def Mutate(self):
-        wheremutation = ["body", "furtype", "furtype", "othercoat", "othercoat", "othercoat", "maincoat", "maincoat", "maincoat", "maincoat", "maincoat", "maincoat"]
+        wheremutation = ["body", "furtype", "furtype", "othercoat", "othercoat", "othercoat", "maincoat", "maincoat", "maincoat", "maincoat", "maincoat", "maincoat", "element"]
         where = choice(wheremutation)
 
         if where == 'body':
@@ -1992,6 +1992,8 @@ class Genotype:
             self.FurTypemutation()
         elif where == 'othercoat':
             self.OtherCoatmutation()
+        elif where == 'element':
+            self.Elementmutation()
         else:
             self.MainCoatmutation()
 
@@ -2129,6 +2131,35 @@ class Genotype:
             self.corin[i] = choice(['sh', 'sg', 'fg'])
 
         print(name_map[which])
+
+    def Elementmutation(self):
+        elements = ["fire", "water", "air", "earth"]
+
+        which = choice(elements)
+        if random() < 0.01 and self.elemental_genes[which] != ["n", "n"]:
+            if self.elemental_genes[which][1] == "n" or random() < 0.5 and self.elemental_genes[which][0] == "n":
+                self.elemental_genes[which][0] = "n"
+            else:
+                self.elemental_genes[which][1] = "n"
+        elif random() < 0.01 and self.elemental_genes[which] != ["N", "N"]:
+            if self.elemental_genes[which][1] == "N" or random() < 0.5 and self.elemental_genes[which][0] == "N":
+                self.elemental_genes[which][0] = "N"
+            else:
+                self.elemental_genes[which][1] = "N"
+        elif random() < 0.25 and self.elemental_genes[which] != [which[0], which[0]]:
+            if self.elemental_genes[which][1] == which[0] or random() < 0.5 and self.elemental_genes[which][0] != which[0]:
+                self.elemental_genes[which][0] = which[0]
+            else:
+                self.elemental_genes[which][1] = which[0]
+        elif random() < 0.25 and self.elemental_genes[which] != [which[0].upper(), which[0].upper()]:
+            if self.elemental_genes[which][1] == which[0].upper() or random() < 0.5 and self.elemental_genes[which][0] != which[0].upper():
+                self.elemental_genes[which][0] = which[0].upper()
+            else:
+                self.elemental_genes[which][1] = which[0].upper()
+        else:
+            return Elementmutation()
+        
+        print(which)
     
     def MainCoatmutation(self):
         whichgene = ["furLength", "eumelanin", "sexgene", "dilute", "white", "pointgene", "silver", "agouti", "mack", "ticked", 'pax3']
