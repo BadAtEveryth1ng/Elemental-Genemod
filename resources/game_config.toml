@@ -1026,6 +1026,8 @@ dev_tools = false
   minimum_membership = 1
   maximum_membership = 10
 
+  reset_all_starting_skills = false
+
   [clan_creation.ranks_needed]
     leader = true
     deputy = true
@@ -1214,6 +1216,14 @@ dev_tools = false
   # chance for cats lost to Twolegs to be spayed/neutered. clan_tnr2 is for events not explicitly reminiscent of TNR programs
   clan_tnr = 0.99
   clan_tnr2 = 0.5
+
+[patrol_related]
+  [patrol_related.allow_player_selection]
+    all = true
+    training = true
+    hunting = true
+    border = true
+    med = true
 
 [graduation]
   # minimum age required for a cat to graduate
