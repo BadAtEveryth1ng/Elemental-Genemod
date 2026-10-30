@@ -2157,7 +2157,7 @@ class Genotype:
             else:
                 self.elemental_genes[which][1] = which[0].upper()
         else:
-            return Elementmutation()
+            return self.Elementmutation()
         
         print(which)
     
