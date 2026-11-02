@@ -55,8 +55,9 @@ class TestCatFactory(NewCatFactory):
         return 0
 
     @classmethod
-    def _handle_genetic_confitions(cls, cat):
-        pass
+    def _handle_genetic_conditions(cls, cat):
+        for key in cat.phenotype.elemental_genes:
+            cat.phenotype.elemental_genes[key] = ["N", "N"]
 
     @classmethod
     def _get_random_skills_dict(cls, rank, age):
