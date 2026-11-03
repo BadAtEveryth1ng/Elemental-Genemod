@@ -14,8 +14,6 @@ class Genotype:
         self.ban_genes = ban_genes
         self.chimerapattern = None
 
-        self.fevercoat = False
-
         self.april_fools = {}
         
         self.furLength = ["", ""]
@@ -157,7 +155,6 @@ class Genotype:
     
     def fromJSON(self, jsonstring):
         self.april_fools = jsonstring.get("april_fools", {})
-        self.fevercoat = jsonstring.get("fevercoat", False)
         self.furLength = jsonstring["furLength"]
         self.eumelanin = jsonstring["eumelanin"]
         self.sexgene = jsonstring["sexgene"]
@@ -278,7 +275,6 @@ class Genotype:
 
     def toJSON(self):
         return {
-            "fevercoat" : self.fevercoat,
             "furLength": self.furLength,
             "longtype": self.longtype,
             "eumelanin": self.eumelanin,

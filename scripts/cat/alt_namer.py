@@ -3,12 +3,13 @@ from operator import xor
 from copy import deepcopy
 
 class Namer():
-    def __init__ (self, used_prefixes=[], mod_prefixes=[], moons=0, phenotype=None, chimera_pheno=None):
+    def __init__ (self, used_prefixes=[], mod_prefixes=[], moons=0, cat=None):
         self.used_prefixes = used_prefixes
         self.all_prefixes = mod_prefixes
         self.moons = moons
-        self.phenotype = phenotype
-        self.chimera_pheno = chimera_pheno
+        self.cat = cat
+        self.phenotype = cat.phenotype
+        self.chimera_pheno = cat.chimerapheno
 
     def start(self):
         if self.phenotype:
@@ -224,7 +225,11 @@ class Namer():
         elif white != 'mid' and self.moons > 11 and phenotype.vitiligo:
             white = 'low'
 
-        if phenotype.pointgene[0] == 'cs' or 'masked' in phenotype.silvergold or (self.moons < 4 and phenotype.fevercoat) or (self.moons > 3 and phenotype.bleach[0] == 'lb'):
+        if not tortie and self.cat.pelt.rusting and self.moons > 12 and white != "high" and ("spiderleg1" not in self.cat.pelt.rusting or white == "no"):
+            tortie = True
+            tabby["tortie_red"] = "ticked"
+
+        if phenotype.pointgene[0] == 'cs' or 'masked' in phenotype.silvergold or (self.moons < 4 and self.cat.pelt.fevercoat) or (self.moons > 3 and phenotype.bleach[0] == 'lb'):
             point = 'colourpoint'
         elif phenotype.pointgene == ['cb', 'cb'] or (phenotype.pointgene == ['cm', 'cm'] and phenotype.colour != 'sable'):
             point = 'sepia'
@@ -236,6 +241,7 @@ class Namer():
             point = 'mink'
             if base != 'black':
                 point = 'colourpoint'
+                
 
         return [base, tortie, tabby, white, point, False]
 
@@ -434,7 +440,7 @@ class Namer():
             if (params[2]['pattern'] != '' and params[2]['type'] != 'dark') or random() < 0.25:
                 if params[2]['pattern'] != '' and params[2]['type'] != 'dark':
                     params[2]['type'] = 'silver'
-                if params[4] == 'colourpoint' and (self.phenotype.pointgene in ['cm', 'c'] or 'masked' in self.phenotype.silvergold or (self.moons < 4 and self.phenotype.fevercoat) or (self.moons > 3 and self.phenotype.bleach[0] == 'lb')):
+                if params[4] == 'colourpoint' and (self.phenotype.pointgene in ['cm', 'c'] or 'masked' in self.phenotype.silvergold or (self.moons < 4 and self.cat.pelt.fevercoat) or (self.moons > 3 and self.phenotype.bleach[0] == 'lb')):
                     if params[2]['pattern'] != '' and params[2]['type'] != 'dark':
                         return self.white('silver shaded')
                     else:
@@ -496,7 +502,7 @@ class Namer():
             if (params[2]['pattern'] != '' and params[2]['type'] != 'dark') or random() < 0.25:
                 if params[2]['pattern'] != '' and params[2]['type'] != 'dark':
                     params[2]['type'] = 'silver'
-                if self.phenotype.pointgene[0] == 'cs' or 'masked' in self.phenotype.silvergold or (self.moons < 4 and self.phenotype.fevercoat) or (self.moons > 3 and self.phenotype.bleach[0] == 'lb'):
+                if self.phenotype.pointgene[0] == 'cs' or 'masked' in self.phenotype.silvergold or (self.moons < 4 and self.cat.pelt.fevercoat) or (self.moons > 3 and self.phenotype.bleach[0] == 'lb'):
                     return self.white('white')
                 elif params[4] == 'colourpoint':
                     return self.lilac(params)
@@ -554,7 +560,7 @@ class Namer():
             if (params[2]['pattern'] != '' and params[2]['type'] != 'dark') or random() < 0.25:
                 if params[2]['pattern'] != '' and params[2]['type'] != 'dark':
                     params[2]['type'] = 'silver'
-                if self.phenotype.pointgene[0] == 'cs' or 'masked' in self.phenotype.silvergold or (self.moons < 4 and self.phenotype.fevercoat) or (self.moons > 3 and self.phenotype.bleach[0] == 'lb'):
+                if self.phenotype.pointgene[0] == 'cs' or 'masked' in self.phenotype.silvergold or (self.moons < 4 and self.cat.pelt.fevercoat) or (self.moons > 3 and self.phenotype.bleach[0] == 'lb'):
                     return self.white('white')
                 elif params[4] == 'colourpoint':
                     return self.fawn(params)
@@ -618,7 +624,7 @@ class Namer():
             elif (params[2]['pattern'] != '' and params[2]['type'] != 'dark') or random() < 0.25:
                 if params[2]['pattern'] != '' and params[2]['type'] != 'dark':
                     params[2]['type'] = 'silver'
-                if self.phenotype.pointgene[0] == 'cs' or 'masked' in self.phenotype.silvergold or (self.moons < 4 and self.phenotype.fevercoat) or (self.moons > 3 and self.phenotype.bleach[0] == 'lb'):
+                if self.phenotype.pointgene[0] == 'cs' or 'masked' in self.phenotype.silvergold or (self.moons < 4 and self.cat.pelt.fevercoat) or (self.moons > 3 and self.phenotype.bleach[0] == 'lb'):
                     return self.white('white')
 
             #naming for point colour
@@ -673,7 +679,7 @@ class Namer():
             if (params[2]['pattern'] != '' and params[2]['type'] != 'dark') or random() < 0.25:
                 if params[2]['pattern'] != '' and params[2]['type'] != 'dark':
                     params[2]['type'] = 'silver'
-                if (self.phenotype.pointgene[0] != 'C' and self.phenotype.pointgene != ['cb', 'cb']) or 'masked' in self.phenotype.silvergold or (self.moons < 4 and self.phenotype.fevercoat) or (self.moons > 3 and self.phenotype.bleach[0] == 'lb'):
+                if (self.phenotype.pointgene[0] != 'C' and self.phenotype.pointgene != ['cb', 'cb']) or 'masked' in self.phenotype.silvergold or (self.moons < 4 and self.cat.pelt.fevercoat) or (self.moons > 3 and self.phenotype.bleach[0] == 'lb'):
                     return self.white('white')
                 else:
                     return self.fawn(params)
@@ -690,7 +696,7 @@ class Namer():
 
             #overall colourpoint names
             if self.use_tortie_red(params):
-                if not((self.phenotype.pointgene[0] != 'C' and self.phenotype.pointgene != ['cb', 'cb']) or 'masked' in self.phenotype.silvergold or (self.moons < 4 and self.phenotype.fevercoat) or (self.moons > 3 and self.phenotype.bleach[0] == 'lb')):
+                if not((self.phenotype.pointgene[0] != 'C' and self.phenotype.pointgene != ['cb', 'cb']) or 'masked' in self.phenotype.silvergold or (self.moons < 4 and self.cat.pelt.fevercoat) or (self.moons > 3 and self.phenotype.bleach[0] == 'lb')):
                     return self.tabby('ginger', False, {'pattern' : params[2]['tortie_red'], 'type' : 'silver'}, params[3])
                 else:
                     return self.point('ginger', False, 'colourpoint', params[3])
@@ -746,7 +752,7 @@ class Namer():
 
             #overall colourpoint names
             if self.use_tortie_red(params):
-                if not((self.phenotype.pointgene[0] != 'C' and self.phenotype.pointgene != ['cb', 'cb']) or 'masked' in self.phenotype.silvergold or (self.moons < 4 and self.phenotype.fevercoat) or (self.moons > 3 and self.phenotype.bleach[0] == 'lb')):
+                if not((self.phenotype.pointgene[0] != 'C' and self.phenotype.pointgene != ['cb', 'cb']) or 'masked' in self.phenotype.silvergold or (self.moons < 4 and self.cat.pelt.fevercoat) or (self.moons > 3 and self.phenotype.bleach[0] == 'lb')):
                     return self.tabby('cream', False, {'pattern' : params[2]['tortie_red'], 'type' : 'regular'}, params[3])
                 else:
                     return self.point('cream', False, 'colourpoint', params[3])
