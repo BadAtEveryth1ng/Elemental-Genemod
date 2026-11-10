@@ -152,6 +152,19 @@
       "genetics_config.other_breed": 1
     }
   },
+  "all_elementals": {
+    "card_art": "environment/always_greenleaf.png",
+    "modifiers": {
+      "genetics_config.dominant_fire": 1,
+      "genetics_config.dominant_earth": 1,
+      "genetics_config.dominant_air": 1,
+      "genetics_config.dominant_water": 1,
+      "genetics_config.recessive_fire": 6,
+      "genetics_config.recessive_earth": 6,
+      "genetics_config.recessive_air": 6,
+      "genetics_config.recessive_water": 6
+    }
+  },
   "lean_meat": {
     "card_art": "environment/lean_meat.png",
     "modifiers": {

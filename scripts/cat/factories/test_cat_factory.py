@@ -56,6 +56,7 @@ class TestCatFactory(NewCatFactory):
 
     @classmethod
     def _handle_genetic_conditions(cls, cat):
+        cat.phenotype.element = None
         for key in cat.phenotype.elemental_genes:
             if key != "favours":
                 cat.phenotype.elemental_genes[key] = ["N", "N"]
