@@ -162,7 +162,8 @@
       "genetics_config.recessive_fire": 6,
       "genetics_config.recessive_earth": 6,
       "genetics_config.recessive_air": 6,
-      "genetics_config.recessive_water": 6
+      "genetics_config.recessive_water": 6,
+      "genetics_config.recessive_nonelement": 20
     }
   },
   "lean_meat": {
