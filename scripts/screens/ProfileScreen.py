@@ -218,6 +218,8 @@ class ProfileScreen(Screens):
                 self.change_screen(GameScreen.MED_DEN)
             elif event.ui_element == self.profile_elements.get("mediation"):
                 self.change_screen(GameScreen.MEDIATION)
+            elif event.ui_element == self.profile_elements.get("nursery"):
+                self.change_screen(GameScreen.QUEEN)
             elif event.ui_element == self.profile_elements.get("warriors_den"):
                 self.change_screen(GameScreen.WARRIOR_DEN)
             elif event.ui_element == self.profile_elements.get("leader_den"):
@@ -753,6 +755,18 @@ class ProfileScreen(Screens):
                 manager=MANAGER,
                 starting_height=2,
             )
+        elif (
+            self.the_cat.status.group.is_any_clan_group()
+            and self.the_cat.status.rank.is_any_queen_rank()
+        ):
+            self.profile_elements["nursery"] = UISurfaceImageButton(
+                ui_scale(pygame.Rect((133, 380), (81, 28))),
+                "screens.core.nursery",
+                get_button_dict(ButtonStyles.ROUNDED_RECT, (81, 28)),
+                object_id="@buttonstyles_rounded_rect",
+                manager=MANAGER,
+                starting_height=2,
+            )
         elif self.the_cat.status.group.is_any_clan_group() and self.the_cat.status.rank in (
             CatRank.DEPUTY,
             CatRank.WARRIOR,
@@ -1197,7 +1211,7 @@ class ProfileScreen(Screens):
             self.open_tab = "history"
             self.history_tab_checkbox = UICheckbox(
                 position=(52, 514),
-                check=Switch.show_history_moons,
+                check=switch_get_value(Switch.show_history_moons),
                 tool_tip_text="screens.profile.show_moons_tooltip",
                 manager=MANAGER,
             )

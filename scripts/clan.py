@@ -96,7 +96,8 @@ class Clan:
         starting_season="Newleaf",
         relations={CatGroup.PLAYER_CLAN_ID: {}},
         self_run_init_functions=True,
-        clan_count_mode=""
+        clan_count_mode="",
+        boosted_genes=None
     ):
         """
         :param save_id: The save file name for the Clan, this should not be used for player-facing text beyond the save file screen
@@ -109,6 +110,8 @@ class Clan:
             starting_members = []
 
         self.received_aid = False
+        self.boosted_genes = boosted_genes if boosted_genes else []
+
         self.leader_den_events = {
             "clan_event": {},
             "outsider_event": {}
@@ -273,6 +276,7 @@ class Clan:
             backstory=choice(
                 BACKSTORIES["backstory_categories"]["clan_guide_backstories"]
             ),
+            boosted_genes=self.boosted_genes
         )
 
         self.clancount = clancount
@@ -573,6 +577,10 @@ class Clan:
         TODO: DOCS
         """
 
+        queen_advice = []
+        for i in range(len(game.queen_advice)):
+            queen_advice.append(f"{game.queen_advice[i]} ; {game.queen_advice_outcomes[i]}")
+
         clan_data = {
             "clancount_mode": self.clancount,
             "save_id": self.save_id,
@@ -583,6 +591,7 @@ class Clan:
             "clan_symbol": self.chosen_symbol,
             "gamemode": self.game_mode,
             "cruel_cards": self.cruel_cards,
+            "boosted_genes": self.boosted_genes,
             "used_group_IDs": game.used_group_IDs,
             "last_focus_change": self.last_focus_change,
             "clans_in_focus": self.clans_in_focus,
@@ -590,6 +599,7 @@ class Clan:
             "instructor": self.instructor.ID,
             "reputation": self.reputation,
             "mediated": game.mediated,
+            "queen_advice": queen_advice,
             "starting_season": self.starting_season,
             "temperament": self.temperament,
             "relations": self.relations,
@@ -787,6 +797,7 @@ class Clan:
                 for c in clan_data.get("cruel_cards", [])
                 if c in constants.CRUEL_CARDS_ALL
             ],
+            boosted_genes=clan_data.get("boosted_genes"),
             self_run_init_functions=False,
         )
         game.clan.post_initialization_functions()
@@ -835,7 +846,8 @@ class Clan:
                 status_dict=StatusDict(
                     rank=choice([CatRank.WARRIOR, CatRank.WARRIOR, CatRank.ELDER]),
                     group_ID=CatGroup.STARCLAN_ID,
-                )
+                ),
+                boosted_genes=self.boosted_genes
             )
             game.clan.instructor.status.group_history.insert(0, {"rank": game.clan.instructor.status.rank, "group": CatGroup.PLAYER_CLAN_ID, "moons_as": self.instructor.moons})
             # update_sprite(game.clan.instructor)
@@ -980,6 +992,17 @@ class Clan:
                 game.mediated = []
             else:
                 game.mediated = clan_data["mediated"]
+
+        # Queen flag
+        if "queen_advice" in clan_data:
+            if not isinstance(clan_data["queen_advice"], list):
+                game.queen_advice = []
+            else:
+                queen_advice = clan_data["queen_advice"]
+                for q in queen_advice:
+                    split = q.split(" ; ")
+                    game.queen_advice.append(split[0])
+                    game.queen_advice_outcomes.append(split[1])
 
         game.just_died.clear()
         # Cat who had just died
@@ -1575,15 +1598,6 @@ class OtherClan:
                 choice([x for x in self.first_temper_list if x not in used_tempers]),
                 choice([x for x in self.second_temper_list if x not in used_tempers]),
             )
-        if reputation is None:
-            if self.temperament[0] in ["gracious", "amiable"]:
-                self.reputation = choice([randint(71, 100), randint(71, 100), randint(71, 100), randint(50, 70)])
-            elif self.temperament[0] in ["wary", "proud"]:
-                self.reputation = choice([randint(1, 30), randint(1, 30), randint(1, 30), randint(31, 50)])
-            else:
-                self.reputation = choice([randint(1, 30), randint(31, 70), randint(31, 70), randint(71, 100)])
-        else:
-            self.reputation = reputation
 
         self.chosen_symbol = (
             None  # have to establish None first so that clan_symbol_sprite works
@@ -1604,6 +1618,16 @@ class OtherClan:
         self.med_cat_predecessors = med_cat_predecessors
         self.med_cat_list = []
         self.med_cat_number = len(self.med_cat_list)
+        
+        if reputation is None:
+            if self.temperament[0] in ["gracious", "amiable"]:
+                self.reputation = choice([randint(71, 100), randint(71, 100), randint(71, 100), randint(50, 70)])
+            elif self.temperament[0] in ["wary", "proud"]:
+                self.reputation = choice([randint(1, 30), randint(1, 30), randint(1, 30), randint(31, 50)])
+            else:
+                self.reputation = choice([randint(1, 30), randint(31, 70), randint(31, 70), randint(71, 100)])
+        else:
+            self.reputation = reputation
 
         if self.leader and not self.instructor:
             instructor_rank = choice((
@@ -1625,6 +1649,7 @@ class OtherClan:
                 backstory=choice(
                     BACKSTORIES["backstory_categories"]["clan_guide_backstories"]
                 ),
+                boosted_genes=game.clan.boosted_genes
             )
             self.instructor.dead_for = randint(20, 200)
             self.instructor.status.group_history.insert(0, {"rank": instructor_rank, "group": self.group_ID, "moons_as": self.instructor.moons})
@@ -1635,6 +1660,19 @@ class OtherClan:
         if clancount == "multiclan":
             for i in range(3):
                 generate_and_add_new_poi(self.biome, PoiType.TERRAIN, clan=self.group_ID)
+
+            member_amount = get_config("clan_creation.neighbourclan_cats")
+            possible_cats, boosted_genes = create_example_cats(
+                majority_rank=get_config("clan_creation.majority_rank"),
+                rank_weights=get_config("clan_creation.rank_weights"),
+                max_cats=member_amount[1]+3,
+                clan=self.group_ID
+            )
+            grown_cats = [
+                c
+                for c in possible_cats
+                if c.age not in (CatAge.NEWBORN, CatAge.KITTEN, CatAge.ADOLESCENT)
+            ]
 
             instructor_rank = choice(
                 (
@@ -1654,22 +1692,10 @@ class OtherClan:
                 backstory=choice(
                 BACKSTORIES["backstory_categories"]["clan_guide_backstories"]
                 ),
+                boosted_genes=boosted_genes
             )
             self.instructor.dead_for = randint(20, 200)
             self.instructor.status.group_history.insert(0, {"rank": instructor_rank, "group": self.group_ID, "moons_as": self.instructor.moons})
-
-            member_amount = get_config("clan_creation.neighbourclan_cats")
-            possible_cats = create_example_cats(
-                majority_rank=get_config("clan_creation.majority_rank"),
-                rank_weights=get_config("clan_creation.rank_weights"),
-                max_cats=member_amount[1]+3,
-                clan=self.group_ID
-            )
-            grown_cats = [
-                c
-                for c in possible_cats
-                if c.age not in (CatAge.NEWBORN, CatAge.KITTEN, CatAge.ADOLESCENT)
-            ]
 
             if grown_cats and get_config("clan_creation.ranks_needed.leader"):
                 self.new_leader(choice(grown_cats))
@@ -1802,6 +1828,111 @@ class OtherClan:
             self._reputation = 100
         elif self._reputation < 0:
             self._reputation = 0
+
+    @property
+    def temperament(self) -> tuple[str, str]:
+        """Temperament is determined whenever it's accessed. This makes sure it's always accurate to the
+        current cats in the Clan. However, determining Clan temperament is slow!
+        Clan temperament should be used as sparsely as possible, since
+        it's pretty resource-intensive to determine it."""
+
+        if game.clan.clancount == "singleclan":
+            return self._temperament
+
+        leader = (
+            Cat.fetch_cat(self.leader)
+            if isinstance(Cat.fetch_cat(self.leader), Cat)
+            else None
+        )
+        deputy = (
+            Cat.fetch_cat(self.deputy)
+            if isinstance(Cat.fetch_cat(self.deputy), Cat)
+            else None
+        )
+        medicine_cats = find_alive_cats_with_rank(Cat, [CatRank.MEDICINE_CAT], clan=self.group_ID)
+
+        all_other_cats = [
+            i
+            for i in Cat.all_cats_list
+            if i.status.rank
+            not in (CatRank.LEADER, CatRank.DEPUTY, CatRank.MEDICINE_CAT)
+            and i.status.group_ID == self.group_ID
+        ]
+
+        sociability_list = []
+        aggression_list = []
+        lawfulness_list = []
+        stability_list = []
+
+        # 3x influence
+        if leader:
+            sociability_list += [leader.personality.sociability] * 3
+            aggression_list += [leader.personality.aggression] * 3
+            lawfulness_list += [leader.personality.lawfulness] * 3
+            stability_list += [leader.personality.stability] * 3
+
+        # 2x influence
+        if deputy:
+            sociability_list += [deputy.personality.sociability] * 2
+            aggression_list += [deputy.personality.aggression] * 2
+            lawfulness_list += [deputy.personality.lawfulness] * 2
+            stability_list += [deputy.personality.stability] * 2
+
+        # collective influence
+        if medicine_cats:
+            sociability_list.append(
+                statistics.median(
+                    [i.personality.sociability for i in medicine_cats])
+            )
+            aggression_list.append(
+                statistics.median(
+                    [i.personality.aggression for i in medicine_cats])
+            )
+            lawfulness_list.append(
+                statistics.median(
+                    [i.personality.lawfulness for i in medicine_cats])
+            )
+            stability_list.append(
+                statistics.median(
+                    [i.personality.stability for i in medicine_cats])
+            )
+
+        # collective influence
+        if all_other_cats:
+            sociability_list.append(
+                statistics.median(
+                    [i.personality.sociability for i in all_other_cats])
+            )
+            aggression_list.append(
+                statistics.median(
+                    [i.personality.aggression for i in all_other_cats])
+            )
+            lawfulness_list.append(
+                statistics.median(
+                    [i.personality.lawfulness for i in all_other_cats])
+            )
+            stability_list.append(
+                statistics.median(
+                    [i.personality.stability for i in all_other_cats])
+            )
+
+        if not leader and not deputy and not medicine_cats and not all_other_cats:
+            print("returned default temper: stoic, observant")
+            return "stoic", "observant"
+
+        # mean of [leader, leader, leader, deputy, deputy, medicine_cats, all_other_cats]
+        clan_sociability = round(statistics.mean(sociability_list))
+        clan_aggression = round(statistics.mean(aggression_list))
+        clan_lawfulness = round(statistics.mean(lawfulness_list))
+        clan_stability = round(statistics.mean(stability_list))
+
+        return get_temper_alignment(
+            clan_sociability, clan_aggression, clan_lawfulness, clan_stability
+        )
+
+    @temperament.setter
+    def temperament(self, val):
+        self._temperament = val
 
 class Afterlife:
     """
